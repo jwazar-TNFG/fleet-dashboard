@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:10:35Z",
+  "updated_at": "2026-05-17T16:14:45Z",
   "phases": [
     {
       "id": "phase-1",
@@ -39,7 +39,8 @@
       "name": "Project Scaffold",
       "phase": "phase-1",
       "status": "completed",
-      "depends_on": null,
+      "depends_on": [],
+      "doneWhen": "npm run dev opens Electron window with 640x400 black canvas, nearest-neighbor scaling. npm test passes.",
       "lastActivity": "2026-05-17T15:12:40Z"
     },
     {
@@ -47,7 +48,10 @@
       "name": "Core Engine — Canvas Renderer + Game Loop + State Machine",
       "phase": "phase-1",
       "status": "completed",
-      "depends_on": null,
+      "depends_on": [
+        "task-01"
+      ],
+      "doneWhen": "App launches, game loop at 60fps, StateMachine switches between placeholder states with different colored backgrounds.",
       "lastActivity": "2026-05-17T15:52:56Z"
     },
     {
@@ -55,7 +59,10 @@
       "name": "Input Manager",
       "phase": "phase-1",
       "status": "completed",
-      "depends_on": null,
+      "depends_on": [
+        "task-02"
+      ],
+      "doneWhen": "Input events captured and queryable. Test state displays pressed keys on canvas.",
       "lastActivity": "2026-05-17T16:04:32Z"
     },
     {
@@ -63,7 +70,10 @@
       "name": "Asset Loader + Data Types",
       "phase": "phase-1",
       "status": "failed",
-      "depends_on": null,
+      "depends_on": [
+        "task-01"
+      ],
+      "doneWhen": "AssetLoader loads all JSON files with typed arrays. Dice roller parses '2d6+3'. Tests pass.",
       "lastActivity": "2026-05-17T16:10:31Z"
     },
     {
@@ -71,7 +81,11 @@
       "name": "Main Menu Screen",
       "phase": "phase-1",
       "status": "running",
-      "depends_on": null,
+      "depends_on": [
+        "task-02",
+        "task-03"
+      ],
+      "doneWhen": "App launches to styled main menu. Arrow keys and mouse navigate. New Game transitions. Quit closes window.",
       "lastActivity": "2026-05-17T16:10:34Z"
     },
     {
@@ -79,7 +93,11 @@
       "name": "Character Creation — Race & Class Selection",
       "phase": "phase-1",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-04",
+        "task-05"
+      ],
+      "doneWhen": "Player can create 1-6 characters with race, class, stats, alignment, name. Party stored in GameState.",
       "lastActivity": null
     },
     {
@@ -87,7 +105,10 @@
       "name": "Character Creation — Party Review & Management",
       "phase": "phase-1",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-06"
+      ],
+      "doneWhen": "Player can review, remove, reorder, equip default gear for characters before starting adventure.",
       "lastActivity": null
     },
     {
@@ -95,7 +116,10 @@
       "name": "Save/Load System",
       "phase": "phase-1",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-06"
+      ],
+      "doneWhen": "Save to slot, quit, relaunch, load from slot — all party data intact. Roundtrip serialization tests pass.",
       "lastActivity": null
     },
     {
@@ -103,7 +127,13 @@
       "name": "Phase 1 Integration Test",
       "phase": "phase-1",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-05",
+        "task-06",
+        "task-07",
+        "task-08"
+      ],
+      "doneWhen": "Full loop works: Menu → Create party → Review → Save → Quit → Relaunch → Load → Verify. Integration tests pass.",
       "lastActivity": null
     },
     {
@@ -111,7 +141,10 @@
       "name": "Town Hub — Main Screen & Navigation",
       "phase": "phase-2",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-09"
+      ],
+      "doneWhen": "Town hub displays with 6 navigable locations. Save works. Depart transitions to placeholder dungeon.",
       "lastActivity": null
     },
     {
@@ -119,7 +152,10 @@
       "name": "Town — Adventurers' Guild (Party Management)",
       "phase": "phase-2",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-10"
+      ],
+      "doneWhen": "Player can view character sheets, see equipment, train characters with enough XP and gold.",
       "lastActivity": null
     },
     {
@@ -127,7 +163,10 @@
       "name": "Town — Temple & Shop",
       "phase": "phase-2",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-10"
+      ],
+      "doneWhen": "Heal at temple, buy/sell items at shop, equip items. Gold transactions correct.",
       "lastActivity": null
     },
     {
@@ -135,7 +174,10 @@
       "name": "Town — Tavern & Rumors",
       "phase": "phase-2",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-10"
+      ],
+      "doneWhen": "Visit tavern, read random rumors. Rumors change between visits.",
       "lastActivity": null
     },
     {
@@ -143,7 +185,10 @@
       "name": "Tile Map Data Structures & Visibility",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-09"
+      ],
+      "doneWhen": "TileMap loads map JSON, FogOfWar computes visible/visited/hidden tiles. All tests pass.",
       "lastActivity": null
     },
     {
@@ -151,7 +196,12 @@
       "name": "Dungeon Screen — Canvas Tile Renderer + Camera + Minimap",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-14",
+        "task-02",
+        "task-03"
+      ],
+      "doneWhen": "Dungeon shows colored tile map on canvas with fog of war, party marker, minimap. NOT black canvas with DOM text.",
       "lastActivity": null
     },
     {
@@ -159,7 +209,10 @@
       "name": "Dungeon Movement & Interaction",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-15"
+      ],
+      "doneWhen": "Arrow key movement, camera follows, fog reveals, doors work, walls block. Message log updates.",
       "lastActivity": null
     },
     {
@@ -167,7 +220,10 @@
       "name": "Dungeon HUD — Party Stats, Compass, Facing",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-15"
+      ],
+      "doneWhen": "Compass, facing text, party HP bars, info bar all rendered on canvas alongside tile viewport.",
       "lastActivity": null
     },
     {
@@ -175,7 +231,10 @@
       "name": "Dungeon Events & Encounters",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-16"
+      ],
+      "doneWhen": "Events trigger from map data. Encounter screen shows Fight/Parley/Flee. Random encounters work.",
       "lastActivity": null
     },
     {
@@ -183,7 +242,13 @@
       "name": "Phase 3 Integration Test",
       "phase": "phase-3",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-15",
+        "task-16",
+        "task-17",
+        "task-18"
+      ],
+      "doneWhen": "Complete dungeon loop with canvas graphics, fog of war, minimap, HUD, events. Visual difference from FD1 obvious.",
       "lastActivity": null
     },
     {
@@ -191,7 +256,10 @@
       "name": "Combat Engine — Core Mechanics",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-04"
+      ],
+      "doneWhen": "CombatManager runs complete combat programmatically. All unit tests pass.",
       "lastActivity": null
     },
     {
@@ -199,7 +267,12 @@
       "name": "Combat Screen — Battlefield Renderer + UI",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-20",
+        "task-02",
+        "task-03"
+      ],
+      "doneWhen": "Combat shows colored combatant sprites on canvas with pulsing active indicator and attack animations.",
       "lastActivity": null
     },
     {
@@ -207,7 +280,10 @@
       "name": "Combat — Target Selection & Action Resolution",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-21"
+      ],
+      "doneWhen": "Target selection, attack resolution with visual feedback, defend and flee work.",
       "lastActivity": null
     },
     {
@@ -215,7 +291,10 @@
       "name": "Combat — Victory, Defeat & Rewards",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-22"
+      ],
+      "doneWhen": "Victory awards XP + loot, returns to dungeon. Defeat shows game over with load/quit.",
       "lastActivity": null
     },
     {
@@ -223,7 +302,11 @@
       "name": "Combat — Integration with Dungeon",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-23",
+        "task-18"
+      ],
+      "doneWhen": "Full flow: dungeon encounter → combat with real data → victory → loot → back to dungeon. Fixed encounters don't retrigger.",
       "lastActivity": null
     },
     {
@@ -231,7 +314,10 @@
       "name": "Phase 4 Integration Test",
       "phase": "phase-4",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-24"
+      ],
+      "doneWhen": "Complete create → explore → fight → loot → return → heal → save → load loop with visual combat.",
       "lastActivity": null
     },
     {
@@ -239,7 +325,10 @@
       "name": "Spell Memorization System",
       "phase": "phase-5",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-20"
+      ],
+      "doneWhen": "Characters memorize spells during rest. Slots tracked per class/level. Character sheet shows spells.",
       "lastActivity": null
     },
     {
@@ -247,7 +336,11 @@
       "name": "Spell Casting in Combat",
       "phase": "phase-5",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-26",
+        "task-22"
+      ],
+      "doneWhen": "Spellcasters cast memorized spells in combat. Damage/heal/effects work. Slots expended.",
       "lastActivity": null
     },
     {
@@ -255,7 +348,11 @@
       "name": "Inventory & Equipment Polish",
       "phase": "phase-5",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-12",
+        "task-24"
+      ],
+      "doneWhen": "Full inventory management — view, equip, unequip, drop. Equipment changes reflected in stats.",
       "lastActivity": null
     },
     {
@@ -263,7 +360,11 @@
       "name": "Phase 5 Integration Test",
       "phase": "phase-5",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-27",
+        "task-28"
+      ],
+      "doneWhen": "Complete spell memorization → casting → inventory → equipment loop works.",
       "lastActivity": null
     },
     {
@@ -271,7 +372,10 @@
       "name": "Overland Map — Canvas Renderer & Travel",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-19"
+      ],
+      "doneWhen": "Travel between town and dungeon entrances on canvas overland map. Random encounters trigger.",
       "lastActivity": null
     },
     {
@@ -279,7 +383,11 @@
       "name": "Dungeon Zone 1 — Goblin Warrens (2 Floors)",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-24",
+        "task-18"
+      ],
+      "doneWhen": "Two-floor Goblin Warrens playable with encounters, boss, treasure, stairs.",
       "lastActivity": null
     },
     {
@@ -287,7 +395,10 @@
       "name": "Dungeon Zone 2 — Crypt of Shadows (3 Floors)",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-31"
+      ],
+      "doneWhen": "Three-floor Crypt playable with undead encounters, Vampire Lord boss, environmental hazards.",
       "lastActivity": null
     },
     {
@@ -295,7 +406,10 @@
       "name": "Dungeon Zone 3 — Ruins of Ashenmire (2 Floors)",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-31"
+      ],
+      "doneWhen": "Two-floor Ashenmire playable with swamp encounters, Black Dragon boss, environmental hazards.",
       "lastActivity": null
     },
     {
@@ -303,7 +417,11 @@
       "name": "Quest System & NPCs",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-30",
+        "task-31"
+      ],
+      "doneWhen": "Accept quests from Town Hall, track in quest log, complete in dungeons, turn in for rewards.",
       "lastActivity": null
     },
     {
@@ -311,7 +429,14 @@
       "name": "Phase 6 Integration Test",
       "phase": "phase-6",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-30",
+        "task-31",
+        "task-32",
+        "task-33",
+        "task-34"
+      ],
+      "doneWhen": "Complete game playable start to finish — all zones, quests, combat, spells, inventory.",
       "lastActivity": null
     },
     {
@@ -319,7 +444,10 @@
       "name": "Audio System",
       "phase": "phase-7",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-35"
+      ],
+      "doneWhen": "Background music per state. SFX for combat/exploration/UI. Volume adjustable.",
       "lastActivity": null
     },
     {
@@ -327,7 +455,10 @@
       "name": "Visual Polish & Screen Transitions",
       "phase": "phase-7",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-35"
+      ],
+      "doneWhen": "Smooth transitions, no visual glitches, consistent EGA aesthetic, 60fps.",
       "lastActivity": null
     },
     {
@@ -335,7 +466,11 @@
       "name": "Final Integration & Packaging",
       "phase": "phase-7",
       "status": "pending",
-      "depends_on": null,
+      "depends_on": [
+        "task-36",
+        "task-37"
+      ],
+      "doneWhen": "npm run build produces working packaged app. Game playable start to finish, no critical bugs.",
       "lastActivity": null
     }
   ]
