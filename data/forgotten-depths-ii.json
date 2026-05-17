@@ -2,13 +2,13 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T14:53:11Z",
+  "updated_at": "2026-05-17T14:59:56Z",
   "tasks": [
     {
       "id": "task-01",
       "name": "Project Scaffold",
       "phase": "phase-1",
-      "status": "running",
+      "status": "completed",
       "depends_on": null
     },
     {
