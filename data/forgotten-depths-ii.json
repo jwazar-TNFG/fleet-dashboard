@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:32:13Z",
+  "updated_at": "2026-05-17T18:42:27Z",
   "phases": [
     {
       "id": "phase-1",
@@ -385,7 +385,7 @@
       "id": "task-19",
       "name": "Phase 3 Integration Test",
       "phase": "phase-3",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-15",
         "task-16",
@@ -393,14 +393,14 @@
         "task-18"
       ],
       "doneWhen": "Complete dungeon loop with canvas graphics, fog of war, minimap, HUD, events. Visual difference from FD1 obvious.",
-      "lastActivity": "2026-05-17T18:32:12Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T18:42:26Z",
+      "costUSD": 4.4339,
+      "numTurns": 81,
+      "durationSeconds": 549,
+      "inputTokens": 70,
+      "outputTokens": 40503,
+      "cacheReadTokens": 5261074,
+      "cacheCreationTokens": 126190,
       "description": "# Task 19: Phase 3 Integration Test\n\n## Objective\nVerify the complete Phase 3 dungeon exploration loop works end-to-end with canvas-based rendering. Confirm visual difference from Forgotten Depths 1 is obvious.\n\n## Prerequisites\nTasks 14, 15, 16, 17, 18 must ALL be complete.\n\n## Requirements\n\n### Manual Test Flow\n1. Launch app \u2192 Main Menu \u2192 New Game \u2192 create a 4-character party\n2. Begin Adventure \u2192 Town Hub displayed (canvas-rendered)\n3. Visit Shop \u2192 buy a Healing Potion \u2192 equip a weapon if not yet\n4. Visit Temple \u2192 confirm \"All party members are healthy\"\n5. Visit Tavern \u2192 Listen for Rumors \u2192 confirm rumor displays\n6. Visit Tavern \u2192 Rest at Inn \u2192 confirm day advances and HP fully restored\n7. Save game to Slot 1\n8. Depart \u2192 enter the test dungeon\n9. **Verify on screen**:\n   - 320x240 tile viewport in top-left with EGA-colored tiles (not black)\n   - 160x160 minimap top-right showing visited area\n   - Compass and facing indicator under minimap\n   - Party HP bars on the bottom-left panel\n   - Message log on the bottom-right panel\n   - Info bar at the very bottom showing map name + coordinates\n10. Move with arrow keys \u2192 fog of war reveals as you go\n11. Walk into a wall \u2192 bonk feedback + \"Ouch! A wall.\" in log\n12. Rotate with Q/E \u2192 facing changes without moving\n13. Open a door with SPACE \u2192 log \"You open the door.\"\n14. Step onto a treasure tile \u2192 gold added; log shows \"Found N gold!\"\n15. Step onto a trap tile \u2192 party takes damage; HP bars update\n16. Step onto a message tile \u2192 message shown in log\n17. Walk until random encounter fires \u2192 Encounter screen appears\n18. Choose Flee \u2192 return to dungeon\n19. Walk into a fixed encounter event \u2192 Encounter screen \u2192 choose Fight \u2192 placeholder COMBAT state\n20. ESC back to dungeon \u2192 Press M \u2192 full minimap overlay \u2192 Press M to close\n21. ESC \u2192 Save Game to Slot 2 \u2192 returns to dungeon\n22. ESC \u2192 Quit to Town \u2192 back at Town Hub\n23. Save state preserved: party at correct position, fog of war remembered, doors stay opened\n24. Main Menu \u2192 Load Slot 2 \u2192 verify everything restored\n\n### Automated Integration Tests\nCreate `src/__tests__/integration/dungeon-loop.test.ts`:\n```typescript\n// Test complete dungeon loop end-to-end (no canvas rendering, model only):\n// - Create GameState with 4 characters\n// - Load test map\n// - Step through 10 moves, verify fog updates and partyX/Y correct\n// - Trigger a treasure event \u2192 verify gold added, event marked triggered\n// - Trigger a trap event \u2192 verify damage applied\n// - Save state, deserialize, verify partyX/Y, fog, doorStates, triggeredEvents preserved\n```\n\nCreate `src/__tests__/integration/visibility.test.ts`:\n```typescript\n// Edge cases:\n// - Visibility radius respects walls\n// - Open door allows vision through\n// - Closed door blocks vision through\n// - Visited tiles remain Visited after moving away\n```\n\n### Visual Verification Checklist\nDocument in `docs/PHASE-3-VERIFICATION.md`:\n```markdown\n# Phase 3 Visual Verification\n\nThe dungeon screen MUST show, on canvas (NOT DOM):\n- [ ] Colored tile grid (not black background)\n- [ ] Walls visually distinct from open floor\n- [ ] Doors color-coded (brown for open, red for locked)\n- [ ] Fog of war: black for hidden, dim for visited, bright for visible\n- [ ] Cyan party marker centered in viewport\n- [ ] Yellow facing triangle on party marker\n- [ ] Minimap in top-right with pulsing party dot\n- [ ] Compass below minimap with cardinal letters\n- [ ] Party HP bars on bottom-left panel\n- [ ] Message log on bottom-right panel\n- [ ] Info bar at bottom with map name + coords + gold\n- [ ] Encounter screen shows colored monster blocks with action menu\n\nIf ANY of these are missing or rendered as DOM text instead of canvas pixels, the phase is INCOMPLETE.\n```\n\n### Bug Fixes\nCommon issues to check:\n- Camera doesn't follow party (verify partyX/Y centers in viewport)\n- Fog state not persisting across save/load\n- Doors reopening after save/load\n- Random encounters firing on rotation (should only fire on actual move)\n- Message log losing messages on state transition\n- HP bars not updating after damage\n- Memory leak: DungeonState not cleaning up on exit\n\n### Cleanup\n- Remove debug console.log statements added during Phase 3\n- Verify no unused imports in dungeon/screens/rendering files\n- Confirm all canvas drawing operations use EGA palette constants\n\n## Done When\n- Manual test flow (steps 1-24) completes without errors\n- Visual verification checklist 100% checked\n- All automated integration tests pass\n- `npm test` passes\n- `npm run build` succeeds\n- `docs/PHASE-3-VERIFICATION.md` committed with all boxes checked\n- No console errors during a full dungeon session\n"
     },
     {
