@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:31:02Z",
+  "updated_at": "2026-05-17T16:31:09Z",
   "phases": [
     {
       "id": "phase-1",
@@ -92,13 +92,13 @@
       "id": "task-06",
       "name": "Character Creation — Race & Class Selection",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-04",
         "task-05"
       ],
       "doneWhen": "Player can create 1-6 characters with race, class, stats, alignment, name. Party stored in GameState.",
-      "lastActivity": null
+      "lastActivity": "2026-05-17T16:31:08Z"
     },
     {
       "id": "task-07",
