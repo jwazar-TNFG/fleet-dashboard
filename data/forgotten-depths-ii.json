@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T20:33:23Z",
+  "updated_at": "2026-05-17T20:41:18Z",
   "phases": [
     {
       "id": "phase-1",
@@ -583,20 +583,20 @@
       "id": "task-29",
       "name": "Phase 5 Integration Test",
       "phase": "phase-5",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-27",
         "task-28"
       ],
       "doneWhen": "Complete spell memorization \u2192 casting \u2192 inventory \u2192 equipment loop works.",
-      "lastActivity": "2026-05-17T20:33:22Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T20:41:17Z",
+      "costUSD": 3.6049,
+      "numTurns": 85,
+      "durationSeconds": 410,
+      "inputTokens": 70,
+      "outputTokens": 28479,
+      "cacheReadTokens": 4413110,
+      "cacheCreationTokens": 109456,
       "description": "# Task 29: Phase 5 Integration Test\n\n## Objective\nVerify the spell memorization \u2192 casting \u2192 inventory \u2192 equipment loop end-to-end with full visual feedback.\n\n## Prerequisites\nTasks 26, 27, 28 must ALL be complete.\n\n## Requirements\n\n### Manual Test Flow\n1. Launch app \u2192 New Game \u2192 create 4 characters: Fighter, Mage, Cleric, Thief\n2. Begin Adventure \u2192 Town Hub\n3. Shop: buy 2 Healing Potions, equip starter weapons/armor\n4. Guild \u2192 View Aelindra (Mage) \u2192 Manage Spells \u2192 Memorize Spells screen\n5. **Verify**: 1 L1 slot available, mage spellbook lists 3 spells\n6. Memorize Magic Missile \u2192 slot fills, screen updates\n7. ESC \u2192 View Durgin (Cleric) \u2192 Memorize Spells\n8. Memorize Cure Light Wounds in L1 slot\n9. Guild \u2192 View Roland \u2192 Manage Inventory \u2192 see all items\n10. **Verify**: Long Sword in weapon slot, Chain Mail in armor slot, AC = 15\n11. Unequip Chain Mail \u2192 AC drops to 10\n12. Re-equip Chain Mail \u2192 AC = 15\n13. Try equipping Chain Mail on Aelindra \u2192 \"Aelindra cannot use Chain Mail\"\n14. Transfer Healing Potion from Roland to Pip \u2192 both inventories update\n15. Drop Torch \u2192 confirm \u2192 torch removed\n16. ESC \u2192 return to Town Hub\n17. Depart \u2192 enter Dungeon\n18. Find a random encounter \u2192 Fight\n19. On Aelindra's turn: press C (Cast)\n20. **Verify**: Spell Picker shows Magic Missile (memorized, not expended)\n21. Select Magic Missile \u2192 target a goblin \u2192 yellow projectile animation\n22. **Verify**: Damage dealt, slot now expended (shown grayed out)\n23. Try to cast Magic Missile again \u2192 cannot select (no slots remaining)\n24. On Durgin's turn: press C \u2192 Cast Cure Light Wounds \u2192 target Roland (injured)\n25. **Verify**: Green glow on Roland, HP restored\n26. Defeat the encounter\n27. Return to dungeon \u2192 walk back to Town Hub\n28. Tavern \u2192 Rest at Inn (cost gold)\n29. **Verify**: Aelindra's Magic Missile no longer expended; Durgin's Cure Light Wounds available again\n30. Train Aelindra to Level 2 at Guild (if enough XP)\n31. **Verify**: Level 2 grants 2 L1 slots (was 1)\n32. Memorize Magic Missile and Sleep in 2 slots\n33. Save to Slot 1 \u2192 Load Slot 1 \u2192 all memorized spells, inventory state preserved\n\n### Automated Integration Tests\n\nCreate `src/__tests__/integration/spell-loop.test.ts`:\n```typescript\n// 1. Create Mage character at level 1\n// 2. Memorize Magic Missile in L1 slot\n// 3. Enter combat, cast Magic Missile \u2192 slot expended\n// 4. Try to cast again \u2192 returns false (no slots)\n// 5. Reset slots (simulating rest)\n// 6. Cast Magic Missile again \u2192 succeeds\n```\n\nCreate `src/__tests__/integration/inventory-equipment.test.ts`:\n```typescript\n// 1. Create Fighter with default equipment\n// 2. Unequip Long Sword \u2192 weapon slot empty, no damage bonus\n// 3. Equip a different weapon \u2192 damage bonus updates\n// 4. Equip Chain Mail \u2192 AC increases\n// 5. Class restriction: try mage equipping chain mail \u2192 fails\n// 6. Transfer item between characters\n// 7. Save/Load \u2192 all inventory state preserved\n```\n\nCreate `src/__tests__/integration/level-up-spells.test.ts`:\n```typescript\n// 1. Mage at level 1 with 1 L1 slot\n// 2. Award XP \u2192 train to level 3 \u2192 2 L1 slots + 1 L2 slot\n// 3. Learn new spell (Sleep) on level up\n// 4. Memorize Sleep in L1 \u2192 expend \u2192 reset\n```\n\n### Visual Verification Checklist\nUpdate `docs/PHASE-5-VERIFICATION.md`:\n```markdown\n# Phase 5 Visual Verification\n\n- [ ] Memorization screen shows slot capacity per spell level\n- [ ] Available spells filtered by class and level\n- [ ] Expended spells visually grayed out\n- [ ] Spell Picker overlay opens in combat\n- [ ] Visual effects per school:\n   - [ ] Yellow projectile for Magic Missile\n   - [ ] Green glow for healing\n   - [ ] Purple swirl for sleep/charm\n- [ ] Damage/heal numbers float on targets\n- [ ] Inventory screen shows all slots + items\n- [ ] AC/damage recompute after equip/unequip\n- [ ] Class restrictions enforced with clear error\n```\n\n### Bug Fixes\nCommon issues:\n- Spell slots not persisting through save/load\n- Memorized spell still expended after rest (reset bug)\n- Equipment recalc not running after unequip\n- Class restriction enforced for buy but not equip (or vice versa)\n- Stackable items not stacking correctly when transferred\n- Visual effect from previous spell still rendering on next turn\n\n### Cleanup\n- Remove all Phase 5 debug console.log\n- Ensure SpellResolver, StatCalculator, InventoryScreen have no `any` types\n\n## Done When\n- Manual test flow (steps 1-33) completes without errors\n- Automated integration tests all pass\n- Visual checklist 100% checked\n- `npm test` passes\n- `npm run build` succeeds\n- `docs/PHASE-5-VERIFICATION.md` committed with all boxes checked\n- No console errors during full session\n"
     },
     {
