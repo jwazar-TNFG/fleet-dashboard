@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T17:50:55Z",
+  "updated_at": "2026-05-17T17:51:05Z",
   "phases": [
     {
       "id": "phase-1",
@@ -293,14 +293,14 @@
       "id": "task-15",
       "name": "Dungeon Screen — Canvas Tile Renderer + Camera + Minimap",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-14",
         "task-02",
         "task-03"
       ],
       "doneWhen": "Dungeon shows colored tile map on canvas with fog of war, party marker, minimap. NOT black canvas with DOM text.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T17:51:04Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
