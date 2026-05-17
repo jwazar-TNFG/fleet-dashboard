@@ -324,7 +324,10 @@
       border-bottom: 1px solid var(--border);
       gap: 10px;
       font-size: 13px;
+      cursor: pointer;
+      transition: background 0.1s;
     }
+    .task-row:hover { background: var(--surface-hover); }
 
     .task-row:last-child { border-bottom: none; }
 
@@ -549,9 +552,9 @@
       cursor: pointer;
     }
     .depgraph-svg .info-btn circle {
-      fill: rgba(139,148,158,0.15);
+      fill: rgba(139,148,158,0.25);
       stroke: var(--text-muted);
-      stroke-width: 1;
+      stroke-width: 1.5;
       transition: all 0.15s;
     }
     .depgraph-svg .info-btn:hover circle {
@@ -1177,7 +1180,7 @@ function renderProject(project) {
       const costTag = taskCost ? `<span class="task-cost" title="${taskTurns} · ${taskDur}">${taskCost}</span>` : '';
 
       projectHtml += `
-        <div class="task-row">
+        <div class="task-row" onclick="showTaskDetail('${project.slug}','${task.id}')">
           <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
           <span class="task-id">${task.id}</span>
           <span class="task-name">${task.name}</span>
@@ -1588,10 +1591,12 @@ function statusIconColor(status) {
 
 // ---- Info-panel toggle (called from inline onclick on task nodes)
 function toggleTaskInfo(slug, taskId) {
+  showTaskDetail(slug, taskId);
+  return;
+  // Legacy inline panel code below (kept for reference)
   const projId = (slug || 'p').replace(/[^a-z0-9]/g, '_');
   const host = document.getElementById('depgraph-info-' + projId);
   if (!host) return;
-  // If the same task is already open, close it (toggle behavior)
   if (host.dataset.openTask === taskId) {
     host.innerHTML = '';
     host.dataset.openTask = '';
@@ -1797,6 +1802,120 @@ function filterGraphPhase(projId, phaseId) {
   delete _graphZoom[projId];
   initGraphInteraction(projId);
 }
+
+// ---- Task Detail Modal ----
+function showTaskDetail(slug, taskId) {
+  const overlay = document.getElementById('task-detail-overlay');
+  if (!overlay) return;
+  const project = allProjects[slug];
+  if (!project) return;
+  const tasks = project.tasks || [];
+  const task = tasks.find(t => t.id === taskId);
+  if (!task) return;
+
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const status = task.status || 'pending';
+  const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+  const icon = STATUS_ICONS[status] || '·';
+
+  // Phase info
+  const phaseNames = {};
+  (project.phases || []).forEach(p => { phaseNames[p.id] = p.name; });
+  const phaseName = phaseNames[task.phase] || task.phase || '—';
+  const phaseLabel = task.phase ? `${task.phase.replace('phase-','Phase ')} — ${phaseName}` : '—';
+
+  // Description
+  const desc = task.doneWhen || '(no description available)';
+
+  // Dependencies
+  const deps = task.depends_on && task.depends_on.length ? task.depends_on : [];
+  const depsHtml = deps.length
+    ? deps.map(d => `<span class="td-dep-chip" onclick="event.stopPropagation(); showTaskDetail('${esc(slug)}','${esc(d)}')">${esc(d)}</span>`).join('')
+    : '<span style="color:var(--text-muted)">None — no dependencies</span>';
+
+  // Time
+  const timeAgo = task.lastActivity ? formatTimeAgo(task.lastActivity) : '—';
+  const timeAbs = task.lastActivity ? new Date(task.lastActivity).toLocaleString() : '';
+
+  // Cost section
+  let costHtml = '';
+  if (task.costUSD) {
+    const fmtDur = task.durationSeconds ? formatDuration(task.durationSeconds) : '—';
+    const fmtTokens = (n) => { if (!n) return '0'; if (n >= 1000000) return (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return (n/1000).toFixed(1) + 'K'; return n.toString(); };
+    costHtml = `
+      <div class="td-section">
+        <div class="td-label">Performance</div>
+        <div class="td-cost-grid">
+          <div class="td-cost-cell"><div class="num">$${task.costUSD.toFixed(2)}</div><div class="lbl">API Cost (est.)</div></div>
+          <div class="td-cost-cell"><div class="num">${task.numTurns || 0}</div><div class="lbl">Turns</div></div>
+          <div class="td-cost-cell"><div class="num">${fmtDur}</div><div class="lbl">Duration</div></div>
+          <div class="td-cost-cell"><div class="num">${fmtTokens((task.inputTokens||0)+(task.outputTokens||0))}</div><div class="lbl">Tokens (in+out)</div></div>
+          <div class="td-cost-cell"><div class="num">${fmtTokens(task.cacheReadTokens||0)}</div><div class="lbl">Cache Read</div></div>
+          <div class="td-cost-cell"><div class="num">${fmtTokens(task.cacheCreationTokens||0)}</div><div class="lbl">Cache Write</div></div>
+        </div>
+      </div>`;
+  }
+
+  // Nav: prev/next task
+  const taskIdx = tasks.findIndex(t => t.id === taskId);
+  const prevTask = taskIdx > 0 ? tasks[taskIdx - 1] : null;
+  const nextTask = taskIdx < tasks.length - 1 ? tasks[taskIdx + 1] : null;
+
+  overlay.innerHTML = `
+    <div class="task-detail-card">
+      <div class="td-header">
+        <div class="td-header-left">
+          <div class="td-task-id">${esc(task.id)}</div>
+          <div class="td-task-name">${icon} ${esc(task.name)}</div>
+        </div>
+        <button class="td-close" onclick="closeTaskDetail()" title="Close">&times;</button>
+      </div>
+      <div class="td-body">
+        <div class="td-section">
+          <div class="td-label">Status</div>
+          <div class="td-value"><span class="td-status-badge ${status}">${statusLabel}</span></div>
+        </div>
+        <div class="td-section">
+          <div class="td-label">Phase</div>
+          <div class="td-value">${esc(phaseLabel)}</div>
+        </div>
+        <div class="td-section">
+          <div class="td-label">Done When</div>
+          <div class="td-value">${esc(desc)}</div>
+        </div>
+        <div class="td-section">
+          <div class="td-label">Dependencies</div>
+          <div class="td-deps">${depsHtml}</div>
+        </div>
+        <div class="td-section">
+          <div class="td-label">Last Activity</div>
+          <div class="td-value">${esc(timeAgo)}${timeAbs ? ' · <span style="color:var(--text-muted)">' + esc(timeAbs) + '</span>' : ''}</div>
+        </div>
+        ${costHtml}
+      </div>
+      <div class="td-nav">
+        <button class="td-nav-btn" ${prevTask ? `onclick="showTaskDetail('${esc(slug)}','${esc(prevTask.id)}')"` : 'disabled'}>${prevTask ? '← ' + esc(prevTask.id) : '← Prev'}</button>
+        <button class="td-nav-btn" ${nextTask ? `onclick="showTaskDetail('${esc(slug)}','${esc(nextTask.id)}')"` : 'disabled'}>${nextTask ? esc(nextTask.id) + ' →' : 'Next →'}</button>
+      </div>
+    </div>`;
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTaskDetail() {
+  const overlay = document.getElementById('task-detail-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeTaskDetail();
+});
 
 // Initial load
 loadAll();
