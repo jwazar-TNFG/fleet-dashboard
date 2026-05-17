@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:15:48Z",
+  "updated_at": "2026-05-17T16:22:06Z",
   "phases": [
     {
       "id": "phase-1",
@@ -69,12 +69,12 @@
       "id": "task-04",
       "name": "Asset Loader + Data Types",
       "phase": "phase-1",
-      "status": "failed",
+      "status": "running",
       "depends_on": [
         "task-01"
       ],
       "doneWhen": "AssetLoader loads all JSON files with typed arrays. Dice roller parses '2d6+3'. Tests pass.",
-      "lastActivity": "2026-05-17T16:10:31Z"
+      "lastActivity": "2026-05-17T16:22:05Z"
     },
     {
       "id": "task-05",
