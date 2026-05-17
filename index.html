@@ -621,6 +621,35 @@
     .depgraph-info-panel .ip-status.failed    { background: rgba(248,81,73,0.15); color: #f85149; }
     .depgraph-info-panel .ip-status.pending   { background: rgba(139,148,158,0.15); color: var(--text-muted); }
     .depgraph-info-panel .ip-status.skipped   { background: rgba(210,153,34,0.15); color: #d29922; }
+
+    /* Graph toolbar */
+    .depgraph-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .depgraph-toolbar select {
+      min-width: 140px;
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+    .depgraph-toolbar .graph-btn {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .depgraph-toolbar .graph-btn:hover { color: var(--text); border-color: var(--accent); }
+    .depgraph-toolbar .graph-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+    .depgraph-wrap.zoomed-out { overflow: visible; }
+    .depgraph-wrap.zoomed-out .depgraph-svg { min-width: 0 !important; }
   </style>
 </head>
 <body>
@@ -1274,11 +1303,22 @@ function renderDepGraph(project, phaseNames) {
 
   const projId = (project.slug || 'p').replace(/[^a-z0-9]/g, '_');
 
+  // Phase filter options
+  let phaseFilterOpts = '<option value="__all__">All Phases</option>';
+  for (const pid of phaseOrder) {
+    const label = phaseNames[pid] ? `${pid.replace('phase-','P')} — ${phaseNames[pid]}` : pid;
+    phaseFilterOpts += `<option value="${esc(pid)}">${esc(label)}</option>`;
+  }
+
   return `
     ${legendHtml}
+    <div class="depgraph-toolbar">
+      <select onchange="filterGraphPhase('${esc(projId)}', this.value)">${phaseFilterOpts}</select>
+      <button class="graph-btn" id="zoom-btn-${projId}" onclick="toggleGraphZoom('${esc(projId)}')">🔍 Zoom to Fit</button>
+    </div>
     <div id="depgraph-info-${projId}"></div>
-    <div class="depgraph-wrap">
-      <svg class="depgraph-svg" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" style="min-width:${Math.min(svgW, 900)}px">
+    <div class="depgraph-wrap" id="depgraph-wrap-${projId}">
+      <svg class="depgraph-svg" id="depgraph-svg-${projId}" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" style="min-width:${Math.min(svgW, 900)}px" data-full-viewbox="0 0 ${svgW} ${svgH}">
         ${svgPhases}
         ${svgLines}
         ${svgNodes}
@@ -1353,6 +1393,66 @@ function closeTaskInfo(slug) {
   if (!host) return;
   host.innerHTML = '';
   host.dataset.openTask = '';
+}
+
+// ---- Zoom to Fit toggle
+function toggleGraphZoom(projId) {
+  const wrap = document.getElementById('depgraph-wrap-' + projId);
+  const btn = document.getElementById('zoom-btn-' + projId);
+  if (!wrap || !btn) return;
+  const isZoomed = wrap.classList.toggle('zoomed-out');
+  btn.classList.toggle('active', isZoomed);
+  btn.textContent = isZoomed ? '🔍 Zoom to Detail' : '🔍 Zoom to Fit';
+}
+
+// ---- Phase filter: show/hide phase containers + their tasks + related dep lines
+function filterGraphPhase(projId, phaseId) {
+  const svg = document.getElementById('depgraph-svg-' + projId);
+  if (!svg) return;
+  // All phase rects have a data-phase, nodes have data-phase, lines have data-from-phase / data-to-phase.
+  // Since we build SVG via innerHTML without data attrs, we use a different approach:
+  // Re-render is simplest but expensive. Instead, we use CSS visibility by adding a class to the SVG.
+  // We'll use a simpler approach: iterate all children and toggle visibility based on their transform/position.
+  // Actually, the cleanest way: we stored phaseOrder info. Let's just re-render with a filter.
+  
+  // Store the filter and re-render the dashboard
+  if (!window._graphPhaseFilters) window._graphPhaseFilters = {};
+  window._graphPhaseFilters[projId] = phaseId;
+  
+  // Find the project slug from projId
+  const slug = Object.keys(allProjects).find(s => s.replace(/[^a-z0-9]/g, '_') === projId);
+  if (!slug || !allProjects[slug]) return;
+  
+  const project = allProjects[slug];
+  const tasks = project.tasks || [];
+  const phaseNames = {};
+  if (project.phases) project.phases.forEach(p => phaseNames[p.id] = p.name);
+  
+  // Get graph container
+  const graphDiv = document.getElementById('view-graph-' + projId);
+  if (!graphDiv) return;
+  
+  // Create a filtered project copy for rendering
+  let filteredProject = project;
+  if (phaseId !== '__all__') {
+    const filteredTasks = tasks.filter(t => t.phase === phaseId);
+    const filteredPhases = (project.phases || []).filter(p => p.id === phaseId);
+    filteredProject = { ...project, tasks: filteredTasks, phases: filteredPhases };
+  }
+  
+  graphDiv.innerHTML = renderDepGraph(filteredProject, phaseNames);
+  
+  // Restore the filter dropdown selection
+  const select = graphDiv.querySelector('.depgraph-toolbar select');
+  if (select) select.value = phaseId;
+  
+  // Restore zoom state if it was active
+  if (window._graphZoomStates && window._graphZoomStates[projId]) {
+    const wrap = document.getElementById('depgraph-wrap-' + projId);
+    const btn = document.getElementById('zoom-btn-' + projId);
+    if (wrap) wrap.classList.add('zoomed-out');
+    if (btn) { btn.classList.add('active'); btn.textContent = '🔍 Zoom to Detail'; }
+  }
 }
 
 // Initial load
