@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:42:37Z",
+  "updated_at": "2026-05-17T18:51:08Z",
   "phases": [
     {
       "id": "phase-1",
@@ -407,19 +407,19 @@
       "id": "task-20",
       "name": "Combat Engine \u2014 Core Mechanics",
       "phase": "phase-4",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-04"
       ],
       "doneWhen": "CombatManager runs complete combat programmatically. All unit tests pass.",
-      "lastActivity": "2026-05-17T18:42:36Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T18:51:07Z",
+      "costUSD": 2.8415,
+      "numTurns": 61,
+      "durationSeconds": 447,
+      "inputTokens": 61,
+      "outputTokens": 32631,
+      "cacheReadTokens": 2888144,
+      "cacheCreationTokens": 92639,
       "description": "# Task 20: Combat Engine \u2014 Core Mechanics\n\n## Objective\nBuild the headless combat engine: initiative, turns, actions (attack/defend/cast/flee), hit/damage/save resolution, and victory/defeat detection. No rendering \u2014 pure model code that's fully unit-testable.\n\n## Prerequisites\nTask 09 must be complete. Character, Monster, Dice utilities exist.\n\n## Requirements\n\n### Core Types (src/shared/types.ts \u2014 add)\n```typescript\nexport type Combatant =\n  | { kind: 'character'; ref: Character }\n  | { kind: 'monster';   ref: MonsterInstance };\n\nexport interface MonsterInstance {\n  id: string;            // unique runtime id\n  monsterId: string;     // ref into monsters.json\n  name: string;\n  hp: number;\n  maxHp: number;\n  ac: number;\n  attackBonus: number;\n  attacks: MonsterAttack[];\n  speed: number;\n  xpValue: number;\n  loot?: { gold?: string; lootTable?: string };\n  ai: { behavior: string; fleeThreshold?: number };\n  statusEffects: StatusEffect[];\n  // grid position for tactical map (Task 21)\n  gx: number;\n  gy: number;\n}\n\nexport interface StatusEffect {\n  id: string;             // 'poisoned', 'sleeping', 'stunned', 'blessed', etc.\n  durationRounds: number; // -1 = until cured\n  source?: string;        // spell/effect id\n}\n\nexport type CombatAction =\n  | { type: 'attack'; targetId: string; weaponSlot?: 'weapon' | 'ranged' }\n  | { type: 'cast'; spellId: string; targetIds: string[] }\n  | { type: 'defend' }\n  | { type: 'use'; itemId: string; targetId?: string }\n  | { type: 'flee' };\n\nexport type CombatResult = 'ongoing' | 'victory' | 'defeat' | 'fled';\n\nexport interface CombatLogEntry {\n  ts: number;\n  text: string;\n  color?: string;\n}\n```\n\n### CombatManager (src/renderer/src/combat/CombatManager.ts)\n```typescript\nexport class CombatManager {\n  readonly party: Character[];\n  readonly enemies: MonsterInstance[];\n  readonly order: Combatant[];     // initiative order\n  currentTurnIndex = 0;\n  round = 1;\n  log: CombatLogEntry[] = [];\n  result: CombatResult = 'ongoing';\n\n  constructor(party: Character[], enemies: MonsterInstance[], opts?: {\n    partySurprise?: boolean;     // enemy surprise \u2192 party skips round 1\n    enemySurprise?: boolean;     // party surprise \u2192 enemy skips round 1\n  });\n\n  rollInitiative(): void;        // d20 + DEX modifier per combatant; sort desc\n  getCurrentCombatant(): Combatant;\n  isPartyTurn(): boolean;\n  isEnemyTurn(): boolean;\n\n  // Apply an action for the current combatant. Returns updated result.\n  performAction(action: CombatAction): CombatResult;\n\n  // For enemies \u2014 AI picks an action\n  getEnemyAction(): CombatAction;\n\n  endTurn(): void;               // advances index, handles round wrap, ticks status effects\n\n  // Damage / heal helpers\n  applyDamage(target: Combatant, amount: number, type?: string): void;\n  applyHeal(target: Combatant, amount: number): void;\n\n  isOver(): boolean;\n}\n```\n\n### Combat Flow\n1. Constructor: store party + enemies. Each MonsterInstance gets fresh `id`, `hp = roll(hitDice)`, `gx`, `gy` (lay them out in Task 21; for engine tests just default 0,0).\n2. `rollInitiative()`: every combatant rolls d20 + DEX modifier (use `dexMod` helper). Tie-break: party member > monster.\n3. If party surprised, all party members' initiative goes to 0 for round 1.\n4. `currentTurnIndex = 0`, `round = 1`.\n5. `performAction(action)`:\n   - **attack**: roll d20 + attackBonus vs target.ac. Hit \u2192 roll weapon damage + STR mod. Apply via `applyDamage`.\n   - **cast**: validate spell, decrement slot, apply effect (delegate to `SpellResolver` \u2014 task 27, but stub here).\n   - **defend**: +2 AC for one round (status effect 'defending' duration 1).\n   - **use**: consume item; applies effect (potion heals, scroll casts).\n   - **flee**: roll party speed avg vs enemy avg; success \u2192 result = 'fled'; failure \u2192 log \"Cannot escape!\" and end turn.\n6. After action: `endTurn()`. Check victory/defeat:\n   - All enemies dead \u2192 result = 'victory'\n   - All party dead/unconscious \u2192 result = 'defeat'\n7. End of round: tick status effect durations, apply DoT (poison: 1d4 per round).\n\n### Hit / Damage Resolution (src/shared/formulas.ts \u2014 extend)\n```typescript\nexport function rollAttack(attacker: Combatant, target: Combatant): {\n  roll: number;\n  total: number;\n  hit: boolean;\n  critical: boolean;\n};\n\nexport function rollDamage(weapon: WeaponData, attacker: Combatant): number;\n```\n- Natural 20 = critical (damage rolled twice + STR mod)\n- Natural 1 = automatic miss\n- Otherwise: total = d20 + attackBonus + STR mod (melee) vs target AC\n\n### Enemy AI (src/renderer/src/combat/MonsterAI.ts)\n```typescript\nexport function pickEnemyAction(self: MonsterInstance, combat: CombatManager): CombatAction;\n```\nBehavior switch on `self.ai.behavior`:\n- **aggressive**: attack nearest party member\n- **smart**: attack `preferredTargets` (e.g., `lowest_hp`, `spellcaster`)\n- **cowardly**: flee if `hp/maxHp < fleeThreshold`\n- **caster**: cast offensive spell if available, else attack\n\n### Tests (src/renderer/src/combat/__tests__/)\n- `CombatManager.test.ts`:\n  - Initiative sorts combatants by total desc\n  - Surprise sets initial round behavior\n  - Attack with sufficient roll deals damage; with low roll misses\n  - Critical hit doubles damage dice\n  - Defend grants +2 AC until next turn\n  - Flee succeeds based on speed comparison\n  - Victory when all enemies HP \u2264 0\n  - Defeat when all party HP \u2264 0\n  - Round increments after all combatants act\n- `MonsterAI.test.ts`:\n  - aggressive picks an alive party member\n  - cowardly returns 'flee' when below fleeThreshold\n\n## Done When\n- CombatManager runs a full combat programmatically from start to result\n- All unit tests pass (10+ tests covering hit, miss, crit, fumble, victory, defeat, flee, status)\n- No rendering dependencies in combat engine (can be unit-tested without canvas)\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
