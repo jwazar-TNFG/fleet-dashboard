@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T15:29:49Z",
+  "updated_at": "2026-05-17T15:48:05Z",
   "phases": [
     {
       "id": "phase-1",
@@ -46,9 +46,9 @@
       "id": "task-02",
       "name": "Core Engine — Canvas Renderer + Game Loop + State Machine",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "running",
       "depends_on": null,
-      "lastActivity": null
+      "lastActivity": "2026-05-17T15:48:05Z"
     },
     {
       "id": "task-03",
