@@ -440,6 +440,105 @@
     }
     .view-toggle button:hover:not(.active) { color: var(--text); border-bottom-color: var(--text-muted); }
 
+    /* ---- Output(s) Tab ---- */
+    .outputs-view { padding: 0; }
+    .outputs-hero {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .outputs-hero-text { flex: 1; }
+    .outputs-hero-text h3 { margin: 0 0 8px; font-size: 18px; color: var(--text); }
+    .outputs-hero-text p { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+    .outputs-run-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, #00e5a0, #00b4d8);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 12px rgba(0, 229, 160, 0.3);
+      text-decoration: none;
+    }
+    .outputs-run-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0, 229, 160, 0.45); }
+    .outputs-run-btn:active { transform: translateY(0); }
+    .outputs-repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 12px;
+      padding: 10px 20px;
+      background: var(--surface-hover);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .outputs-repo-link:hover { background: var(--border); }
+    .outputs-gallery-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .outputs-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .gallery-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .gallery-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      background: #111;
+      display: block;
+    }
+    .gallery-card .caption {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .gallery-card .caption-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-top: 4px;
+    }
+    .gallery-empty {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+
     /* Graph container */
     .graph-container {
       overflow-x: auto;
@@ -976,6 +1075,7 @@ async function loadAll() {
   }
 
   selector.value = currentFilter;
+  await loadOutputs();
   renderDashboard();
 }
 
@@ -1139,6 +1239,7 @@ function renderProject(project) {
     <div class="view-toggle">
       <button class="active" onclick="switchView('${projId}','list')">📋 List</button>
       <button onclick="switchView('${projId}','graph')">🕸️ Graph</button>
+      <button onclick="switchView('${projId}','outputs')">🎯 Output(s)</button>
     </div>
     <div id="view-list-${projId}">
   `;
@@ -1222,6 +1323,11 @@ function renderProject(project) {
   projectHtml += renderDepGraph(project, phaseNames);
   projectHtml += `</div>`;
 
+  // Output(s) view (hidden by default)
+  projectHtml += `<div id="view-outputs-${projId}" style="display:none" class="outputs-view">`;
+  projectHtml += renderOutputsView(project);
+  projectHtml += `</div>`;
+
   // Last updated for this project
   if (project.updated_at) {
     const d = new Date(project.updated_at);
@@ -1255,23 +1361,119 @@ setInterval(refresh, 60000);
 function switchView(projId, view) {
   const listEl = document.getElementById('view-list-' + projId);
   const graphEl = document.getElementById('view-graph-' + projId);
+  const outputsEl = document.getElementById('view-outputs-' + projId);
   if (!listEl || !graphEl) return;
   const toggle = listEl.parentElement.querySelector('.view-toggle');
   if (!toggle) return;
   const btns = toggle.querySelectorAll('button');
   btns.forEach(b => b.classList.remove('active'));
+  listEl.style.display = 'none';
+  graphEl.style.display = 'none';
+  if (outputsEl) outputsEl.style.display = 'none';
   if (view === 'graph') {
-    listEl.style.display = 'none';
     graphEl.style.display = 'block';
     btns[1].classList.add('active');
-    // Init zoom/pan interaction on first show
     const wrap = graphEl.querySelector('.depgraph-wrap');
     if (wrap && wrap.dataset.projId) initGraphInteraction(wrap.dataset.projId);
+  } else if (view === 'outputs') {
+    if (outputsEl) outputsEl.style.display = 'block';
+    btns[2].classList.add('active');
   } else {
     listEl.style.display = 'block';
-    graphEl.style.display = 'none';
     btns[0].classList.add('active');
   }
+}
+
+// ---------- Output(s) View ----------
+
+let allOutputs = {};
+
+async function loadOutputs() {
+  try {
+    const resp = await fetch('data/outputs.json?_=' + Date.now());
+    if (resp.ok) allOutputs = await resp.json();
+  } catch (e) { console.warn('Could not load outputs.json:', e); }
+}
+
+function renderOutputsView(project) {
+  const slug = project.slug;
+  const data = allOutputs[slug];
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const isAllProjects = currentFilter === '__all__';
+
+  let html = '';
+
+  // Hero card: description + run button
+  html += `<div class="outputs-hero">`;
+  html += `<div class="outputs-hero-text">`;
+  html += `<h3>${esc(project.name)}</h3>`;
+  if (data && data.description) {
+    html += `<p>${esc(data.description)}</p>`;
+  } else {
+    // Fallback: auto-generate from task completion
+    const done = (project.tasks || []).filter(t => t.status === 'completed').length;
+    const total = (project.tasks || []).length;
+    html += `<p>${done}/${total} tasks completed. Output details coming soon.</p>`;
+  }
+  if (!isAllProjects) {
+    html += `<div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">`;
+    if (data && data.runCommand) {
+      html += `<button class="outputs-run-btn" onclick="runProject('${esc(slug)}')" title="${esc(data.runCommand)}">▶ Run Application</button>`;
+    }
+    if (data && data.repoUrl) {
+      html += `<a href="${esc(data.repoUrl)}" target="_blank" class="outputs-repo-link">📂 View Repository</a>`;
+    }
+    html += `</div>`;
+  } else {
+    // All Projects mode: just show repo link, no run button
+    if (data && data.repoUrl) {
+      html += `<a href="${esc(data.repoUrl)}" target="_blank" class="outputs-repo-link" style="margin-top:4px;">📂 View Repository</a>`;
+    }
+  }
+  html += `</div>`; // end outputs-hero-text
+  html += `</div>`; // end outputs-hero
+
+  // Gallery
+  const gallery = (data && data.gallery) ? data.gallery.filter(g => g.image || g.caption) : [];
+  html += `<div class="outputs-gallery-title">📸 Showcase ${gallery.length ? `(${gallery.length})` : ''}</div>`;
+  if (gallery.length) {
+    html += `<div class="outputs-gallery">`;
+    for (const item of gallery) {
+      html += `<div class="gallery-card">`;
+      if (item.image) {
+        html += `<img src="${esc(item.image)}" alt="${esc(item.caption || 'Screenshot')}" loading="lazy" onerror="this.style.display='none'">`;
+      }
+      if (item.caption) {
+        html += `<div class="caption">${esc(item.caption)}`;
+        if (item.date) html += `<div class="caption-date">${esc(item.date)}</div>`;
+        html += `</div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  } else {
+    html += `<div class="gallery-empty">No screenshots yet — add images to <code>data/outputs.json</code></div>`;
+  }
+
+  return html;
+}
+
+function runProject(slug) {
+  const data = allOutputs[slug];
+  if (!data || !data.runCommand) return;
+  // Copy command to clipboard and show confirmation
+  navigator.clipboard.writeText(data.runCommand).then(() => {
+    const btn = event.target.closest('.outputs-run-btn');
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Command copied!';
+      btn.style.background = 'linear-gradient(135deg, #00b4d8, #7b61ff)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 2000);
+    }
+  }).catch(() => {
+    prompt('Run this command to start the application:', data.runCommand);
+  });
 }
 
 // ---------- Dependency Graph (Phased Container Layout) ----------

@@ -1,0 +1,15 @@
+{
+  "forgotten-depths-ii": {
+    "description": "A retro dungeon crawler built with Electron, TypeScript, and HTML5 Canvas. Features EGA-palette graphics at 640×400, first-person dungeon exploration with wall-segment rendering, turn-based combat on an isometric grid, a full town hub with shops and guild, and a data-driven content system. Built entirely by an automated AI pipeline.",
+    "runCommand": "cd ~/forgotten-depths-ii && npm run dev",
+    "repoUrl": "https://github.com/jwazar-TNFG/forgotten-depths-ii",
+    "gallery": [
+      {
+        "id": "placeholder-1",
+        "image": "assets/gallery/fd2-placeholder.png",
+        "caption": "Screenshots coming soon — pipeline is still building!",
+        "date": "2026-05-17"
+      }
+    ]
+  }
+}
