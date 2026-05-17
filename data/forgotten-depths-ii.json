@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T20:04:14Z",
+  "updated_at": "2026-05-17T20:20:00Z",
   "phases": [
     {
       "id": "phase-1",
@@ -543,20 +543,20 @@
       "id": "task-27",
       "name": "Spell Casting in Combat",
       "phase": "phase-5",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-26",
         "task-22"
       ],
       "doneWhen": "Spellcasters cast memorized spells in combat. Damage/heal/effects work. Slots expended.",
-      "lastActivity": "2026-05-17T20:04:13Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T20:19:59Z",
+      "costUSD": 8.0407,
+      "numTurns": 98,
+      "durationSeconds": 882,
+      "inputTokens": 94,
+      "outputTokens": 59447,
+      "cacheReadTokens": 10825021,
+      "cacheCreationTokens": 182319,
       "description": "# Task 27: Spell Casting in Combat\n\n## Objective\nWire memorized spells into combat: spellcasters can cast their prepared spells, damage/heal/effect targets, and expend slots. Visual feedback for each spell category.\n\n## Prerequisites\nTask 26 must be complete. CombatManager exists with stubbed cast action.\n\n## Requirements\n\n### Spell Resolution\nOn combat action `{ type: 'cast', spellId, targetIds }`:\n1. Validate caster has the spell memorized and not expended\n2. Validate spell can be cast in combat (`spell.combatOnly !== false` and `castingTime === 'action'`)\n3. Mark spell as expended via SpellMemorizationSystem\n4. Apply spell effect to each target\n5. Add log entry: \"Aelindra casts Magic Missile on Goblin for 4 damage!\"\n\n### SpellResolver (src/renderer/src/combat/SpellResolver.ts)\n```typescript\nexport class SpellResolver {\n  resolve(caster: Combatant, spell: Spell, targets: Combatant[], combat: CombatManager): SpellResult;\n}\n\nexport interface SpellResult {\n  targetsAffected: Array<{ combatantId: string; damage?: number; healed?: number; statusApplied?: string }>;\n  log: string[];\n}\n```\n\n#### Spell Effect Categories\n- **damage**: roll `spell.damage` dice. Each target rolls save if `saveType` set:\n  - Save success \u2192 half damage\n  - Save failure \u2192 full damage\n- **damage_multi (magic missile)**: roll `spell.damage` for each missile; missile count from `missilesAtLevel[casterLevel]`. Auto-hit unless target has shield/brooch.\n- **healing**: roll `spell.healing` dice. Heal each target up to maxHp.\n- **status (sleep, paralyze, charm, fear)**: apply `spell.statusEffect` as StatusEffect with `durationRounds` from spell.duration.\n- **buff (bless, shield, haste)**: apply positive StatusEffect to allies.\n- **utility (read magic, detect magic, light)**: out-of-combat only or trivial in-combat effect.\n\n### Spell Target Selection\nCombat target selection extends to spells:\n- `spell.targetType`:\n  - `single`: pick one enemy or ally\n  - `multi`: pick up to N targets\n  - `area`: auto-targets all enemies (or allies) in an area; show circular reticle\n  - `self`: caster only, no selection needed\n  - `all_allies` / `all_enemies`: auto-target\n- For area spells, the reticle is a colored radius indicator centered on the chosen tile\n\n### Cast Action UI\nWhen player picks \"C\" (Cast) from action menu:\n1. Open Spell Picker overlay (canvas-drawn box):\n```\n+----------------------+\n| AELINDRA'S SPELLS    |\n+----------------------+\n| L1: 2/2 slots        |\n|  > Magic Missile     |\n|    Sleep (used)      |  <-- expended grayed out\n+----------------------+\n| L2: 0/1 slots        |\n|  (no spells memorized)|\n+----------------------+\n```\n2. Player selects a spell \u2192 enters target selection\n3. ESC backs out to action menu\n\n### Visual Effects per School\n- **Evocation (damage)**: yellow projectile or burst from caster to target\n- **Healing (cleric)**: green glow spreads over target for 600 ms\n- **Enchantment (sleep, charm)**: purple swirl on target\n- **Conjuration**: blue summon flash\n- **Necromancy**: black/red shadow\n- **Divination/Utility**: white shimmer\n\nEach effect renders for ~800 ms before turn ends.\n\n### Save Throws\nUse `formulas.ts` `rollSave(target, saveType, dc)`:\n```typescript\nexport function rollSave(target: Combatant, saveType: 'str'|'dex'|'con'|'int'|'wis'|'cha', dc: number): { roll: number; total: number; success: boolean };\n```\n- d20 + relevant stat modifier + character class/race bonuses (if any)\n- Save DC = 10 + caster level + spell-level + caster's primary stat mod (e.g., INT mod for mage)\n\n### Specific Spell Implementations\nAt minimum, implement these to support MVP:\n- **Magic Missile** (mage L1): 1d4+1 force, auto-hit, missiles scale with caster level\n- **Sleep** (mage L1): area, puts up to 5d8 HP worth of enemies to sleep (lowest HP first). Sleeping = skip turn; takes damage wakes them.\n- **Shield** (mage L1): +5 AC self for 1 round\n- **Cure Light Wounds** (cleric L1): heal 1d8+wisMod single target\n- **Bless** (cleric L1): +1 to attack rolls for allies, 5 rounds\n- **Hold Person** (cleric L2): single target, save vs WIS, paralyzed 1d6 rounds\n\n### Tests\n- `src/renderer/src/combat/__tests__/SpellResolver.test.ts`:\n  - Magic Missile auto-hits and deals damage\n  - Sleep affects targets by lowest HP first up to roll's total\n  - Cure Light Wounds heals up to max HP\n  - Bless adds +1 attack bonus status to all party\n  - Hold Person paralyzes on failed save, no effect on success\n  - Save DC scales with caster level and primary stat\n- `src/renderer/src/combat/__tests__/SpellCastFlow.test.ts`:\n  - Casting expends the slot\n  - Cannot cast a spell whose slot is expended\n  - Cannot cast a spell not memorized\n\n## Done When\n- Spellcasters can cast memorized spells in combat\n- Damage spells deal damage with save-for-half where applicable\n- Healing spells restore HP\n- Status spells apply effects with duration tracking\n- Buff spells add positive effects to allies\n- Visual effects per school\n- Spell slots properly expend (and only reset on rest)\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
