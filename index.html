@@ -433,6 +433,12 @@ async function loadAll() {
   const selector = document.getElementById('project-selector');
   // Clear and rebuild options
   selector.innerHTML = '<option value="__all__">All Projects</option>';
+  // Update count after loading
+  setTimeout(() => {
+    const allOpt = selector.querySelector('option[value="__all__"]');
+    const count = Object.keys(allProjects).length;
+    if (count > 0) allOpt.textContent = `All Projects (${count})`;
+  }, 0);
 
   allProjects = {};
 
@@ -506,6 +512,14 @@ function renderProject(project) {
     sysText = 'Pipeline idle';
   }
 
+  // Build phase name lookup from project metadata
+  const phaseNames = {};
+  if (project.phases) {
+    for (const p of project.phases) {
+      phaseNames[p.id] = p.name;
+    }
+  }
+
   // Group tasks by phase
   const phases = {};
   for (const task of tasks) {
@@ -517,8 +531,11 @@ function renderProject(project) {
   let projectHtml = '';
 
   // Project title (only shown in "all projects" view)
-  if (currentFilter === '__all__' && Object.keys(allProjects).length > 1) {
-    projectHtml += `<h2 style="font-size:16px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">${project.name || project.slug}</h2>`;
+  const projectCount = Object.keys(allProjects).length;
+  if (currentFilter === '__all__' && projectCount > 0) {
+    // Show project name + total count of projects in this phase
+    const activePhase = tasks.find(t => t.status === 'running')?.phase || tasks[0]?.phase || '';
+    projectHtml += `<h2 style="font-size:16px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">${project.name || project.slug} <span style="font-size:12px; color:var(--text-muted); font-weight:400;">— ${total} tasks, ${Object.keys(phases).length} phases</span></h2>`;
   }
 
   // Overview cards
@@ -583,12 +600,17 @@ function renderProject(project) {
     // Auto-collapse completed phases
     const collapsed = phaseCompleted === phaseTotal && phaseFailed === 0 ? ' collapsed' : '';
 
+    // Format phase header: "Phase 1 — Foundation" style
+    const phaseLabel = phaseNames[phaseName]
+      ? `${phaseName} — ${phaseNames[phaseName]}`
+      : phaseName;
+
     projectHtml += `
       <div class="phase${collapsed}" onclick="this.classList.toggle('collapsed')">
         <div class="phase-header">
           <h3>
             <span class="phase-chevron">▾</span>
-            ${phaseName}
+            ${phaseLabel}
           </h3>
           <span class="phase-badge ${badgeClass}">${badgeText}</span>
         </div>

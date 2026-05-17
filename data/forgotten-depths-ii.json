@@ -2,7 +2,37 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T15:02:48Z",
+  "updated_at": "2026-05-17T15:10:42Z",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Foundation"
+    },
+    {
+      "id": "phase-2",
+      "name": "Town Hub"
+    },
+    {
+      "id": "phase-3",
+      "name": "Dungeon Exploration"
+    },
+    {
+      "id": "phase-4",
+      "name": "Combat"
+    },
+    {
+      "id": "phase-5",
+      "name": "Magic & Items"
+    },
+    {
+      "id": "phase-6",
+      "name": "World Content"
+    },
+    {
+      "id": "phase-7",
+      "name": "Polish"
+    }
+  ],
   "tasks": [
     {
       "id": "task-01",
