@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:51:15Z",
+  "updated_at": "2026-05-17T19:00:11Z",
   "phases": [
     {
       "id": "phase-1",
@@ -426,21 +426,21 @@
       "id": "task-21",
       "name": "Combat Screen \u2014 Battlefield Renderer + UI",
       "phase": "phase-4",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-20",
         "task-02",
         "task-03"
       ],
       "doneWhen": "Combat shows colored combatant sprites on canvas with pulsing active indicator and attack animations.",
-      "lastActivity": "2026-05-17T18:51:14Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T19:00:10Z",
+      "costUSD": 4.4052,
+      "numTurns": 56,
+      "durationSeconds": 472,
+      "inputTokens": 62,
+      "outputTokens": 38116,
+      "cacheReadTokens": 4790359,
+      "cacheCreationTokens": 168788,
       "description": "# Task 21: Combat Screen \u2014 Battlefield Renderer + UI\n\n## Objective\nBuild the combat screen on canvas: tactical grid, colored combatant sprites, pulsing active-turn indicator, attack animations, action menu, and turn order display.\n\n## Prerequisites\nTask 20 must be complete. CombatManager exists.\n\n## Requirements\n\n### CombatState (src/renderer/src/screens/CombatState.ts)\nImplements `GameStateHandler`. Receives an encounter (and optionally surprise flags) on enter.\n\n```typescript\nexport interface CombatInitData {\n  encounterId: string;        // from encounters.json\n  partySurprise?: boolean;\n  enemySurprise?: boolean;\n}\n\nexport class CombatState implements GameStateHandler {\n  private combat!: CombatManager;\n  private renderer!: CombatRenderer;\n  private uiController!: CombatUIController;\n  \n  enter(data: CombatInitData): void;\n  exit(): void;\n  update(dt: number): void;\n  render(ctx: CanvasRenderingContext2D): void;\n  handleInput(): void;\n}\n```\n\n### CombatRenderer (src/renderer/src/rendering/CombatRenderer.ts)\nRenders the battlefield + HUD on the 640x400 canvas.\n\n#### Layout\n```\n+--------------------------------------+\n|  Round 3  Turn: ROLAND              |  <- top bar\n+--------------------------------------+\n|                                      |\n|        [enemy grid 8x4]             |  <- battlefield area\n|        E E E                        |     (320x200 centered)\n|        E                            |\n|                                      |\n|        P P P P                      |  <- party row\n+--------------------------------------+\n| Initiative: R > G > A > G > D ...   |  <- turn order strip\n+--------------------------------------+\n| Actions: (A)ttack (C)ast (D)efend   |  <- action menu\n|          (U)se (F)lee               |\n+--------------------------------------+\n```\n\n#### Battlefield Grid\n- Tactical grid: 12x6 cells (cells are 24x24 px). Total battlefield 288x144 centered at (176, 100)\n- Top half: enemy zone (rows 0-2)\n- Middle: empty\n- Bottom rows: party (rows 4-5)\n- Each combatant is a 22x22 colored rectangle in its grid cell with a 1px white border\n- Combatant colors:\n  - Party: assign each character a slot color (Roland=red, Aelindra=blue, Durgin=yellow, Pip=green by default; or derive from class)\n  - Enemies by monster type (humanoid=green, undead=light gray, beast=brown, dragon=red, aberration=magenta)\n- Above each combatant: small HP bar (16x3)\n- Active combatant: pulsing cyan border that toggles thickness every 200 ms\n- Dead combatants: dimmed + red X overlay\n- Status effects: small colored dot in upper-right of sprite (poison=purple, sleep=blue, etc.)\n\n#### Initiative Bar\n- Below battlefield, single row showing portrait squares of next 8 in turn order\n- First square highlighted with cyan border\n- Use 16x16 colored squares matching combatant color\n- Names shown as 3-letter abbreviations\n\n#### Action Menu (player turn)\n- Bottom area shows selectable actions: Attack, Cast (if caster), Defend, Use Item, Flee\n- Arrow keys highlight an action; Enter confirms\n- After \"Attack\" or \"Cast\", enter target-selection mode (Task 22)\n\n#### Attack Animations\nOn `performAction({type:'attack'})`:\n- Draw a yellow line from attacker to target for 200 ms\n- On hit: shake target sprite for 200 ms; spawn red splash particles (8 small 2x2 red squares with random outward velocity, fade over 400 ms)\n- On miss: show \"MISS\" text in white above target for 300 ms\n- On crit: red flash overlay + \"CRIT!\" in yellow\n\n#### Damage Numbers\n- Floating text rising from target position\n- Red for damage, green for heals, yellow for crit\n- Fade out over 600 ms\n\n### CombatUIController (src/renderer/src/combat/CombatUIController.ts)\nHandles input for the player turn:\n- A \u2192 enter attack target mode\n- C \u2192 open spell list (Task 27 implements casting; here just no-op + log)\n- D \u2192 defend \u2192 endTurn\n- U \u2192 open item use menu\n- F \u2192 flee \u2192 roll, log result\n- Number keys 1-6 \u2192 select party member to inspect\n- Tab \u2192 cycle action highlight\n\n### Tests\n- `src/renderer/src/screens/__tests__/CombatState.test.ts`:\n  - Entering combat creates a CombatManager with correct party+enemies\n  - Render does not throw on a mock canvas context\n  - Pressing D triggers defend and advances turn\n- `src/renderer/src/rendering/__tests__/CombatRenderer.test.ts`:\n  - Renders correct number of combatant sprites for a 4v4 fight\n  - Active combatant has cyan border draw call\n\n## Done When\n- Entering combat shows the battlefield with colored sprites on canvas\n- HP bars above each combatant\n- Active combatant has pulsing cyan indicator\n- Turn order strip displays initiative\n- Action menu shows at bottom; arrow keys + Enter select an action\n- Attack animations: yellow line + red splash + damage numbers\n- This is NOT a DOM-based screen \u2014 verify by inspecting renderer\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
