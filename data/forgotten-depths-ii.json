@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T17:46:23Z",
+  "updated_at": "2026-05-17T17:50:55Z",
   "phases": [
     {
       "id": "phase-1",
@@ -275,19 +275,19 @@
       "id": "task-14",
       "name": "Tile Map Data Structures & Visibility",
       "phase": "phase-3",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-09"
       ],
       "doneWhen": "TileMap loads map JSON, FogOfWar computes visible/visited/hidden tiles. All tests pass.",
-      "lastActivity": "2026-05-17T17:46:22Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null
+      "lastActivity": "2026-05-17T17:50:54Z",
+      "costUSD": 1.1917,
+      "numTurns": 25,
+      "durationSeconds": 207,
+      "inputTokens": 30,
+      "outputTokens": 16233,
+      "cacheReadTokens": 1057531,
+      "cacheCreationTokens": 40735
     },
     {
       "id": "task-15",
