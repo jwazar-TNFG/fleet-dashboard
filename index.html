@@ -417,25 +417,28 @@
       display: flex;
       gap: 0;
       margin-bottom: 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      width: fit-content;
+      border-bottom: 2px solid var(--border);
+      width: 100%;
     }
     .view-toggle button {
-      background: var(--surface);
+      background: transparent;
       color: var(--text-muted);
       border: none;
-      padding: 8px 20px;
-      font-size: 13px;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      padding: 10px 24px;
+      font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s;
       min-height: 44px;
     }
-    .view-toggle button:not(:last-child) { border-right: 1px solid var(--border); }
-    .view-toggle button.active { background: var(--accent); color: #000; }
-    .view-toggle button:hover:not(.active) { background: var(--surface-hover); color: var(--text); }
+    .view-toggle button.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+    .view-toggle button:hover:not(.active) { color: var(--text); border-bottom-color: var(--text-muted); }
 
     /* Graph container */
     .graph-container {
@@ -847,6 +850,20 @@
     }
     .td-nav-btn:hover { background: var(--surface-hover); color: var(--text); }
     .td-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .td-description {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text);
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .td-description h2, .td-description h3, .td-description h4 {
+      color: var(--accent) !important;
+    }
+    .td-description ul { list-style: disc; }
+    .td-description li { color: var(--text); }
+    .td-description strong { color: var(--text); }
 
   </style>
 </head>
@@ -1157,8 +1174,8 @@ function renderProject(project) {
       : phaseName;
 
     projectHtml += `
-      <div class="phase${collapsed}" onclick="this.classList.toggle('collapsed')">
-        <div class="phase-header">
+      <div class="phase${collapsed}">
+        <div class="phase-header" onclick="this.parentElement.classList.toggle('collapsed')">
           <h3>
             <span class="phase-chevron">▾</span>
             ${phaseLabel}
@@ -1180,7 +1197,7 @@ function renderProject(project) {
       const costTag = taskCost ? `<span class="task-cost" title="${taskTurns} · ${taskDur}">${taskCost}</span>` : '';
 
       projectHtml += `
-        <div class="task-row" onclick="showTaskDetail('${project.slug}','${task.id}')">
+        <div class="task-row" onclick="event.stopPropagation(); showTaskDetail('${project.slug}','${task.id}')">
           <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
           <span class="task-id">${task.id}</span>
           <span class="task-name">${task.name}</span>
@@ -1804,6 +1821,63 @@ function filterGraphPhase(projId, phaseId) {
 }
 
 // ---- Task Detail Modal ----
+// Simple markdown-to-HTML renderer for task descriptions
+function renderMarkdown(md) {
+  if (!md) return '';
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let html = '';
+  const lines = md.split('\n');
+  let inList = false;
+  let inCode = false;
+  let codeBlock = '';
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Fenced code blocks
+    if (line.trim().startsWith('```')) {
+      if (inCode) {
+        html += `<pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px;font-size:12px;overflow-x:auto;margin:6px 0;">${esc(codeBlock)}</pre>`;
+        codeBlock = '';
+      }
+      inCode = !inCode;
+      continue;
+    }
+    if (inCode) { codeBlock += (codeBlock ? '\n' : '') + line; continue; }
+    // Headers
+    const hMatch = line.match(/^(#{1,4})\s+(.+)/);
+    if (hMatch) {
+      if (inList) { html += '</ul>'; inList = false; }
+      const level = Math.min(hMatch[1].length + 1, 6); // bump down since h1 is the task title
+      html += `<h${level} style="margin:12px 0 4px;font-size:${18 - level * 2}px;color:var(--text);">${esc(hMatch[2])}</h${level}>`;
+      continue;
+    }
+    // List items
+    const liMatch = line.match(/^\s*[-*]\s+(.+)/);
+    if (liMatch) {
+      if (!inList) { html += '<ul style="margin:4px 0 4px 16px;padding:0;">'; inList = true; }
+      let content = esc(liMatch[1]);
+      // Bold
+      content = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      // Inline code
+      content = content.replace(/`([^`]+)`/g, '<code style="background:var(--bg);padding:1px 4px;border-radius:3px;font-size:12px;">$1</code>');
+      html += `<li style="margin:2px 0;">${content}</li>`;
+      continue;
+    }
+    // Close list if non-list line
+    if (inList && line.trim() === '') { html += '</ul>'; inList = false; }
+    // Empty lines
+    if (line.trim() === '') { continue; }
+    // Regular paragraph
+    if (inList) { html += '</ul>'; inList = false; }
+    let content = esc(line);
+    content = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    content = content.replace(/`([^`]+)`/g, '<code style="background:var(--bg);padding:1px 4px;border-radius:3px;font-size:12px;">$1</code>');
+    html += `<p style="margin:4px 0;line-height:1.5;">${content}</p>`;
+  }
+  if (inList) html += '</ul>';
+  if (inCode) html += `<pre style="background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:10px;font-size:12px;overflow-x:auto;margin:6px 0;">${esc(codeBlock)}</pre>`;
+  return html;
+}
+
 function showTaskDetail(slug, taskId) {
   const overlay = document.getElementById('task-detail-overlay');
   if (!overlay) return;
@@ -1825,8 +1899,11 @@ function showTaskDetail(slug, taskId) {
   const phaseName = phaseNames[task.phase] || task.phase || '—';
   const phaseLabel = task.phase ? `${task.phase.replace('phase-','Phase ')} — ${phaseName}` : '—';
 
-  // Description
-  const desc = task.doneWhen || '(no description available)';
+  // Done When (short summary)
+  const doneWhen = task.doneWhen || null;
+
+  // Full description from prompt file
+  const fullDesc = task.description || null;
 
   // Dependencies
   const deps = task.depends_on && task.depends_on.length ? task.depends_on : [];
@@ -1857,6 +1934,22 @@ function showTaskDetail(slug, taskId) {
       </div>`;
   }
 
+  // Description section
+  let descHtml = '';
+  if (fullDesc) {
+    descHtml = `
+      <div class="td-section">
+        <div class="td-label">Full Task Description</div>
+        <div class="td-value td-description">${renderMarkdown(fullDesc)}</div>
+      </div>`;
+  } else if (doneWhen) {
+    descHtml = `
+      <div class="td-section">
+        <div class="td-label">Done When</div>
+        <div class="td-value">${esc(doneWhen)}</div>
+      </div>`;
+  }
+
   // Nav: prev/next task
   const taskIdx = tasks.findIndex(t => t.id === taskId);
   const prevTask = taskIdx > 0 ? tasks[taskIdx - 1] : null;
@@ -1880,10 +1973,7 @@ function showTaskDetail(slug, taskId) {
           <div class="td-label">Phase</div>
           <div class="td-value">${esc(phaseLabel)}</div>
         </div>
-        <div class="td-section">
-          <div class="td-label">Done When</div>
-          <div class="td-value">${esc(desc)}</div>
-        </div>
+        ${doneWhen ? `<div class="td-section"><div class="td-label">Done When</div><div class="td-value" style="font-style:italic;color:var(--text-muted);">${esc(doneWhen)}</div></div>` : ''}
         <div class="td-section">
           <div class="td-label">Dependencies</div>
           <div class="td-deps">${depsHtml}</div>
@@ -1893,6 +1983,7 @@ function showTaskDetail(slug, taskId) {
           <div class="td-value">${esc(timeAgo)}${timeAbs ? ' · <span style="color:var(--text-muted)">' + esc(timeAbs) + '</span>' : ''}</div>
         </div>
         ${costHtml}
+        ${descHtml}
       </div>
       <div class="td-nav">
         <button class="td-nav-btn" ${prevTask ? `onclick="showTaskDetail('${esc(slug)}','${esc(prevTask.id)}')"` : 'disabled'}>${prevTask ? '← ' + esc(prevTask.id) : '← Prev'}</button>

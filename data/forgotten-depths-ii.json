@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:12:12Z",
+  "updated_at": "2026-05-17T18:14:29Z",
   "phases": [
     {
       "id": "phase-1",
@@ -328,19 +328,19 @@
       "id": "task-16",
       "name": "Dungeon Movement & Interaction",
       "phase": "phase-3",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-15"
       ],
       "doneWhen": "Arrow key movement, camera follows, fog reveals, doors work, walls block. Message log updates.",
-      "lastActivity": "2026-05-17T18:02:16Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T18:14:28Z",
+      "costUSD": 4.304,
+      "numTurns": 67,
+      "durationSeconds": 666,
+      "inputTokens": 70,
+      "outputTokens": 47058,
+      "cacheReadTokens": 4687751,
+      "cacheCreationTokens": 125044,
       "description": "# Task 16: Dungeon Movement & Interaction\n\n## Objective\nAdd player input handling for the dungeon: arrow keys move the party, walls block, doors open/close, fog reveals, and a message log shows interaction feedback.\n\n## Prerequisites\nTask 15 must be complete. DungeonState renders viewport and minimap.\n\n## Requirements\n\n### Movement Input\nInside `DungeonState.update(dt)`:\n- **Arrow keys / WASD**:\n  - UP / W \u2192 attempt move N (y - 1) and face N\n  - DOWN / S \u2192 attempt move S (y + 1) and face S\n  - LEFT / A \u2192 attempt move W (x - 1) and face W\n  - RIGHT / D \u2192 attempt move E (x + 1) and face E\n- **Q / E**: rotate facing left / right (do not move)\n- **SPACE / Enter**: interact with the tile in front of the party (door, stairs, event)\n- **ESC**: open in-dungeon menu (Save / Load / Quit to Town)\n- **M**: toggle large minimap overlay\n- **TAB**: cycle minimap zoom (small / large / hide)\n\nMovement rules:\n- Step cooldown: 150 ms per move (no jitter from held keys)\n- If `tileMap.isWalkable(nx, ny)` is false \u2192 bonk: play feedback (flash party marker red for 100 ms) and log \"Ouch! A wall.\"\n- Doors: a closed door blocks movement. Walking into a closed door doesn't open it \u2014 player must press SPACE/Enter to interact.\n\n### Door State\nDoors track open/closed state separately from tile data (so saving works). Add to DungeonState:\n```typescript\nprivate doorState: Map<string, 'open' | 'closed' | 'locked'> = new Map();\n// key: `${x},${y}`\n```\n- Open door = walkable + transparent for LOS\n- Closed door = blocked + opaque\n- Locked door = blocked + opaque; needs a key from inventory or thief unlock attempt\n- SPACE on adjacent door:\n  - Closed \u2192 Open, log \"You open the door.\"\n  - Open \u2192 Close, log \"You close the door.\"\n  - Locked \u2192 \"The door is locked.\" Then offer unlock attempts:\n    - If party has a \"key\" item matching `doorState.requiredKey` \u2192 unlock\n    - Else if a Thief is in party \u2192 prompt \"Attempt to pick? (Y/N)\". Roll d20 + thief level vs DC 15. Failure: log \"The lock holds firm.\"\n\n### Tile Interaction\nPressing SPACE/Enter:\n- On Stairs Down: prompt \"Descend? (Y/N)\" \u2192 transitions to next map (`stairsDownTo` map id)\n- On Stairs Up: similar prompt \u2192 transitions to `stairsUpTo`\n- On Event tile (`tileMap.getEventAt(x, y)`): trigger event (handled fully in Task 18; here just log \"An event triggers!\")\n\n### Fog Update\nAfter every successful move OR rotation:\n1. Call `fog.computeVisible(tileMap, partyX, partyY, VISIBILITY_RADIUS)`\n2. Save snapshot in gameState for save/load persistence\n\n### Message Log\nAdd `MessageLog` (src/renderer/src/dungeon/MessageLog.ts):\n```typescript\nexport class MessageLog {\n  private messages: Array<{ text: string; color: string; ts: number }> = [];\n  add(text: string, color?: string): void;\n  recent(count: number): Array<{ text: string; color: string }>;\n}\n```\n- Capacity: ringbuffer of last 50 messages\n- Render the last 4 messages in the bottom-right side panel (240x160 area starting at x=320, y=240)\n- Colors: white default, yellow for important, red for danger, green for success\n\n### Save Hook\n- ESC \u2192 in-dungeon menu offers Save \u2192 calls SaveGameSystem\n- gameState now includes:\n  - `currentMapId`\n  - `partyX`, `partyY`, `partyFacing`\n  - `fogOfWar` (serialized)\n  - `doorStates` (entries)\n  - `triggeredEvents` (ids)\n\n### Tests\n- `src/renderer/src/screens/__tests__/DungeonState.movement.test.ts`:\n  - Walking into a wall doesn't move party; logs \"Ouch! A wall.\"\n  - Walking onto open tile increments coords\n  - Step cooldown: two presses within 150ms only register one move\n  - Rotating updates facing without changing coords\n  - Opening a door changes its state from 'closed' to 'open'\n  - Locked door denies entry; thief unlock attempts roll d20\n\n## Done When\n- Arrow keys / WASD move the party one tile, blocked by walls\n- Q/E rotate facing\n- Walking off-camera scrolls viewport (camera follows party)\n- Fog reveals as party moves\n- Doors open/close with SPACE\n- Stairs trigger transition prompt\n- Message log updates with feedback\n- ESC opens menu, save works\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
