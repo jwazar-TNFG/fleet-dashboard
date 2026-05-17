@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:48:49Z",
+  "updated_at": "2026-05-17T20:04:07Z",
   "phases": [
     {
       "id": "phase-1",
@@ -524,19 +524,19 @@
       "id": "task-26",
       "name": "Spell Memorization System",
       "phase": "phase-5",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-20"
       ],
       "doneWhen": "Characters memorize spells during rest. Slots tracked per class/level. Character sheet shows spells.",
-      "lastActivity": "2026-05-17T19:48:48Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T20:04:06Z",
+      "costUSD": 6.6009,
+      "numTurns": 96,
+      "durationSeconds": 854,
+      "inputTokens": 106,
+      "outputTokens": 45199,
+      "cacheReadTokens": 8840905,
+      "cacheCreationTokens": 167646,
       "description": "# Task 26: Spell Memorization System\n\n## Objective\nImplement Vancian spell memorization: spellcasters memorize specific spells into level-based slots during rest. The character sheet shows memorized spells and remaining slots.\n\n## Prerequisites\nTask 25 must be complete. Spell data exists in `src/renderer/src/data/spells.json`. Class spellcasting fields are in `classes.json`.\n\n## Requirements\n\n### Data Structures (src/shared/types.ts \u2014 add)\n```typescript\nexport interface MemorizedSpell {\n  spellId: string;\n  expended: boolean;\n}\n\nexport interface SpellSlot {\n  level: number;          // 1, 2, 3\n  spells: MemorizedSpell[]; // capacity controlled by class.spellcasting.slotsPerLevel\n}\n\n// Add to Character interface:\n//   spellbook?: string[];      // known spells (mage learns by leveling or scrolls)\n//   memorizedSpells?: SpellSlot[];  // slots by level\n```\n\nFor each class:\n- **Mage**: prepares from `spellbook`. Starts with mage L1 spells: Magic Missile, Sleep, Read Magic.\n- **Cleric**: knows all cleric spells of accessible levels (divine \u2014 no spellbook). Memorizes any cleric spell up to slot count.\n- **Paladin**: knows only paladin spells (subset of cleric L1). Memorizes from those.\n- **Fighter, Thief, Ranger**: no spellcasting (ranger may gain later levels \u2014 out of MVP scope).\n\n### Slots Per Level (from classes.json `spellcasting.slotsPerLevel`)\nConfirm data exists; example for Mage:\n```\nLv1: { 1: 1 }\nLv2: { 1: 2 }\nLv3: { 1: 2, 2: 1 }\nLv5: { 1: 3, 2: 2, 3: 1 }\n```\n\n### SpellMemorizationSystem (src/renderer/src/systems/SpellMemorizationSystem.ts)\n```typescript\nexport class SpellMemorizationSystem {\n  // Get capacity at each spell level for a character\n  getSlotCapacity(character: Character): Record<number, number>;\n\n  // Get currently memorized spells per level\n  getMemorized(character: Character): SpellSlot[];\n\n  // Memorize a spell into a slot of the given level. Returns false if no slot available.\n  memorize(character: Character, spellId: string, slotLevel: number): boolean;\n\n  // Forget (clear) a memorized spell at index\n  forget(character: Character, slotLevel: number, slotIndex: number): boolean;\n\n  // Mark a memorized spell as expended (used in combat)\n  expend(character: Character, spellId: string, slotLevel: number): boolean;\n\n  // Full reset (rest): all expended flags cleared, slots remain memorized\n  resetSlots(character: Character): void;\n\n  // Get list of spells a character can memorize at a given level\n  getAvailableSpells(character: Character, slotLevel: number): Spell[];\n}\n```\n\n### Memorization Screen (src/renderer/src/screens/SpellMemorizationScreen.ts)\nAccessible from the Tavern \"Rest\" flow OR from the Guild \"View Sheet \u2192 Memorize Spells\" action.\n\n#### Layout (canvas)\n```\n+--------------------------------------+\n|  MEMORIZE SPELLS \u2014 Aelindra (Mage)  |\n+--------------------------------------+\n| Level 1 Slots: [Magic Missile] [---] |  <- 2 slots, 1 filled\n| Level 2 Slots: [---]                 |  <- 1 slot, empty\n|                                      |\n| Available Spells (L1):              |\n|  > Magic Missile (1d4+1 force)      |\n|    Sleep (area, sleep effect)       |\n|    Read Magic (utility)             |\n+--------------------------------------+\n| (Enter) Memorize  (X) Forget  (ESC) |\n+--------------------------------------+\n```\n\n- Top: per-slot-level row showing memorized spells with brackets\n- Empty slots shown as `[---]`\n- Below: list of available spells for the currently selected slot level\n- Player presses 1/2/3 to switch slot level\n- Enter on a spell memorizes it into next empty slot of that level\n- X on a memorized spell forgets it\n\n### Tavern Integration\nWhen player rests at Tavern (Task 13):\n- For each spellcaster in party, call `system.resetSlots(character)` after gold deduction\n- Display message: \"Aelindra's spells refresh.\"\n\n### Character Sheet Update\nOn the character detail view (Task 11, Guild), add a Spells section:\n```\n+-- Spells --------------------+\n| L1: [Magic Missile] [Sleep] |\n|     2/2 slots remaining     |\n| L2: [---]                   |\n|     0/1 slots remaining     |\n+-----------------------------+\n```\nExpended spells shown grayed out.\n\n### New Mage Spellbook Acquisition\n- On level up at Guild: if class is mage, automatically learn one spell from the next-available level (player picks from a list)\n- Scrolls (item subtype `scroll`): using a scroll out of combat lets a mage attempt to add the spell to spellbook (95% success; on failure, scroll consumed without effect)\n\n### Tests\n- `src/renderer/src/systems/__tests__/SpellMemorizationSystem.test.ts`:\n  - getSlotCapacity returns class's slot config for the character's level\n  - memorize fills empty slot; refuses if capacity full\n  - forget clears the slot\n  - expend marks as used; can be marked again only after reset\n  - resetSlots clears all expended flags\n  - getAvailableSpells filters by class + level\n- `src/renderer/src/screens/__tests__/SpellMemorizationScreen.test.ts`:\n  - Switching slot level changes available spell list\n  - Enter on a spell adds to memorized\n  - X on memorized spell removes it\n\n## Done When\n- Spellcasters can open the memorization screen\n- Spells can be memorized into slots up to capacity\n- Forget removes a memorized spell\n- Character sheet shows memorized spells with slot counts\n- Resting resets expended flags (slots become available again)\n- Mages learn new spells on level up\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
