@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:15:21Z",
+  "updated_at": "2026-05-17T19:27:56Z",
   "phases": [
     {
       "id": "phase-1",
@@ -466,19 +466,19 @@
       "id": "task-23",
       "name": "Combat \u2014 Victory, Defeat & Rewards",
       "phase": "phase-4",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-22"
       ],
       "doneWhen": "Victory awards XP + loot, returns to dungeon. Defeat shows game over with load/quit.",
-      "lastActivity": "2026-05-17T19:15:20Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T19:27:55Z",
+      "costUSD": 6.3232,
+      "numTurns": 80,
+      "durationSeconds": 691,
+      "inputTokens": 86,
+      "outputTokens": 48713,
+      "cacheReadTokens": 7868049,
+      "cacheCreationTokens": 187057,
       "description": "# Task 23: Combat \u2014 Victory, Defeat & Rewards\n\n## Objective\nHandle combat end states: victory awards XP and loot and returns to dungeon, defeat shows a game-over screen with Load/Quit options.\n\n## Prerequisites\nTask 22 must be complete. CombatManager reports `victory` / `defeat` / `fled`.\n\n## Requirements\n\n### Victory Flow\nWhen `combat.result === 'victory'`:\n1. Pause for 500 ms\n2. Display Victory overlay on canvas (centered 480x300 box):\n```\n+--------------------------------------+\n|             VICTORY!                |\n+--------------------------------------+\n|  Defeated 3 Goblins                 |\n|                                      |\n|  XP Awarded: 150  (37 each)         |\n|  Gold Looted: 23                    |\n|                                      |\n|  Items Found:                       |\n|   - Healing Potion                  |\n|   - Short Sword                     |\n+--------------------------------------+\n|  Press ENTER to continue            |\n+--------------------------------------+\n```\n\n3. Award XP: total enemy XP divided evenly among alive party members. Add to `character.xp`.\n4. Award gold: roll each enemy's loot.gold; add total to party gold.\n5. Award items: roll loot tables (see below). Add items to party shared inventory or first character's inventory.\n6. Check level-up notification: if any character has enough XP to level, show \"* Roland has enough XP to train! *\" (training happens at Guild in Task 11, not here)\n7. ENTER returns to DungeonState; encounter event marked triggered.\n\n### Loot Tables (src/renderer/src/data/loot-tables.json)\n```json\n{\n  \"humanoid_common\": {\n    \"rolls\": \"1d2\",\n    \"entries\": [\n      { \"weight\": 50, \"item\": null },\n      { \"weight\": 20, \"item\": \"healing_potion\" },\n      { \"weight\": 15, \"item\": \"torch\" },\n      { \"weight\": 10, \"item\": \"short_sword\" },\n      { \"weight\": 5,  \"item\": \"longsword_plus_1\" }\n    ]\n  },\n  \"undead_common\": {\n    \"rolls\": \"1d2\",\n    \"entries\": [\n      { \"weight\": 60, \"item\": null },\n      { \"weight\": 30, \"item\": \"holy_water\" },\n      { \"weight\": 10, \"item\": \"scroll_protection\" }\n    ]\n  }\n}\n```\n\n### LootRoller (src/renderer/src/combat/LootRoller.ts)\n```typescript\nexport class LootRoller {\n  rollEncounterLoot(encounter: Encounter, monsters: MonsterInstance[]): {\n    gold: number;\n    items: Item[];\n  };\n  rollLootTable(tableId: string): Item | null;\n}\n```\n- `rollEncounterLoot`: gold = sum of each monster's `loot.gold` rolled; items = for each monster with `loot.lootTable`, roll the table according to `rolls`\n\n### Defeat Flow\nWhen `combat.result === 'defeat'`:\n1. Pause for 1 s\n2. Display Game Over overlay:\n```\n+--------------------------------------+\n|           GAME OVER                 |\n+--------------------------------------+\n|   The party has fallen.             |\n|                                      |\n|   \"Their bones will rest here       |\n|    forever, in the dark.\"           |\n+--------------------------------------+\n|   > Load Last Save                  |\n|     Return to Main Menu             |\n|     Quit                            |\n+--------------------------------------+\n```\n- Arrow keys select; ENTER confirms\n- Load Last Save: opens SaveLoadUI with available slots\n- Return to Main Menu: discard run, transition to MAIN_MENU\n- Quit: closes the window\n\n### Flee Flow\nWhen `combat.result === 'fled'`:\n1. Show brief \"Fled from battle!\" message (1 s)\n2. Return to DungeonState\n3. Do NOT mark encounter event as triggered (player may re-encounter)\n4. Apply minor penalty: 25% chance of trap-style party damage 1d4 (representing fleeing through danger)\n\n### Persistence\n- After victory in a fixed encounter event: mark `event.triggered = true` in current TileMap; serialize to save game\n- Random encounters: no persistence needed\n- Update gameState.gold and characters[].xp/.inventory\n\n### Tests\n- `src/renderer/src/combat/__tests__/LootRoller.test.ts`:\n  - rollLootTable respects weights (with mocked RNG, returns expected item)\n  - rollEncounterLoot sums gold from all monsters\n- `src/renderer/src/screens/__tests__/CombatState.results.test.ts`:\n  - Victory awards XP evenly among alive members (dead members get 0)\n  - Victory adds gold to party\n  - Victory adds items to inventory\n  - Defeat shows game-over overlay with 3 options\n  - Flee returns to dungeon and doesn't mark event triggered\n\n## Done When\n- Combat victory awards XP, gold, and items with overlay summary\n- Combat defeat shows game-over with Load/Menu/Quit options\n- Flee returns to dungeon with optional damage penalty\n- Fixed-encounter events mark triggered after victory\n- Random encounter rewards work\n- Level-up notification shown for eligible characters\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
