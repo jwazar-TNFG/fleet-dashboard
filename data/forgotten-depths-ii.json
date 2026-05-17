@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T20:20:10Z",
+  "updated_at": "2026-05-17T20:33:13Z",
   "phases": [
     {
       "id": "phase-1",
@@ -563,20 +563,20 @@
       "id": "task-28",
       "name": "Inventory & Equipment Polish",
       "phase": "phase-5",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-12",
         "task-24"
       ],
       "doneWhen": "Full inventory management \u2014 view, equip, unequip, drop. Equipment changes reflected in stats.",
-      "lastActivity": "2026-05-17T20:20:09Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T20:33:12Z",
+      "costUSD": 7.6176,
+      "numTurns": 103,
+      "durationSeconds": 719,
+      "inputTokens": 98,
+      "outputTokens": 52954,
+      "cacheReadTokens": 10526661,
+      "cacheCreationTokens": 164478,
       "description": "# Task 28: Inventory & Equipment Polish\n\n## Objective\nAdd a full inventory management screen: view all items, equip/unequip across all slots, drop items, transfer between characters. Equipment changes are immediately reflected in stats.\n\n## Prerequisites\nTask 25 must be complete. ShopState (Task 12) already supports basic buy/sell/equip.\n\n## Requirements\n\n### InventoryScreen (src/renderer/src/screens/InventoryScreen.ts)\nImplements `GameStateHandler`. Canvas-rendered. Accessible from:\n- Guild \u2192 View Sheet \u2192 \"Manage Inventory\"\n- Dungeon \u2192 ESC menu \u2192 \"Inventory\"\n\n### Layout (two-panel + slot panel)\n```\n+--------------+------------------+--------------+\n| PARTY        | INVENTORY        | EQUIPMENT    |\n| > Roland     | > Long Sword     | Wpn: Long Sw |\n|   Aelindra   |   Healing Pot.x2 | Arm: Chain M |\n|   Durgin     |   Torch x 3      | Shl: \u2014       |\n|   Pip        |   Lockpick       | Rng: \u2014       |\n|              |                  | Amu: \u2014       |\n+--------------+------------------+--------------+\n| Item Details:                                  |\n|  Long Sword \u2014 Weapon                           |\n|  Damage: 1d8 slashing                          |\n|  Value: 15 gp                                  |\n|  \"A versatile blade favored by warriors.\"      |\n+------------------------------------------------+\n| (E)quip  (U)nequip  (D)rop  (T)ransfer  (ESC) |\n+------------------------------------------------+\n```\n\n- Left: party list \u2014 select active character with up/down or 1-6 keys\n- Middle: that character's inventory (scrollable, 12 items per page)\n- Right: equipment slots \u2014 shows what's worn\n- Bottom: item details for the selected item; actions\n\n### Inventory Data Model\nEach character has:\n```typescript\ninterface Inventory {\n  items: InventoryItem[];        // max 20 items per character (MVP)\n  maxSize: 20;\n}\n\ninterface InventoryItem {\n  itemId: string;\n  quantity: number;              // for stackables (potions, torches)\n}\n```\n\n### Actions\n- **E (Equip)**: equip selected item to its slot. If slot already occupied, move that item back to inventory.\n- **U (Unequip)**: unequip selected slot's item back to inventory. Stats recompute.\n- **D (Drop)**: confirmation prompt \u2192 remove from inventory. Lost permanently.\n- **T (Transfer)**: prompt for destination character \u2192 move item (or 1 of a stack). Both characters' inventories must have capacity.\n- **TAB**: switch between Inventory list and Equipment panel\n- **ESC**: return to previous state\n\n### Stat Recalculation (src/renderer/src/systems/StatCalculator.ts)\nCentralize equipment-driven stat calculation:\n```typescript\nexport class StatCalculator {\n  recalculateCharacter(character: Character): void;\n  // Recomputes:\n  //   - AC = 10 + dexMod + (armor.acBonus || 0) + (shield ? 2 : 0) + magic ring/amulet bonuses\n  //   - Damage bonus from weapon properties\n  //   - Saving throw bonuses from rings/amulets\n  //   - Status resistance from items\n}\n```\n\nCall this:\n- After equip/unequip\n- After level up\n- After spell effect that modifies stats\n\n### Stackable Items\n- Healing Potion, Torch, Arrow, Lockpick: stackable\n- Stack quantity shown as `x N` after name\n- Using one decrements quantity; quantity 0 removes from inventory\n- Capacity counts each stack as 1 item\n\n### Class Restrictions (Enforce in Equip)\n- Use `item.usableBy` array. If character class not in list \u2192 log \"Aelindra cannot use Chain Mail\" and refuse equip.\n- Mages: no armor (except robes), no metal weapons (daggers, staves OK)\n- Clerics: no edged weapons (no swords, only blunt \u2014 maces, hammers)\n- Thieves: light armor only (leather)\n- Paladins, Fighters, Rangers: all weapons + armor\n\n### Magical Item Identification (MVP-light)\n- Items with `properties.magical === true` have \"*\" suffix in name when identified\n- Unidentified items show as \"?? Long Sword ??\"\n- Identify Spell (cleric L1) reveals magical properties (out-of-scope; mark as future)\n\n### Encumbrance (MVP-light)\n- Display total weight: `currentWeight / (strength * 5)` lb\n- Over-encumbered: penalty to DEX-based actions (info only; no enforcement in MVP)\n\n### Item Description / Hover\n- Selected item's full description in bottom panel\n- Includes: type, damage/AC, value, usable-by classes, special properties\n\n### Tests\n- `src/renderer/src/screens/__tests__/InventoryScreen.test.ts`:\n  - Equipping armor increases AC; unequipping reverts\n  - Class restriction prevents wrong-class equip\n  - Drop removes item; confirmation required\n  - Transfer moves item between characters\n  - Inventory capacity enforced\n- `src/renderer/src/systems/__tests__/StatCalculator.test.ts`:\n  - AC = 10 + dexMod + armor.acBonus + shield + bonuses\n  - Damage bonus calculated from weapon\n  - Recalc runs after equip event\n\n## Done When\n- Inventory screen shows all items per character\n- All 5 equipment slots can be equipped/unequipped\n- Class restrictions enforced\n- Stat changes immediate (AC, damage) and persist\n- Transfer between characters works\n- Drop with confirmation\n- Stackables show quantity\n- Item details visible\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
