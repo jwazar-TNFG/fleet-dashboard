@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T17:04:59Z",
+  "updated_at": "2026-05-17T17:10:51Z",
   "phases": [
     {
       "id": "phase-1",
@@ -182,7 +182,7 @@
       "id": "task-09",
       "name": "Phase 1 Integration Test",
       "phase": "phase-1",
-      "status": "failed",
+      "status": "completed",
       "depends_on": [
         "task-05",
         "task-06",
@@ -191,13 +191,13 @@
       ],
       "doneWhen": "Full loop works: Menu → Create party → Review → Save → Quit → Relaunch → Load → Verify. Integration tests pass.",
       "lastActivity": "2026-05-17T17:04:57Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null
+      "costUSD": 3.8933,
+      "numTurns": 62,
+      "durationSeconds": 418,
+      "inputTokens": 60,
+      "outputTokens": 28381,
+      "cacheReadTokens": 4740097,
+      "cacheCreationTokens": 129886
     },
     {
       "id": "task-10",
