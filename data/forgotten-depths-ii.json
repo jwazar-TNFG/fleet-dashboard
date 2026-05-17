@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:28:02Z",
+  "updated_at": "2026-05-17T19:40:10Z",
   "phases": [
     {
       "id": "phase-1",
@@ -485,20 +485,20 @@
       "id": "task-24",
       "name": "Combat \u2014 Integration with Dungeon",
       "phase": "phase-4",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-23",
         "task-18"
       ],
       "doneWhen": "Full flow: dungeon encounter \u2192 combat with real data \u2192 victory \u2192 loot \u2192 back to dungeon. Fixed encounters don't retrigger.",
-      "lastActivity": "2026-05-17T19:28:01Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T19:40:09Z",
+      "costUSD": 7.8806,
+      "numTurns": 88,
+      "durationSeconds": 667,
+      "inputTokens": 83,
+      "outputTokens": 44890,
+      "cacheReadTokens": 10253807,
+      "cacheCreationTokens": 260688,
       "description": "# Task 24: Combat \u2014 Integration with Dungeon\n\n## Objective\nWire the full flow: dungeon encounter triggers real combat with actual monster data, victory returns to dungeon with rewards, fixed encounters don't retrigger, and party state persists.\n\n## Prerequisites\nTask 23 must be complete. CombatState fully functional with victory/defeat. Task 18 EncounterState routes to COMBAT placeholder.\n\n## Requirements\n\n### EncounterState \u2192 CombatState Transition\nUpdate EncounterState (from Task 18):\n- \"Fight\" option now transitions to `COMBAT` state with `CombatInitData`:\n```typescript\nstateMachine.transitionTo('COMBAT', {\n  encounterId: this.encounter.id,\n  partySurprise: this.encounter.surprise === 'party',\n  enemySurprise: this.encounter.surprise === 'enemy',\n});\n```\n\n### CombatState.enter (data: CombatInitData)\n1. Load encounter from AssetLoader by id\n2. For each `monsters[i] = { monsterId, count }`:\n   - Parse `count` (e.g., \"2d4\") and roll how many\n   - For each, load monster definition from `monsters.json`\n   - Instantiate `MonsterInstance` (roll HP from hitDice, copy stats, set grid position)\n3. Place monsters in grid:\n   - Front rank (row 1): up to 4 melee monsters\n   - Back rank (row 0): up to 4 ranged/caster monsters\n   - Fill left-to-right\n4. Place party in grid:\n   - Front row (row 4): party slots 1-3\n   - Back row (row 5): party slots 4-6\n5. Create CombatManager with party, enemies, surprise flags\n6. Roll initiative\n\n### Combat \u2192 Dungeon Return\nAfter victory/defeat overlay dismissed:\n- **Victory**: transition back to DUNGEON. Pass results via state machine data: `{ xp: 150, gold: 23, items: [...] }`.\n- **Defeat**: transition to MAIN_MENU (game over flow, see Task 23).\n- **Fled**: transition back to DUNGEON. No rewards.\n\nDungeonState.enter handles return data:\n- Apply XP, gold, items to gameState (CombatState.exit should already have done this \u2014 DungeonState just re-renders)\n- Display the victory summary in message log: \"Defeated 3 Goblins. +150 XP, +23 gold.\"\n- Mark the originating MapEvent (if any) as `triggered = true`\n\n### Fixed Encounter Persistence\nWhen a fixed encounter event triggers combat and is won:\n1. `tileMap.markEventTriggered(eventId)`\n2. On save, triggered events are serialized as a list of ids in the map's persistence\n3. On load, TileMap re-applies triggered state\n\n### Random Encounter Cooldown\nAfter a random encounter (win, lose, flee):\n- Set `gameState.randomEncounterCooldown = 5` (steps)\n- Decrement per step; encounters cannot fire while > 0\n- Prevents encounter chaining after each step\n\n### Party State Bridging\n- HP changes during combat persist after exit (party returns to dungeon wounded)\n- Status effects with multi-round duration ('poisoned', 'blessed') carry over\n- Dead party members stay dead in dungeon (DungeonHUD shows DEAD; raise dead at Temple)\n- Spell slots used in combat stay used (rest at Tavern to recover)\n\n### Tests\n- `src/__tests__/integration/dungeon-combat-loop.test.ts`:\n  - From DungeonState, step on encounter event \u2192 EncounterState \u2192 choose Fight \u2192 CombatState \u2192 resolve victory \u2192 return to DungeonState\n  - Party HP reflects combat damage\n  - Gold and XP added to gameState\n  - Fixed encounter event marked triggered; re-stepping doesn't refire\n- `src/renderer/src/screens/__tests__/CombatState.integration.test.ts`:\n  - CombatState.enter with a real encounter id constructs the correct number of monsters\n  - \"2d4 Goblins\" instantiates between 2 and 8 monsters\n  - Surprise round skips the surprised side\n\n### Hooks for Save/Load\n- gameState now includes (extend save schema):\n  - `triggeredMapEvents: { [mapId: string]: string[] }`\n  - `randomEncounterCooldown: number`\n  - characters[].statusEffects[] (already present)\n- Verify save/load round-trip preserves all of the above\n\n## Done When\n- Stepping on a fixed encounter event triggers EncounterState \u2192 CombatState\n- Combat starts with correct monsters from encounters.json\n- Victory awards XP, gold, items; returns to dungeon\n- Defeated party shows game over\n- Fled returns to dungeon\n- Fixed encounters don't retrigger after a win\n- Random encounters respect cooldown after combat\n- HP, status, spell slots persist from combat into dungeon\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
