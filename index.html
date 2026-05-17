@@ -985,109 +985,374 @@ function switchView(projId, view) {
   }
 }
 
-// Dependency graph renderer
+// ---------- Dependency Graph (Phased Container Layout) ----------
+//
+// Layout strategy: phases are placed on a 2-D grid; tasks are laid out
+// INSIDE each phase container in a small grid (<gridCols> per row).
+// Gate tasks (Integration / Phase Gate / explicit IDs) render as wider
+// purple pill nodes. Cross-phase dependencies draw curved bezier lines.
+//
+// Layout config (rows of phases). Each entry: array of { phase, cols, weight }.
+//   cols   = tasks per row inside the phase container
+//   weight = relative horizontal weight in its row (1 = single column unit)
+const GATE_TASK_IDS = new Set(['task-09','task-19','task-25','task-29','task-35','task-38']);
+
+function isGateTask(t) {
+  if (GATE_TASK_IDS.has(t.id)) return true;
+  const n = (t.name || '').toLowerCase();
+  if (n.includes('integration')) return true;
+  if (n.includes('phase') && n.includes('gate')) return true;
+  return false;
+}
+
+function depGraphLayoutPlan(phaseOrder) {
+  // Default plan: Phase 1 spans full width; phases 2/3/4 side-by-side;
+  // phase 5 centered; phase 6 wide; phase 7 centered.
+  // We key by phase id when possible, else by index.
+  const byId = {
+    'phase-1': { row: 0, weight: 3, cols: 3 },
+    'phase-2': { row: 1, weight: 1, cols: 2 },
+    'phase-3': { row: 1, weight: 1, cols: 2 },
+    'phase-4': { row: 1, weight: 1, cols: 2 },
+    'phase-5': { row: 2, weight: 2, cols: 3 },
+    'phase-6': { row: 3, weight: 3, cols: 3 },
+    'phase-7': { row: 4, weight: 2, cols: 3 }
+  };
+  return phaseOrder.map((p, i) => {
+    if (byId[p]) return { phase: p, ...byId[p] };
+    // Fallback: stack each phase on its own row
+    return { phase: p, row: i, weight: 1, cols: 3 };
+  });
+}
+
 function renderDepGraph(project, phaseNames) {
   const tasks = project.tasks || [];
   if (!tasks.length) return '<div class="empty-state">No tasks</div>';
 
-  const STATUS_COLORS = {
-    completed: '#3fb950', running: '#58a6ff', failed: '#f85149',
-    pending: '#30363d', skipped: '#d29922'
-  };
-  const STATUS_FILL = {
-    completed: '#3fb950', running: '#58a6ff', failed: '#f85149',
-    pending: 'transparent', skipped: '#d29922'
-  };
-  const STATUS_TEXT = {
-    completed: '#000', running: '#000', failed: '#fff',
-    pending: '#8b949e', skipped: '#000'
-  };
-
-  // Group by phase, preserving order
+  // ---- Group tasks by phase (preserve project.phases order if available)
   const phaseOrder = [];
   const phaseMap = {};
+  if (project.phases && project.phases.length) {
+    for (const p of project.phases) {
+      phaseOrder.push(p.id);
+      phaseMap[p.id] = [];
+    }
+  }
   for (const t of tasks) {
     const p = t.phase || 'ungrouped';
     if (!phaseMap[p]) { phaseMap[p] = []; phaseOrder.push(p); }
     phaseMap[p].push(t);
   }
 
-  // Layout constants
-  const nodeW = 160, nodeH = 52, padX = 80, padY = 20, headerH = 40, topPad = 20;
-  const colW = nodeW + padX;
-  const maxPerCol = Math.max(...phaseOrder.map(p => phaseMap[p].length));
-  const svgW = phaseOrder.length * colW + padX;
-  const svgH = headerH + topPad + maxPerCol * (nodeH + padY) + padY;
+  // ---- Geometry constants (SVG user units)
+  const TASK_W = 150, TASK_H = 54;
+  const GATE_W = 200, GATE_H = 38;
+  const TASK_GAP_X = 18, TASK_GAP_Y = 14;
+  const PHASE_PAD_X = 18, PHASE_PAD_TOP = 38, PHASE_PAD_BOTTOM = 18;
+  const PHASE_GAP_X = 36, PHASE_GAP_Y = 56;
+  const OUTER_PAD = 20;
 
-  // Compute positions
-  const positions = {};
-  phaseOrder.forEach((phase, colIdx) => {
-    const phaseTasks = phaseMap[phase];
-    const colX = padX + colIdx * colW;
-    phaseTasks.forEach((t, rowIdx) => {
-      const x = colX;
-      const y = headerH + topPad + rowIdx * (nodeH + padY);
-      positions[t.id] = { x, y, task: t };
+  // ---- Build layout plan
+  const plan = depGraphLayoutPlan(phaseOrder);
+  // Group plan entries by row
+  const rowsMap = {};
+  for (const entry of plan) {
+    if (!rowsMap[entry.row]) rowsMap[entry.row] = [];
+    rowsMap[entry.row].push(entry);
+  }
+  const rowKeys = Object.keys(rowsMap).map(Number).sort((a,b)=>a-b);
+
+  // ---- Compute size of each phase container based on its task count
+  function phaseInnerSize(entry) {
+    const ts = phaseMap[entry.phase] || [];
+    const cols = Math.max(1, entry.cols);
+    const rows = Math.max(1, Math.ceil(ts.length / cols));
+    // Width based on max possible task width (use TASK_W; gates are wider but we let them extend slightly,
+    // or use gate width if any gate is present and only 1 col).
+    const hasGate = ts.some(isGateTask);
+    const cellW = hasGate && cols === 1 ? GATE_W : TASK_W;
+    const innerW = cols * cellW + (cols - 1) * TASK_GAP_X;
+    const innerH = rows * TASK_H + (rows - 1) * TASK_GAP_Y;
+    return {
+      w: innerW + PHASE_PAD_X * 2,
+      h: innerH + PHASE_PAD_TOP + PHASE_PAD_BOTTOM,
+      cols, rows, cellW, innerW, innerH
+    };
+  }
+
+  // First pass: per-phase intrinsic size
+  const phaseSize = {};
+  for (const entry of plan) phaseSize[entry.phase] = phaseInnerSize(entry);
+
+  // ---- Compute row widths (total weight × unit), find layout width
+  // For each row, expand each phase to fill its weight share of row width.
+  // We pick a row "target width" = max(natural sum, widest single row).
+  const rowNaturalWidths = rowKeys.map(rk => {
+    const entries = rowsMap[rk];
+    let sum = 0;
+    for (const e of entries) sum += phaseSize[e.phase].w;
+    sum += (entries.length - 1) * PHASE_GAP_X;
+    return sum;
+  });
+  const targetRowWidth = Math.max(...rowNaturalWidths);
+
+  // For each row, distribute extra width by weight (so wide phases stretch).
+  const rowPlans = rowKeys.map((rk, idx) => {
+    const entries = rowsMap[rk];
+    const natural = rowNaturalWidths[idx];
+    const extra = Math.max(0, targetRowWidth - natural);
+    const totalWeight = entries.reduce((s,e)=>s+e.weight, 0);
+    const widths = entries.map(e => phaseSize[e.phase].w + (extra * (e.weight / totalWeight)));
+    // Row height = tallest phase in this row
+    const rowH = Math.max(...entries.map(e => phaseSize[e.phase].h));
+    return { rk, entries, widths, rowH };
+  });
+
+  const svgW = targetRowWidth + OUTER_PAD * 2;
+  let cursorY = OUTER_PAD;
+  const phasePos = {}; // phase id -> { x, y, w, h }
+  for (const rp of rowPlans) {
+    let cursorX = OUTER_PAD;
+    rp.entries.forEach((entry, i) => {
+      const w = rp.widths[i];
+      const h = phaseSize[entry.phase].h;
+      // Vertically center the phase rect within the row band
+      const y = cursorY + (rp.rowH - h) / 2;
+      phasePos[entry.phase] = { x: cursorX, y, w, h, entry, size: phaseSize[entry.phase] };
+      cursorX += w + PHASE_GAP_X;
     });
-  });
+    cursorY += rp.rowH + PHASE_GAP_Y;
+  }
+  const svgH = cursorY - PHASE_GAP_Y + OUTER_PAD;
 
-  let svg = '';
+  // ---- Compute task node positions inside each phase
+  const taskPos = {}; // task id -> { x, y, w, h, isGate, task }
+  for (const entry of plan) {
+    const pp = phasePos[entry.phase];
+    if (!pp) continue;
+    const ts = phaseMap[entry.phase] || [];
+    const { cols, cellW } = pp.size;
+    // Center the inner grid horizontally within the (possibly widened) phase box
+    const innerW = cols * cellW + (cols - 1) * TASK_GAP_X;
+    const startX = pp.x + (pp.w - innerW) / 2;
+    const startY = pp.y + PHASE_PAD_TOP;
+    ts.forEach((t, idx) => {
+      const c = idx % cols;
+      const r = Math.floor(idx / cols);
+      const gate = isGateTask(t);
+      // Gate nodes: still placed on the same grid but rendered as pills.
+      // Center the gate inside its cell.
+      const cx = startX + c * (cellW + TASK_GAP_X);
+      const cy = startY + r * (TASK_H + TASK_GAP_Y);
+      const w = gate ? Math.min(GATE_W, cellW + 30) : TASK_W;
+      const h = gate ? GATE_H : TASK_H;
+      const x = cx + (cellW - w) / 2;
+      const y = cy + (TASK_H - h) / 2;
+      taskPos[t.id] = { x, y, w, h, isGate: gate, task: t };
+    });
+  }
 
-  // Phase column headers
-  phaseOrder.forEach((phase, colIdx) => {
-    const x = padX + colIdx * colW + nodeW / 2;
-    const label = phaseNames[phase] ? `${phase} — ${phaseNames[phase]}` : phase;
-    svg += `<text x="${x}" y="20" fill="#8b949e" font-size="12" font-weight="600" text-anchor="middle">${label}</text>`;
-  });
+  // ---- Helpers for SVG escaping
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  const truncate = (s, n) => {
+    s = String(s || '');
+    return s.length > n ? s.slice(0, n - 1) + '…' : s;
+  };
 
-  // Dependency arrows
+  // ---- Build SVG: phase containers first (so they sit behind nodes)
+  let svgPhases = '';
+  for (const entry of plan) {
+    const pp = phasePos[entry.phase];
+    if (!pp) continue;
+    const ts = phaseMap[entry.phase] || [];
+    const done = ts.filter(t => t.status === 'completed').length;
+    const label = phaseNames[entry.phase] ? `${entry.phase.replace('phase-','Phase ')} — ${phaseNames[entry.phase]}` : entry.phase;
+    svgPhases += `<rect class="phase-rect" x="${pp.x}" y="${pp.y}" width="${pp.w}" height="${pp.h}" rx="12"/>`;
+    svgPhases += `<text class="phase-title" x="${pp.x + PHASE_PAD_X}" y="${pp.y + 22}">${esc(label)}</text>`;
+    svgPhases += `<text class="phase-count" x="${pp.x + pp.w - PHASE_PAD_X}" y="${pp.y + 22}" text-anchor="end">${done}/${ts.length} done</text>`;
+  }
+
+  // ---- Dependency lines (curved bezier)
+  let svgLines = '';
   for (const t of tasks) {
-    if (!t.depends_on) continue;
-    const target = positions[t.id];
-    if (!target) continue;
-    for (const depId of t.depends_on) {
-      const source = positions[depId];
-      if (!source) continue;
-      const sx = source.x + nodeW;
-      const sy = source.y + nodeH / 2;
-      const tx = target.x;
-      const ty = target.y + nodeH / 2;
-      const cx1 = sx + (tx - sx) * 0.4;
-      const cx2 = tx - (tx - sx) * 0.4;
-      const color = source.task.status === 'completed' ? '#3fb95066' : '#8b949e44';
-      const strokeW = source.task.status === 'running' ? 2 : 1.5;
-      svg += `<path d="M${sx},${sy} C${cx1},${sy} ${cx2},${ty} ${tx},${ty}" fill="none" stroke="${color}" stroke-width="${strokeW}" marker-end="url(#arrow)"/>`;
+    const deps = t.depends_on || [];
+    if (!deps.length) continue;
+    const to = taskPos[t.id];
+    if (!to) continue;
+    for (const depId of deps) {
+      const from = taskPos[depId];
+      if (!from) continue;
+      const samePhase = from.task.phase === to.task.phase;
+      // Determine connection points based on relative position
+      const fromCenterX = from.x + from.w / 2;
+      const fromCenterY = from.y + from.h / 2;
+      const toCenterX = to.x + to.w / 2;
+      const toCenterY = to.y + to.h / 2;
+      const dx = toCenterX - fromCenterX;
+      const dy = toCenterY - fromCenterY;
+      let sx, sy, tx, ty, cx1, cy1, cx2, cy2;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        // Predominantly vertical: bottom of source -> top of target
+        sx = fromCenterX; sy = from.y + from.h;
+        tx = toCenterX;   ty = to.y;
+        const midY = sy + (ty - sy) * 0.5;
+        cx1 = sx; cy1 = midY;
+        cx2 = tx; cy2 = midY;
+      } else {
+        // Predominantly horizontal: right -> left (or reverse)
+        if (dx >= 0) {
+          sx = from.x + from.w; sy = fromCenterY;
+          tx = to.x;            ty = toCenterY;
+        } else {
+          sx = from.x; sy = fromCenterY;
+          tx = to.x + to.w; ty = toCenterY;
+        }
+        const midX = sx + (tx - sx) * 0.5;
+        cx1 = midX; cy1 = sy;
+        cx2 = midX; cy2 = ty;
+      }
+      const cls = 'dep-line' +
+        (samePhase ? '' : ' cross-phase') +
+        (from.task.status === 'completed' ? ' completed' : '');
+      svgLines += `<path class="${cls}" d="M${sx.toFixed(1)},${sy.toFixed(1)} C${cx1.toFixed(1)},${cy1.toFixed(1)} ${cx2.toFixed(1)},${cy2.toFixed(1)} ${tx.toFixed(1)},${ty.toFixed(1)}"/>`;
     }
   }
 
-  // Nodes
+  // ---- Task nodes
+  let svgNodes = '';
   for (const t of tasks) {
-    const pos = positions[t.id];
-    if (!pos) continue;
-    const fill = STATUS_FILL[t.status] || 'transparent';
-    const stroke = STATUS_COLORS[t.status] || '#30363d';
-    const textColor = STATUS_TEXT[t.status] || '#e6edf3';
-    const nameColor = t.status === 'pending' ? '#e6edf3' : textColor;
-    const truncName = t.name.length > 22 ? t.name.slice(0, 20) + '…' : t.name;
-    const icon = STATUS_ICONS[t.status] || '·';
-    const pulseAttr = t.status === 'running' ? ' style="animation: nodePulse 2s ease-in-out infinite"' : '';
-    svg += `<g${pulseAttr}>`;
-    svg += `<rect x="${pos.x}" y="${pos.y}" width="${nodeW}" height="${nodeH}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>`;
-    svg += `<text x="${pos.x + 10}" y="${pos.y + 18}" fill="${t.status === 'pending' ? '#8b949e' : textColor}" font-size="10" font-family="SFMono-Regular,Consolas,monospace">${t.id}</text>`;
-    svg += `<text x="${pos.x + nodeW - 10}" y="${pos.y + 18}" fill="${t.status === 'pending' ? '#8b949e' : textColor}" font-size="11" text-anchor="end">${icon}</text>`;
-    svg += `<text x="${pos.x + 10}" y="${pos.y + 36}" fill="${nameColor}" font-size="11" font-weight="500">${truncName}</text>`;
-    svg += `</g>`;
+    const p = taskPos[t.id];
+    if (!p) continue;
+    const status = t.status || 'pending';
+    const icon = STATUS_ICONS[status] || '·';
+    const timeAgo = t.lastActivity ? formatTimeAgo(t.lastActivity) : '';
+
+    if (p.isGate) {
+      // Gate pill node
+      const label = truncate(t.name, 26);
+      const rx = p.h / 2;
+      svgNodes += `<g class="task-node" onclick="toggleTaskInfo('${esc(project.slug)}','${esc(t.id)}')">`;
+      svgNodes += `<rect class="gate-rect ${status}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="${rx}" ry="${rx}"/>`;
+      svgNodes += `<text class="task-id-text" x="${p.x + 12}" y="${p.y + p.h/2 + 4}">${esc(t.id.replace('task-','T'))}</text>`;
+      svgNodes += `<text class="gate-label" x="${p.x + p.w/2}" y="${p.y + p.h/2 + 4}" text-anchor="middle">◆ ${esc(label)}</text>`;
+      // Info button
+      svgNodes += renderInfoBtn(p.x + p.w - 14, p.y + p.h/2, project.slug, t.id);
+      svgNodes += `</g>`;
+    } else {
+      // Regular task node
+      const name = truncate(t.name, 22);
+      svgNodes += `<g class="task-node" onclick="toggleTaskInfo('${esc(project.slug)}','${esc(t.id)}')">`;
+      svgNodes += `<rect class="task-rect ${status}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="8"/>`;
+      // Top row: task id (left) + status icon (right)
+      svgNodes += `<text class="task-id-text" x="${p.x + 10}" y="${p.y + 14}">${esc(t.id.replace('task-','T'))}</text>`;
+      svgNodes += `<text class="task-id-text" x="${p.x + p.w - 22}" y="${p.y + 14}" text-anchor="end" style="font-size:11px;fill:${statusIconColor(status)}">${esc(icon)}</text>`;
+      // Task name (middle)
+      svgNodes += `<text class="task-name-text" x="${p.x + 10}" y="${p.y + 30}">${esc(name)}</text>`;
+      // Time ago (bottom-left)
+      if (timeAgo) {
+        svgNodes += `<text class="task-time-text" x="${p.x + 10}" y="${p.y + p.h - 8}">${esc(timeAgo)}</text>`;
+      }
+      // Info button (bottom-right)
+      svgNodes += renderInfoBtn(p.x + p.w - 12, p.y + p.h - 11, project.slug, t.id);
+      svgNodes += `</g>`;
+    }
   }
 
+  // ---- Legend (HTML, above the SVG)
+  const legendHtml = `
+    <div class="depgraph-legend">
+      <span class="lg-item"><span class="lg-swatch completed"></span>completed</span>
+      <span class="lg-item"><span class="lg-swatch running"></span>running</span>
+      <span class="lg-item"><span class="lg-swatch failed"></span>failed</span>
+      <span class="lg-item"><span class="lg-swatch pending"></span>pending</span>
+      <span class="lg-item"><span class="lg-swatch skipped"></span>skipped</span>
+      <span class="lg-item"><span class="lg-swatch gate"></span>gate / milestone</span>
+      <span class="lg-item" style="margin-left:auto;font-style:italic">click ⓘ on any task for details</span>
+    </div>`;
+
+  const projId = (project.slug || 'p').replace(/[^a-z0-9]/g, '_');
+
   return `
-    <div class="graph-container">
-      <svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">
-        <defs><marker id="arrow" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="8" markerHeight="6" orient="auto"><path d="M0,0 L10,3 L0,6" fill="#8b949e88"/></marker></defs>
-        ${svg}
+    ${legendHtml}
+    <div id="depgraph-info-${projId}"></div>
+    <div class="depgraph-wrap">
+      <svg class="depgraph-svg" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" style="min-width:${Math.min(svgW, 900)}px">
+        ${svgPhases}
+        ${svgLines}
+        ${svgNodes}
       </svg>
     </div>
-    <div class="graph-hint">← scroll horizontally to see all phases →</div>
+    <div class="graph-hint">scroll horizontally if needed · click ⓘ on any task for details</div>
   `;
+}
+
+function renderInfoBtn(cx, cy, slug, taskId) {
+  const esc = s => String(s).replace(/'/g,"\\'");
+  return `<g class="info-btn" onclick="event.stopPropagation(); toggleTaskInfo('${esc(slug)}','${esc(taskId)}')">` +
+    `<circle cx="${cx}" cy="${cy}" r="7"/>` +
+    `<text x="${cx}" y="${cy + 3}" text-anchor="middle">i</text>` +
+    `</g>`;
+}
+
+function statusIconColor(status) {
+  switch (status) {
+    case 'completed': return '#3fb950';
+    case 'running':   return '#58a6ff';
+    case 'failed':    return '#f85149';
+    case 'skipped':   return '#d29922';
+    default:          return '#8b949e';
+  }
+}
+
+// ---- Info-panel toggle (called from inline onclick on task nodes)
+function toggleTaskInfo(slug, taskId) {
+  const projId = (slug || 'p').replace(/[^a-z0-9]/g, '_');
+  const host = document.getElementById('depgraph-info-' + projId);
+  if (!host) return;
+  // If the same task is already open, close it (toggle behavior)
+  if (host.dataset.openTask === taskId) {
+    host.innerHTML = '';
+    host.dataset.openTask = '';
+    return;
+  }
+  const project = allProjects[slug];
+  if (!project) return;
+  const task = (project.tasks || []).find(t => t.id === taskId);
+  if (!task) return;
+  const esc = s => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const deps = (task.depends_on && task.depends_on.length) ? task.depends_on.join(', ') : '<em>none</em>';
+  const timeAgo = task.lastActivity ? formatTimeAgo(task.lastActivity) : '—';
+  const ts = task.lastActivity ? new Date(task.lastActivity).toLocaleString() : '';
+  const status = task.status || 'pending';
+  const doneWhen = task.doneWhen ? esc(task.doneWhen) : '<em>(no description)</em>';
+  host.dataset.openTask = taskId;
+  host.innerHTML = `
+    <div class="depgraph-info-panel">
+      <div class="ip-header">
+        <div>
+          <span class="ip-id">${esc(task.id)}</span>
+          <span class="ip-title">${esc(task.name)}</span>
+        </div>
+        <button class="ip-close" onclick="closeTaskInfo('${esc(slug)}')" title="Close">×</button>
+      </div>
+      <div class="ip-row"><strong>Status:</strong><span class="ip-status ${status}">${esc(status)}</span></div>
+      <div class="ip-row"><strong>Description:</strong>${doneWhen}</div>
+      <div class="ip-row"><strong>Dependencies:</strong>${deps}</div>
+      <div class="ip-row"><strong>Last activity:</strong>${esc(timeAgo)}${ts ? ' · <span style="color:var(--text-muted)">' + esc(ts) + '</span>' : ''}</div>
+    </div>`;
+  // Scroll the panel into view if it's offscreen
+  host.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeTaskInfo(slug) {
+  const projId = (slug || 'p').replace(/[^a-z0-9]/g, '_');
+  const host = document.getElementById('depgraph-info-' + projId);
+  if (!host) return;
+  host.innerHTML = '';
+  host.dataset.openTask = '';
 }
 
 // Initial load
