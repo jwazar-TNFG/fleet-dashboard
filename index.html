@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fleet Dev Team — Dashboard</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-hover: #1c2129;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --red: #f85149;
+      --yellow: #d29922;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --orange: #f0883e;
+      --cyan: #39d2c0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header h1 .icon { font-size: 22px; }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    select {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      min-width: 180px;
+    }
+
+    select:focus { outline: 2px solid var(--accent); border-color: transparent; }
+
+    .refresh-btn {
+      background: var(--bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover { color: var(--text); border-color: var(--accent); }
+    .refresh-btn.spinning .icon { animation: spin 1s linear infinite; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Main content */
+    .main { padding: 16px 20px; max-width: 900px; margin: 0 auto; }
+
+    /* Overview cards */
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .stat-card .label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .stat-card.completed .value { color: var(--green); }
+    .stat-card.running .value { color: var(--blue); }
+    .stat-card.failed .value { color: var(--red); }
+    .stat-card.pending .value { color: var(--text-muted); }
+
+    /* Progress bar */
+    .progress-container {
+      margin-bottom: 20px;
+    }
+
+    .progress-bar-bg {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      height: 32px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .progress-segment {
+      height: 100%;
+      transition: width 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      min-width: 0;
+    }
+
+    .progress-segment.completed { background: var(--green); color: #000; }
+    .progress-segment.running { background: var(--blue); color: #000; animation: pulse 2s ease-in-out infinite; }
+    .progress-segment.failed { background: var(--red); color: #fff; }
+
+    @keyframes pulse { 50% { opacity: 0.7; } }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* System status banner */
+    .system-status {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .system-status.running {
+      background: rgba(59, 185, 80, 0.1);
+      border: 1px solid rgba(59, 185, 80, 0.3);
+      color: var(--green);
+    }
+
+    .system-status.stopped {
+      background: rgba(248, 81, 73, 0.1);
+      border: 1px solid rgba(248, 81, 73, 0.3);
+      color: var(--red);
+    }
+
+    .system-status.idle {
+      background: rgba(139, 148, 158, 0.1);
+      border: 1px solid rgba(139, 148, 158, 0.3);
+      color: var(--text-muted);
+    }
+
+    .system-status.complete {
+      background: rgba(59, 185, 80, 0.1);
+      border: 1px solid rgba(59, 185, 80, 0.3);
+      color: var(--green);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .system-status.running .status-dot { background: var(--green); animation: blink 1.5s ease-in-out infinite; }
+    .system-status.stopped .status-dot { background: var(--red); }
+    .system-status.idle .status-dot { background: var(--text-muted); }
+    .system-status.complete .status-dot { background: var(--green); }
+
+    @keyframes blink { 50% { opacity: 0.3; } }
+
+    /* Phase sections */
+    .phase {
+      margin-bottom: 16px;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .phase-header:hover { background: var(--surface-hover); }
+
+    .phase-header h3 {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phase-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .phase-badge.all-done { background: rgba(59, 185, 80, 0.15); color: var(--green); }
+    .phase-badge.in-progress { background: rgba(88, 166, 255, 0.15); color: var(--blue); }
+    .phase-badge.not-started { background: rgba(139, 148, 158, 0.1); color: var(--text-muted); }
+    .phase-badge.has-failures { background: rgba(248, 81, 73, 0.15); color: var(--red); }
+
+    .phase-chevron {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+
+    .phase.collapsed .phase-chevron { transform: rotate(-90deg); }
+    .phase.collapsed .task-list { display: none; }
+
+    /* Task list */
+    .task-list {
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+
+    .task-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .task-row:last-child { border-bottom: none; }
+
+    .task-status-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .task-status-icon.completed { background: var(--green); color: #000; }
+    .task-status-icon.running { background: var(--blue); color: #000; animation: pulse 2s ease-in-out infinite; }
+    .task-status-icon.failed { background: var(--red); color: #fff; }
+    .task-status-icon.pending { background: var(--border); color: var(--text-muted); }
+    .task-status-icon.skipped { background: var(--yellow); color: #000; }
+
+    .task-id {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      min-width: 55px;
+    }
+
+    .task-name { flex: 1; }
+
+    .task-deps {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: none;
+    }
+
+    @media (min-width: 600px) {
+      .task-deps { display: block; }
+    }
+
+    /* Empty / loading states */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+    .empty-state h2 { font-size: 18px; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { font-size: 14px; }
+
+    .loading { text-align: center; padding: 40px; color: var(--text-muted); }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .last-updated {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* No-project state */
+    .no-projects {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .no-projects .icon { font-size: 64px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <h1><span class="icon">🤖</span> AI Fleet Dev Team</h1>
+    <div class="header-controls">
+      <select id="project-selector">
+        <option value="__all__">All Projects</option>
+      </select>
+      <button class="refresh-btn" onclick="refresh()" title="Refresh">
+        <span class="icon">↻</span>
+      </button>
+    </div>
+  </div>
+  <div class="last-updated" id="last-updated"></div>
+</div>
+
+<div class="main" id="main-content">
+  <div class="loading">Loading projects…</div>
+</div>
+
+<div class="footer">
+  AI Fleet Dev Team Dashboard · Auto-updated by pipeline · Powered by VIRGIL
+</div>
+
+<script>
+const DATA_BASE = './data';
+const MANIFEST = './data/projects.json';
+
+let allProjects = {};
+let currentFilter = '__all__';
+
+// Status icons
+const STATUS_ICONS = {
+  completed: '✓',
+  running: '⟳',
+  failed: '✗',
+  pending: '·',
+  skipped: '⊘'
+};
+
+async function loadManifest() {
+  try {
+    const resp = await fetch(MANIFEST + '?t=' + Date.now());
+    if (!resp.ok) return [];
+    return await resp.json();
+  } catch {
+    return [];
+  }
+}
+
+async function loadProjectData(slug) {
+  try {
+    const resp = await fetch(`${DATA_BASE}/${slug}.json?t=${Date.now()}`);
+    if (!resp.ok) return null;
+    return await resp.json();
+  } catch {
+    return null;
+  }
+}
+
+async function loadAll() {
+  const manifest = await loadManifest();
+
+  if (!manifest.length) {
+    renderEmpty();
+    return;
+  }
+
+  const selector = document.getElementById('project-selector');
+  // Clear and rebuild options
+  selector.innerHTML = '<option value="__all__">All Projects</option>';
+
+  allProjects = {};
+
+  for (const entry of manifest) {
+    const data = await loadProjectData(entry.slug);
+    if (data) {
+      allProjects[entry.slug] = { ...entry, ...data };
+      const opt = document.createElement('option');
+      opt.value = entry.slug;
+      opt.textContent = entry.name;
+      selector.appendChild(opt);
+    }
+  }
+
+  selector.value = currentFilter;
+  renderDashboard();
+}
+
+function renderEmpty() {
+  document.getElementById('main-content').innerHTML = `
+    <div class="no-projects">
+      <div class="icon">📡</div>
+      <h2>No projects registered</h2>
+      <p>Projects will appear here when their pipelines start reporting status.</p>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  const container = document.getElementById('main-content');
+  const slugs = currentFilter === '__all__'
+    ? Object.keys(allProjects)
+    : [currentFilter].filter(s => allProjects[s]);
+
+  if (!slugs.length) {
+    renderEmpty();
+    return;
+  }
+
+  let html = '';
+  for (const slug of slugs) {
+    html += renderProject(allProjects[slug]);
+  }
+
+  container.innerHTML = html;
+  updateTimestamp();
+}
+
+function renderProject(project) {
+  const tasks = project.tasks || [];
+  const total = tasks.length;
+  const completed = tasks.filter(t => t.status === 'completed').length;
+  const running = tasks.filter(t => t.status === 'running').length;
+  const failed = tasks.filter(t => t.status === 'failed').length;
+  const pending = tasks.filter(t => t.status === 'pending').length;
+  const pct = total ? Math.round((completed / total) * 100) : 0;
+
+  // System status
+  let sysStatus, sysClass, sysText;
+  if (failed > 0) {
+    sysClass = 'stopped';
+    sysText = 'STOPPED — Task failed, needs human intervention';
+  } else if (running > 0) {
+    sysClass = 'running';
+    sysText = 'System running — no action needed';
+  } else if (completed === total && total > 0) {
+    sysClass = 'complete';
+    sysText = 'All tasks complete — pipeline finished';
+  } else {
+    sysClass = 'idle';
+    sysText = 'Pipeline idle';
+  }
+
+  // Group tasks by phase
+  const phases = {};
+  for (const task of tasks) {
+    const phase = task.phase || 'Ungrouped';
+    if (!phases[phase]) phases[phase] = [];
+    phases[phase].push(task);
+  }
+
+  let projectHtml = '';
+
+  // Project title (only shown in "all projects" view)
+  if (currentFilter === '__all__' && Object.keys(allProjects).length > 1) {
+    projectHtml += `<h2 style="font-size:16px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">${project.name || project.slug}</h2>`;
+  }
+
+  // Overview cards
+  projectHtml += `
+    <div class="overview">
+      <div class="stat-card completed"><div class="value">${completed}</div><div class="label">Completed</div></div>
+      <div class="stat-card running"><div class="value">${running}</div><div class="label">Running</div></div>
+      <div class="stat-card failed"><div class="value">${failed}</div><div class="label">Failed</div></div>
+      <div class="stat-card pending"><div class="value">${pending}</div><div class="label">Pending</div></div>
+    </div>
+  `;
+
+  // Progress bar
+  const compPct = total ? (completed / total * 100) : 0;
+  const runPct = total ? (running / total * 100) : 0;
+  const failPct = total ? (failed / total * 100) : 0;
+
+  projectHtml += `
+    <div class="progress-container">
+      <div class="progress-bar-bg">
+        ${compPct > 0 ? `<div class="progress-segment completed" style="width:${compPct}%">${compPct >= 8 ? completed : ''}</div>` : ''}
+        ${runPct > 0 ? `<div class="progress-segment running" style="width:${runPct}%"></div>` : ''}
+        ${failPct > 0 ? `<div class="progress-segment failed" style="width:${failPct}%"></div>` : ''}
+      </div>
+      <div class="progress-label">
+        <span>${pct}% complete</span>
+        <span>${completed}/${total} tasks</span>
+      </div>
+    </div>
+  `;
+
+  // System status banner
+  projectHtml += `
+    <div class="system-status ${sysClass}">
+      <div class="status-dot"></div>
+      <span>${sysText}</span>
+    </div>
+  `;
+
+  // Phase sections
+  for (const [phaseName, phaseTasks] of Object.entries(phases)) {
+    const phaseCompleted = phaseTasks.filter(t => t.status === 'completed').length;
+    const phaseRunning = phaseTasks.filter(t => t.status === 'running').length;
+    const phaseFailed = phaseTasks.filter(t => t.status === 'failed').length;
+    const phaseTotal = phaseTasks.length;
+
+    let badgeClass, badgeText;
+    if (phaseFailed > 0) {
+      badgeClass = 'has-failures';
+      badgeText = `${phaseFailed} failed`;
+    } else if (phaseCompleted === phaseTotal) {
+      badgeClass = 'all-done';
+      badgeText = 'Done';
+    } else if (phaseRunning > 0 || phaseCompleted > 0) {
+      badgeClass = 'in-progress';
+      badgeText = `${phaseCompleted}/${phaseTotal}`;
+    } else {
+      badgeClass = 'not-started';
+      badgeText = 'Not started';
+    }
+
+    // Auto-collapse completed phases
+    const collapsed = phaseCompleted === phaseTotal && phaseFailed === 0 ? ' collapsed' : '';
+
+    projectHtml += `
+      <div class="phase${collapsed}" onclick="this.classList.toggle('collapsed')">
+        <div class="phase-header">
+          <h3>
+            <span class="phase-chevron">▾</span>
+            ${phaseName}
+          </h3>
+          <span class="phase-badge ${badgeClass}">${badgeText}</span>
+        </div>
+        <div class="task-list">
+    `;
+
+    for (const task of phaseTasks) {
+      const deps = task.depends_on && task.depends_on.length
+        ? `→ ${task.depends_on.join(', ')}`
+        : '';
+
+      projectHtml += `
+        <div class="task-row">
+          <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
+          <span class="task-id">${task.id}</span>
+          <span class="task-name">${task.name}</span>
+          <span class="task-deps">${deps}</span>
+        </div>
+      `;
+    }
+
+    projectHtml += `
+        </div>
+      </div>
+    `;
+  }
+
+  // Last updated for this project
+  if (project.updated_at) {
+    const d = new Date(project.updated_at);
+    projectHtml += `<div style="font-size:11px; color:var(--text-muted); margin-top:12px; margin-bottom:24px;">Project data updated: ${d.toLocaleString()}</div>`;
+  }
+
+  return projectHtml;
+}
+
+function updateTimestamp() {
+  document.getElementById('last-updated').textContent = 'Dashboard refreshed: ' + new Date().toLocaleTimeString();
+}
+
+async function refresh() {
+  const btn = document.querySelector('.refresh-btn');
+  btn.classList.add('spinning');
+  await loadAll();
+  setTimeout(() => btn.classList.remove('spinning'), 500);
+}
+
+// Project selector
+document.getElementById('project-selector').addEventListener('change', (e) => {
+  currentFilter = e.target.value;
+  renderDashboard();
+});
+
+// Auto-refresh every 60s
+setInterval(refresh, 60000);
+
+// Initial load
+loadAll();
+</script>
+</body>
+</html>

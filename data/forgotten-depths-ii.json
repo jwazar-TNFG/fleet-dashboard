@@ -1,0 +1,274 @@
+{
+  "name": "Forgotten Depths II",
+  "slug": "forgotten-depths-ii",
+  "repo": "jwazar-TNFG/forgotten-depths-ii",
+  "updated_at": "2026-05-17T14:46:03Z",
+  "tasks": [
+    {
+      "id": "task-01",
+      "name": "Project Scaffold",
+      "phase": "phase-1",
+      "status": "failed",
+      "depends_on": null
+    },
+    {
+      "id": "task-02",
+      "name": "Core Engine — Canvas Renderer + Game Loop + State Machine",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-03",
+      "name": "Input Manager",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-04",
+      "name": "Asset Loader + Data Types",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-05",
+      "name": "Main Menu Screen",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-06",
+      "name": "Character Creation — Race & Class Selection",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-07",
+      "name": "Character Creation — Party Review & Management",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-08",
+      "name": "Save/Load System",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-09",
+      "name": "Phase 1 Integration Test",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-10",
+      "name": "Town Hub — Main Screen & Navigation",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-11",
+      "name": "Town — Adventurers' Guild (Party Management)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-12",
+      "name": "Town — Temple & Shop",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-13",
+      "name": "Town — Tavern & Rumors",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-14",
+      "name": "Tile Map Data Structures & Visibility",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-15",
+      "name": "Dungeon Screen — Canvas Tile Renderer + Camera + Minimap",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-16",
+      "name": "Dungeon Movement & Interaction",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-17",
+      "name": "Dungeon HUD — Party Stats, Compass, Facing",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-18",
+      "name": "Dungeon Events & Encounters",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-19",
+      "name": "Phase 3 Integration Test",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-20",
+      "name": "Combat Engine — Core Mechanics",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-21",
+      "name": "Combat Screen — Battlefield Renderer + UI",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-22",
+      "name": "Combat — Target Selection & Action Resolution",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-23",
+      "name": "Combat — Victory, Defeat & Rewards",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-24",
+      "name": "Combat — Integration with Dungeon",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-25",
+      "name": "Phase 4 Integration Test",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-26",
+      "name": "Spell Memorization System",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-27",
+      "name": "Spell Casting in Combat",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-28",
+      "name": "Inventory & Equipment Polish",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-29",
+      "name": "Phase 5 Integration Test",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-30",
+      "name": "Overland Map — Canvas Renderer & Travel",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-31",
+      "name": "Dungeon Zone 1 — Goblin Warrens (2 Floors)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-32",
+      "name": "Dungeon Zone 2 — Crypt of Shadows (3 Floors)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-33",
+      "name": "Dungeon Zone 3 — Ruins of Ashenmire (2 Floors)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-34",
+      "name": "Quest System & NPCs",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-35",
+      "name": "Phase 6 Integration Test",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-36",
+      "name": "Audio System",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-37",
+      "name": "Visual Polish & Screen Transitions",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": null
+    },
+    {
+      "id": "task-38",
+      "name": "Final Integration & Packaging",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": null
+    }
+  ]
+}
