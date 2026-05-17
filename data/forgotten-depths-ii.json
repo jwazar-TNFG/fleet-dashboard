@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:22:24Z",
+  "updated_at": "2026-05-17T18:22:31Z",
   "phases": [
     {
       "id": "phase-1",
@@ -366,12 +366,12 @@
       "id": "task-18",
       "name": "Dungeon Events & Encounters",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-16"
       ],
       "doneWhen": "Events trigger from map data. Encounter screen shows Fight/Parley/Flee. Random encounters work.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T18:22:30Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
