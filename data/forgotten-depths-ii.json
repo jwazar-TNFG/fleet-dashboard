@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T17:21:26Z",
+  "updated_at": "2026-05-17T17:21:35Z",
   "phases": [
     {
       "id": "phase-1",
@@ -221,12 +221,12 @@
       "id": "task-11",
       "name": "Town — Adventurers' Guild (Party Management)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-10"
       ],
       "doneWhen": "Player can view character sheets, see equipment, train characters with enough XP and gold.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T17:21:34Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
