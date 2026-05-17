@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:00:11Z",
+  "updated_at": "2026-05-17T19:00:21Z",
   "phases": [
     {
       "id": "phase-1",
@@ -447,12 +447,12 @@
       "id": "task-22",
       "name": "Combat \u2014 Target Selection & Action Resolution",
       "phase": "phase-4",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-21"
       ],
       "doneWhen": "Target selection, attack resolution with visual feedback, defend and flee work.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T19:00:20Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
