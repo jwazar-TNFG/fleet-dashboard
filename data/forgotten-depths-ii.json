@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:22:31Z",
+  "updated_at": "2026-05-17T18:32:04Z",
   "phases": [
     {
       "id": "phase-1",
@@ -366,19 +366,19 @@
       "id": "task-18",
       "name": "Dungeon Events & Encounters",
       "phase": "phase-3",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-16"
       ],
       "doneWhen": "Events trigger from map data. Encounter screen shows Fight/Parley/Flee. Random encounters work.",
-      "lastActivity": "2026-05-17T18:22:30Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T18:32:03Z",
+      "costUSD": 4.308,
+      "numTurns": 82,
+      "durationSeconds": 508,
+      "inputTokens": 4837,
+      "outputTokens": 40064,
+      "cacheReadTokens": 5053543,
+      "cacheCreationTokens": 120555,
       "description": "# Task 18: Dungeon Events & Encounters\n\n## Objective\nWire the event tile system: stepping on event tiles triggers messages, treasures, traps, and encounter prompts. Add random encounters per step. Build the Encounter screen (Fight / Parley / Flee).\n\n## Prerequisites\nTask 16 and Task 17 must be complete.\n\n## Requirements\n\n### Event Dispatch\nIn `DungeonState.update`, after a successful move, check `tileMap.getEventAt(partyX, partyY)`:\n- If event found and `!triggered` (or repeating), call EventDispatcher\n\n### EventDispatcher (src/renderer/src/dungeon/EventDispatcher.ts)\n```typescript\nexport class EventDispatcher {\n  dispatch(event: MapEvent, ctx: DungeonContext): void;\n}\n\nexport interface DungeonContext {\n  gameState: GameState;\n  messageLog: MessageLog;\n  stateMachine: StateMachine;\n  tileMap: TileMap;\n}\n```\n\nEvent types:\n- **message**: `data.text` \u2192 log it (white text)\n- **treasure**: `data.gold?`, `data.items?` \u2192 add to party; log \"Found 50 gold!\"; mark triggered\n- **trap**: `data.damage` (e.g. \"2d6\"), `data.saveDC`, `data.saveType` \u2192 each party member rolls save (or front row only). Damage applied via DamageSystem (Task 20 will formalize)\n- **trigger**: `data.flag` \u2192 set `gameState.flags[flag] = true`; used to open doors, etc.\n- **npc**: `data.text` shown in a dialog overlay; press ENTER to dismiss\n- **encounter**: `data.encounterId` \u2192 trigger ENCOUNTER state with this fixed encounter; mark triggered after combat\n\n### Random Encounters\nAfter every successful move (not rotation), if `tileMap.map.randomEncounters` is set:\n- Roll `random()` < `randomEncounters.chance`\n- If hit: pick a random encounter from the table `randomEncounters.table` (loaded from `src/renderer/src/data/encounter-tables.json`)\n- Transition to ENCOUNTER state with the rolled encounter\n\n### Encounter Table Schema (src/renderer/src/data/encounter-tables.json)\n```json\n[\n  {\n    \"id\": \"goblin_warrens_1\",\n    \"entries\": [\n      { \"encounterId\": \"enc_goblin_patrol\", \"weight\": 50 },\n      { \"encounterId\": \"enc_goblin_scouts\", \"weight\": 30 },\n      { \"encounterId\": \"enc_giant_rats\",   \"weight\": 20 }\n    ]\n  }\n]\n```\n\n### Encounter Schema (src/renderer/src/data/encounters.json)\n```json\n[\n  {\n    \"id\": \"enc_goblin_patrol\",\n    \"name\": \"Goblin Patrol\",\n    \"monsters\": [\n      { \"monsterId\": \"goblin\", \"count\": \"2d4\" }\n    ],\n    \"surprise\": \"neither\",\n    \"parleyable\": true,\n    \"fleeable\": true,\n    \"loot\": { \"gold\": \"2d10\", \"lootTable\": \"humanoid_common\" },\n    \"xp\": 100\n  }\n]\n```\n\n### EncounterState (src/renderer/src/screens/EncounterState.ts)\nImplements `GameStateHandler`. Canvas-rendered.\n\nLayout:\n```\n+--------------------------------------+\n|         AN ENCOUNTER!               |\n+--------------------------------------+\n|                                      |\n|     [colored monster sprites]       |\n|     \"2 Goblins block your path.\"    |\n|                                      |\n+--------------------------------------+\n| Actions:                            |\n|  > (F)ight                          |\n|    (P)arley                         |\n|    (R)un / Flee                     |\n+--------------------------------------+\n```\n\nActions:\n- **Fight**: transition to COMBAT state with the encounter (Combat itself is built in Task 20+; for now, transition to a placeholder COMBAT state)\n- **Parley**: only if `encounter.parleyable`. Roll CHA-based check (best party CHA + d20 vs DC 15). Success: gain XP and skip combat. Failure: forced into combat (lose surprise round).\n- **Flee**: only if `encounter.fleeable`. Roll party DEX vs encounter average DEX. Success: return to DungeonState. Failure: forced into combat with enemy surprise round.\n\nRender colored monster blocks (each monster = a 32x32 colored rectangle based on monster type from `monsters.json`):\n- humanoid \u2192 green\n- undead \u2192 light gray\n- beast \u2192 brown\n- dragon \u2192 red\n- aberration \u2192 magenta\n\n### Map Updates\n- Add `randomEncounters` to the test map from Task 15:\n  ```json\n  \"randomEncounters\": { \"table\": \"goblin_warrens_1\", \"chance\": 0.05 }\n  ```\n- Add a `treasure` event and a `message` event to test dispatch\n\n### Tests\n- `src/renderer/src/dungeon/__tests__/EventDispatcher.test.ts`:\n  - `message` event adds to message log\n  - `treasure` event adds gold + items, marks event triggered\n  - `trap` event applies damage to party members\n  - `encounter` event transitions to ENCOUNTER state\n- `src/renderer/src/screens/__tests__/EncounterState.test.ts`:\n  - Fight transitions to COMBAT state\n  - Parley uses best party CHA vs DC\n  - Flee uses DEX comparison\n\n## Done When\n- Stepping on a message tile logs the message\n- Treasure tiles give gold/items once\n- Trap tiles damage party\n- Encounter tiles trigger encounter screen\n- Random encounters fire based on chance\n- Encounter screen shows Fight/Parley/Flee with correct outcomes\n- Triggered events don't fire twice\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
