@@ -159,6 +159,19 @@
       font-weight: 600;
       font-variant-numeric: tabular-nums;
     }
+    .cost-footer {
+      width: 100%;
+      border-top: 1px solid rgba(88,166,255,0.12);
+      margin-top: 4px;
+      padding-top: 6px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .cost-footnote {
+      font-size: 10px;
+      opacity: 0.7;
+    }
 
     /* Progress bar */
     .progress-container {
@@ -903,6 +916,11 @@ function renderProject(project) {
 
   // Cost summary bar
   if (totalCost > 0) {
+    const MONTHLY_PLAN_COST = 200;
+    const savingsPct = estimatedTotal > MONTHLY_PLAN_COST ? Math.round((1 - MONTHLY_PLAN_COST / estimatedTotal) * 100) : 0;
+    const savingsNote = estimatedTotal > MONTHLY_PLAN_COST
+      ? `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> vs <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan = <strong style="color:var(--green)">${savingsPct}% savings</strong>`
+      : `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> — within <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan`;
     projectHtml += `
     <div class="cost-summary">
       <div class="cost-item"><span class="cost-label">API Cost (est.)</span><span class="cost-value">${formatCost(totalCost)}</span></div>
@@ -911,6 +929,7 @@ function renderProject(project) {
       <div class="cost-item"><span class="cost-label">Turns</span><span class="cost-value">${totalTurns}</span></div>
       <div class="cost-item"><span class="cost-label">Time</span><span class="cost-value">${formatDuration(totalDuration)}</span></div>
       <div class="cost-item"><span class="cost-label">Tokens</span><span class="cost-value" title="In: ${formatTokens(totalInputTokens)} | Out: ${formatTokens(totalOutputTokens)} | Cache: ${formatTokens(totalCacheRead)}">${formatTokens(totalInputTokens + totalOutputTokens + totalCacheRead)}</span></div>
+      <div class="cost-footer">${savingsNote}<br><span class="cost-footnote">Costs are estimated API-equivalent token values. Actual billing is the flat $${MONTHLY_PLAN_COST}/mo Max subscription. Value above that = total value extracted from the system beyond subscription cost.</span></div>
     </div>
     `;
   }
