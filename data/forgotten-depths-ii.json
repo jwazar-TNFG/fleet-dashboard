@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T20:20:00Z",
+  "updated_at": "2026-05-17T20:20:10Z",
   "phases": [
     {
       "id": "phase-1",
@@ -563,13 +563,13 @@
       "id": "task-28",
       "name": "Inventory & Equipment Polish",
       "phase": "phase-5",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-12",
         "task-24"
       ],
       "doneWhen": "Full inventory management \u2014 view, equip, unequip, drop. Equipment changes reflected in stats.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T20:20:09Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
