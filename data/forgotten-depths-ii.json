@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:00:21Z",
+  "updated_at": "2026-05-17T19:15:11Z",
   "phases": [
     {
       "id": "phase-1",
@@ -447,19 +447,19 @@
       "id": "task-22",
       "name": "Combat \u2014 Target Selection & Action Resolution",
       "phase": "phase-4",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-21"
       ],
       "doneWhen": "Target selection, attack resolution with visual feedback, defend and flee work.",
-      "lastActivity": "2026-05-17T19:00:20Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T19:15:12Z",
+      "costUSD": 9.337,
+      "numTurns": 110,
+      "durationSeconds": 827,
+      "inputTokens": 114,
+      "outputTokens": 59954,
+      "cacheReadTokens": 12964351,
+      "cacheCreationTokens": 216593,
       "description": "# Task 22: Combat \u2014 Target Selection & Action Resolution\n\n## Objective\nWire the player input flow for selecting attack/cast targets, resolving the action against CombatManager, displaying visual feedback, and ending the turn cleanly.\n\n## Prerequisites\nTask 21 must be complete. CombatState and CombatRenderer exist.\n\n## Requirements\n\n### Target Selection Mode\nWhen the player picks Attack (or Cast in a later task), enter target-selection mode:\n- Show a yellow reticle on the nearest valid enemy\n- Arrow keys move the reticle between valid targets (cycle through alive enemies)\n- ENTER confirms the target \u2192 resolve attack\n- ESC cancels back to action menu\n\n```typescript\nexport class TargetSelector {\n  private targets: Combatant[] = [];\n  private index = 0;\n\n  start(targets: Combatant[]): void;\n  moveNext(): void;\n  movePrev(): void;\n  current(): Combatant | undefined;\n  cancel(): void;\n}\n```\n\nValid targets for melee attack:\n- Alive enemies only\n- For melee weapons: front-rank enemies only (or any if no front rank)\n- For ranged weapons: any enemy\n\n### Action Resolution Flow\n1. Player picks Attack \u2192 opens TargetSelector\n2. Player chooses target \u2192 calls `combat.performAction({ type: 'attack', targetId })`\n3. CombatRenderer plays animation (yellow line + impact)\n4. Combat log entry added\n5. After animation completes (~600 ms), CombatManager.endTurn()\n6. Renderer updates active combatant indicator\n7. If next turn is an enemy \u2192 AI picks an action \u2192 resolve with delay (1.5 s) for player readability\n8. Repeat until `combat.result !== 'ongoing'`\n\n### Enemy Turn Handling\n```typescript\n// In CombatState.update\nif (combat.isEnemyTurn() && !this.isAnimating) {\n  const action = combat.getEnemyAction();\n  this.queueAction(action, /*delayMs*/ 1000);\n}\n```\n- 1000 ms delay before resolving, 600 ms animation, then endTurn\n- Enemy attack animations: same yellow line + red splash on party member\n\n### Defend Action\n- Player presses D \u2192 `combat.performAction({ type: 'defend' })`\n- Combatant gains 'defending' status (+2 AC for 1 round)\n- Small shield icon appears above combatant for the rest of the round\n- Turn ends immediately\n\n### Flee Action\n- Player presses F \u2192 `combat.performAction({ type: 'flee' })`\n- Roll: party avg speed + d20 vs enemy avg speed + d20\n- Success: result = 'fled' \u2192 transition back to dungeon\n- Failure: log \"Cannot escape!\" \u2192 turn ends, combat continues\n\n### Item Use (basic)\n- Press U \u2192 open item selection from active character's inventory\n- Filter to usable items (potions, scrolls, food)\n- Pick item \u2192 pick target (self/ally) \u2192 resolve\n- Healing potion: heal 2d4+2 HP\n- Decrement item count from inventory\n\n### Visual Feedback Details\n- Target reticle: yellow square (24x24) with corner brackets, pulsing every 200 ms\n- \"Selected\" target slightly highlighted (yellow tinted border)\n- Hover over a target with mouse also selects it (mouse + keyboard parity)\n- Cancellation: ESC plays a \"back\" sound (when audio lands in Phase 7)\n\n### Updated Combat Log Display\nCombat log occupies bottom-right area (200x80):\n- Last 4 entries shown\n- Color-coded:\n  - Player attack hit: green\n  - Player attack miss: gray\n  - Enemy attack hit: red\n  - Enemy attack miss: gray\n  - Status effects: yellow\n  - Death: bright red\n\n### Tests\n- `src/renderer/src/combat/__tests__/TargetSelector.test.ts`:\n  - Filters out dead enemies\n  - moveNext/movePrev cycles through valid targets\n  - cancel resets index\n- `src/renderer/src/screens/__tests__/CombatState.targeting.test.ts`:\n  - Attacking a target reduces target HP\n  - Defend grants +2 AC for one round\n  - Flee with high speed succeeds\n  - Flee with low speed fails and turn ends\n\n## Done When\n- Player can select Attack \u2192 reticle appears \u2192 pick target \u2192 animation \u2192 damage\n- Enemy turns auto-resolve with 1 s delay and animation\n- Defend works: shield icon, +2 AC for 1 round\n- Flee works: success exits to dungeon, failure continues combat\n- Use item heals or applies effect; consumes item\n- Combat log color-codes events\n- ESC cancels target selection back to action menu\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
