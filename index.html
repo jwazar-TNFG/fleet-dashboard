@@ -408,19 +408,21 @@
     /* ---------- Dependency Graph (Phased) ---------- */
     .depgraph-wrap {
       position: relative;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      overflow: hidden;
+      touch-action: none;
       border: 1px solid var(--border);
       border-radius: 8px;
       background: var(--bg);
       padding: 16px;
       margin-bottom: 12px;
+      cursor: grab;
     }
+    .depgraph-wrap:active { cursor: grabbing; }
     .depgraph-svg {
       display: block;
       width: 100%;
       height: auto;
-      max-width: 100%;
+      transform-origin: 0 0;
     }
     .depgraph-svg .phase-rect {
       fill: rgba(22, 27, 34, 0.8);
@@ -648,8 +650,6 @@
     }
     .depgraph-toolbar .graph-btn:hover { color: var(--text); border-color: var(--accent); }
     .depgraph-toolbar .graph-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
-    .depgraph-wrap.zoomed-out { overflow: visible; }
-    .depgraph-wrap.zoomed-out .depgraph-svg { min-width: 0 !important; }
   </style>
 </head>
 <body>
@@ -1007,6 +1007,9 @@ function switchView(projId, view) {
     listEl.style.display = 'none';
     graphEl.style.display = 'block';
     btns[1].classList.add('active');
+    // Init zoom/pan interaction on first show
+    const wrap = graphEl.querySelector('.depgraph-wrap');
+    if (wrap && wrap.dataset.projId) initGraphInteraction(wrap.dataset.projId);
   } else {
     listEl.style.display = 'block';
     graphEl.style.display = 'none';
@@ -1314,17 +1317,17 @@ function renderDepGraph(project, phaseNames) {
     ${legendHtml}
     <div class="depgraph-toolbar">
       <select onchange="filterGraphPhase('${esc(projId)}', this.value)">${phaseFilterOpts}</select>
-      <button class="graph-btn" id="zoom-btn-${projId}" onclick="toggleGraphZoom('${esc(projId)}')">🔍 Zoom to Fit</button>
+      <button class="graph-btn" id="zoom-btn-${projId}" onclick="resetGraphZoom('${esc(projId)}')">⟲ Reset Zoom</button>
     </div>
     <div id="depgraph-info-${projId}"></div>
-    <div class="depgraph-wrap" id="depgraph-wrap-${projId}">
-      <svg class="depgraph-svg" id="depgraph-svg-${projId}" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg" style="min-width:${Math.min(svgW, 900)}px" data-full-viewbox="0 0 ${svgW} ${svgH}">
+    <div class="depgraph-wrap" id="depgraph-wrap-${projId}" data-proj-id="${esc(projId)}">
+      <svg class="depgraph-svg" id="depgraph-svg-${projId}" viewBox="0 0 ${svgW} ${svgH}" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
         ${svgPhases}
         ${svgLines}
         ${svgNodes}
       </svg>
     </div>
-    <div class="graph-hint">scroll horizontally if needed · click ⓘ on any task for details</div>
+    <div class="graph-hint">pinch or scroll-wheel to zoom · drag to pan · click ⓘ for details</div>
   `;
 }
 
@@ -1395,64 +1398,166 @@ function closeTaskInfo(slug) {
   host.dataset.openTask = '';
 }
 
-// ---- Zoom to Fit toggle
-function toggleGraphZoom(projId) {
-  const wrap = document.getElementById('depgraph-wrap-' + projId);
-  const btn = document.getElementById('zoom-btn-' + projId);
-  if (!wrap || !btn) return;
-  const isZoomed = wrap.classList.toggle('zoomed-out');
-  btn.classList.toggle('active', isZoomed);
-  btn.textContent = isZoomed ? '🔍 Zoom to Detail' : '🔍 Zoom to Fit';
+// ---- Graph pan/zoom state per project ----
+const _graphZoom = {}; // projId -> { scale, panX, panY }
+
+function getZoomState(projId) {
+  if (!_graphZoom[projId]) _graphZoom[projId] = { scale: 1, panX: 0, panY: 0 };
+  return _graphZoom[projId];
 }
 
-// ---- Phase filter: show/hide phase containers + their tasks + related dep lines
-function filterGraphPhase(projId, phaseId) {
+function applyTransform(projId) {
   const svg = document.getElementById('depgraph-svg-' + projId);
   if (!svg) return;
-  // All phase rects have a data-phase, nodes have data-phase, lines have data-from-phase / data-to-phase.
-  // Since we build SVG via innerHTML without data attrs, we use a different approach:
-  // Re-render is simplest but expensive. Instead, we use CSS visibility by adding a class to the SVG.
-  // We'll use a simpler approach: iterate all children and toggle visibility based on their transform/position.
-  // Actually, the cleanest way: we stored phaseOrder info. Let's just re-render with a filter.
-  
-  // Store the filter and re-render the dashboard
-  if (!window._graphPhaseFilters) window._graphPhaseFilters = {};
-  window._graphPhaseFilters[projId] = phaseId;
-  
-  // Find the project slug from projId
+  const z = getZoomState(projId);
+  svg.style.transform = `translate(${z.panX}px, ${z.panY}px) scale(${z.scale})`;
+}
+
+function clampPan(projId) {
+  const wrap = document.getElementById('depgraph-wrap-' + projId);
+  const svg = document.getElementById('depgraph-svg-' + projId);
+  if (!wrap || !svg) return;
+  const z = getZoomState(projId);
+  const wrapR = wrap.getBoundingClientRect();
+  const svgW = svg.getBoundingClientRect().width / z.scale * z.scale;
+  const svgH = svg.getBoundingClientRect().height / z.scale * z.scale;
+  // At scale 1 the SVG fills the container width; panning should not
+  // leave blank space beyond edges
+  const baseW = wrapR.width - 32; // account for padding
+  const baseH = svg.clientHeight;
+  const scaledW = baseW * z.scale;
+  const scaledH = baseH * z.scale;
+  const maxPanX = 0;
+  const minPanX = Math.min(0, baseW - scaledW);
+  const maxPanY = 0;
+  const minPanY = Math.min(0, wrapR.height - 32 - scaledH);
+  z.panX = Math.max(minPanX, Math.min(maxPanX, z.panX));
+  z.panY = Math.max(minPanY, Math.min(maxPanY, z.panY));
+}
+
+function resetGraphZoom(projId) {
+  const z = getZoomState(projId);
+  z.scale = 1; z.panX = 0; z.panY = 0;
+  applyTransform(projId);
+}
+
+// Attach pointer/wheel listeners to graph containers (called after render)
+function initGraphInteraction(projId) {
+  const wrap = document.getElementById('depgraph-wrap-' + projId);
+  if (!wrap || wrap.dataset.zoomInit) return;
+  wrap.dataset.zoomInit = '1';
+
+  // --- Wheel zoom ---
+  wrap.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    const z = getZoomState(projId);
+    const rect = wrap.getBoundingClientRect();
+    const ox = e.clientX - rect.left - 16; // offset within padding
+    const oy = e.clientY - rect.top - 16;
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    const newScale = Math.max(1, Math.min(8, z.scale * delta));
+    // Zoom toward cursor
+    const ratio = newScale / z.scale;
+    z.panX = ox - ratio * (ox - z.panX);
+    z.panY = oy - ratio * (oy - z.panY);
+    z.scale = newScale;
+    clampPan(projId);
+    applyTransform(projId);
+  }, { passive: false });
+
+  // --- Touch pinch + drag ---
+  let pointers = [];
+  let lastDist = 0;
+  let lastMidX = 0, lastMidY = 0;
+  let dragging = false;
+  let dragStartX = 0, dragStartY = 0, dragPanX = 0, dragPanY = 0;
+
+  wrap.addEventListener('pointerdown', function(e) {
+    pointers = pointers.filter(p => p.id !== e.pointerId);
+    pointers.push({ id: e.pointerId, x: e.clientX, y: e.clientY });
+    if (pointers.length === 1) {
+      dragging = true;
+      const z = getZoomState(projId);
+      dragStartX = e.clientX; dragStartY = e.clientY;
+      dragPanX = z.panX; dragPanY = z.panY;
+      wrap.setPointerCapture(e.pointerId);
+    }
+    if (pointers.length === 2) {
+      dragging = false;
+      lastDist = Math.hypot(pointers[1].x - pointers[0].x, pointers[1].y - pointers[0].y);
+      lastMidX = (pointers[0].x + pointers[1].x) / 2;
+      lastMidY = (pointers[0].y + pointers[1].y) / 2;
+    }
+  });
+
+  wrap.addEventListener('pointermove', function(e) {
+    const idx = pointers.findIndex(p => p.id === e.pointerId);
+    if (idx < 0) return;
+    pointers[idx] = { id: e.pointerId, x: e.clientX, y: e.clientY };
+
+    if (pointers.length === 2) {
+      // Pinch zoom
+      const dist = Math.hypot(pointers[1].x - pointers[0].x, pointers[1].y - pointers[0].y);
+      const midX = (pointers[0].x + pointers[1].x) / 2;
+      const midY = (pointers[0].y + pointers[1].y) / 2;
+      const z = getZoomState(projId);
+      const rect = wrap.getBoundingClientRect();
+      const ox = midX - rect.left - 16;
+      const oy = midY - rect.top - 16;
+      const ratio = dist / lastDist;
+      const newScale = Math.max(1, Math.min(8, z.scale * ratio));
+      const scaleRatio = newScale / z.scale;
+      z.panX = ox - scaleRatio * (ox - z.panX) + (midX - lastMidX);
+      z.panY = oy - scaleRatio * (oy - z.panY) + (midY - lastMidY);
+      z.scale = newScale;
+      lastDist = dist;
+      lastMidX = midX; lastMidY = midY;
+      clampPan(projId);
+      applyTransform(projId);
+    } else if (dragging && pointers.length === 1) {
+      // Single-finger drag (pan) — only when zoomed in
+      const z = getZoomState(projId);
+      if (z.scale <= 1) return;
+      z.panX = dragPanX + (e.clientX - dragStartX);
+      z.panY = dragPanY + (e.clientY - dragStartY);
+      clampPan(projId);
+      applyTransform(projId);
+    }
+  });
+
+  function onPointerUp(e) {
+    pointers = pointers.filter(p => p.id !== e.pointerId);
+    if (pointers.length < 2) { lastDist = 0; }
+    if (pointers.length === 0) { dragging = false; }
+  }
+  wrap.addEventListener('pointerup', onPointerUp);
+  wrap.addEventListener('pointercancel', onPointerUp);
+}
+
+// ---- Phase filter ----
+function filterGraphPhase(projId, phaseId) {
   const slug = Object.keys(allProjects).find(s => s.replace(/[^a-z0-9]/g, '_') === projId);
   if (!slug || !allProjects[slug]) return;
-  
   const project = allProjects[slug];
   const tasks = project.tasks || [];
   const phaseNames = {};
   if (project.phases) project.phases.forEach(p => phaseNames[p.id] = p.name);
-  
-  // Get graph container
   const graphDiv = document.getElementById('view-graph-' + projId);
   if (!graphDiv) return;
-  
-  // Create a filtered project copy for rendering
+
   let filteredProject = project;
   if (phaseId !== '__all__') {
     const filteredTasks = tasks.filter(t => t.phase === phaseId);
     const filteredPhases = (project.phases || []).filter(p => p.id === phaseId);
     filteredProject = { ...project, tasks: filteredTasks, phases: filteredPhases };
   }
-  
   graphDiv.innerHTML = renderDepGraph(filteredProject, phaseNames);
-  
-  // Restore the filter dropdown selection
+  // Restore filter selection
   const select = graphDiv.querySelector('.depgraph-toolbar select');
   if (select) select.value = phaseId;
-  
-  // Restore zoom state if it was active
-  if (window._graphZoomStates && window._graphZoomStates[projId]) {
-    const wrap = document.getElementById('depgraph-wrap-' + projId);
-    const btn = document.getElementById('zoom-btn-' + projId);
-    if (wrap) wrap.classList.add('zoomed-out');
-    if (btn) { btn.classList.add('active'); btn.textContent = '🔍 Zoom to Detail'; }
-  }
+  // Reset zoom & re-init interaction
+  delete _graphZoom[projId];
+  initGraphInteraction(projId);
 }
 
 // Initial load
