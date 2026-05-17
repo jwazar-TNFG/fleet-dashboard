@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:04:31Z",
+  "updated_at": "2026-05-17T16:04:40Z",
   "phases": [
     {
       "id": "phase-1",
@@ -62,9 +62,9 @@
       "id": "task-04",
       "name": "Asset Loader + Data Types",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "running",
       "depends_on": null,
-      "lastActivity": null
+      "lastActivity": "2026-05-17T16:04:39Z"
     },
     {
       "id": "task-05",
