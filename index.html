@@ -359,6 +359,50 @@
     }
 
     .no-projects .icon { font-size: 64px; margin-bottom: 16px; }
+
+    /* View toggle tabs */
+    .view-toggle {
+      display: flex;
+      gap: 0;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      width: fit-content;
+    }
+    .view-toggle button {
+      background: var(--surface);
+      color: var(--text-muted);
+      border: none;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-height: 44px;
+    }
+    .view-toggle button:not(:last-child) { border-right: 1px solid var(--border); }
+    .view-toggle button.active { background: var(--accent); color: #000; }
+    .view-toggle button:hover:not(.active) { background: var(--surface-hover); color: var(--text); }
+
+    /* Graph container */
+    .graph-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .graph-container svg text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .graph-hint {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+    @keyframes nodePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
   </style>
 </head>
 <body>
@@ -575,6 +619,16 @@ function renderProject(project) {
     </div>
   `;
 
+  // View toggle
+  const projId = (project.slug || 'p').replace(/[^a-z0-9]/g, '_');
+  projectHtml += `
+    <div class="view-toggle">
+      <button class="active" onclick="switchView('${projId}','list')">📋 List</button>
+      <button onclick="switchView('${projId}','graph')">🕸️ Graph</button>
+    </div>
+    <div id="view-list-${projId}">
+  `;
+
   // Phase sections
   for (const [phaseName, phaseTasks] of Object.entries(phases)) {
     const phaseCompleted = phaseTasks.filter(t => t.status === 'completed').length;
@@ -638,6 +692,14 @@ function renderProject(project) {
     `;
   }
 
+  // Close list view div
+  projectHtml += `</div>`;
+
+  // Graph view (hidden by default)
+  projectHtml += `<div id="view-graph-${projId}" style="display:none">`;
+  projectHtml += renderDepGraph(project, phaseNames);
+  projectHtml += `</div>`;
+
   // Last updated for this project
   if (project.updated_at) {
     const d = new Date(project.updated_at);
@@ -666,6 +728,131 @@ document.getElementById('project-selector').addEventListener('change', (e) => {
 
 // Auto-refresh every 60s
 setInterval(refresh, 60000);
+
+// View toggle
+function switchView(projId, view) {
+  const listEl = document.getElementById('view-list-' + projId);
+  const graphEl = document.getElementById('view-graph-' + projId);
+  if (!listEl || !graphEl) return;
+  const toggle = listEl.parentElement.querySelector('.view-toggle');
+  if (!toggle) return;
+  const btns = toggle.querySelectorAll('button');
+  btns.forEach(b => b.classList.remove('active'));
+  if (view === 'graph') {
+    listEl.style.display = 'none';
+    graphEl.style.display = 'block';
+    btns[1].classList.add('active');
+  } else {
+    listEl.style.display = 'block';
+    graphEl.style.display = 'none';
+    btns[0].classList.add('active');
+  }
+}
+
+// Dependency graph renderer
+function renderDepGraph(project, phaseNames) {
+  const tasks = project.tasks || [];
+  if (!tasks.length) return '<div class="empty-state">No tasks</div>';
+
+  const STATUS_COLORS = {
+    completed: '#3fb950', running: '#58a6ff', failed: '#f85149',
+    pending: '#30363d', skipped: '#d29922'
+  };
+  const STATUS_FILL = {
+    completed: '#3fb950', running: '#58a6ff', failed: '#f85149',
+    pending: 'transparent', skipped: '#d29922'
+  };
+  const STATUS_TEXT = {
+    completed: '#000', running: '#000', failed: '#fff',
+    pending: '#8b949e', skipped: '#000'
+  };
+
+  // Group by phase, preserving order
+  const phaseOrder = [];
+  const phaseMap = {};
+  for (const t of tasks) {
+    const p = t.phase || 'ungrouped';
+    if (!phaseMap[p]) { phaseMap[p] = []; phaseOrder.push(p); }
+    phaseMap[p].push(t);
+  }
+
+  // Layout constants
+  const nodeW = 160, nodeH = 52, padX = 80, padY = 20, headerH = 40, topPad = 20;
+  const colW = nodeW + padX;
+  const maxPerCol = Math.max(...phaseOrder.map(p => phaseMap[p].length));
+  const svgW = phaseOrder.length * colW + padX;
+  const svgH = headerH + topPad + maxPerCol * (nodeH + padY) + padY;
+
+  // Compute positions
+  const positions = {};
+  phaseOrder.forEach((phase, colIdx) => {
+    const phaseTasks = phaseMap[phase];
+    const colX = padX + colIdx * colW;
+    phaseTasks.forEach((t, rowIdx) => {
+      const x = colX;
+      const y = headerH + topPad + rowIdx * (nodeH + padY);
+      positions[t.id] = { x, y, task: t };
+    });
+  });
+
+  let svg = '';
+
+  // Phase column headers
+  phaseOrder.forEach((phase, colIdx) => {
+    const x = padX + colIdx * colW + nodeW / 2;
+    const label = phaseNames[phase] ? `${phase} — ${phaseNames[phase]}` : phase;
+    svg += `<text x="${x}" y="20" fill="#8b949e" font-size="12" font-weight="600" text-anchor="middle">${label}</text>`;
+  });
+
+  // Dependency arrows
+  for (const t of tasks) {
+    if (!t.depends_on) continue;
+    const target = positions[t.id];
+    if (!target) continue;
+    for (const depId of t.depends_on) {
+      const source = positions[depId];
+      if (!source) continue;
+      const sx = source.x + nodeW;
+      const sy = source.y + nodeH / 2;
+      const tx = target.x;
+      const ty = target.y + nodeH / 2;
+      const cx1 = sx + (tx - sx) * 0.4;
+      const cx2 = tx - (tx - sx) * 0.4;
+      const color = source.task.status === 'completed' ? '#3fb95066' : '#8b949e44';
+      const strokeW = source.task.status === 'running' ? 2 : 1.5;
+      svg += `<path d="M${sx},${sy} C${cx1},${sy} ${cx2},${ty} ${tx},${ty}" fill="none" stroke="${color}" stroke-width="${strokeW}" marker-end="url(#arrow)"/>`;
+    }
+  }
+
+  // Nodes
+  for (const t of tasks) {
+    const pos = positions[t.id];
+    if (!pos) continue;
+    const fill = STATUS_FILL[t.status] || 'transparent';
+    const stroke = STATUS_COLORS[t.status] || '#30363d';
+    const textColor = STATUS_TEXT[t.status] || '#e6edf3';
+    const nameColor = t.status === 'pending' ? '#e6edf3' : textColor;
+    const truncName = t.name.length > 22 ? t.name.slice(0, 20) + '…' : t.name;
+    const icon = STATUS_ICONS[t.status] || '·';
+    const pulseAttr = t.status === 'running' ? ' style="animation: nodePulse 2s ease-in-out infinite"' : '';
+    svg += `<g${pulseAttr}>`;
+    svg += `<rect x="${pos.x}" y="${pos.y}" width="${nodeW}" height="${nodeH}" rx="8" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>`;
+    svg += `<text x="${pos.x + 10}" y="${pos.y + 18}" fill="${t.status === 'pending' ? '#8b949e' : textColor}" font-size="10" font-family="SFMono-Regular,Consolas,monospace">${t.id}</text>`;
+    svg += `<text x="${pos.x + nodeW - 10}" y="${pos.y + 18}" fill="${t.status === 'pending' ? '#8b949e' : textColor}" font-size="11" text-anchor="end">${icon}</text>`;
+    svg += `<text x="${pos.x + 10}" y="${pos.y + 36}" fill="${nameColor}" font-size="11" font-weight="500">${truncName}</text>`;
+    svg += `</g>`;
+  }
+
+  return `
+    <div class="graph-container">
+      <svg width="${svgW}" height="${svgH}" viewBox="0 0 ${svgW} ${svgH}" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arrow" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="8" markerHeight="6" orient="auto"><path d="M0,0 L10,3 L0,6" fill="#8b949e88"/></marker></defs>
+        ${svg}
+      </svg>
+    </div>
+    <div class="graph-hint">← scroll horizontally to see all phases →</div>
+  `;
+}
 
 // Initial load
 loadAll();
