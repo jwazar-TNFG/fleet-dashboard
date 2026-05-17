@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T18:14:29Z",
+  "updated_at": "2026-05-17T18:14:36Z",
   "phases": [
     {
       "id": "phase-1",
@@ -347,12 +347,12 @@
       "id": "task-17",
       "name": "Dungeon HUD \u2014 Party Stats, Compass, Facing",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-15"
       ],
       "doneWhen": "Compass, facing text, party HP bars, info bar all rendered on canvas alongside tile viewport.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T18:14:35Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
