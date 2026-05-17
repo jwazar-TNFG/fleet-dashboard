@@ -134,6 +134,32 @@
     .stat-card.failed .value { color: var(--red); }
     .stat-card.pending .value { color: var(--text-muted); }
 
+    /* Cost summary bar */
+    .cost-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      background: rgba(88,166,255,0.06);
+      border: 1px solid rgba(88,166,255,0.15);
+      border-radius: 8px;
+      padding: 8px 14px;
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+    .cost-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cost-label {
+      color: var(--text-muted);
+    }
+    .cost-value {
+      color: var(--accent);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
     /* Progress bar */
     .progress-container {
       margin-bottom: 20px;
@@ -314,6 +340,14 @@
     }
 
     .task-name { flex: 1; }
+    .task-cost {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+      margin-right: 8px;
+      font-variant-numeric: tabular-nums;
+    }
     .task-time { font-size: 11px; color: var(--text-muted); white-space: nowrap; margin-right: 8px; }
 
     .task-deps {
@@ -835,17 +869,29 @@ function renderProject(project) {
     phases[phase].push(task);
   }
 
+  // --- Cost aggregation ---
+  const totalCost = tasks.reduce((sum, t) => sum + (t.costUSD || 0), 0);
+  const totalTurns = tasks.reduce((sum, t) => sum + (t.numTurns || 0), 0);
+  const totalDuration = tasks.reduce((sum, t) => sum + (t.durationSeconds || 0), 0);
+  const totalInputTokens = tasks.reduce((sum, t) => sum + (t.inputTokens || 0), 0);
+  const totalOutputTokens = tasks.reduce((sum, t) => sum + (t.outputTokens || 0), 0);
+  const totalCacheRead = tasks.reduce((sum, t) => sum + (t.cacheReadTokens || 0), 0);
+  const avgCostPerTask = completed > 0 ? totalCost / completed : 0;
+  const estimatedTotal = avgCostPerTask * total;
+  const formatCost = (v) => v < 0.01 ? '$0.00' : '$' + v.toFixed(2);
+  const formatDuration = (s) => { if (!s) return '—'; const m = Math.floor(s/60); const ss = s%60; return m > 0 ? `${m}m ${ss}s` : `${ss}s`; };
+  const formatTokens = (n) => { if (!n) return '0'; if (n >= 1000000) return (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return (n/1000).toFixed(1) + 'K'; return n.toString(); };
+
   let projectHtml = '';
 
-  // Project title (only shown in "all projects" view)
+  // Project title
   const projectCount = Object.keys(allProjects).length;
   if (currentFilter === '__all__' && projectCount > 0) {
-    // Show project name + total count of projects in this phase
     const activePhase = tasks.find(t => t.status === 'running')?.phase || tasks[0]?.phase || '';
     projectHtml += `<h2 style="font-size:16px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">${project.name || project.slug} <span style="font-size:12px; color:var(--text-muted); font-weight:400;">— ${total} tasks, ${Object.keys(phases).length} phases</span></h2>`;
   }
 
-  // Overview cards
+  // Overview cards (with cost)
   projectHtml += `
     <div class="overview">
       <div class="stat-card completed"><div class="value">${completed}</div><div class="label">Completed</div></div>
@@ -854,6 +900,20 @@ function renderProject(project) {
       <div class="stat-card pending"><div class="value">${pending}</div><div class="label">Pending</div></div>
     </div>
   `;
+
+  // Cost summary bar
+  if (totalCost > 0) {
+    projectHtml += `
+    <div class="cost-summary">
+      <div class="cost-item"><span class="cost-label">API Cost (est.)</span><span class="cost-value">${formatCost(totalCost)}</span></div>
+      <div class="cost-item"><span class="cost-label">Avg/Task</span><span class="cost-value">${formatCost(avgCostPerTask)}</span></div>
+      <div class="cost-item"><span class="cost-label">Est. Total</span><span class="cost-value">${formatCost(estimatedTotal)}</span></div>
+      <div class="cost-item"><span class="cost-label">Turns</span><span class="cost-value">${totalTurns}</span></div>
+      <div class="cost-item"><span class="cost-label">Time</span><span class="cost-value">${formatDuration(totalDuration)}</span></div>
+      <div class="cost-item"><span class="cost-label">Tokens</span><span class="cost-value" title="In: ${formatTokens(totalInputTokens)} | Out: ${formatTokens(totalOutputTokens)} | Cache: ${formatTokens(totalCacheRead)}">${formatTokens(totalInputTokens + totalOutputTokens + totalCacheRead)}</span></div>
+    </div>
+    `;
+  }
 
   // Progress bar
   const compPct = total ? (completed / total * 100) : 0;
@@ -940,12 +1000,17 @@ function renderProject(project) {
         : '';
 
       const timeAgo = task.lastActivity ? formatTimeAgo(task.lastActivity) : '';
+      const taskCost = task.costUSD ? formatCost(task.costUSD) : '';
+      const taskTurns = task.numTurns ? `${task.numTurns}t` : '';
+      const taskDur = task.durationSeconds ? formatDuration(task.durationSeconds) : '';
+      const costTag = taskCost ? `<span class="task-cost" title="${taskTurns} · ${taskDur}">${taskCost}</span>` : '';
 
       projectHtml += `
         <div class="task-row">
           <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
           <span class="task-id">${task.id}</span>
           <span class="task-name">${task.name}</span>
+          ${costTag}
           ${timeAgo ? `<span class="task-time">${timeAgo}</span>` : ''}
           <span class="task-deps">${deps}</span>
         </div>
@@ -1386,6 +1451,7 @@ function toggleTaskInfo(slug, taskId) {
       <div class="ip-row"><strong>Description:</strong>${doneWhen}</div>
       <div class="ip-row"><strong>Dependencies:</strong>${deps}</div>
       <div class="ip-row"><strong>Last activity:</strong>${esc(timeAgo)}${ts ? ' · <span style="color:var(--text-muted)">' + esc(ts) + '</span>' : ''}</div>
+      ${task.costUSD ? `<div class="ip-row"><strong>Cost:</strong><span style="color:var(--accent);font-weight:600">$${task.costUSD.toFixed(2)}</span> · ${task.numTurns || 0} turns · ${formatDuration(task.durationSeconds || 0)} · <span style="color:var(--text-muted)">${formatTokens((task.inputTokens||0)+(task.outputTokens||0)+(task.cacheReadTokens||0))} tokens</span></div>` : ''}
     </div>`;
   // Scroll the panel into view if it's offscreen
   host.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:57:56Z",
+  "updated_at": "2026-05-17T17:00:57Z",
   "phases": [
     {
       "id": "phase-1",
@@ -41,7 +41,14 @@
       "status": "completed",
       "depends_on": [],
       "doneWhen": "npm run dev opens Electron window with 640x400 black canvas, nearest-neighbor scaling. npm test passes.",
-      "lastActivity": "2026-05-17T15:12:40Z"
+      "lastActivity": "2026-05-17T15:12:40Z",
+      "costUSD": 1.3169,
+      "numTurns": 60,
+      "durationSeconds": 167,
+      "inputTokens": 35,
+      "outputTokens": 12086,
+      "cacheReadTokens": 965277,
+      "cacheCreationTokens": 84773
     },
     {
       "id": "task-02",
@@ -52,7 +59,14 @@
         "task-01"
       ],
       "doneWhen": "App launches, game loop at 60fps, StateMachine switches between placeholder states with different colored backgrounds.",
-      "lastActivity": "2026-05-17T15:52:56Z"
+      "lastActivity": "2026-05-17T15:52:56Z",
+      "costUSD": 1.6908,
+      "numTurns": 49,
+      "durationSeconds": 255,
+      "inputTokens": 59,
+      "outputTokens": 15665,
+      "cacheReadTokens": 1959868,
+      "cacheCreationTokens": 50794
     },
     {
       "id": "task-03",
@@ -63,7 +77,14 @@
         "task-02"
       ],
       "doneWhen": "Input events captured and queryable. Test state displays pressed keys on canvas.",
-      "lastActivity": "2026-05-17T16:04:32Z"
+      "lastActivity": "2026-05-17T16:04:32Z",
+      "costUSD": 3.3311,
+      "numTurns": 52,
+      "durationSeconds": 620,
+      "inputTokens": 57,
+      "outputTokens": 46337,
+      "cacheReadTokens": 3090008,
+      "cacheCreationTokens": 100150
     },
     {
       "id": "task-04",
@@ -74,7 +95,14 @@
         "task-01"
       ],
       "doneWhen": "AssetLoader loads all JSON files with typed arrays. Dice roller parses '2d6+3'. Tests pass.",
-      "lastActivity": "2026-05-17T16:31:01Z"
+      "lastActivity": "2026-05-17T16:31:01Z",
+      "costUSD": 0.3818,
+      "numTurns": 10,
+      "durationSeconds": 40,
+      "inputTokens": 15,
+      "outputTokens": 1682,
+      "cacheReadTokens": 353604,
+      "cacheCreationTokens": 25698
     },
     {
       "id": "task-05",
@@ -86,7 +114,14 @@
         "task-03"
       ],
       "doneWhen": "App launches to styled main menu. Arrow keys and mouse navigate. New Game transitions. Quit closes window.",
-      "lastActivity": "2026-05-17T16:15:47Z"
+      "lastActivity": "2026-05-17T16:15:47Z",
+      "costUSD": 1.8138,
+      "numTurns": 40,
+      "durationSeconds": 278,
+      "inputTokens": 37,
+      "outputTokens": 23489,
+      "cacheReadTokens": 1512304,
+      "cacheCreationTokens": 74999
     },
     {
       "id": "task-06",
@@ -98,7 +133,14 @@
         "task-05"
       ],
       "doneWhen": "Player can create 1-6 characters with race, class, stats, alignment, name. Party stored in GameState.",
-      "lastActivity": "2026-05-17T16:38:28Z"
+      "lastActivity": "2026-05-17T16:38:28Z",
+      "costUSD": 2.9412,
+      "numTurns": 49,
+      "durationSeconds": 403,
+      "inputTokens": 59,
+      "outputTokens": 30862,
+      "cacheReadTokens": 3042325,
+      "cacheCreationTokens": 103387
     },
     {
       "id": "task-07",
@@ -109,7 +151,14 @@
         "task-06"
       ],
       "doneWhen": "Player can review, remove, reorder, equip default gear for characters before starting adventure.",
-      "lastActivity": "2026-05-17T16:48:20Z"
+      "lastActivity": "2026-05-17T16:48:20Z",
+      "costUSD": 4.132,
+      "numTurns": 61,
+      "durationSeconds": 517,
+      "inputTokens": 60,
+      "outputTokens": 38947,
+      "cacheReadTokens": 4224185,
+      "cacheCreationTokens": 167063
     },
     {
       "id": "task-08",
@@ -120,7 +169,14 @@
         "task-06"
       ],
       "doneWhen": "Save to slot, quit, relaunch, load from slot — all party data intact. Roundtrip serialization tests pass.",
-      "lastActivity": "2026-05-17T16:57:48Z"
+      "lastActivity": "2026-05-17T16:57:48Z",
+      "costUSD": 3.9259,
+      "numTurns": 74,
+      "durationSeconds": 525,
+      "inputTokens": 84,
+      "outputTokens": 35143,
+      "cacheReadTokens": 4754356,
+      "cacheCreationTokens": 106843
     },
     {
       "id": "task-09",
@@ -134,7 +190,14 @@
         "task-08"
       ],
       "doneWhen": "Full loop works: Menu → Create party → Review → Save → Quit → Relaunch → Load → Verify. Integration tests pass.",
-      "lastActivity": "2026-05-17T16:57:57Z"
+      "lastActivity": "2026-05-17T16:57:57Z",
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-10",
@@ -145,7 +208,14 @@
         "task-09"
       ],
       "doneWhen": "Town hub displays with 6 navigable locations. Save works. Depart transitions to placeholder dungeon.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-11",
@@ -156,7 +226,14 @@
         "task-10"
       ],
       "doneWhen": "Player can view character sheets, see equipment, train characters with enough XP and gold.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-12",
@@ -167,7 +244,14 @@
         "task-10"
       ],
       "doneWhen": "Heal at temple, buy/sell items at shop, equip items. Gold transactions correct.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-13",
@@ -178,7 +262,14 @@
         "task-10"
       ],
       "doneWhen": "Visit tavern, read random rumors. Rumors change between visits.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-14",
@@ -189,7 +280,14 @@
         "task-09"
       ],
       "doneWhen": "TileMap loads map JSON, FogOfWar computes visible/visited/hidden tiles. All tests pass.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-15",
@@ -202,7 +300,14 @@
         "task-03"
       ],
       "doneWhen": "Dungeon shows colored tile map on canvas with fog of war, party marker, minimap. NOT black canvas with DOM text.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-16",
@@ -213,7 +318,14 @@
         "task-15"
       ],
       "doneWhen": "Arrow key movement, camera follows, fog reveals, doors work, walls block. Message log updates.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-17",
@@ -224,7 +336,14 @@
         "task-15"
       ],
       "doneWhen": "Compass, facing text, party HP bars, info bar all rendered on canvas alongside tile viewport.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-18",
@@ -235,7 +354,14 @@
         "task-16"
       ],
       "doneWhen": "Events trigger from map data. Encounter screen shows Fight/Parley/Flee. Random encounters work.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-19",
@@ -249,7 +375,14 @@
         "task-18"
       ],
       "doneWhen": "Complete dungeon loop with canvas graphics, fog of war, minimap, HUD, events. Visual difference from FD1 obvious.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-20",
@@ -260,7 +393,14 @@
         "task-04"
       ],
       "doneWhen": "CombatManager runs complete combat programmatically. All unit tests pass.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-21",
@@ -273,7 +413,14 @@
         "task-03"
       ],
       "doneWhen": "Combat shows colored combatant sprites on canvas with pulsing active indicator and attack animations.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-22",
@@ -284,7 +431,14 @@
         "task-21"
       ],
       "doneWhen": "Target selection, attack resolution with visual feedback, defend and flee work.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-23",
@@ -295,7 +449,14 @@
         "task-22"
       ],
       "doneWhen": "Victory awards XP + loot, returns to dungeon. Defeat shows game over with load/quit.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-24",
@@ -307,7 +468,14 @@
         "task-18"
       ],
       "doneWhen": "Full flow: dungeon encounter → combat with real data → victory → loot → back to dungeon. Fixed encounters don't retrigger.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-25",
@@ -318,7 +486,14 @@
         "task-24"
       ],
       "doneWhen": "Complete create → explore → fight → loot → return → heal → save → load loop with visual combat.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-26",
@@ -329,7 +504,14 @@
         "task-20"
       ],
       "doneWhen": "Characters memorize spells during rest. Slots tracked per class/level. Character sheet shows spells.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-27",
@@ -341,7 +523,14 @@
         "task-22"
       ],
       "doneWhen": "Spellcasters cast memorized spells in combat. Damage/heal/effects work. Slots expended.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-28",
@@ -353,7 +542,14 @@
         "task-24"
       ],
       "doneWhen": "Full inventory management — view, equip, unequip, drop. Equipment changes reflected in stats.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-29",
@@ -365,7 +561,14 @@
         "task-28"
       ],
       "doneWhen": "Complete spell memorization → casting → inventory → equipment loop works.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-30",
@@ -376,7 +579,14 @@
         "task-19"
       ],
       "doneWhen": "Travel between town and dungeon entrances on canvas overland map. Random encounters trigger.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-31",
@@ -388,7 +598,14 @@
         "task-18"
       ],
       "doneWhen": "Two-floor Goblin Warrens playable with encounters, boss, treasure, stairs.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-32",
@@ -399,7 +616,14 @@
         "task-31"
       ],
       "doneWhen": "Three-floor Crypt playable with undead encounters, Vampire Lord boss, environmental hazards.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-33",
@@ -410,7 +634,14 @@
         "task-31"
       ],
       "doneWhen": "Two-floor Ashenmire playable with swamp encounters, Black Dragon boss, environmental hazards.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-34",
@@ -422,7 +653,14 @@
         "task-31"
       ],
       "doneWhen": "Accept quests from Town Hall, track in quest log, complete in dungeons, turn in for rewards.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-35",
@@ -437,7 +675,14 @@
         "task-34"
       ],
       "doneWhen": "Complete game playable start to finish — all zones, quests, combat, spells, inventory.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-36",
@@ -448,7 +693,14 @@
         "task-35"
       ],
       "doneWhen": "Background music per state. SFX for combat/exploration/UI. Volume adjustable.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-37",
@@ -459,7 +711,14 @@
         "task-35"
       ],
       "doneWhen": "Smooth transitions, no visual glitches, consistent EGA aesthetic, 60fps.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     },
     {
       "id": "task-38",
@@ -471,7 +730,14 @@
         "task-37"
       ],
       "doneWhen": "npm run build produces working packaged app. Game playable start to finish, no critical bugs.",
-      "lastActivity": null
+      "lastActivity": null,
+      "costUSD": null,
+      "numTurns": null,
+      "durationSeconds": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "cacheReadTokens": null,
+      "cacheCreationTokens": null
     }
   ]
 }
