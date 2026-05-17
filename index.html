@@ -917,10 +917,14 @@ function renderProject(project) {
   // Cost summary bar
   if (totalCost > 0) {
     const MONTHLY_PLAN_COST = 200;
-    const savingsPct = estimatedTotal > MONTHLY_PLAN_COST ? Math.round((1 - MONTHLY_PLAN_COST / estimatedTotal) * 100) : 0;
-    const savingsNote = estimatedTotal > MONTHLY_PLAN_COST
-      ? `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> vs <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan = <strong style="color:var(--green)">${savingsPct}% savings</strong>`
-      : `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> — within <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan`;
+    let savingsNote;
+    if (estimatedTotal > MONTHLY_PLAN_COST) {
+      const savingsPct = Math.round((1 - MONTHLY_PLAN_COST / estimatedTotal) * 100);
+      savingsNote = `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> vs <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan = <strong style="color:var(--green)">${savingsPct}% savings</strong>`;
+    } else {
+      const pctUsed = Math.round((estimatedTotal / MONTHLY_PLAN_COST) * 100);
+      savingsNote = `⚡ Est. token cost <strong>${formatCost(estimatedTotal)}</strong> vs <strong>$${MONTHLY_PLAN_COST}/mo</strong> Max plan — <strong>${pctUsed}%</strong> of plan value used so far`;
+    }
     projectHtml += `
     <div class="cost-summary">
       <div class="cost-item"><span class="cost-label">API Cost (est.)</span><span class="cost-value">${formatCost(totalCost)}</span></div>
