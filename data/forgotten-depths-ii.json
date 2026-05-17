@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T16:14:45Z",
+  "updated_at": "2026-05-17T16:15:48Z",
   "phases": [
     {
       "id": "phase-1",
@@ -80,13 +80,13 @@
       "id": "task-05",
       "name": "Main Menu Screen",
       "phase": "phase-1",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-02",
         "task-03"
       ],
       "doneWhen": "App launches to styled main menu. Arrow keys and mouse navigate. New Game transitions. Quit closes window.",
-      "lastActivity": "2026-05-17T16:10:34Z"
+      "lastActivity": "2026-05-17T16:15:47Z"
     },
     {
       "id": "task-06",
