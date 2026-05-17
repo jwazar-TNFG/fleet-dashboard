@@ -1235,11 +1235,12 @@ function renderProject(project) {
 
   // View toggle
   const projId = (project.slug || 'p').replace(/[^a-z0-9]/g, '_');
+  const allTasksDone = (project.tasks || []).length > 0 && (project.tasks || []).every(t => t.status === 'completed');
   projectHtml += `
     <div class="view-toggle">
       <button class="active" onclick="switchView('${projId}','list')">📋 List</button>
       <button onclick="switchView('${projId}','graph')">🕸️ Graph</button>
-      <button onclick="switchView('${projId}','outputs')">🎯 Output(s)</button>
+      ${allTasksDone ? `<button onclick="switchView('${projId}','outputs')">🎯 Output(s)</button>` : ''}
     </div>
     <div id="view-list-${projId}">
   `;
