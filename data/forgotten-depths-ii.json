@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T20:41:27Z",
+  "updated_at": "2026-05-17T20:53:27Z",
   "phases": [
     {
       "id": "phase-1",
@@ -603,19 +603,19 @@
       "id": "task-30",
       "name": "Overland Map \u2014 Canvas Renderer & Travel",
       "phase": "phase-6",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-19"
       ],
       "doneWhen": "Travel between town and dungeon entrances on canvas overland map. Random encounters trigger.",
-      "lastActivity": "2026-05-17T20:41:26Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-17T20:53:29Z",
+      "costUSD": 4.7185,
+      "numTurns": 81,
+      "durationSeconds": 658,
+      "inputTokens": 61,
+      "outputTokens": 48934,
+      "cacheReadTokens": 5090564,
+      "cacheCreationTokens": 151565,
       "description": "# Task 30: Overland Map \u2014 Canvas Renderer & Travel\n\n## Objective\nBuild an overland map screen accessible from the Town Gate. Player navigates a regional map with the town, three dungeon entrances, and roads connecting them. Random encounters can occur during travel.\n\n## Prerequisites\nTask 25 must be complete. Town Hub routes Depart \u2192 OVERLAND state.\n\n## Requirements\n\n### OverlandState (src/renderer/src/screens/OverlandState.ts)\nImplements `GameStateHandler`. Canvas-rendered.\n\n### Overland Map (src/renderer/src/data/overland.json)\n```json\n{\n  \"id\": \"overland\",\n  \"name\": \"The Frontier\",\n  \"width\": 40,\n  \"height\": 25,\n  \"tiles\": [\n    \"............................GGGGGGGGG.\",\n    \"...GGGGGG.....RR....MMMMMMM.G.......G.\",\n    \"..G.....G....R..R..M.......M.G.....G..\",\n    \"..G.[T].G...R....R.M..[D2].M.G.[D3].G.\",\n    \"..G.....G...R....R.M.......M.G.....G..\",\n    \"...GGGGGG..R......RMMMMMMMMMM.GGGGGGG.\",\n    \"..........R........R..................\",\n    \".........R..........RR................\",\n    \"........R.............R...............\",\n    \".......R...............R..............\",\n    \"......R................R..............\",\n    \"...FFFR.................R.............\",\n    \"..FFFRRR...........FFFFFRFFF..........\",\n    \".FFFRRRR..........FF......R...........\",\n    \"FFFRRR..........FF.........R..........\",\n    \"FFRRR..........FF.[D1].....R..........\",\n    \"FFRR...........FFF.........R..........\",\n    \"FFR.............FFFFFFFFFFFR..........\",\n    \"...........................R..........\",\n    \"..........................WWWWW.......\",\n    \".........................WWWWWWW......\",\n    \"..........................WWWWW.......\",\n    \"........................SSSSSSSSS.....\",\n    \".......................SSSSSSSSSS.....\",\n    \".........................SSSSSS.......\"\n  ],\n  \"locations\": [\n    { \"id\": \"town\",       \"name\": \"Ironhaven\",         \"x\": 5,  \"y\": 3,  \"type\": \"town\", \"targetState\": \"TOWN_HUB\" },\n    { \"id\": \"warrens\",    \"name\": \"Goblin Warrens\",    \"x\": 18, \"y\": 15, \"type\": \"dungeon\", \"mapId\": \"warrens_1f\" },\n    { \"id\": \"crypt\",      \"name\": \"Crypt of Shadows\",  \"x\": 22, \"y\": 3,  \"type\": \"dungeon\", \"mapId\": \"crypt_1f\" },\n    { \"id\": \"ashenmire\",  \"name\": \"Ruins of Ashenmire\",\"x\": 35, \"y\": 3,  \"type\": \"dungeon\", \"mapId\": \"ashenmire_1f\" }\n  ],\n  \"randomEncounters\": { \"table\": \"overland_wilderness\", \"chance\": 0.03 },\n  \"startPosition\": { \"x\": 5, \"y\": 4 }\n}\n```\n\nTile chars: `.` plains, `G` grass, `R` road, `M` mountains (impassable), `F` forest (slow), `W` water (impassable), `S` swamp (slow + chance of trap), `[T]/[D1]/[D2]/[D3]` location markers (walk on to enter)\n\n### Tile Colors (EGA)\n- Plains `.`: dark green #00AA00\n- Grass `G`: green #55FF55\n- Road `R`: brown #AA5500\n- Mountain `M`: light gray #AAAAAA\n- Forest `F`: dark green #00AA00 (darker variant)\n- Water `W`: dark blue #0000AA\n- Swamp `S`: dark brown / olive (use #555555 or interp)\n- Location markers: yellow #FFFF55 with town/dungeon glyph\n\n### Rendering\n- 640x400 canvas, tile size 16px \u2192 fits 40x25 perfectly\n- Render entire map (no scroll needed for 40x25)\n- Player marker: cyan 14x14 square with facing arrow\n- Locations: distinct colored icon (yellow circle + label below)\n- Compass top-right (reuse from DungeonHUD)\n- Info bar bottom: party gold, day, current biome\n\n### Movement\n- Arrow keys move one tile\n- Cooldown 200 ms\n- Step into mountain/water \u2192 \"Impassable terrain.\"\n- Step into forest/swamp \u2192 slow (extra 100 ms cooldown \u2014 flavor)\n- Step on location marker \u2192 prompt \"Enter Ironhaven? (Y/N)\" \u2192 transition to that state\n\n### Random Encounters During Travel\n- Each successful step: roll `random() < 0.03` \u2192 encounter\n- Use encounter table `overland_wilderness`:\n```json\n{\n  \"id\": \"overland_wilderness\",\n  \"entries\": [\n    { \"encounterId\": \"enc_wild_wolves\", \"weight\": 30 },\n    { \"encounterId\": \"enc_bandits\", \"weight\": 25 },\n    { \"encounterId\": \"enc_giant_rats\", \"weight\": 20 },\n    { \"encounterId\": \"enc_goblin_scouts\", \"weight\": 25 }\n  ]\n}\n```\n- Biome bias: roads \u2192 fewer encounters; forests \u2192 wolves; swamps \u2192 traps too\n\n### Save/Load\n- gameState.currentOverlandX, .currentOverlandY\n- Day advances by 1 per N steps (e.g., every 10 steps)\n- Resting only available at town or via Camp action (TBD if time)\n\n### Camp Action (optional)\n- Press C \u2192 \"Make Camp? Risks ambush. (Y/N)\"\n- Restores HP (50%) + tries spell rest (no slot reset, but flavor)\n- 25% chance of ambush encounter\n- Advances day by 1\n\n### Tests\n- `src/renderer/src/screens/__tests__/OverlandState.test.ts`:\n  - Loading overland map parses tile chars correctly\n  - Player cannot walk into water or mountain\n  - Walking onto a location triggers transition prompt\n  - Random encounter fires based on chance\n  - \"Enter Ironhaven\" transitions to TOWN_HUB\n  - Saving preserves overland position\n\n## Done When\n- Town \"Depart\" \u2192 OVERLAND with canvas-rendered regional map\n- 4 locations: Town, Warrens, Crypt, Ashenmire \u2014 all reachable via roads\n- Player marker moves with arrows, terrain enforced\n- Stepping onto a location prompts to enter\n- Random encounters fire during travel\n- Saving/loading preserves position\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
