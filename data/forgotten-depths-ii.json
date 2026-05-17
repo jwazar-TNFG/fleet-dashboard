@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T17:15:20Z",
+  "updated_at": "2026-05-17T17:21:26Z",
   "phases": [
     {
       "id": "phase-1",
@@ -203,19 +203,19 @@
       "id": "task-10",
       "name": "Town Hub — Main Screen & Navigation",
       "phase": "phase-2",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-09"
       ],
       "doneWhen": "Town hub displays with 6 navigable locations. Save works. Depart transitions to placeholder dungeon.",
-      "lastActivity": "2026-05-17T17:15:19Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null
+      "lastActivity": "2026-05-17T17:21:25Z",
+      "costUSD": 2.601,
+      "numTurns": 54,
+      "durationSeconds": 329,
+      "inputTokens": 47,
+      "outputTokens": 26713,
+      "cacheReadTokens": 2655481,
+      "cacheCreationTokens": 96512
     },
     {
       "id": "task-11",
