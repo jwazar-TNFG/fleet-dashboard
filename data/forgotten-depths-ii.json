@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-17T19:15:11Z",
+  "updated_at": "2026-05-17T19:15:21Z",
   "phases": [
     {
       "id": "phase-1",
@@ -466,12 +466,12 @@
       "id": "task-23",
       "name": "Combat \u2014 Victory, Defeat & Rewards",
       "phase": "phase-4",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-22"
       ],
       "doneWhen": "Victory awards XP + loot, returns to dungeon. Defeat shows game over with load/quit.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-17T19:15:20Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
