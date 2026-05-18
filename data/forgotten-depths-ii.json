@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-18T01:37:44Z",
+  "updated_at": "2026-05-18T01:37:50Z",
   "phases": [
     {
       "id": "phase-1",
@@ -700,7 +700,7 @@
       "id": "task-35",
       "name": "Phase 6 Integration Test",
       "phase": "phase-6",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-30",
         "task-31",
@@ -709,7 +709,7 @@
         "task-34"
       ],
       "doneWhen": "Complete game playable start to finish \u2014 all zones, quests, combat, spells, inventory.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-18T01:37:49Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
