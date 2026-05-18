@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-18T01:57:39Z",
+  "updated_at": "2026-05-18T01:57:49Z",
   "phases": [
     {
       "id": "phase-1",
@@ -742,12 +742,12 @@
       "id": "task-37",
       "name": "Visual Polish & Screen Transitions",
       "phase": "phase-7",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-35"
       ],
       "doneWhen": "Smooth transitions, no visual glitches, consistent EGA aesthetic, 60fps.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-18T01:57:48Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
