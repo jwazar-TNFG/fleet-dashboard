@@ -5,10 +5,76 @@
     "repoUrl": "https://github.com/jwazar-TNFG/forgotten-depths-ii",
     "gallery": [
       {
-        "id": "placeholder-1",
-        "image": "assets/gallery/fd2-placeholder.png",
-        "caption": "Screenshots coming soon — pipeline is still building!",
-        "date": "2026-05-17"
+        "id": "fd2-main-menu",
+        "image": "assets/gallery/fd2-01-main-menu.png",
+        "caption": "Main Menu — Title screen with New Game, Load Game, Settings, and About options",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-about",
+        "image": "assets/gallery/fd2-02-about-screen.png",
+        "caption": "About Screen — Credits, version info, D&D 5e SRD licensing, and tech stack",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-town-hub",
+        "image": "assets/gallery/fd2-10-town-hub.png",
+        "caption": "Ironhaven — Town hub with Town Hall, Guild, Temple, Shop, and Tavern",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-shop",
+        "image": "assets/gallery/fd2-09-shop.png",
+        "caption": "Shop — Two-panel merchant interface with buy/sell/equip controls",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-temple",
+        "image": "assets/gallery/fd2-05-temple-services.png",
+        "caption": "Temple — Healing services including Cure Wounds, Cure Poison, Cure Disease, and Raise Dead",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-tavern",
+        "image": "assets/gallery/fd2-07-tavern.png",
+        "caption": "The Broken Axe Tavern — Listen for rumors, rest at the inn, or buy drinks",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-town-hall",
+        "image": "assets/gallery/fd2-08-town-hall-quest.png",
+        "caption": "Town Hall — Mayor Aldric offers quests to the party",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-character-sheet",
+        "image": "assets/gallery/fd2-06-character-sheet.png",
+        "caption": "Character Sheet — Full stat block with abilities, equipment, and spell slots",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-overworld",
+        "image": "assets/gallery/fd2-04-overworld-map.png",
+        "caption": "Overworld Map — Plains biome with towns, dungeons, and the party marker",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-world-map-entry",
+        "image": "assets/gallery/fd2-13-world-map-entry.png",
+        "caption": "Dungeon Entry — Confirmation prompt before entering the Goblin Warrens",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-dungeon",
+        "image": "assets/gallery/fd2-11-dungeon-exploration.png",
+        "caption": "Dungeon Exploration — First-person view in the Ruins of Ashenmire with minimap and party HUD",
+        "date": "2026-05-18"
+      },
+      {
+        "id": "fd2-quest-log",
+        "image": "assets/gallery/fd2-12-quest-log.png",
+        "caption": "Quest Log — Active, Available, and Completed quest tracking",
+        "date": "2026-05-18"
       }
     ]
   }
