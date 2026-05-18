@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-18T01:57:49Z",
+  "updated_at": "2026-05-18T02:07:10Z",
   "phases": [
     {
       "id": "phase-1",
@@ -742,19 +742,19 @@
       "id": "task-37",
       "name": "Visual Polish & Screen Transitions",
       "phase": "phase-7",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-35"
       ],
       "doneWhen": "Smooth transitions, no visual glitches, consistent EGA aesthetic, 60fps.",
-      "lastActivity": "2026-05-18T01:57:48Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-18T02:07:12Z",
+      "costUSD": 4.4406,
+      "numTurns": 72,
+      "durationSeconds": 499,
+      "inputTokens": 82,
+      "outputTokens": 30132,
+      "cacheReadTokens": 5176382,
+      "cacheCreationTokens": 175418,
       "description": "# Task 37: Visual Polish & Screen Transitions\n\n## Objective\nPolish the visual experience: smooth state transitions, consistent EGA aesthetic, no visual glitches, and stable 60fps.\n\n## Prerequisites\nTask 35 must be complete. Audio (Task 36) preferred but parallel-safe.\n\n## Requirements\n\n### Screen Transitions (src/renderer/src/rendering/TransitionEffect.ts)\n```typescript\nexport type TransitionType = 'fade' | 'wipe_left' | 'wipe_right' | 'pixelate' | 'circle';\n\nexport class TransitionEffect {\n  start(type: TransitionType, durationMs: number, onMidpoint?: () => void): void;\n  render(ctx: CanvasRenderingContext2D): void;\n  isActive(): boolean;\n}\n```\n\nApply transitions on state changes:\n- Main Menu \u2192 Character Creation: fade (300 ms)\n- Character Creation \u2192 Town: fade (500 ms)\n- Town \u2192 Overland: wipe_left (400 ms)\n- Overland \u2192 Dungeon: pixelate (500 ms)\n- Dungeon \u2192 Combat: circle expand from party position (400 ms)\n- Combat \u2192 Dungeon: circle contract (400 ms)\n- Any state \u2192 Game Over: fade to red (1000 ms)\n\nImplementation hook in GameEngine.transitionTo():\n```typescript\nthis.transition.start('fade', 300, () => {\n  this.stateMachine.transitionTo(newState, data);\n});\n```\n\n### Visual Consistency Audit\n\n#### EGA Palette Enforcement\nRun an audit script that scans all rendering code for hex colors:\n```bash\ngrep -rE \"#[0-9A-Fa-f]{6}\" src/renderer/src --include=\"*.ts\" | grep -v 'EGA_PALETTE'\n```\nAny color not in EGA_PALETTE should be replaced with the closest match.\n\nCreate `src/shared/EGAPaletteValidator.ts`:\n```typescript\nexport function isEGAColor(color: string): boolean;\nexport function nearestEGAColor(color: string): string;\n```\n\nWrap CanvasRenderingContext2D in `EGARenderingContext` (dev-only) that warns if non-EGA color used.\n\n#### Font Consistency\n- Use monospace font 'Courier New' consistently\n- Font sizes: 8px (small UI), 10px (body), 12px (highlights), 16px (titles), 24px (screen titles)\n- Define in `src/shared/constants.ts`:\n```typescript\nexport const FONT_FAMILY = 'Courier New, monospace';\nexport const FONT_SIZE = {\n  small: 8,\n  body: 10,\n  highlight: 12,\n  title: 16,\n  big: 24,\n};\n```\n\n#### Letterboxing on Resize\n- Canvas always renders at 640x400 internally\n- CanvasRenderer scales to fit window with nearest-neighbor, maintains 16:10 aspect\n- Black bars on the sides if window is wider; bars top/bottom if taller\n- No stretching or blurring\n\n### Frame Rate\n- Target: 60 fps\n- GameEngine uses `requestAnimationFrame` and tracks `dt`\n- Add FPS counter overlay (toggle with F3) \u2014 yellow text top-left:\n```\nFPS: 60\nDT: 16ms\n```\n- Profile and optimize any state rendering above 16 ms\n\nCommon optimizations:\n- Pre-render static tile colors to off-screen canvases\n- Cache HP bar / minimap into off-screen buffers when not changing\n- Batch fillRect calls where possible\n- Avoid allocating arrays/objects in render loop\n\n### Animation Polish\n- Camera scroll easing when party moves (smooth lerp over 100 ms, not instant)\n- HP bar drain animation: red flash when damage taken, bar drains over 300 ms\n- Combat damage numbers: cubic easing for upward float, alpha fade-out\n- Menu cursor: subtle pulsing (alpha 0.7 \u2192 1.0 over 1s, sine wave)\n- Title screen: subtle particle effect (falling pixels or sparkles in EGA colors)\n\n### Particle System (src/renderer/src/rendering/ParticleSystem.ts)\n```typescript\nexport interface Particle {\n  x: number; y: number;\n  vx: number; vy: number;\n  life: number;     // 0..1 fraction remaining\n  color: string;\n  size: number;\n}\n\nexport class ParticleSystem {\n  spawn(x: number, y: number, opts: Partial<Particle>): void;\n  spawnBurst(x: number, y: number, count: number, opts: Partial<Particle>): void;\n  update(dt: number): void;\n  render(ctx: CanvasRenderingContext2D): void;\n  clear(): void;\n}\n```\n\nUse cases:\n- Combat damage splashes (red, 8 particles)\n- Heal sparkles (green, 12 particles, rising)\n- Spell cast glow (school-colored, around caster)\n- Title screen ambient (slow falling pixels)\n- Treasure pickup (yellow sparkles)\n\n### Pixel Snap & Anti-aliasing\n- Ensure `ctx.imageSmoothingEnabled = false` for crisp pixels\n- Set CSS `image-rendering: pixelated` on canvas\n- Round all draw positions to integers to avoid sub-pixel blurring\n\n### Glitch Fixes\n- DungeonState: ensure stale tiles cleared between renders (no ghost trails)\n- CombatState: clean up old animations on combat end\n- StateMachine: previous state's DOM (if any) fully removed before new state's render\n- No flicker when state transitions\n- No \"first frame\" artifacts on state enter\n\n### Accessibility (light pass)\n- High-contrast EGA colors already give good accessibility baseline\n- Add subtitle/caption option in Settings (Task 36 setup): if enabled, show on-screen text for audio cues\n- Add \"colorblind hint mode\": status effects show icon + letter (not just color)\n\n### Tests\n- `src/renderer/src/rendering/__tests__/TransitionEffect.test.ts`:\n  - fade transition completes in the specified duration\n  - isActive() returns true during transition, false after\n  - onMidpoint callback fires at 50% through duration\n- `src/renderer/src/rendering/__tests__/ParticleSystem.test.ts`:\n  - spawnBurst creates the requested number of particles\n  - update decrements life by dt; expired particles removed\n  - render draws each particle at its current position with current alpha\n- `src/shared/__tests__/EGAPaletteValidator.test.ts`:\n  - isEGAColor accepts all 16 palette colors\n  - isEGAColor rejects arbitrary colors like '#FF0000'\n  - nearestEGAColor maps off-palette colors to closest match\n\n## Done When\n- All screen transitions play smoothly with appropriate effects\n- No visual glitches, ghost trails, or flickers between states\n- 60 fps maintained throughout typical play (FPS counter via F3)\n- All colors are EGA palette (validator confirms)\n- Pixel-perfect rendering with no blurring\n- Particle effects play for combat splashes, heals, treasure, casting\n- Settings include subtitle and colorblind-hint toggles\n- Letterboxing works on any window aspect ratio\n- `npm test` passes\n- `npm run build` succeeds"
     },
     {
