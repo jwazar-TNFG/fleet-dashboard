@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-18T01:45:00Z",
+  "updated_at": "2026-05-18T01:57:39Z",
   "phases": [
     {
       "id": "phase-1",
@@ -723,19 +723,19 @@
       "id": "task-36",
       "name": "Audio System",
       "phase": "phase-7",
-      "status": "running",
+      "status": "completed",
       "depends_on": [
         "task-35"
       ],
       "doneWhen": "Background music per state. SFX for combat/exploration/UI. Volume adjustable.",
-      "lastActivity": "2026-05-18T01:44:59Z",
-      "costUSD": null,
-      "numTurns": null,
-      "durationSeconds": null,
-      "inputTokens": null,
-      "outputTokens": null,
-      "cacheReadTokens": null,
-      "cacheCreationTokens": null,
+      "lastActivity": "2026-05-18T01:57:38Z",
+      "costUSD": 8.6273,
+      "numTurns": 112,
+      "durationSeconds": 696,
+      "inputTokens": 98,
+      "outputTokens": 50773,
+      "cacheReadTokens": 12334443,
+      "cacheCreationTokens": 190104,
       "description": "# Task 36: Audio System\n\n## Objective\nAdd an audio system: background music per state, sound effects for combat / exploration / UI, and volume controls. Web Audio API based.\n\n## Prerequisites\nTask 35 must be complete. Game is fully playable.\n\n## Requirements\n\n### AudioManager (src/renderer/src/engine/AudioManager.ts)\n```typescript\nexport class AudioManager {\n  private musicAudio: HTMLAudioElement | null = null;\n  private sfxBuffers: Map<string, AudioBuffer> = new Map();\n  private audioContext: AudioContext;\n  \n  private musicVolume = 0.5;\n  private sfxVolume = 0.7;\n  private masterVolume = 1.0;\n\n  constructor();\n  async init(): Promise<void>;\n  \n  // Music \u2014 loops a background track\n  async playMusic(trackId: string, fadeMs?: number): Promise<void>;\n  stopMusic(fadeMs?: number): void;\n  \n  // SFX \u2014 fire-and-forget one-shot\n  async loadSfx(id: string, url: string): Promise<void>;\n  playSfx(id: string): void;\n  \n  setMusicVolume(v: number): void;       // 0..1\n  setSfxVolume(v: number): void;\n  setMasterVolume(v: number): void;\n  getMusicVolume(): number;\n  getSfxVolume(): number;\n  getMasterVolume(): number;\n}\n```\n\n### Audio Assets (src/renderer/src/assets/audio/)\nFor MVP, ship procedural placeholder audio (no licensing concerns) or attribution-free assets. If using procedural:\n- Use AudioContext oscillators + envelopes to generate retro-style chiptune music and SFX\n- Each track is a short loopable pattern (8-16 seconds)\n\nRequired tracks:\n- **music/main_menu.ogg** \u2014 soft melodic theme\n- **music/town.ogg** \u2014 peaceful tavern-like loop\n- **music/dungeon.ogg** \u2014 ambient dark loop with sparse percussion\n- **music/combat.ogg** \u2014 energetic battle theme\n- **music/boss.ogg** \u2014 dramatic orchestral-style boss theme\n- **music/overland.ogg** \u2014 adventurous travel theme\n- **music/victory.ogg** \u2014 short fanfare (non-loop)\n- **music/defeat.ogg** \u2014 somber stinger (non-loop)\n\nRequired SFX:\n- **sfx/menu_select.ogg** \u2014 short blip\n- **sfx/menu_confirm.ogg** \u2014 affirmative click\n- **sfx/footstep.ogg** \u2014 dungeon step\n- **sfx/door_open.ogg** \u2014 wooden creak\n- **sfx/door_locked.ogg** \u2014 rattle\n- **sfx/sword_hit.ogg** \u2014 metallic clang\n- **sfx/sword_miss.ogg** \u2014 whoosh\n- **sfx/spell_cast.ogg** \u2014 magical hum\n- **sfx/heal.ogg** \u2014 gentle chime\n- **sfx/damage.ogg** \u2014 generic hit\n- **sfx/enemy_die.ogg** \u2014 defeat sound\n- **sfx/treasure.ogg** \u2014 pickup chime\n- **sfx/trap.ogg** \u2014 sharp warning\n- **sfx/level_up.ogg** \u2014 victory chord\n- **sfx/save.ogg** \u2014 confirmation tone\n- **sfx/typewriter.ogg** \u2014 text scrolling effect (per character or chunk)\n\n### State Music Mapping\nHook into GameEngine state changes \u2014 when entering a state, call AudioManager.playMusic:\n```typescript\nconst MUSIC_BY_STATE: Record<string, string> = {\n  MAIN_MENU: 'main_menu',\n  CHARACTER_CREATION: 'main_menu',\n  TOWN_HUB: 'town',\n  TOWN_HALL: 'town',\n  TEMPLE: 'town',\n  SHOP: 'town',\n  TAVERN: 'town',\n  GUILD: 'town',\n  OVERLAND: 'overland',\n  DUNGEON: 'dungeon',\n  COMBAT: 'combat',\n  ENCOUNTER: 'combat',\n  GAME_OVER: 'defeat',\n};\n```\n\nSpecial cases:\n- Boss encounters: detect `encounter.isBoss` and play `boss.ogg` instead of `combat.ogg`\n- Victory overlay: play `victory.ogg` once (no loop)\n- Defeat overlay: play `defeat.ogg` once\n\n### SFX Trigger Points\n- MainMenu navigation: menu_select\n- MainMenu confirm: menu_confirm\n- Dungeon step: footstep\n- Wall bonk: damage (small)\n- Door open: door_open\n- Door locked: door_locked\n- Combat attack hit: sword_hit\n- Combat attack miss: sword_miss\n- Spell cast: spell_cast\n- Healing applied: heal\n- Combatant death: enemy_die\n- Trap triggered: trap\n- Treasure found: treasure\n- Level up at Guild: level_up\n- Save game: save\n\n### Settings Screen (src/renderer/src/screens/SettingsScreen.ts)\nCanvas-rendered. Accessible from Main Menu and ESC menu in any state.\n\n```\n+--------------------------------------+\n|             SETTINGS                |\n+--------------------------------------+\n| Master Volume:  [\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591]  80%   |\n| Music Volume:   [\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591]  60%   |\n| SFX Volume:     [\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591]  70%   |\n|                                      |\n| Music: [On]                         |\n| SFX:   [On]                         |\n|                                      |\n| > Save Settings                     |\n|   Reset to Defaults                 |\n|   Back                              |\n+--------------------------------------+\n```\n\n- Left/Right adjusts volume in 10% steps\n- Persist to localStorage as `fd2_settings`\n- Load on app start\n\n### Tests\n- `src/renderer/src/engine/__tests__/AudioManager.test.ts`:\n  - playMusic sets currentTrack\n  - stopMusic clears currentTrack\n  - playSfx triggers audio buffer source (mocked)\n  - Volume setters clamp to 0..1\n  - Settings persist to localStorage and restore on init\n\n## Done When\n- Each game state plays appropriate background music\n- All SFX triggers fire at the right moments\n- Boss encounters play boss music\n- Victory/defeat play one-shot stingers\n- Settings screen lets player adjust volumes and toggle mute\n- Settings persist across app sessions\n- No audio glitches or stuck loops\n- `npm test` passes\n- `npm run build` succeeds\n"
     },
     {
