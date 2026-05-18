@@ -2,7 +2,7 @@
   "name": "Forgotten Depths II",
   "slug": "forgotten-depths-ii",
   "repo": "jwazar-TNFG/forgotten-depths-ii",
-  "updated_at": "2026-05-18T02:07:10Z",
+  "updated_at": "2026-05-18T02:07:20Z",
   "phases": [
     {
       "id": "phase-1",
@@ -761,13 +761,13 @@
       "id": "task-38",
       "name": "Final Integration & Packaging",
       "phase": "phase-7",
-      "status": "pending",
+      "status": "running",
       "depends_on": [
         "task-36",
         "task-37"
       ],
       "doneWhen": "npm run build produces working packaged app. Game playable start to finish, no critical bugs.",
-      "lastActivity": null,
+      "lastActivity": "2026-05-18T02:07:19Z",
       "costUSD": null,
       "numTurns": null,
       "durationSeconds": null,
