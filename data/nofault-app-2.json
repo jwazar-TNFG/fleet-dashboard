@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:35:05Z",
+  "updated_at": "2026-06-15T22:35:06Z",
   "phases": [
     {
       "id": "phase-1",
@@ -104,11 +104,11 @@
       "id": "task-07",
       "name": "User Profile + Notif Prefs",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:35:06Z",
       "description": "# Task 07 \u2014 User Profile Screen + Notification Preferences\n\n## Objective\nBuild the User Profile screen: identity display, timezone selection, external report links, collapsible Role/HR/Compensation sections, and a notification-preferences editor that writes to `app2.users.notification_prefs`. This gives each user a self-service profile and controls the opt-in events for the notification center.\n\n## Context\nReact 18, mobile-first, light theme. Profile (`/profile`, Screen 11) is accessible to all roles. Current fields: a Zoom meeting link, a required timezone dropdown, four report links (Roster MTD, Logs 12mo, Logs v2, Perf Roster Daily \u2014 external Google Drive/Looker URLs), and three collapsible sections (Role, HR, Compensation) with eye-icon toggles. Profile/HR/role attributes come from `public.employees` (cross-schema read) joined to `app2.users`. Notification prefs are stored as JSONB in `app2.users.notification_prefs`. Notification events (opt-in per user, A6): lead_assigned, lead_status, request_activity, approval_needed. Known bugs to AVOID re-introducing: inverted eye icon on Compensation, wrong DOB/Start Date values, \"Logs(v2)\" formatting.\n\n## Requirements\n1. Build `ProfilePage` (`/profile`) reading the current user's `app2.users` row joined with their `public.employees` record (name, title, office, hierarchy, DOB, hire date).\n2. Display identity header (avatar, name, email, role).\n3. Timezone dropdown (required) \u2014 persist selection to `app2.users` (add/use a timezone field) or `notification_prefs`; default to America/New_York if unset.\n4. Render the four report links as outline buttons opening external URLs in a new tab/in-app browser; format labels correctly (fix \"Logs(v2)\" \u2192 \"Logs (v2)\").\n5. Three collapsible sections (Role, HR, Compensation) using `SectionHeader`; ensure the eye-icon toggle direction is consistent across ALL three (fix the inverted Compensation bug). Display the correct DOB and Start/Hire Date values from `public.employees` (validate formatting; avoid the wrong-value bug).\n6. **Notification Preferences editor:** four toggles mapped to the opt-in events (New lead assigned, Lead status change, New request activity, Approval needed). Read/write `app2.users.notification_prefs` JSONB. Default all on for relevant roles; persist immediately on toggle with optimistic UI + error rollback.\n7. Respect RLS: a user reads/updates only their own row.\n\n## Acceptance Criteria\n- [ ] Profile loads the user's joined employee + app2.users data.\n- [ ] Timezone selection persists and reloads correctly.\n- [ ] Four report links open correctly with corrected labels.\n- [ ] All three collapsible sections toggle consistently (no inverted icon).\n- [ ] DOB and hire/start date display correct values.\n- [ ] Notification toggles read/write `notification_prefs` JSONB and persist.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types), T03 (design system), T04 (auth), T05 (routes).\n\n## Files Expected\n- `src/pages/profile/ProfilePage.tsx`\n- `src/features/profile/NotificationPreferences.tsx`\n- `src/features/profile/useProfile.ts`\n- `src/lib/queries/profile.ts`\n"
     },
     {
