@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T23:36:17Z",
+  "updated_at": "2026-06-15T23:36:18Z",
   "phases": [
     {
       "id": "phase-1",
@@ -170,11 +170,11 @@
       "id": "task-13",
       "name": "Employee Directory",
       "phase": "phase-4",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T23:36:18Z",
       "description": "# Task 13 \u2014 Employee Directory (1800 Directory)\n\n## Objective\nBuild the 1800 Directory: a searchable, filterable, paginated employee directory grouped by department, with status tabs (Active/Termed/All/ICP). Data comes from `public.employees`. This is a reference/lookup screen available to all roles.\n\n## Context\nReact 18, mobile-first. 1800 Directory (Screen 06, `/directory`) is accessible to all roles. Data source: `public.employees` (cross-schema read; ~2.3K rows). UI: status tabs (Active | Termed | All | ICP), a Home quick-nav pill, search bar + funnel filter, grouped by department (EXEC, Human Resources, Intake, Marketing, STAFF, Technology), 3+ pages of pagination. Row format: optional circular avatar + employee name + LEVEL value (LEVEL only populated for EXEC titles and Marketing rank tiers; blank for others). An asterisk (`*`) prefix denotes terminated employees in the All tab. Known data-quality issues: inconsistent name formats (\"Last, First\" vs \"First Last\"), username-style entries, service accounts (\"Ads Nofault\"), inconsistent photos. Known bug: \"Termed\" appears twice in filter options \u2014 do not duplicate. Deferred workflows \u2014 read-only directory.\n\n## Requirements\n1. Build `DirectoryPage` (`/directory`) reading `public.employees` with server-side pagination (respect the 1,000-row limit; use `range()`).\n2. **Status tabs:** Active | Termed | All | ICP \u2014 filter by employment status (de-duplicate; ensure \"Termed\" appears once). \"ICP\" maps to its defined cohort (confirm field; default to a flag/department match).\n3. Group results by department (EXEC, Human Resources, Intake, Marketing, STAFF, Technology, + any others present) with section headers and counts.\n4. Row: optional avatar, employee name, and LEVEL value (render LEVEL only when populated). In the All tab, prefix terminated employees with `*`.\n5. Search bar (debounced) filtering by name (handle both \"Last, First\" and \"First Last\"); funnel **Filter** bottom-sheet by department and office.\n6. Exclude/flag service accounts gracefully (e.g., \"Ads Nofault\") \u2014 do not crash on malformed rows; tolerate missing photos/names.\n7. Apply mandatory exclusions where relevant per project rules (Katiria Bonilla, xSTAFF) only if these appear and the directory is meant to mirror rep queries \u2014 otherwise show full directory; document the choice.\n8. Tapping a row may open a lightweight employee profile sheet (name, title, department, office, hierarchy) \u2014 optional but preferred.\n\n## Acceptance Criteria\n- [ ] Directory loads from `public.employees` with working pagination.\n- [ ] Active/Termed/All/ICP tabs filter correctly; \"Termed\" appears once.\n- [ ] Results grouped by department with headers/counts.\n- [ ] LEVEL shows only where populated; terminated employees marked with `*` in All.\n- [ ] Search handles both name formats; department/office filter works.\n- [ ] Malformed/service-account rows handled without errors.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types \u2014 public.employees), T03 (design system), T05 (routes).\n\n## Files Expected\n- `src/pages/directory/DirectoryPage.tsx`\n- `src/features/directory/*` (StatusTabs, EmployeeRow, DirectoryFilterSheet, DepartmentGroup)\n- `src/lib/queries/employees.ts`\n"
     },
     {
