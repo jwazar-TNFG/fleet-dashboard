@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T23:44:50Z",
+  "updated_at": "2026-06-15T23:56:40Z",
   "phases": [
     {
       "id": "phase-1",
@@ -181,11 +181,11 @@
       "id": "task-14",
       "name": "Mapper (Locations)",
       "phase": "phase-4",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": "2026-06-15T23:44:50Z",
+      "lastActivity": "2026-06-15T23:56:40Z",
       "description": "# Task 14 \u2014 Mapper (Treatment Locations, Map + Distance Sort)\n\n## Objective\nBuild the Mapper: an interactive map of treatment locations from `app2.tx_locations` with a searchable list, plus an address-search mode that splits results into COR and AFF sections sorted nearest-to-farthest with teal distance badges. Intake uses this to find the closest treatment location to a customer's home.\n\n## Context\nReact 18, mobile-first. Mapper (Screen 10, `/mapper`) is a bottom-nav tab (globe icon), used by intake (and available per matrix). Data: `app2.tx_locations` (PostGIS `geometry(Point,4326)` coordinates, GiST index; columns incl. `tx_location`, `tx_group`, `location_type` [AFF/COR], `address`, `state`, `coordinates`, `active_on_portal`). Default state: \"All Treatment Locations\" listed alphabetically with map pins; a list search filters by name (does NOT trigger address search); paginated. Address search: intaker enters a customer address \u2192 geocode \u2192 results reorganize into a **COR** section then an **AFF** section, each distance-sorted, with teal distance badges (e.g., \"5.33 MILES\"); no pagination on results (continuous scroll). Enhancement E4: de-emphasize/hide COR locations for non-FL addresses. Use a map library (Mapbox GL or MapLibre); document the choice + env key. Deferred workflows \u2014 read-only.\n\n## Requirements\n1. Build `MapperPage` (`/mapper`) with an interactive map (teal pins, zoom/pan) and a location list below.\n2. **Default view:** load active `app2.tx_locations` (`active_on_portal = true`) alphabetically by name; render name + address; show pins; paginate the list.\n3. **List search bar:** filters the loaded list by name only (client-side or server `ilike`); must NOT trigger the address proximity search.\n4. **Address search bar (top, \"Address:\"):** on submit, geocode the customer address to lat/lng (via the chosen map provider's geocoder); compute distance to each location (PostGIS server-side via RPC `ST_Distance`/`ST_DWithin`, or client haversine fallback).\n5. **Results layout:** two sections \u2014 **COR** first (distance-sorted), then **AFF** (distance-sorted); each row shows a teal distance badge (miles, 2 decimals), name, address. No pagination on results.\n6. **E4 behavior:** when the searched address is non-Florida, hide or visually de-emphasize COR locations (config flag; default: collapse COR with a \"show anyway\" affordance).\n7. Recenter/zoom the map to fit the searched address + nearest results; tapping a list row highlights its pin (and vice versa).\n8. Handle data-quality issues gracefully (missing/incomplete addresses, bad coordinates) without crashing.\n9. Document required env keys (e.g., `VITE_MAPBOX_TOKEN`) in `.env.example`.\n\n## Acceptance Criteria\n- [ ] Default view lists active locations alphabetically with map pins and pagination.\n- [ ] List search filters by name without triggering address search.\n- [ ] Address search geocodes and splits results into COR then AFF, each distance-sorted with teal mile badges, no pagination.\n- [ ] Non-FL addresses de-emphasize/hide COR per E4.\n- [ ] Map recenters on search; row\u2194pin highlighting works.\n- [ ] Malformed location rows handled gracefully.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types \u2014 tx_locations), T03 (design system), T05 (routes/bottom nav).\n\n## Files Expected\n- `src/pages/mapper/MapperPage.tsx`\n- `src/features/mapper/*` (MapView, LocationList, DistanceBadge, AddressSearch)\n- `src/lib/queries/txLocations.ts` (+ distance RPC), `src/lib/geocode.ts`\n"
     },
     {
