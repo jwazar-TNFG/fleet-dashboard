@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:42:35Z",
+  "updated_at": "2026-06-15T22:42:36Z",
   "phases": [
     {
       "id": "phase-1",
@@ -115,11 +115,11 @@
       "id": "task-08",
       "name": "Notification Center",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:42:36Z",
       "description": "# Task 08 \u2014 Notification Center (Bell, List, Unread Badges)\n\n## Objective\nBuild the in-app notification center backed by `app2.notifications`: a bell icon with an unread-count badge, a notifications list screen with read/unread states, mark-as-read interactions, and deep-links to the relevant record. This is the Phase 1 notification mechanism (native APNs deferred).\n\n## Context\nReact 18, mobile-first. Per A6, Phase 1 notifications are entirely in-app (no Apple infrastructure). Data source is `app2.notifications` with event types: `lead_assigned`, `lead_status`, `request_activity`, `approval_needed`; `read_at` tracks unread state, `payload` carries the target (e.g., lead_id or request_id). Users opt in per event via profile prefs (T07). RLS scopes notifications to the owning user. Native push and the `device_tokens` plumbing are built/used later (T24); this task is the in-app center only. There is no server-side workflow generating notifications yet \u2014 seed/insert helpers may be used for testing with sensible defaults.\n\n## Requirements\n1. Build a `NotificationBell` component (placed in the app header/shell) showing an unread-count `Badge` (count of rows where `read_at IS NULL` for the current user). Tapping navigates to `/notifications`.\n2. Build `NotificationsPage` (`/notifications`): reverse-chronological list of the user's notifications, grouped or separated by read/unread; unread rows visually distinct.\n3. Render per-event-type icon, title, and a human-readable message derived from `event_type` + `payload`; show relative timestamp.\n4. Tapping a notification marks it read (`read_at = now()`) and deep-links to the target (lead detail `/leads/:id` or request detail `/requests/:id`) based on `payload`.\n5. Provide \"Mark all as read\" action.\n6. Implement a `useNotifications()` hook: query, unread count, mark-one-read, mark-all-read; subscribe to realtime inserts/updates via Supabase Realtime so the badge updates live (fallback to polling if realtime unavailable).\n7. Respect notification preferences: optionally filter/label by the user's opted-in event types (display all stored rows, but the bell reflects unread regardless).\n8. Provide a small dev/test seeding helper to insert sample notifications (since workflows are deferred).\n9. Enforce RLS \u2014 only the current user's notifications are queried/updated.\n\n## Acceptance Criteria\n- [ ] Bell shows accurate unread count and updates live (realtime or polling).\n- [ ] Notifications list renders newest-first with clear read/unread distinction.\n- [ ] Each notification shows correct icon/title/message per event type + relative time.\n- [ ] Tapping marks read and deep-links to the correct lead/request.\n- [ ] \"Mark all as read\" clears the unread badge.\n- [ ] RLS prevents reading others' notifications.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types), T03 (design system), T05 (shell/routes), T07 (notification prefs \u2014 soft dependency).\n\n## Files Expected\n- `src/features/notifications/NotificationBell.tsx`\n- `src/pages/notifications/NotificationsPage.tsx`\n- `src/features/notifications/useNotifications.ts`\n- `src/lib/queries/notifications.ts`\n- `src/lib/dev/seedNotifications.ts` (test helper)\n"
     },
     {
