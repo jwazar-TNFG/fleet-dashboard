@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:59:38Z",
+  "updated_at": "2026-06-15T23:12:27Z",
   "phases": [
     {
       "id": "phase-1",
@@ -137,11 +137,11 @@
       "id": "task-10",
       "name": "Lead List / Active Leads",
       "phase": "phase-3",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": "2026-06-15T22:59:38Z",
+      "lastActivity": "2026-06-15T23:12:27Z",
       "description": "# Task 10 \u2014 Lead List / Active Leads with LEVEL Filter (Hierarchy-Aware)\n\n## Objective\nBuild the Active Leads list screen with status grouping, search, a bottom-sheet filter, pagination, and the hierarchy-aware LEVEL filter that scopes which leads a user sees based on their position in the email-based org hierarchy. This is the core lead-browsing surface and the target of Home drill-downs.\n\n## Context\nReact 18, mobile-first. Active Leads (Screen 12, `/leads`) drills down from the Intake Dashboard. It groups leads by 5 status groups: **CNA, Locked Down, New Lead, Pending, Rep Request Drop**; each group is paginated with search/filter. Lead data is `public.leads` (cross-schema read). Hierarchy is **email-based** in `public.employees` via `hierarchyTeam/Pod/Office/Region/Directorate`. The **LEVEL filter** (Individual/Team/POD/Office/Region) is cumulative \u2014 selecting a level aggregates all individuals within that scope; the default level is the highest the user's hierarchy position grants (rep\u2192Team, office mgr\u2192Office, regional\u2192Region). Reps see OWN cases only; leaders see cascading hierarchy; admin/intake see broader scopes (ROLE-ACCESS-MATRIX). The bottom-sheet filter has 5 dimensions: Status, Intake Specialist, Office, POD, Team. Deferred workflows \u2014 read-only list with sensible defaults.\n\n## Requirements\n1. Build `LeadsPage` (`/leads`) listing leads grouped by the 5 status groups, each group with its own pagination and a count in the header.\n2. Implement a **hierarchy resolver** (`src/lib/hierarchy.ts`): given the current user's email + `public.employees` row, compute the set of subordinate emails for each LEVEL (Team/POD/Office/Region/Directorate) by traversing the email-based hierarchy fields. Cache results.\n3. Implement the **LEVEL filter** control (uppercase teal \"LEVEL\" label + dropdown: Individual, Team, POD, Office, Region). Default to the user's highest applicable level. Changing level re-scopes the query to the cumulative set of member emails.\n4. Enforce role scope: marketing_rep is locked to Individual (own cases); leaders get levels up to their position; admin/intake get broad scope per matrix.\n5. Search bar filters the current scope by client name / phone (debounced, server-side `ilike` where possible).\n6. Bottom-sheet **Filter** (reuse T03 `BottomSheet`) with 5 dimensions (Status, Intake Specialist, Office, POD, Team), \"Clear all\" / \"Done\" footer; applies to the query.\n7. Lead cards show: status icon, client name (submitter/agent in parentheses), phone, date/time, intake specialist, chevron \u2192 `/leads/:id`.\n8. Server-side pagination (respect Supabase 1,000-row limit; paginate with `range()`); show page controls per group or a unified paginated list, matching the grouped design.\n9. Make this page reusable for the Home drill-downs (Active Leads, Pending to Sign, LD Drops, New Leads Today) via props/filters (status preset, individual vs company-wide scope).\n\n## Acceptance Criteria\n- [ ] Leads render grouped by the 5 status groups with per-group counts and pagination.\n- [ ] LEVEL filter scopes results cumulatively using the email-based hierarchy; default level matches the user's position.\n- [ ] Marketing reps see only their own leads; leaders/admin see correct cascading scope.\n- [ ] Search and the 5-dimension bottom-sheet filter both work and combine with LEVEL.\n- [ ] Lead cards show all listed fields and navigate to lead detail.\n- [ ] Pagination respects the 1,000-row query limit.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types), T03 (design system), T04 (auth/role), T05 (routes), T09 (leads query helpers \u2014 soft).\n\n## Files Expected\n- `src/pages/leads/LeadsPage.tsx`\n- `src/features/leads/list/LeadCard.tsx`, `LevelFilter.tsx`, `LeadsFilterSheet.tsx`, `StatusGroup.tsx`\n- `src/lib/hierarchy.ts`\n- `src/lib/queries/leads.ts` (extend with scoped list + pagination)\n"
     },
     {
