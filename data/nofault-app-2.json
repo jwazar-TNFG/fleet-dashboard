@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:22:29Z",
+  "updated_at": "2026-06-15T22:22:31Z",
   "phases": [
     {
       "id": "phase-1",
@@ -81,12 +81,12 @@
       "id": "task-05",
       "name": "App Shell + Routing",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-03",
         "task-04"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:22:31Z",
       "description": "# Task 05 \u2014 App Shell (Bottom Nav, Hamburger Menu, Routing, Role Gating)\n\n## Objective\nBuild the persistent app shell: a fixed bottom navigation bar, a slide-out hamburger menu (sidebar), the React Router routing skeleton for all screens, and role-based route gating wired to the auth context. This is the navigation backbone every feature plugs into.\n\n## Context\nReact 18 + React Router, mobile-first. The current app has a 3-tab persistent bottom nav: **Home**, **Scheduling**, **Mapper**. Per A5, the **Scheduling Center is REMOVED** \u2014 do NOT build it; the bottom nav is therefore **Home** and **Mapper** (2 tabs) unless a third destination is repurposed (default to 2). The hamburger menu (\u2630, top-left) slides in as a left overlay with header (\"TheNoFaultApp\" + bar-chart icon), menu items (1800 Directory, Request Portal, Atty & AFF Settings, Human Resources, Dashboards), and a user-profile footer (avatar, name, email, overflow \u2192 logout). Menu items vary by role (e.g., Atty & AFF Settings only for admin/intake_supervisor per matrix). Use placeholder route components for screens built in later tasks.\n\n## Requirements\n1. Set up React Router with a layout route wrapping authenticated screens in the shell (bottom nav + hamburger trigger). Auth/PIN screens render outside the shell.\n2. Build `BottomNav` (fixed, safe-area aware): **Home** (`/home`) and **Mapper** (`/mapper`). Do not implement a Scheduling tab. Active-tab styling.\n3. Build `HamburgerMenu` (left slide-out overlay with backdrop, X to close): header, menu items, and user footer.\n   - Menu items + destinations: 1800 Directory (`/directory`), Request Portal (`/requests`), Atty & AFF Settings (`/settings/atty-aff`), Human Resources (`/hr`), Dashboards (`/dashboards`).\n   - Gate **Atty & AFF Settings** to `admin` + `intake_supervisor` (per ROLE-ACCESS-MATRIX) \u2014 hide for other roles.\n   - Footer: avatar, user name, truncated email, overflow menu with **Logout** (calls `signOut`).\n4. Define the full route table (placeholders allowed) for: `/home`, `/mapper`, `/directory`, `/requests`, `/requests/new`, `/requests/:id`, `/hr`, `/dashboards`, `/profile`, `/notifications`, `/leads`, `/leads/:id`, `/leads/:id/edit`, `/settings/atty-aff`, plus drill-down routes (`/leads/pending-to-sign`, `/leads/ld-drops`, `/leads/new-today`, individual variants).\n5. Apply `RequireAuth` + `RequireUnlock` to the shell layout; apply `RequireRole` to role-restricted routes using the matrix.\n6. Provide a 404/not-found route and a basic error boundary.\n7. Ensure the hamburger and bottom nav are accessible (focus trap on open menu, ESC to close, ARIA labels).\n\n## Acceptance Criteria\n- [ ] Bottom nav shows Home + Mapper only; no Scheduling tab anywhere.\n- [ ] Hamburger menu slides in/out, lists the 5 items, and gates Atty & AFF Settings by role.\n- [ ] User footer shows identity and logs out via `signOut`.\n- [ ] All listed routes resolve (placeholders ok) and are wrapped by auth/unlock guards.\n- [ ] Role-restricted routes redirect/hide for unauthorized roles.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T01, T03 (design system), T04 (auth + guards).\n\n## Files Expected\n- `src/routes/AppRouter.tsx`, `src/routes/routes.ts`\n- `src/components/layout/AppShell.tsx`, `BottomNav.tsx`, `HamburgerMenu.tsx`\n- Placeholder page components under `src/pages/` for each route\n- `src/components/ErrorBoundary.tsx`, `src/pages/NotFound.tsx`\n"
     },
     {
