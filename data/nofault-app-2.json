@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:05:33Z",
+  "updated_at": "2026-06-15T22:14:12Z",
   "phases": [
     {
       "id": "phase-1",
@@ -58,11 +58,11 @@
       "id": "task-03",
       "name": "Design System",
       "phase": "phase-1",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-01"
       ],
-      "lastActivity": "2026-06-15T22:05:33Z",
+      "lastActivity": "2026-06-15T22:14:12Z",
       "description": "# Task 03 \u2014 Design System (Theme Tokens + Base Components)\n\n## Objective\nBuild the mobile-first design system: theme tokens (colors, spacing, radii, typography) derived from the current app, plus a reusable base component library (Button, Input, Card, Modal/BottomSheet, Badge) and a core mobile layout primitive. This standardizes the look and feel for every screen.\n\n## Context\nReact 18 + TypeScript + Vite, mobile-first (iPhone target via Capacitor). The current app's design system: primary accent teal/cyan (~#00BCD4), light gray card backgrounds (~#F5F5F5), light red/pink for alerts/negative, light green for positive, rounded corners, bold teal section headers, small uppercase teal labels (e.g., \"SELECT PERIOD\", \"LEVEL\"). Login/PIN screens are dark-themed; the rest of the app is light-themed. Many filters use a bottom-sheet modal pattern. No server-side logic here \u2014 pure presentation layer.\n\n## Requirements\n1. Create `src/theme/tokens.ts` with design tokens: color palette (teal primary + shades, success green, danger/pink, neutral grays, dark surface for auth screens), spacing scale, border radii, font sizes/weights, shadows.\n2. Choose a styling approach (CSS variables + CSS Modules, or a lightweight CSS-in-JS); document the decision. Generate CSS custom properties from tokens for global use.\n3. Add a global stylesheet with CSS reset/normalize, mobile-safe-area insets (`env(safe-area-inset-*)`), base font, and box-sizing.\n4. Build base components under `src/components/ui/`:\n   - `Button` \u2014 variants: `primary` (teal filled), `outline` (white outlined), `danger`, `ghost`; sizes; full-width option; leading icon slot; loading state.\n   - `Input` \u2014 text/number/email; label; helper/error text; live-validation visual states (e.g., green \"valid\" banner for phone check).\n   - `Card` \u2014 bordered, rounded, optional header (bold teal title); tappable variant with chevron.\n   - `Modal` and `BottomSheet` \u2014 `BottomSheet` is the standard filter pattern (slide-up, \"Clear all\" + \"Done\" footer actions).\n   - `Badge` \u2014 count badge (unread notifications), status pill, distance badge (teal).\n   - `PillToggle` / `PillMultiSelect` \u2014 for Yes/No toggles and multi-select pills (e.g., Language).\n   - `SectionHeader` \u2014 bold teal header with optional eye-icon show/hide toggle (collapsible sections).\n5. Add an icon strategy (e.g., `lucide-react` or an `Icon` wrapper) for the icon set used across the app.\n6. Provide a `Screen`/`Page` layout primitive (scrollable content area + safe-area padding + optional sticky header/footer).\n7. Build a simple component gallery route (`/dev/components`, dev-only) demonstrating each component and variant.\n\n## Acceptance Criteria\n- [ ] Theme tokens defined and exposed as CSS variables.\n- [ ] All listed base components implemented and typed, with variants.\n- [ ] BottomSheet implements the \"Clear all\" / \"Done\" filter footer pattern.\n- [ ] SectionHeader supports collapsible show/hide.\n- [ ] Component gallery renders all components without errors on a mobile viewport.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T01 (scaffold).\n\n## Files Expected\n- `src/theme/tokens.ts`, `src/theme/global.css`\n- `src/components/ui/*` (Button, Input, Card, Modal, BottomSheet, Badge, PillToggle, PillMultiSelect, SectionHeader, Icon)\n- `src/components/layout/Screen.tsx`\n- `src/pages/dev/ComponentGallery.tsx` (dev-only route)\n"
     },
     {
