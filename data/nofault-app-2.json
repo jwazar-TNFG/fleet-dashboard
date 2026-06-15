@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:01:34Z",
+  "updated_at": "2026-06-15T22:01:35Z",
   "phases": [
     {
       "id": "phase-1",
@@ -47,11 +47,11 @@
       "id": "task-02",
       "name": "Supabase Client + Types",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:01:35Z",
       "description": "# Task 02 \u2014 Supabase Client + `app2` Schema Typings & Env Config\n\n## Objective\nWire up the Supabase JS v2 client targeting the `app2` schema, set up environment configuration, and generate/author TypeScript types for the `app2` tables plus the cross-schema reads. This becomes the single data-access foundation for all feature tasks.\n\n## Context\nBackend is Supabase (PostgreSQL). The app uses a dedicated `app2` schema (tables: `users`, `requests`, `request_comments`, `notifications`, `device_tokens`, `attorneys`, `tx_locations`, `insurance`) and performs cross-schema reads from `public.leads` and `public.employees`. Auth is Supabase magic-link + PIN (T04). The Supabase JS v2 client must be configured to default its `db.schema` to `app2`, with explicit `.schema('public')` calls for cross-schema reads. Server-side workflows are deferred \u2014 this is the read/write data layer only.\n\n## Requirements\n1. Install `@supabase/supabase-js` (v2).\n2. Create `src/lib/supabase.ts` exporting a singleton client built from `import.meta.env.VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, configured with `{ db: { schema: 'app2' }, auth: { persistSession: true, autoRefreshToken: true } }`.\n3. Provide a helper (e.g., `publicSchema()`) returning `supabase.schema('public')` for `public.leads` / `public.employees` reads.\n4. Add `.env.example` documenting required vars (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`); never commit real secrets.\n5. Author `src/types/database.ts` with TypeScript interfaces/types for the `app2` tables per SCHEMA.md:\n   - `users` (auth_uid, email, employee_email ref, role enum, pin_hash, notification_prefs JSONB, special_view).\n   - `requests` (id, type, status enum [11 values], title, description, submitter, office, approval flag, enhanced fields `case_after_jun2025`/`case_prior_jun2025`, timestamps).\n   - `request_comments` (id, request_id, parent_id self-ref, author, body, created_at).\n   - `notifications` (id, user_id, event_type enum [lead_assigned, lead_status, request_activity, approval_needed], payload, read_at, created_at).\n   - `device_tokens` (id, user_id, token, platform, created_at).\n   - `attorneys`, `tx_locations` (with coordinates geometry as lat/lng), `insurance` per SCHEMA.md key columns.\n6. Define a `Role` union type: `'marketing_rep' | 'marketing_leader' | 'intake_specialist' | 'intake_supervisor' | 'admin'`.\n7. Add lightweight typed query helpers in `src/lib/queries/` are optional here but export the table type names for reuse.\n8. Document in a short `src/lib/README.md` how to regenerate types (`supabase gen types typescript`) when schema changes.\n\n## Acceptance Criteria\n- [ ] `supabase.ts` exports a configured singleton defaulting to `app2` schema.\n- [ ] `publicSchema()` helper exists for cross-schema reads.\n- [ ] `.env.example` lists required vars; no real keys committed.\n- [ ] `database.ts` types compile and cover all 8 `app2` tables + the `Role` union.\n- [ ] `npm run typecheck` passes.\n\n## Dependencies\n- T01 (scaffold, env, folder structure).\n\n## Files Expected\n- `src/lib/supabase.ts`\n- `src/types/database.ts`\n- `.env.example`\n- `src/lib/README.md`\n"
     },
     {
