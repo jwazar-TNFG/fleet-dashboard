@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T21:57:11Z",
+  "updated_at": "2026-06-15T22:01:34Z",
   "phases": [
     {
       "id": "phase-1",
@@ -38,9 +38,9 @@
       "id": "task-01",
       "name": "Project Scaffold",
       "phase": "phase-1",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
-      "lastActivity": "2026-06-15T21:57:11Z",
+      "lastActivity": "2026-06-15T22:01:34Z",
       "description": "# Task 01 \u2014 Project Scaffold (Vite + React + TypeScript + Capacitor)\n\n## Objective\nStand up the foundational project skeleton for No Fault App 2.0: a Vite + React 18 + TypeScript web app, configured for Capacitor (iOS) wrapping later. Establish the folder structure, linting/formatting, and base tooling so every subsequent task builds on a consistent foundation.\n\n## Context\nThis is a mobile-first internal employee app for The No Fault Group, rebuilding an existing app. Stack is React 18 + TypeScript + Vite (plain Vite \u2014 **NOT electron-vite**), with Capacitor for iOS packaging in a later task (T24). The data layer is Supabase (JS client v2, added in T02). Charts use Recharts (T18+). Server-side workflows/automation are DEFERRED \u2014 this phase builds UI + data layer with sensible defaults. This task only scaffolds; no feature code.\n\n## Requirements\n1. Initialize a Vite project using the `react-ts` template (React 18, TypeScript).\n2. Install and configure Capacitor core + CLI (`@capacitor/core`, `@capacitor/cli`) and create `capacitor.config.ts` with `appId` (e.g., `com.thenofaultgroup.app2`), `appName` (\"No Fault App\"), and `webDir: 'dist'`. Do NOT add the iOS platform yet (deferred to T24).\n3. Configure ESLint (TypeScript + React hooks rules) and Prettier; add `lint` and `format` npm scripts. Ensure they do not conflict.\n4. Establish the folder structure under `src/`:\n   - `src/components/` (shared UI), `src/features/` (feature modules), `src/pages/` (route screens), `src/lib/` (supabase client, utils), `src/hooks/`, `src/types/`, `src/theme/`, `src/assets/`, `src/routes/`.\n5. Add a root `.gitignore` that **includes `node_modules/`**, `dist/`, `.env`, `.env.*`, `ios/`, `*.log`, and OS cruft (`.DS_Store`).\n6. Add `npm` scripts: `dev`, `build`, `preview`, `lint`, `format`, `typecheck` (`tsc --noEmit`).\n7. Configure `tsconfig.json` with strict mode on and a `@/` path alias to `src/`; mirror the alias in `vite.config.ts`.\n8. Set viewport meta for mobile (`width=device-width, initial-scale=1, viewport-fit=cover`) in `index.html`; title \"No Fault App\".\n9. Provide a minimal placeholder `App.tsx` rendering an app title, to prove the toolchain builds.\n\n## Acceptance Criteria\n- [ ] `npm install` succeeds; `npm run dev` serves the placeholder app.\n- [ ] `npm run build` produces a `dist/` bundle with no errors.\n- [ ] `npm run typecheck` and `npm run lint` pass clean.\n- [ ] `capacitor.config.ts` exists with correct appId/appName/webDir; iOS platform NOT added.\n- [ ] `.gitignore` includes `node_modules/`.\n- [ ] `@/` alias resolves in both TS and Vite.\n- [ ] Folder structure created as specified.\n\n## Dependencies\nNone (first task).\n\n## Files Expected\n- `package.json`, `package-lock.json`\n- `vite.config.ts`, `tsconfig.json`, `tsconfig.node.json`\n- `.eslintrc.cjs` (or `eslint.config.js`), `.prettierrc`\n- `.gitignore`\n- `capacitor.config.ts`\n- `index.html`\n- `src/App.tsx`, `src/main.tsx`, and the empty feature/folder structure\n"
     },
     {
