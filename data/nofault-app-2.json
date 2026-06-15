@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:14:12Z",
+  "updated_at": "2026-06-15T22:14:14Z",
   "phases": [
     {
       "id": "phase-1",
@@ -69,12 +69,12 @@
       "id": "task-04",
       "name": "Auth (Magic Link + PIN)",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-02",
         "task-03"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:14:14Z",
       "description": "# Task 04 \u2014 Auth (Magic Link + PIN Lock + Session + Route Guards)\n\n## Objective\nImplement authentication: Supabase magic-link email login, a 4-digit PIN setup/unlock screen (banking-app pattern), durable session persistence, and an auth context exposing the current user, role, and guard helpers. This gates the entire app.\n\n## Context\nAuth = Supabase Auth magic link + local PIN lock. User enters company email \u2192 Supabase sends magic link \u2192 on first successful auth the user sets a 4-digit PIN stored locally (hashed); subsequent app opens require the PIN while the session token persists (~30 days). Login is allowlist-controlled: the email must exist in `public.employees` AND `app2.users`. `app2.users` maps email \u2192 role. Login/PIN screens are dark-themed (305-NO-FAULT logo + \"YOUR ACCIDENT TEAM\" tagline). Role drives later route gating and feature visibility (see ROLE-ACCESS-MATRIX). No server-side workflow here; PIN is a local lock, not a server credential.\n\n## Requirements\n1. Build `LoginScreen` (`/login`, dark theme): logo, tagline, single email input, \"LOG IN\" button \u2192 call `supabase.auth.signInWithOtp({ email, options: { emailRedirectTo } })`. Handle deep-link/redirect return to complete the session.\n2. On auth callback, verify the email exists in `app2.users` (allowlist). If not allowlisted, sign out and show a clear \"not authorized\" message.\n3. Build `PinSetupScreen` and `PinUnlockScreen` (dark theme): 4-digit numeric entry. On first login (no `pin_hash` in `app2.users`), prompt setup (enter + confirm), hash client-side, store hash in `app2.users.pin_hash`. On subsequent opens with a valid session, require PIN unlock against the stored hash.\n4. Implement an `AuthProvider` / `useAuth()` context exposing: `session`, `user` (joined `app2.users` row incl. `role`, `special_view`), `isLocked`, `signIn`, `signOut`, `unlockWithPin`, `setPin`.\n5. Persist session via Supabase's storage; persist a local \"unlocked\" flag with sensible expiry so PIN is required after app cold-start/timeout but not on every navigation.\n6. Implement route guards: `RequireAuth` (redirect to `/login` if no session), `RequireUnlock` (redirect to PIN screen if locked), and a `RequireRole(roles[])` helper (used by later tasks).\n7. Provide graceful loading/splash state while session is resolving.\n8. Store the PIN hash using a real hash (e.g., SHA-256 with a per-install salt) \u2014 never store the raw PIN.\n\n## Acceptance Criteria\n- [ ] Email login sends a magic link and completes a session on return.\n- [ ] Non-allowlisted emails are rejected with a clear message and signed out.\n- [ ] First login forces PIN setup; the hash is written to `app2.users`.\n- [ ] Subsequent cold opens require PIN unlock; raw PIN is never persisted.\n- [ ] `useAuth()` exposes session, user, role, lock state, and the listed actions.\n- [ ] `RequireAuth`, `RequireUnlock`, and `RequireRole` guards work and redirect correctly.\n- [ ] Session persists across reloads.\n\n## Dependencies\n- T01 (scaffold), T02 (supabase client + types), T03 (design system).\n\n## Files Expected\n- `src/features/auth/AuthProvider.tsx`, `src/features/auth/useAuth.ts`\n- `src/pages/auth/LoginScreen.tsx`, `PinSetupScreen.tsx`, `PinUnlockScreen.tsx`\n- `src/routes/guards.tsx` (RequireAuth, RequireUnlock, RequireRole)\n- `src/lib/pin.ts` (hash/verify helpers)\n"
     },
     {
