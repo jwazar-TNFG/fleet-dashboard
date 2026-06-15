@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T22:28:11Z",
+  "updated_at": "2026-06-15T22:28:13Z",
   "phases": [
     {
       "id": "phase-1",
@@ -93,11 +93,11 @@
       "id": "task-06",
       "name": "Home Screen",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-15T22:28:13Z",
       "description": "# Task 06 \u2014 Home Screen Scaffold (Role-Aware Sections)\n\n## Objective\nBuild the Home screen scaffold with role-aware section composition: hero banner, welcome text, call-center contact, the primary action button stack, and placeholders/containers for the Intake Dashboard card, chart sections, and Individual Performance. Sections render conditionally based on role so later tasks can fill them in.\n\n## Context\nReact 18, mobile-first, light theme. Home (`/home`) is the post-login landing page; content varies by role (ROLE-ACCESS-MATRIX). It is a single-column vertical scroll with sticky bottom nav. Sections (from SPEC \u00a73 Screen 03): A Hero banner, B Welcome text, C Call Center contact (786-708-2726, tap-to-call), D Primary action buttons, E Intake Dashboard card (org-wide counts; leader/admin-leaning), F Collapsible chart sections (Marketing/Intake/Atty Charts + Appointments & No Shows), G Individual Performance. This task builds the layout and the simple sections; the data-heavy sections (E, F, G) are stubbed for T08/T18\u2013T22 and gated by role. Deferred workflows \u2014 use sensible defaults.\n\n## Requirements\n1. Build `HomePage` (`/home`) as a scrollable composition of section components.\n2. **Section A \u2014 HeroBanner:** full-width decorative branding image/gradient (dark abstract, teal glowing edges).\n3. **Section B \u2014 WelcomeText:** the intro message directing users to the hamburger menu and Request Portal.\n4. **Section C \u2014 CallCenterContact:** red phone icon + \"Dial: 1800 Call Center\" + number `786-708-2726` + teal tap-to-call button using a `tel:` link.\n5. **Section D \u2014 ActionButtons:** vertical stack. Include **+ New Lead** (teal filled primary \u2192 `/leads/new` route placeholder), Schedule Call Back, My Profile (`/profile`), Request (`/requests`), Dial (`tel:7867082726`). Lead Sheets / Lead Sheets v2 / Regional Rosters / Performance Roster Daily buttons render and route to placeholders (wired in T22). Use the matrix to show all to all by default unless a button is role-specific.\n6. **Section E \u2014 IntakeDashboardCard (stub):** render a bordered card titled \"Intake Dashboard\" with placeholder rows (Active Leads, Pending to Sign, Individual Pending to Sign, Lock Down Drops, Individual LD Drops, New Leads Today) each with an arrow; wire counts in later tasks. Gate org-wide rows to leader/admin/intake roles.\n7. **Section F \u2014 chart section containers (stubs):** collapsible `SectionHeader`s for Marketing Charts, Intake Charts, Atty Charts, Appointments & No Shows with correct default expand/collapse states (Marketing + Appointments expanded; Intake + Atty collapsed). Content filled in T19\u2013T22.\n8. **Section G \u2014 IndividualPerformance (stub):** container for the two card groups (always-visible + period-filtered); filled in a later task.\n9. Compose sections per role: marketing_rep sees own-scoped sections; leaders/admin/intake see org-wide sections. Centralize the role\u2192section visibility logic.\n\n## Acceptance Criteria\n- [ ] Home renders all sections in order (A\u2013G) on a mobile viewport.\n- [ ] Tap-to-call works (Section C + Dial button) via `tel:` links.\n- [ ] Action buttons route correctly (or to placeholders) with + New Lead styled as primary.\n- [ ] Stub sections (E, F, G) show correct structure and default collapse states.\n- [ ] Section visibility differs correctly between a rep and a leader/admin role.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T03 (design system), T04 (auth/role), T05 (shell/routes).\n\n## Files Expected\n- `src/pages/home/HomePage.tsx`\n- `src/features/home/sections/HeroBanner.tsx`, `WelcomeText.tsx`, `CallCenterContact.tsx`, `ActionButtons.tsx`, `IntakeDashboardCard.tsx`, `ChartSections.tsx`, `IndividualPerformance.tsx`\n- `src/features/home/homeVisibility.ts` (role\u2192section logic)\n"
     },
     {
