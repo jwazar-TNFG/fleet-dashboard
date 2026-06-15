@@ -3,6 +3,12 @@
     "slug": "forgotten-depths-ii",
     "name": "Forgotten Depths II",
     "repo": "jwazar-TNFG/forgotten-depths-ii",
-    "description": "Retro dungeon crawler — A/B comparison build via automated pipeline"
+    "description": "Retro dungeon crawler \u2014 A/B comparison build via automated pipeline"
+  },
+  {
+    "slug": "nofault-app-2",
+    "name": "No Fault App 2.0",
+    "repo": "jwazar-TNFG/nofault-app-2",
+    "description": "React + Capacitor + Supabase \u2014 internal employee app rebuild (iPhone target)"
   }
 ]
