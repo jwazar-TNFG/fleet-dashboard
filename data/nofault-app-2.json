@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T00:59:03Z",
+  "updated_at": "2026-06-16T01:06:51Z",
   "phases": [
     {
       "id": "phase-1",
@@ -258,11 +258,11 @@
       "id": "task-21",
       "name": "Attorney Charts",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-18"
       ],
-      "lastActivity": "2026-06-16T00:59:03Z",
+      "lastActivity": "2026-06-16T01:06:51Z",
       "description": "# Task 21 \u2014 Attorney Charts (9 Charts, by Attorney Firm)\n\n## Objective\nBuild the Attorney Charts section: performance metrics aggregated **by attorney firm** (with location/state codes) rendered as donut + table charts, plus the ATTORNEY / NEW LEAD TODAY filter buttons. This is the attorney-performance dashboard on Home (Section F).\n\n## Context\nReact 18, mobile-first. Atty Charts (Home Section F) reuse the T18 chart infrastructure and the donut+table format, but aggregate **by attorney firm** (external law firms), NOT by employee. Firms appear as separate entries per state/office with parenthetical codes (states like FL/NJ/NY, cities like TMP/ORL/JAC, designations like NS/WC/RO). Attorney reference data is `app2.attorneys`; counts come from `public.leads` joined to attorney. **~9 charts** across periods: New Leads MTD, Locked Down (Today/MTD), Came In Today, Signed (Today/MTD), Dropped Today, Lock Down Dropped Today (per SPEC list). Two teal **filter buttons** at the top: ATTORNEY and NEW LEAD TODAY. There is **no LEVEL filter** for Atty Charts. Lists can be long (40+ firms) and must scroll. Section defaults to collapsed. Data via T18 RPCs, `idot` basis, mandatory exclusions applied. Deferred workflows \u2014 read-only.\n\n## Requirements\n1. Build `AttyCharts` section (Home Section F), default collapsed, using `ChartSection`.\n2. Implement the ~9 charts as `MetricChart`s with entity = attorney firm (display name = firm + parenthetical code from `app2.attorneys`):\n   - New Leads MTD, Locked Down Today, Locked Down MTD, Came In Today, Signed Today, Signed MTD, Dropped Today, Lock Down Dropped Today (align exactly to the SPEC list; de-duplicate any repeated titles).\n3. Wire each chart to a T18 RPC counting leads grouped by attorney (firm + state/office variant) for the metric + period; apply mandatory exclusions and `idot` basis. Handle the \"No ATTY\" / null-attorney edge case as its own row.\n4. **Filter buttons:** ATTORNEY (filter/sort by firm) and NEW LEAD TODAY (filter to today's new leads). Implement both as teal toggle buttons affecting the displayed charts/data; document any behavior assumptions for the NEW LEAD TODAY button.\n5. No LEVEL filter.\n6. Tables must scroll smoothly for 40+ firm rows; donuts cap visible segments sensibly (group long tail) while the table shows all.\n7. Loading/empty/error states.\n\n## Acceptance Criteria\n- [ ] Section renders the attorney charts by firm (with parenthetical codes) per the SPEC list, de-duplicated.\n- [ ] Each chart aggregates correctly by attorney firm via RPC with `idot` basis and exclusions; \"No ATTY\" edge case handled.\n- [ ] ATTORNEY and NEW LEAD TODAY filter buttons function and affect the data shown.\n- [ ] No LEVEL filter is present.\n- [ ] Long firm lists scroll; donut long-tail grouped while table is complete.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T18 (chart infra + RPC contract), T06 (Home Section F container), T02 (attorneys table), T04 (auth/role).\n\n## Files Expected\n- `src/features/charts/atty/AttyCharts.tsx`\n- `src/features/charts/atty/attyMetrics.ts`, `AttyFilterButtons.tsx`\n- RPC additions documented in `src/lib/charts/RPC.md`\n"
     },
     {
