@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T01:49:39Z",
+  "updated_at": "2026-06-16T01:49:40Z",
   "phases": [
     {
       "id": "phase-1",
@@ -304,12 +304,12 @@
       "id": "task-25",
       "name": "Polish + Bug Fixes + QA",
       "phase": "phase-7",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-23",
         "task-24"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-16T01:49:40Z",
       "description": "# Task 25 \u2014 Polish (Fix Carried-Over Bugs B1\u2013B14, UX Improvements, QA Pass)\n\n## Objective\nFinal polish pass: fix the catalogued carried-over bugs (B1\u2013B14) from the current app, apply targeted UX improvements, and run a full QA sweep across all screens/roles. Ensure the app is consistent, accessible, and release-candidate quality.\n\n## Context\nReact 18 + Capacitor app, mobile-first. The current app has a set of documented bugs (B1\u2013B14) surfaced during the spec process; several have been flagged for fixing in their owning tasks, but this task is the catch-all to verify and close every one, plus general polish. Known bugs from SPEC: **B1** duplicate \"Locked Down Today\" widget on Dashboards (Screen 09); **B3** \"Appointments & No SHow\" capitalization typo; **B4** \"intake Specialist\" lowercase typo in filter; **B6** \"Locked Down Droped\" \u2192 \"Dropped\"; **B12** \"Reimburseement\" double-e typo (HR Screen 08); **B13** Submit Request popup stays open after submit (no auto-nav); plus the Profile bugs (inverted Compensation eye icon, wrong DOB/Start Date, \"Logs(v2)\" formatting), Intake Panel \"Questionnare\" typo and boolean \"false\"/\"true\" display, \"Termed\" duplicated directory filter, and data-quality/validation issues (E5). B2/B5/B7\u2013B11/B14 are remaining catalogued items to confirm against the source bug list and resolve. Deferred workflows remain out of scope. This task does NOT add new features \u2014 it hardens what exists.\n\n## Requirements\n1. Compile the authoritative B1\u2013B14 list (cross-reference SPEC + JON-REVIEW notes); for each, confirm whether already fixed in its owning task and verify, or fix here. Track status in a checklist file.\n2. **Confirmed fixes to verify/apply:**\n   - B1: ensure the Dashboards \"Locked Down Today\" widget renders once (no duplicate).\n   - B3: \"Appointments & No Show\" (fix \"SHow\").\n   - B4: \"Intake Specialist\" (capital I) in all filter modals.\n   - B6: \"Locked Down Dropped\" (fix \"Droped\").\n   - B12: \"Submit Boost Reimbursement\" (fix double-e) on HR hub.\n   - B13: Submit Request auto-navigates on success (no stuck popup).\n   - Profile: consistent eye-icon direction on all collapsible sections; correct DOB/Start Date; \"Logs (v2)\" label.\n   - Intake Panel: \"Questionnaire\" spelling; booleans render Yes/No (never false/true).\n   - Directory: \"Termed\" filter appears once.\n3. Resolve remaining B-numbers (B2, B5, B7\u2013B11, B14) per the source list; if any cannot be reproduced, document as \"not reproduced / N/A\" with rationale.\n4. **UX improvements:** consistent loading skeletons and empty states across lists/charts; consistent error toasts; keyboard/safe-area behavior; tap-target sizing; consistent back-navigation; respect reduced-motion.\n5. **Accessibility pass:** ARIA labels on icon buttons, focus management in modals/bottom-sheets, color-contrast check on teal/gray/red states.\n6. **Cross-role QA sweep:** walk each primary screen as marketing_rep, marketing_leader, intake_specialist, intake_supervisor, admin; verify role gating, scoping, and that no unauthorized data leaks. Record results in a QA checklist.\n7. Run `npm run lint`, `npm run typecheck`, and the production `npm run build`; resolve all errors/warnings introduced.\n\n## Acceptance Criteria\n- [ ] All B1\u2013B14 items are either fixed-and-verified or documented as N/A with rationale, in a tracked checklist.\n- [ ] The explicitly listed typos/display bugs (B1, B3, B4, B6, B12, B13, Profile, Intake Panel, Directory) are resolved.\n- [ ] Consistent loading/empty/error states and accessibility improvements applied app-wide.\n- [ ] Cross-role QA sweep completed for all 5 roles with documented results and no data-leak findings.\n- [ ] `npm run lint`, `npm run typecheck`, and `npm run build` all pass clean.\n\n## Dependencies\n- All prior tasks (T01\u2013T24) \u2014 this is the final integration/polish pass.\n\n## Files Expected\n- `build/QA-CHECKLIST.md`, `build/BUGS-B1-B14.md` (tracking)\n- Targeted edits across existing feature files for each bug/UX/a11y fix (no new feature modules)\n"
     }
   ]
