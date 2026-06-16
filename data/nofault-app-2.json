@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-15T23:56:41Z",
+  "updated_at": "2026-06-16T00:09:46Z",
   "phases": [
     {
       "id": "phase-1",
@@ -192,11 +192,11 @@
       "id": "task-15",
       "name": "Request Portal List",
       "phase": "phase-5",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": "2026-06-15T23:56:41Z",
+      "lastActivity": "2026-06-16T00:09:46Z",
       "description": "# Task 15 \u2014 Request Portal List (Filters + Status Grouping + RBAC)\n\n## Objective\nBuild the Request Portal list: requests grouped by status with live counts, a 4-dimension bottom-sheet filter, search, pagination within large sections, and role-based visibility (RBAC) that scopes which requests each user sees. This is the entry surface for the internal request system.\n\n## Context\nReact 18, mobile-first. Request Portal (Screen 07, `/requests`) is available to all roles with RBAC controlling visibility. Data: `app2.requests`. There are **11 statuses** (Completed, Closed, Denied, Not Started, Completed - Confirmed, Needs Approval, In Progress, In Review, TBD - Needs more info, Technical Review, TBD - Nubia) and **21 request types** across departments (Audit, Finance \u00d74, HR \u00d77, Intake \u00d72, IT \u00d74, Retention). UI: header + \"+ Submit Request\" button (\u2192 T16), requests grouped by status with counts and pagination in large sections; entry row = submitter avatar + name/timestamp (teal) + request type (bold) + description preview + chevron \u2192 detail (T17). **Filter bottom-sheet** has 4 dimensions: Request Type (21), Status (11), Office (15: ATL, CFL, CFL-ERU, CHI, JCK, NYC, SFL, SFL-ALR, SFL-GAB, SFL-KAT, SFL-KPS, SFL-TPA, TMP, TXS, xSTAFF), Approval (toggle). **RBAC:** Admin sees all departments; each department sees its own requests; marketing reps see only their own submissions; Finance visible to finance + internal marketing (e.g., Victor Gosa). Deferred workflows \u2014 no automated routing/approval emails.\n\n## Requirements\n1. Build `RequestPortalPage` (`/requests`) reading `app2.requests` with server-side pagination (respect 1,000-row limit, `range()`).\n2. Render a top \"+ Submit Request\" button routing to `/requests/new` (T16) and an informational banner.\n3. Group requests by status (11 statuses) with section headers + live counts; paginate large sections (e.g., Completed, Not Started) within their section.\n4. Entry row: submitter avatar, submitter name + relative timestamp (teal), request type (bold), description preview (truncated), chevron \u2192 `/requests/:id`.\n5. **Filter bottom-sheet** (reuse T03): Request Type (expandable 21-option checkbox list grouped by department), Status (11), Office (15-option list), Approval (toggle); \"Clear all\" / \"Done\" footer.\n6. Search bar (debounced) over title/description.\n7. **RBAC scoping** in the query layer:\n   - admin \u2192 all requests.\n   - department members \u2192 their department's requests.\n   - marketing_rep \u2192 only own submissions (`submitter = current user`).\n   - Finance department requests \u2192 visible to finance + designated internal marketing users (allowlist incl. Victor Gosa).\n   Centralize this in a `requestVisibility` helper keyed off role + department + email.\n8. Define shared enums/constants for the 11 statuses, 21 types (by department), and 15 offices for reuse by T16/T17.\n\n## Acceptance Criteria\n- [ ] Requests load grouped by the 11 statuses with counts and in-section pagination.\n- [ ] Entry rows show avatar, name+timestamp, type, preview, chevron \u2192 detail.\n- [ ] 4-dimension filter bottom-sheet works and combines with search.\n- [ ] RBAC correctly scopes visibility (admin all; dept own; rep own; finance + internal-marketing rule).\n- [ ] Shared status/type/office constants exported for reuse.\n- [ ] Pagination respects the 1,000-row limit.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types \u2014 requests), T03 (design system), T04 (auth/role), T05 (routes).\n\n## Files Expected\n- `src/pages/requests/RequestPortalPage.tsx`\n- `src/features/requests/*` (RequestRow, RequestFilterSheet, StatusSection)\n- `src/features/requests/visibility.ts`\n- `src/lib/constants/requests.ts` (statuses, types-by-dept, offices)\n- `src/lib/queries/requests.ts`\n"
     },
     {
