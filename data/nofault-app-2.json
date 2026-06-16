@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T01:21:27Z",
+  "updated_at": "2026-06-16T01:37:54Z",
   "phases": [
     {
       "id": "phase-1",
@@ -280,12 +280,12 @@
       "id": "task-23",
       "name": "Atty & AFF Settings",
       "phase": "phase-7",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-12",
         "task-14"
       ],
-      "lastActivity": "2026-06-16T01:21:27Z",
+      "lastActivity": "2026-06-16T01:37:54Z",
       "description": "# Task 23 \u2014 Atty & AFF Settings (Manage Attorneys & Treatment Locations)\n\n## Objective\nBuild the Atty & AFF Settings screen: two-tab management UI for attorney firms (`app2.attorneys`) and treatment locations (`app2.tx_locations`), each with searchable/paginated list, detail view, and edit form. This is the admin/senior-intake configuration surface for the reference data that powers the Intake Panel and Mapper.\n\n## Context\nReact 18, mobile-first. Atty & AFF Settings (Screen 24, `/settings/atty-aff`) is gated to **admin + intake_supervisor** (IT Team + Senior Intake per ROLE-ACCESS-MATRIX). Two tabs: **Attorneys** (~33 pages) and **Locations** (~12 pages). **Attorneys:** list (firm name, status, emails, chevron) \u2192 detail (firm, ACTIVE/INACTIVE, Emails distribution list, States licensed) \u2192 edit (Email Targets required comma-separated, States required 50-state multi-select pills, Status toggle). **Locations:** list (AFF + COR, active + inactive) \u2192 detail (name, status, Type AFF/COR, Address, State, Int. EmailTargets, Ext. EmailTargets) \u2192 edit (Int./Ext. Email Targets, Address, State single-select, Status toggle; **Type is read-only**). Edits write to `app2.attorneys` / `app2.tx_locations` (RLS: writes require admin/intake_supervisor). Deferred workflows \u2014 no email automation; these targets are stored config used by later LD-email automation.\n\n## Requirements\n1. Build `AttyAffSettingsPage` (`/settings/atty-aff`), gated to admin + intake_supervisor (reuse `RequireRole`); two-tab layout (Attorneys | Locations).\n2. **Attorneys tab:**\n   - List: searchable, paginated (respect 1,000-row limit) from `app2.attorneys`; row shows firm name, status badge, emails, chevron.\n   - Detail (`/settings/atty-aff/attorneys/:id`): firm, ACTIVE/INACTIVE, Emails (distribution list), States licensed; Edit button.\n   - Edit: Email Targets (required, comma-separated, validated emails), States (required, 50-state multi-select pills), Status toggle (Active/Inactive); Cancel/Submit \u2192 update `app2.attorneys`.\n3. **Locations tab:**\n   - List: searchable, paginated from `app2.tx_locations` (AFF + COR, active + inactive); row shows name, status, type.\n   - Detail (`/settings/atty-aff/locations/:id`): name, status, Type (AFF/COR), Address, State, Int. EmailTargets, Ext. EmailTargets; Edit button.\n   - Edit: Int. Email Targets, Ext. Email Targets, Address, State (single-select), Status toggle; **Type read-only**; Cancel/Submit \u2192 update `app2.tx_locations`.\n4. Validate email-target lists (comma-separated, well-formed); require States (attorneys) and the required location fields.\n5. Optimistic update with rollback on error; success/error toasts.\n6. Reuse the 50-state constant from T09; reuse multi-select pills + status toggle from the design system.\n7. Enforce RLS \u2014 only authorized roles can write; others should not reach the page.\n\n## Acceptance Criteria\n- [ ] Page is gated to admin + intake_supervisor; both tabs render.\n- [ ] Attorneys: list searches/paginates; detail shows all fields; edit validates Email Targets + States and persists to `app2.attorneys`.\n- [ ] Locations: list searches/paginates; detail shows all fields; edit persists to `app2.tx_locations` with Type read-only.\n- [ ] Email-target validation and required-field validation work.\n- [ ] Edits reflect immediately (optimistic) with rollback on error.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (attorneys/tx_locations types), T03 (design system), T04 (auth/role guards), T05 (routes), T09 (50-state constant), T14 (tx_locations queries \u2014 soft).\n\n## Files Expected\n- `src/pages/settings/AttyAffSettingsPage.tsx`\n- `src/features/settings/attorneys/*` (AttorneyList, AttorneyDetail, AttorneyEdit)\n- `src/features/settings/locations/*` (LocationList, LocationDetail, LocationEdit)\n- `src/lib/queries/attorneys.ts`, extend `src/lib/queries/txLocations.ts`\n"
     },
     {
