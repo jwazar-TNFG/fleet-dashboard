@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T01:37:54Z",
+  "updated_at": "2026-06-16T01:37:55Z",
   "phases": [
     {
       "id": "phase-1",
@@ -292,12 +292,12 @@
       "id": "task-24",
       "name": "Capacitor iOS Integration",
       "phase": "phase-7",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05",
         "task-08"
       ],
-      "lastActivity": null,
+      "lastActivity": "2026-06-16T01:37:55Z",
       "description": "# Task 24 \u2014 Capacitor iOS Integration + Simulator Build + In-App Notification Wiring\n\n## Objective\nIntegrate Capacitor for iOS: add the iOS platform, configure native plugins (status bar, splash, keyboard, browser, haptics), wire the in-app notification center to native affordances, and build/run on the iOS Simulator. Lay the `device_tokens` plumbing for future APNs without enabling live push.\n\n## Context\nReact 18 + Vite app wrapped with Capacitor for iPhone (A1). Per A6, **native APNs push is DEFERRED** (needs an Apple Developer account) \u2014 but the web app, iOS Simulator, and in-app notifications all work without it. This task adds the iOS platform (previously deferred from T01), syncs the web build into the native shell, configures essential native plugins, ensures the in-app notification center (T08) behaves well natively (badge, deep-links), and builds the `device_tokens` registration plumbing (table from SCHEMA.md) as a no-op/stub ready for Phase 2 \u2014 **no live push**. Mandatory: keep `node_modules/` and `ios/` ignored in git (T01).\n\n## Requirements\n1. Add the iOS platform: `npx cap add ios`; ensure `npm run build` + `npx cap sync ios` produce a runnable project. Add npm scripts (`cap:sync`, `ios:open`).\n2. Install/configure core Capacitor plugins as needed: `@capacitor/status-bar`, `@capacitor/splash-screen`, `@capacitor/keyboard`, `@capacitor/app` (deep links/back), `@capacitor/browser` (open external Looker/Drive/Paylocity links from Profile/HR), `@capacitor/haptics`. Initialize them at app bootstrap.\n3. Configure safe-area handling, status bar style (match theme), and splash screen with the brand.\n4. Ensure `tel:` / `sms:` / `mailto:` links from Home, Lead Detail, etc. work in the native shell.\n5. **In-app notification wiring:** ensure the T08 notification center deep-links work under Capacitor routing; optionally set the app icon badge to the unread count via a supported plugin (gracefully degrade if unavailable).\n6. **device_tokens plumbing (stubbed):** implement a `registerDevice()` service that, when push is later enabled, would register an APNs token into `app2.device_tokens` (user_id, token, platform='ios'). For now it is a guarded no-op/stub (feature-flagged off) \u2014 build the data path but do not request push permission or send pushes.\n7. Document the build/run steps in `ios/README.md` (or `docs/ios-build.md`): build web \u2192 cap sync \u2192 open in Xcode \u2192 run on Simulator; note the deferred APNs/Apple Developer requirement.\n8. Verify the app boots and is navigable on the iOS Simulator.\n\n## Acceptance Criteria\n- [ ] iOS platform added; `npm run build && npx cap sync ios` succeeds; project opens and runs on the Simulator.\n- [ ] Core plugins (status bar, splash, keyboard, app, browser, haptics) configured and initialized.\n- [ ] Safe-area, status bar, and splash render correctly; external links open via Browser plugin.\n- [ ] `tel:`/`sms:`/`mailto:` work in the native shell.\n- [ ] In-app notification deep-links work under Capacitor; badge updates if supported.\n- [ ] `device_tokens` registration is stubbed/feature-flagged off (no live push, no permission prompt).\n- [ ] iOS build/run steps documented; `ios/` remains git-ignored.\n\n## Dependencies\n- T01 (scaffold + capacitor.config), T05 (routing/shell), T07 (profile external links), T08 (notification center).\n\n## Files Expected\n- `ios/` (generated platform \u2014 git-ignored)\n- `src/lib/native/*` (plugin bootstrap, `registerDevice` stub, badge helper)\n- updated `capacitor.config.ts`, `package.json` scripts\n- `docs/ios-build.md`\n"
     },
     {
