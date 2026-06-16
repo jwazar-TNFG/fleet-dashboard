@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T00:22:26Z",
+  "updated_at": "2026-06-16T00:35:35Z",
   "phases": [
     {
       "id": "phase-1",
@@ -214,11 +214,11 @@
       "id": "task-17",
       "name": "Request Detail + Comments",
       "phase": "phase-5",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-16"
       ],
-      "lastActivity": "2026-06-16T00:22:26Z",
+      "lastActivity": "2026-06-16T00:35:35Z",
       "description": "# Task 17 \u2014 Request Detail + Threaded Comments + Approval Toggle\n\n## Objective\nBuild the Request Detail screen: full request display, status management, an approval toggle for approver roles, and a threaded comment system (parent/child) backed by `app2.request_comments`. This completes the Request Portal loop and implements enhancement E4 (threaded comments).\n\n## Context\nReact 18, mobile-first. Request Detail (`/requests/:id`) reads an `app2.requests` row plus its `app2.request_comments` (threaded via `parent_id` self-reference \u2014 enhancement E4). Visible per the same RBAC as the list (T15). Statuses (11) and types (21) from shared constants (T15). \"Needs Approval\" status + an Approval toggle exist; approver visibility is role/department-based. Comment/approval automation (notifications, routing) is DEFERRED \u2014 but inserting a comment or changing approval/status MAY create an in-app notification row (T08) for opted-in users as a sensible default. Render attachments uploaded at submit (T16).\n\n## Requirements\n1. Build `RequestDetailPage` (`/requests/:id`) fetching the request + submitter (from `public.employees`) + attachments; enforce RBAC visibility (reuse T15 `requestVisibility`).\n2. **Header:** request type (bold), title, submitter + timestamp, current status badge, office/department.\n3. **Body:** full description, enhanced case fields (when present), attachment thumbnails/links (tap to view/download).\n4. **Status control:** allow authorized roles (admin, department owners, approvers) to change status across the 11 statuses; confirm destructive transitions (Denied/Closed). Persist to `app2.requests`.\n5. **Approval toggle:** for approver roles, an Approve/Needs-Approval toggle (and Deny) that updates the approval flag + status; hidden for non-approvers.\n6. **Threaded comments (E4):**\n   - List comments from `app2.request_comments` ordered chronologically, nested by `parent_id` (render replies indented under parents).\n   - Add a top-level comment and reply-to-comment composer; insert with `author = current user`, `request_id`, optional `parent_id`, body, timestamp.\n   - Optimistic insert with rollback on error.\n7. On comment add / status change / approval change, optionally insert an `app2.notifications` row (`request_activity` or `approval_needed`) for relevant opted-in users (sensible default; no email/push).\n8. Handle loading/not-found/unauthorized states; respect RLS.\n\n## Acceptance Criteria\n- [ ] Request detail loads with header, body, enhanced fields, and attachments; RBAC enforced.\n- [ ] Authorized roles can change status (with confirmation on destructive); persists correctly.\n- [ ] Approval toggle/Deny shows only for approvers and updates approval + status.\n- [ ] Threaded comments render nested by parent_id; users can add top-level and reply comments that persist.\n- [ ] Comment/status/approval changes optionally create in-app notifications for opted-in users.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types \u2014 requests, request_comments), T03 (design system), T04 (auth/role), T08 (notifications \u2014 soft), T15 (visibility/constants), T16 (submit/attachments).\n\n## Files Expected\n- `src/pages/requests/RequestDetailPage.tsx`\n- `src/features/requests/detail/*` (RequestHeader, StatusControl, ApprovalToggle, CommentThread, CommentComposer)\n- `src/lib/queries/requestComments.ts`, extend `src/lib/queries/requests.ts` (status/approval update)\n"
     },
     {
