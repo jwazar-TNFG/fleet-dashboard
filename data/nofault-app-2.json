@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T00:44:39Z",
+  "updated_at": "2026-06-16T00:53:37Z",
   "phases": [
     {
       "id": "phase-1",
@@ -236,11 +236,11 @@
       "id": "task-19",
       "name": "Marketing Charts",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-18"
       ],
-      "lastActivity": "2026-06-16T00:44:39Z",
+      "lastActivity": "2026-06-16T00:53:37Z",
       "description": "# Task 19 \u2014 Marketing Charts (6 Metrics \u00d7 2 Periods, LEVEL Filter)\n\n## Objective\nBuild the Marketing Charts section: 6 performance metrics across Today/MTD periods rendered as donut + table charts (by rep / Case Manager), with the hierarchy-aware LEVEL filter controlling aggregation scope. This is the primary rep-performance dashboard on Home (Section F).\n\n## Context\nReact 18, mobile-first. Marketing Charts (Home Section F) use the T18 chart infrastructure. **6 metrics** (each Today + MTD = 12 chart views): New Leads (NLT/NLMTD), Locked Down (LDT/LDMTD), Came In (CIT/CIMTD), Signed (ST/SMTD), Dropped (DT/DMTD), Locked Down Dropped (LDDT/LDDMTD). Charts are \"by Case Manager\" (rep). The **LEVEL filter** (Individual/Team/POD/Office/Region) is cumulative and uses the email-based hierarchy from `public.employees` (reuse the T10 hierarchy resolver); default = the user's highest applicable level. Special-view users (Zeri, Christian, Tony, Willie, Karla, Jon, Andres, Humberto) override normal hierarchy scope \u2014 handle via `app2.users.special_view`. Access: marketing_rep (own scope), marketing_leader (cascading), admin (all) \u2014 per ROLE-ACCESS-MATRIX. Data via T18 RPCs over `public.leads`, date basis `idot`, mandatory exclusions applied. Deferred workflows \u2014 read-only aggregation.\n\n## Requirements\n1. Build `MarketingCharts` section (rendered in Home Section F), default expanded, using `ChartSection` + `PeriodToggle` (Today / MTD).\n2. Implement the **6 metrics** as `MetricChart`s for the selected period: New Leads, Locked Down, Came In, Signed, Dropped, Locked Down Dropped \u2014 each \"by Case Manager\" with entity = rep.\n3. Wire each metric to a T18 RPC that counts leads grouped by rep within the resolved scope, period, and metric definition:\n   - Locked Down = both attorney + treatment assigned; Came In = patient attended treatment; Signed = signed; Dropped = dropped; Locked Down Dropped = locked down then dropped.\n4. **LEVEL filter** control (uppercase teal \"LEVEL\"): Individual/Team/POD/Office/Region; default to the user's highest applicable level (reuse T10 hierarchy resolver to compute the cumulative member-email set per level).\n5. **Special-view override:** if the user has `special_view` config, apply the configured scope instead of the standard hierarchy default (e.g., full-org view). Centralize special-view resolution.\n6. **Role scoping:** marketing_rep limited to Individual; leaders limited to their position level and below; admin all levels.\n7. Each chart shows the donut (center Total) + descending table (REP | METRIC). Honor the E1 sub-group toggle prop from T18 (Team/Pod/Office breakdown) where feasible.\n8. Loading/empty/error states per chart; changing LEVEL or period re-queries.\n\n## Acceptance Criteria\n- [ ] Section renders 6 metric charts for the selected period (Today/MTD toggle works).\n- [ ] Each metric aggregates correctly by rep via RPC using the right metric definition and `idot` basis.\n- [ ] LEVEL filter re-scopes cumulatively using the email-based hierarchy; default matches the user's position.\n- [ ] Special-view users get their overridden scope.\n- [ ] Role scoping limits reps to Individual; leaders/admin get correct levels.\n- [ ] Mandatory exclusions applied; loading/empty states present.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T10 (hierarchy resolver), T18 (chart infra + RPC contract), T06 (Home Section F container), T04 (auth/role/special_view).\n\n## Files Expected\n- `src/features/charts/marketing/MarketingCharts.tsx`\n- `src/features/charts/marketing/marketingMetrics.ts` (metric defs)\n- `src/lib/charts/specialView.ts`\n- RPC additions documented in `src/lib/charts/RPC.md`\n"
     },
     {
