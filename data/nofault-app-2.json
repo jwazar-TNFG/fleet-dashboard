@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T00:53:39Z",
+  "updated_at": "2026-06-16T00:59:01Z",
   "phases": [
     {
       "id": "phase-1",
@@ -247,11 +247,11 @@
       "id": "task-20",
       "name": "Intake Charts",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-18"
       ],
-      "lastActivity": "2026-06-16T00:53:39Z",
+      "lastActivity": "2026-06-16T00:59:01Z",
       "description": "# Task 20 \u2014 Intake Charts (3 Metrics \u00d7 2 Periods)\n\n## Objective\nBuild the Intake Charts section: 3 intake-specialist performance metrics across Today/MTD as donut + table charts, by Intake Specialist. This is the intake counterpart to Marketing Charts on Home (Section F).\n\n## Context\nReact 18, mobile-first. Intake Charts (Home Section F) reuse the T18 chart infrastructure and the same donut+table format as Marketing Charts. **3 metrics** (each Today + MTD = 6 chart views), tracked **by Intake Specialist**: Came In (patient attended treatment), Locked Down (attorney + treatment assigned), Signed. Charts appear in a single scrollable list (Today first, then MTD) and the section defaults to collapsed (\"Show\"). Note: the current app's table header column says \"OFFICE\" but lists individual specialist names \u2014 use a correct \"INTAKE SPECIALIST\" column header (do not reproduce the mislabel). No LEVEL filter is confirmed for Intake Charts (omit unless role requires it). Data via T18 RPCs over `public.leads`, date basis `idot`, mandatory exclusions applied. Access per ROLE-ACCESS-MATRIX (intake-leaning; confirm same period behavior). Deferred workflows \u2014 read-only.\n\n## Requirements\n1. Build `IntakeCharts` section (Home Section F), default collapsed, using `ChartSection` + `PeriodToggle` (Today / MTD). If the source presents Today then MTD stacked rather than a toggle, support a stacked mode but default to the toggle for parity with Marketing.\n2. Implement the **3 metrics** as `MetricChart`s for the selected period: Came In, Locked Down, Signed \u2014 entity = Intake Specialist.\n3. Wire each to a T18 RPC counting leads grouped by intake specialist within the period and metric definition; apply mandatory exclusions and `idot` basis.\n4. Use the correct table column header \"INTAKE SPECIALIST | <METRIC>\" (fix the \"OFFICE\" mislabel).\n5. No LEVEL filter by default; if a role needs scoping, gate by role rather than adding the hierarchy selector.\n6. Honor the E1 sub-group breakdown toggle prop where feasible.\n7. Loading/empty/error states; changing period re-queries.\n\n## Acceptance Criteria\n- [ ] Section renders 3 metric charts (Came In, Locked Down, Signed) for the selected period; Today/MTD toggle works.\n- [ ] Aggregation is by intake specialist via RPC with correct metric definitions and `idot` basis.\n- [ ] Table header reads \"INTAKE SPECIALIST\" (mislabel fixed).\n- [ ] Section defaults to collapsed; expands correctly.\n- [ ] Mandatory exclusions applied; loading/empty states present.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T18 (chart infra + RPC contract), T06 (Home Section F container), T04 (auth/role).\n\n## Files Expected\n- `src/features/charts/intake/IntakeCharts.tsx`\n- `src/features/charts/intake/intakeMetrics.ts` (metric defs)\n- RPC additions documented in `src/lib/charts/RPC.md`\n"
     },
     {
