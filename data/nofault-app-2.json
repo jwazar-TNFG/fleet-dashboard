@@ -2,7 +2,7 @@
   "name": "No Fault App 2.0",
   "slug": "nofault-app-2",
   "repo": "jwazar-TNFG/nofault-app-2",
-  "updated_at": "2026-06-16T00:35:36Z",
+  "updated_at": "2026-06-16T00:44:38Z",
   "phases": [
     {
       "id": "phase-1",
@@ -225,11 +225,11 @@
       "id": "task-18",
       "name": "Chart Infrastructure",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-05"
       ],
-      "lastActivity": "2026-06-16T00:35:36Z",
+      "lastActivity": "2026-06-16T00:44:38Z",
       "description": "# Task 18 \u2014 Chart Infrastructure (Recharts Wrappers + Supabase RPC Aggregations)\n\n## Objective\nBuild the reusable chart infrastructure: Recharts-based donut/ring + data-table wrapper components matching the app's chart style, a standard \"metric chart\" composite (donut + sortable table), and the Supabase RPC aggregation layer that feeds them. Every dashboard task (T19\u2013T22) builds on this.\n\n## Context\nReact 18 + TypeScript, mobile-first. Per A4, charts are native React via **Recharts** (NOT Looker Studio iframes), fed by **Supabase RPC functions** for server-side aggregation (avoids the 1,000-row client limit). The standard chart composition (SPEC): a donut/ring with one segment per entity (rep/specialist/attorney), a center \"Total\" label + aggregate number, teal color gradient (dark teal for top values \u2192 light gray for low), and a data table below (header bar dark teal, two columns ENTITY | METRIC, sorted descending, scrollable, alternating row separators). Period filters are Today / MTD. This task delivers reusable primitives + the RPC contract; specific metrics are implemented in T19\u2013T22. Mandatory exclusions (Katiria Bonilla, xSTAFF) must be applied in aggregation. Default date field = `idot` (Initial Date of Treatment).\n\n## Requirements\n1. Install and configure `recharts`.\n2. Build `DonutChart` wrapper: accepts `{ label, value }[]` data, renders a ring with center Total (label + sum), teal gradient ordering by value (dark\u2192light), responsive sizing for mobile, accessible labels.\n3. Build `MetricTable`: two columns (entity name | metric value), dark-teal header, sorted descending, scrollable, alternating rows; configurable column headers.\n4. Build `MetricChart` composite: title header + `DonutChart` + `MetricTable` for a single metric/period; loading + empty states. Optional E1 sub-group breakdown toggle (Individual / Team / Pod / Office) \u2014 provide the prop hook even if data wiring lands later.\n5. Build a `PeriodToggle` (Today / MTD) and a generic `ChartSection` wrapper (collapsible `SectionHeader` + period toggle + children).\n6. Define the **RPC aggregation contract**: author SQL function signatures (documented in `src/lib/charts/RPC.md`) for server-side counts grouped by entity over a period, e.g. `app2.chart_counts(metric text, period text, scope jsonb)` returning `{ entity, count }`. Apply mandatory exclusions and use `idot` as the default date basis.\n7. Build a `useChartData(metric, period, scope)` hook calling the RPCs, with caching, loading/error states, and typed results.\n8. Provide a color-scale utility mapping ranked values to the teal\u2192gray gradient.\n9. Add a dev gallery route showing the chart primitives with mock data.\n\n## Acceptance Criteria\n- [ ] DonutChart renders ring + center total with the teal\u2192gray gradient, responsive on mobile.\n- [ ] MetricTable renders sorted-descending two-column table with the dark-teal header style.\n- [ ] MetricChart composes donut + table with loading/empty states and an E1 sub-group toggle prop.\n- [ ] PeriodToggle and ChartSection wrappers work (collapsible + Today/MTD).\n- [ ] RPC contract documented; `useChartData` hook calls RPCs, applies exclusions, uses `idot`.\n- [ ] Dev gallery renders primitives with mock data.\n- [ ] `npm run typecheck` and `npm run lint` pass.\n\n## Dependencies\n- T02 (supabase/types), T03 (design system), T05 (routes).\n\n## Files Expected\n- `src/features/charts/DonutChart.tsx`, `MetricTable.tsx`, `MetricChart.tsx`, `PeriodToggle.tsx`, `ChartSection.tsx`\n- `src/features/charts/useChartData.ts`, `src/lib/charts/colorScale.ts`\n- `src/lib/charts/RPC.md` (SQL function contract)\n- `src/pages/dev/ChartGallery.tsx`\n"
     },
     {
