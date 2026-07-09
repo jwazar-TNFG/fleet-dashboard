@@ -126,7 +126,7 @@
       "id": "task-08",
       "name": "Edit-Layout Mode (drag/resize + snap guides)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-07"
       ],
