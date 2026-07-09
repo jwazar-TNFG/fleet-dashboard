@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T20:05:00Z",
+  "updated_at": "2026-07-09T20:24:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -46,7 +46,7 @@
       "id": "task-00",
       "name": "CI Workflow + Auto-Merge Gate",
       "phase": "phase-0",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
       "description": "# Task 00 \u2014 CI Workflow + Auto-Merge Gate\n\n**Phase 0** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none (entry task)\n\n## Objective\nEstablish the GitHub Actions CI that gates every task PR and enables safe auto-merge, tuned for an Electron + Node bridge + Python voice monorepo.\n\n## Scope\n- GitHub Actions workflow: install, lint, typecheck, and `npm run build` for the Electron/renderer; a Node job for the bridge; a lightweight Python lint/import job for the voice package (skippable until Phase 7 code exists).\n- Branch protection on main: PRs require the CI check to pass before merge; configure auto-merge so a green PR merges without manual click.\n- Fail fast + clear logs; jobs matrixed by workspace (hud / bridge / voice).\n- Document the CI contract in README-DEV.md so every subsequent task knows what 'green' means.\n\n## Acceptance Criteria\n- A trivial PR against main is BLOCKED until CI passes, then auto-merges when green.\n- CI runs lint + typecheck + build for the HUD, and a bridge job; the voice job no-ops gracefully when there is no Python code yet.\n- Branch protection verified active on main.\n\n## Delivery\n- Create feature branch `task-00`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
     },
