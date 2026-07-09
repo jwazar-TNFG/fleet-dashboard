@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T22:32:23Z",
+  "updated_at": "2026-07-09T22:32:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -147,7 +147,7 @@
       "id": "task-10",
       "name": "Multi-Monitor Topology Awareness + Panel Focus/Fullscreen",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-07"
       ],
