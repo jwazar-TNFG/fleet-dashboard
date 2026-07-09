@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T21:26:56Z",
+  "updated_at": "2026-07-09T21:26:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -94,7 +94,7 @@
       "id": "task-05",
       "name": "App State Store + Config Persistence Layer",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
