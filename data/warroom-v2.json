@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T22:20:19Z",
+  "updated_at": "2026-07-09T22:32:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -136,7 +136,7 @@
       "id": "task-09",
       "name": "Layout Persistence + Named Presets",
       "phase": "phase-2",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-08",
         "task-05"
