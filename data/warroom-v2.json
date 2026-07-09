@@ -2,32 +2,397 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T19:25:00Z",
+  "updated_at": "2026-07-09T19:40:00Z",
   "phases": [
     {
       "id": "phase-1",
-      "name": "HUD Shell + 9-Panel Window/Snap Engine"
+      "name": "Foundation & Shell"
     },
     {
       "id": "phase-2",
-      "name": "Bridge + Vera Integration"
+      "name": "Panel & Window Engine"
     },
     {
       "id": "phase-3",
-      "name": "Telegram-Driven Interaction"
+      "name": "HUD Protocol & Bridge"
     },
     {
       "id": "phase-4",
-      "name": "Data Wiring"
+      "name": "Vera Integration"
     },
     {
       "id": "phase-5",
-      "name": "Voice Pipeline (after USB mic on-site)"
+      "name": "Telegram Interaction"
     },
     {
       "id": "phase-6",
-      "name": "Kiosk Packaging + Multi-Monitor Deploy + Production Cutover"
+      "name": "Data Wiring"
+    },
+    {
+      "id": "phase-7",
+      "name": "Voice Pipeline"
+    },
+    {
+      "id": "phase-8",
+      "name": "Kiosk, Admin & Deploy"
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "task-01",
+      "name": "Project Scaffold (Electron + Vite + TS)",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 01 \u2014 Project Scaffold (Electron + Vite + TS)\n\n**Phase 1** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nStand up the foundational Electron + Vite + TypeScript project skeleton for the War Room v2 HUD, targeting macOS Apple Silicon.\n\n## Scope\n- Electron main + preload + renderer split; contextIsolation on, nodeIntegration off.\n- Vite + React 18 + TypeScript renderer (plain Vite, not electron-vite).\n- ESLint + Prettier + tsconfig strict; folder structure: src/main, src/preload, src/renderer, src/shared.\n- npm scripts: dev, build, lint, package. A minimal window that loads the renderer.\n\n## Acceptance Criteria\n- `npm run build` passes clean.\n- `npm run dev` launches an Electron window rendering a placeholder HUD root.\n- Repo structure documented in README-DEV.md.\n\n## Delivery\n- Create feature branch `task-01`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-02",
+      "name": "Design System & TNFG Theme Tokens",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "# Task 02 \u2014 Design System & TNFG Theme Tokens\n\n**Phase 1** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nEstablish the visual design system and TNFG theme tokens used by every panel and primitive.\n\n## Scope\n- CSS variables / theme tokens for the TNFG palette, spacing, typography, z-layers, glow/bloom.\n- Reusable primitives: Card/Panel frame, TitleBar, StatPill, DonutBase, TrendLine wrappers.\n- Dark near-black base with teal/cyan accents and red alert state.\n\n## Acceptance Criteria\n- Theme tokens centralized in one module; no hardcoded colors elsewhere.\n- A Storybook-style or /dev route renders the primitives for visual QA.\n- Crisp at 4K.\n\n## Delivery\n- Create feature branch `task-02`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-03",
+      "name": "HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [
+        "task-02"
+      ],
+      "description": "# Task 03 \u2014 HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)\n\n**Phase 1** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nBuild the signature 'Jarvis-in-TNFG-teal' aesthetic primitives, chiefly the animated Vera Orb.\n\n## Scope\n- Animated Orb: particle/energy core + rotating radar rings + tick marks; states idle/listening/thinking/speaking/alert/fullscreen.\n- Canvas/WebGL or performant CSS; corner reticles, scanlines, grid backdrop, neon bloom overlay.\n- Orb exposes a state API the protocol layer can drive later.\n\n## Acceptance Criteria\n- Orb renders smoothly (>=50fps) at 4K; all six states visually distinct.\n- Reticle/scanline/grid/bloom overlay composable behind panels.\n- Screenshot captured for review.\n\n## Delivery\n- Create feature branch `task-03`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-04",
+      "name": "Fullscreen Kiosk Window + Crash Auto-Recover",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "# Task 04 \u2014 Fullscreen Kiosk Window + Crash Auto-Recover\n\n**Phase 1** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nConfigure the Electron window for fullscreen kiosk operation with crash auto-recovery.\n\n## Scope\n- Fullscreen, no chrome/menu; hide cursor after idle; prevent accidental quit.\n- Crash/renderer-gone handler that reloads; main-process supervisor.\n- Discreet admin/exit hotkey (e.g. Cmd+Shift+Esc) \u2014 configurable.\n\n## Acceptance Criteria\n- App launches fullscreen with no chrome/dock/cursor.\n- Killing the renderer auto-recovers within a few seconds.\n- Admin hotkey reveals exit; normal keys do not quit.\n\n## Delivery\n- Create feature branch `task-04`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-05",
+      "name": "App State Store + Config Persistence Layer",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "# Task 05 \u2014 App State Store + Config Persistence Layer\n\n**Phase 1** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nCreate the app-wide state store and a durable local config persistence layer.\n\n## Scope\n- State store (Zustand/Redux-lite) for panels, layout, orb, connection status.\n- Config persistence to local disk (layouts, presets, selected views, service settings pointers).\n- Typed schema + migration-safe read/write.\n\n## Acceptance Criteria\n- State survives reload; config round-trips to disk.\n- Schema typed; corrupt/missing config falls back to defaults safely.\n\n## Delivery\n- Create feature branch `task-05`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-06",
+      "name": "Panel Component + Title Bar + Content Container",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-02",
+        "task-03"
+      ],
+      "description": "# Task 06 \u2014 Panel Component + Title Bar + Content Container\n\n**Phase 2** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nBuild the discrete Panel window component: header/title bar + swappable content container.\n\n## Scope\n- Panel = titled frame with header (title, optional status dot, menu affordance) + content slot.\n- Content is a pluggable view (by view-id); loading/empty/error states.\n- Supports transition in/out (fade/slide/none).\n\n## Acceptance Criteria\n- A Panel renders any registered view by id with a title.\n- Empty/loading/error states styled.\n- Matches design system.\n\n## Delivery\n- Create feature branch `task-06`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-07",
+      "name": "3x3 Grid Layout Manager (unified virtual canvas)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-06",
+        "task-05"
+      ],
+      "description": "# Task 07 \u2014 3x3 Grid Layout Manager (unified virtual canvas)\n\n**Phase 2** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the tiling layout manager that arranges 9 panels on a unified virtual canvas.\n\n## Scope\n- Model a virtual canvas subdivided into a 3x3 grid; panels occupy grid cells.\n- Default even 3x3 with center reserved for the Orb (panel 5).\n- Deterministic mapping cell<->pixel; resize-aware.\n\n## Acceptance Criteria\n- 9 panels render in a clean 3x3; center shows the Orb.\n- Layout is data-driven (positions from state).\n- Crisp 4K screenshot.\n\n## Delivery\n- Create feature branch `task-07`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-08",
+      "name": "Edit-Layout Mode (drag/resize + snap guides)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-07"
+      ],
+      "description": "# Task 08 \u2014 Edit-Layout Mode (drag/resize + snap guides)\n\n**Phase 2** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nAdd an Edit-Layout mode letting the user move/resize panels with snapping.\n\n## Scope\n- Toggle via hotkey + on-screen menu button; drag handles + snap guides.\n- Snap to grid cells and canvas edges; visual snap feedback; exit locks layout.\n- Non-destructive: cancel restores prior layout.\n\n## Acceptance Criteria\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible during drag.\n- Cancel restores.\n\n## Delivery\n- Create feature branch `task-08`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-09",
+      "name": "Layout Persistence + Named Presets",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-08",
+        "task-05"
+      ],
+      "description": "# Task 09 \u2014 Layout Persistence + Named Presets\n\n**Phase 2** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nPersist layouts and support named presets recallable by the user and by Vera.\n\n## Scope\n- Persist current layout to config; reload on restart.\n- Named presets (e.g. Briefing, Ops Focus, Single-Screen) save/recall.\n- Expose layout.apply(preset) hook for the protocol layer.\n\n## Acceptance Criteria\n- >=2 presets save and recall correctly.\n- Layout persists across restart.\n- layout.apply switches presets.\n\n## Delivery\n- Create feature branch `task-09`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-10",
+      "name": "Multi-Monitor Topology Awareness + Panel Focus/Fullscreen",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-07"
+      ],
+      "description": "# Task 10 \u2014 Multi-Monitor Topology Awareness + Panel Focus/Fullscreen\n\n**Phase 2** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nMake the canvas display-topology-aware and add per-panel focus/fullscreen.\n\n## Scope\n- Read OS display arrangement (Electron screen API); map virtual canvas across monitors.\n- Panels snap to monitor edges/bezels; grid extends across added displays.\n- panel.focus expands a panel to fullscreen; panel.unfocus / orb fullscreen + return.\n\n## Acceptance Criteria\n- Single display now; canvas ready to span >=2 monitors from topology.\n- Any panel can go fullscreen and restore.\n- Orb can take center stage and return.\n\n## Delivery\n- Create feature branch `task-10`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-11",
+      "name": "HUD Protocol Types + Validator (versioned vocabulary)",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "# Task 11 \u2014 HUD Protocol Types + Validator (versioned vocabulary)\n\n**Phase 3** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the versioned HUD command protocol as shared TypeScript types + a validator.\n\n## Scope\n- Encode the envelope + full v1 vocabulary from HUD-PROTOCOL.md (orb.*, panel.*, layout.*, speak, listen.state, brief.*, hud.*).\n- Runtime validator (zod or similar): rejects unknown command, out-of-range panel, unknown view.\n- Shared module usable by both bridge and HUD.\n\n## Acceptance Criteria\n- Every v1 command has a typed schema.\n- Invalid commands rejected with structured hud.error.\n- Unit tests for validation edge cases.\n\n## Delivery\n- Create feature branch `task-11`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-12",
+      "name": "Bridge Service Skeleton + Gateway WS Client",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-11"
+      ],
+      "description": "# Task 12 \u2014 Bridge Service Skeleton + Gateway WS Client\n\n**Phase 3** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nCreate the standalone bridge service and its client connection to the OpenClaw gateway.\n\n## Scope\n- Node/TS service, separate process; connects to gateway ws://127.0.0.1:18789.\n- Reconnect/backoff; health endpoint; structured logging.\n- Loads its config/secrets from ~/.openclaw/secrets; runs independently of the HUD.\n\n## Acceptance Criteria\n- Bridge starts, connects to the gateway, survives gateway restarts (reconnect).\n- Health check reports connection state.\n- Bridge crash does not affect Vera or the HUD process.\n\n## Delivery\n- Create feature branch `task-12`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-13",
+      "name": "HUD<->Bridge WebSocket Channel + Command Router",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-12",
+        "task-07"
+      ],
+      "description": "# Task 13 \u2014 HUD<->Bridge WebSocket Channel + Command Router\n\n**Phase 3** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nEstablish the local WebSocket channel between bridge and HUD and route validated commands.\n\n## Scope\n- Bridge exposes a local WS the HUD connects to; HUD sends events (layout edits, focus, ack/nack).\n- Router validates every inbound command (task 11) then dispatches to HUD handlers.\n- Ack/nack + hud.error on rejection; never silently drop.\n\n## Acceptance Criteria\n- Bridge can push a command that the HUD renders.\n- HUD emits events the bridge receives.\n- Invalid command -> nack + hud.error.\n\n## Delivery\n- Create feature branch `task-13`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-14",
+      "name": "Command Handlers (orb/panel/layout/speak) + Mock Data Feed",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-13",
+        "task-10",
+        "task-09"
+      ],
+      "description": "# Task 14 \u2014 Command Handlers (orb/panel/layout/speak) + Mock Data Feed\n\n**Phase 3** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement HUD-side handlers for the full command set, driven by a mock data feed.\n\n## Scope\n- Handlers: orb.state/return, panel.set/clear/focus/unfocus/highlight/update, layout.apply/save/edit, speak (stub), listen.state.\n- Mock data provider so panels show plausible content before real data.\n- brief.start stub sequences orb+panels for a canned briefing.\n\n## Acceptance Criteria\n- Every v1 command visibly affects the HUD with mock data.\n- brief.start plays a mock briefing.\n- Screenshots for review.\n\n## Delivery\n- Create feature branch `task-14`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-15",
+      "name": "Vera \"War Room\" Skill (war-room) Authoring",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": [
+        "task-11"
+      ],
+      "description": "# Task 15 \u2014 Vera \"War Room\" Skill (war-room) Authoring\n\n**Phase 4** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nAuthor the additive war-room skill for Vera per VERA-WARROOM-SKILL.md (does NOT modify Vera core).\n\n## Scope\n- SKILL.md-style instructions: panel map, briefing choreography, orb-state presence, barge-in re-issue, C6 confirmation, single-source-of-truth, A5 channel/target rule.\n- Skill is loaded only in War Room context; dormant otherwise.\n- Delivered as an additive skill file; documents install location on the Mac mini.\n\n## Acceptance Criteria\n- Skill file complete and consistent with HUD-PROTOCOL vocabulary.\n- Explicitly additive + reversible; no core edits.\n- Includes the locked ops->email->calendar->flags->handoff briefing order.\n\n## Delivery\n- Create feature branch `task-15`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-16",
+      "name": "warroom_emit Tool (bridge-gated) + Registration",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": [
+        "task-15",
+        "task-12"
+      ],
+      "description": "# Task 16 \u2014 warroom_emit Tool (bridge-gated) + Registration\n\n**Phase 4** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the warroom_emit tool Vera uses to emit validated HUD commands, gated on bridge availability.\n\n## Scope\n- Tool accepts an array of command objects (command+args); stamps envelope (protocol/v/id/ts).\n- Sends to bridge; returns per-command ack/nack (hud.error on reject).\n- Registered additively; inert/hidden when the bridge is not reachable.\n\n## Acceptance Criteria\n- Vera can call warroom_emit and drive the HUD.\n- Bad commands return hud.error.\n- Tool inert with no bridge; Vera behaves normally.\n\n## Delivery\n- Create feature branch `task-16`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-17",
+      "name": "End-to-End Vera-Drives-HUD Integration + Resilience",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": [
+        "task-16",
+        "task-14"
+      ],
+      "description": "# Task 17 \u2014 End-to-End Vera-Drives-HUD Integration + Resilience\n\n**Phase 4** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nWire the full A1-A4 loop and prove resilience: Vera turn -> bridge -> HUD.\n\n## Scope\n- A Vera turn drives orb.state/panel.set/panel.clear/panel.focus/layout.apply live.\n- Resilience: bridge crash != Vera crash; HUD crash != Vera crash; auto-reconnect.\n- Vera core verified unmodified except the additive tool/skill.\n\n## Acceptance Criteria\n- Live Vera turn manipulates the HUD end to end.\n- Each process can crash/restart without taking down the others.\n- Vera's other duties unaffected.\n\n## Delivery\n- Create feature branch `task-17`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-18",
+      "name": "Telegram Activity Subscription + Command Fan-Out (Jon-only)",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": [
+        "task-17"
+      ],
+      "description": "# Task 18 \u2014 Telegram Activity Subscription + Command Fan-Out (Jon-only)\n\n**Phase 5** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nMake Telegram-originated Vera turns drive the room, restricted to Jon during testing (A5).\n\n## Scope\n- Bridge subscribes to Vera activity; turns emitting HUD commands render on screen.\n- Text reply returns to Telegram when the request came from Telegram (C5).\n- TARGET RESTRICTED to Jon 6492555042 (A5 test rule); production cutover is task 34.\n\n## Acceptance Criteria\n- 'brief me' on Telegram plays the briefing on the HUD + returns a text summary to Jon.\n- 'put today's intake on the screen' updates the correct panel + confirmation.\n- Only Jon's chat triggers the room.\n\n## Delivery\n- Create feature branch `task-18`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-19",
+      "name": "Briefing Choreography (brief.start beats) E2E",
+      "phase": "phase-5",
+      "status": "pending",
+      "depends_on": [
+        "task-18",
+        "task-14"
+      ],
+      "description": "# Task 19 \u2014 Briefing Choreography (brief.start beats) E2E\n\n**Phase 5** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the real Opening Briefing as a Vera-driven choreography over the live command set.\n\n## Scope\n- Locked order: ops -> email -> calendar -> flags -> handoff.\n- Orb fullscreen open -> panel beats -> alert highlight on flags -> orb.return + handoff.\n- Driven by Vera via speak + panel.* (real structure, data wired later in Phase 6).\n\n## Acceptance Criteria\n- 'brief me' runs the full choreographed sequence.\n- Order matches the locked spec.\n- Barge-in interrupts cleanly.\n\n## Delivery\n- Create feature branch `task-19`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-20",
+      "name": "analyst-01 API Client + Bridge Service-Token Auth (break-proof)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": [
+        "task-12"
+      ],
+      "description": "# Task 20 \u2014 analyst-01 API Client + Bridge Service-Token Auth (break-proof)\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nBuild the analyst-01 API client and implement the break-proof bridge service-token auth (Option 1).\n\n## Scope\n- Client for the analyst-01 endpoints backing the 9 views.\n- ADD an additive fail-safe middleware branch on analyst-01: runs only when Bearer==SERVICE_TOKEN from an existing secret file; maps to read-only warroom-bridge@ viewer; else UNCHANGED fallthrough.\n- Constant-time compare + long random secret; guard on secret-file existence (absent => inert).\n\n## Acceptance Criteria\n- Bridge reads analyst-01 with the service token.\n- REGRESSION TESTS (all must pass before merge): existing Google user still authenticates; bad/absent token still 401s; bridge token reads but cannot mutate; deleting the secret reverts to current behavior.\n- No change to existing dashboard auth behavior.\n\n## Delivery\n- Create feature branch `task-20`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-21",
+      "name": "Data View Registry + Supabase Fallback Adapter",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": [
+        "task-20"
+      ],
+      "description": "# Task 21 \u2014 Data View Registry + Supabase Fallback Adapter\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nCreate the data-view registry mapping view-ids to sources, with Supabase as fallback.\n\n## Scope\n- Registry: view-id -> analyst-01 endpoint(s) (primary) with Supabase fallback where analyst-01 lacks an endpoint.\n- Normalized data shapes per view; exclusions (Katiria Bonilla, xSTAFF) honored via analyst-01 upstream.\n- Caching + error surfacing.\n\n## Acceptance Criteria\n- Each of the 9 views resolves to a concrete source.\n- Fallback path works when primary endpoint is absent.\n- Exclusions honored.\n\n## Delivery\n- Create feature branch `task-21`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-22",
+      "name": "9 Default Ops Pulse Views (render + bind)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": [
+        "task-21",
+        "task-14"
+      ],
+      "description": "# Task 22 \u2014 9 Default Ops Pulse Views (render + bind)\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the 9 default Ops Pulse panel views bound to real data shapes.\n\n## Scope\n- Views: live-ops-feed, clock-brand, case-status-donut, intake-kpis, vera-orb(center), weekly-lead-volume, perf-7day, flags-alerts, cor-by-location.\n- Each view renders from the registry data; re-taskable to any panel (B4).\n- Params support (e.g. cor-by-location region=SFL).\n\n## Acceptance Criteria\n- All 9 views render real, correct data.\n- Views re-taskable via panel.set.\n- cor-by-location filters by region param.\n\n## Delivery\n- Create feature branch `task-22`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-23",
+      "name": "Hybrid Refresh (polling + on-demand) + Single-Source-of-Truth Guard",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": [
+        "task-22"
+      ],
+      "description": "# Task 23 \u2014 Hybrid Refresh + Single-Source-of-Truth Guard\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nAdd hybrid refresh (polling + on-demand) and enforce spoken==panel figures.\n\n## Scope\n- Per-panel polling (30-120s); on-demand refresh via Vera command; real-time reserved for live-ops-feed if warranted.\n- Single-source guard: any figure Vera speaks and any panel shows come from the same layer.\n- Backoff on source errors.\n\n## Acceptance Criteria\n- Polling works per panel; 'Vera, update intake' forces immediate refresh.\n- Spoken figure == panel figure (spot-checked).\n- Errors degrade gracefully.\n\n## Delivery\n- Create feature branch `task-23`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-24",
+      "name": "Live Data Integration Test (exclusions honored, spoken==panel)",
+      "phase": "phase-6",
+      "status": "pending",
+      "depends_on": [
+        "task-23",
+        "task-19"
+      ],
+      "description": "# Task 24 \u2014 Live Data Integration Test (exclusions, spoken==panel)\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nFull data integration test across the briefing and ad-hoc queries.\n\n## Scope\n- Run the briefing with live data; run ad-hoc 'show COR by location, just SFL, which is lagging'.\n- Verify exclusions and single-source-of-truth end to end.\n- Capture screenshots + a short verification log.\n\n## Acceptance Criteria\n- Briefing shows real correct numbers.\n- Exclusions Katiria Bonilla + xSTAFF honored.\n- Vera's spoken numbers match panels.\n\n## Delivery\n- Create feature branch `task-24`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-25",
+      "name": "Pipecat Orchestration Skeleton + Audio I/O (speakers + USB mic)",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": [
+        "task-17"
+      ],
+      "description": "# Task 25 \u2014 Pipecat Orchestration Skeleton + Audio I/O\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nStand up the Pipecat-based voice orchestration skeleton with speaker output and USB mic input.\n\n## Scope\n- Pipecat pipeline scaffold; audio out to Mac mini speakers; audio in from the USB mic (Phase-5 hardware).\n- Routes reasoning to Vera via the bridge (framework orchestrates audio only).\n- Config-driven device selection.\n\n## Acceptance Criteria\n- Audio in/out works on the Mac mini.\n- Pipeline routes a spoken turn to Vera and plays a spoken reply.\n- Device selection configurable.\n\n## Delivery\n- Create feature branch `task-25`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-26",
+      "name": "AssemblyAI STT Integration (streaming, entity accuracy)",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": [
+        "task-25"
+      ],
+      "description": "# Task 26 \u2014 AssemblyAI STT Integration (streaming)\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nIntegrate AssemblyAI streaming STT as primary, tuned for entity/name/number accuracy.\n\n## Scope\n- Streaming transcription; key from assemblyai-warroom.json.\n- Optimize for names, offices, dollar figures, case counts (read-back accuracy).\n- Partial + final transcripts feed the turn manager.\n\n## Acceptance Criteria\n- Live speech transcribes accurately incl. entities/numbers.\n- Latency acceptable for conversation.\n- Key loaded from secret, not hardcoded.\n\n## Delivery\n- Create feature branch `task-26`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-27",
+      "name": "ElevenLabs TTS (Vera voice) + Cartesia Fallback",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": [
+        "task-25"
+      ],
+      "description": "# Task 27 \u2014 ElevenLabs TTS (Vera voice) + Cartesia Fallback\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nIntegrate ElevenLabs TTS with the custom Vera voice; wire Cartesia as documented fallback.\n\n## Scope\n- ElevenLabs primary; voice_id from elevenlabs-warroom.json (Vera voice jvnCTAsyvaJHAdFjL4sm).\n- Cartesia Sonic fallback path if latency breaks conversational flow.\n- Streaming synthesis; audio tags/emotion support.\n\n## Acceptance Criteria\n- Vera speaks in her branded voice.\n- Fallback to Cartesia switchable.\n- Keys from secrets; no hardcoding.\n\n## Delivery\n- Create feature branch `task-27`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-28",
+      "name": "Turn-Taking, Barge-In, End-of-Turn + Push-to-Talk",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": [
+        "task-26",
+        "task-27"
+      ],
+      "description": "# Task 28 \u2014 Turn-Taking, Barge-In, End-of-Turn + Push-to-Talk\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nImplement the real-time conversational layer: turn-taking, barge-in, EOT, push-to-talk first.\n\n## Scope\n- VAD + end-of-turn detection; barge-in interrupts Vera's TTS and adapts.\n- Push-to-talk mode for v1; conversational round-trip tuned toward sub-1.5s perceived.\n- listen.state reflected on the HUD.\n\n## Acceptance Criteria\n- User can interrupt Vera mid-speech; she adapts.\n- Push-to-talk works reliably.\n- Latency feels conversational.\n\n## Delivery\n- Create feature branch `task-28`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-29",
+      "name": "Wake Word (Porcupine/openWakeWord) + C6 Spoken Confirmation",
+      "phase": "phase-7",
+      "status": "pending",
+      "depends_on": [
+        "task-28"
+      ],
+      "description": "# Task 29 \u2014 Wake Word (Porcupine/openWakeWord) + C6 Spoken Confirmation\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nAdd the 'Vera' wake word and enforce spoken confirmation for mutating actions.\n\n## Scope\n- Wake-word engine: Porcupine custom 'Vera' keyword if AccessKey available, else openWakeWord trained locally.\n- Wake word activates listening with low false-trigger; same framework setting (no rebuild from push-to-talk).\n- C6: outbound/mutating actions require spoken read-back + explicit 'yes'.\n\n## Acceptance Criteria\n- 'Vera' reliably wakes listening; low false-trigger.\n- Read-only actions execute freely; mutating actions require 'yes'.\n- Engine selection documented.\n\n## Delivery\n- Create feature branch `task-29`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-30",
+      "name": "Services Configuration Admin Screen (key manager)",
+      "phase": "phase-8",
+      "status": "pending",
+      "depends_on": [
+        "task-05",
+        "task-20"
+      ],
+      "description": "# Task 30 \u2014 Services Configuration Admin Screen (key manager)\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nBuild the in-app admin Services/API-Keys configuration screen (behind the admin hotkey).\n\n## Scope\n- Secure screen to paste/rotate keys (Anthropic build not needed here; AssemblyAI, ElevenLabs, Cartesia, Picovoice, analyst-01 token).\n- Keys stored securely on the Mac mini (not hardcoded); never surfaced in plaintext after save.\n- Reachable only via the admin hotkey; validates keys with a live probe.\n\n## Acceptance Criteria\n- Admin can paste/rotate each service key without editing shell files.\n- Keys stored securely; live-probe validation.\n- Hidden from normal operation.\n\n## Delivery\n- Create feature branch `task-30`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-31",
+      "name": "Auto-Launch at Login + Locked-Down Kiosk Hardening",
+      "phase": "phase-8",
+      "status": "pending",
+      "depends_on": [
+        "task-04"
+      ],
+      "description": "# Task 31 \u2014 Auto-Launch at Login + Locked-Down Kiosk Hardening\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nConfigure auto-launch at login and harden the kiosk lockdown on the Mac mini.\n\n## Scope\n- Launch-at-login (macOS LaunchAgent or Electron API); relaunch on crash.\n- Lock down: no dock/menu/cursor/quit; survive reboot into the War Room.\n- Discreet admin/exit path retained.\n\n## Acceptance Criteria\n- Boots into the War Room automatically; survives reboot.\n- Locked down for daily use.\n- Admin exit still reachable.\n\n## Delivery\n- Create feature branch `task-31`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-32",
+      "name": "Multi-Monitor Deploy Validation (>=2 physical displays)",
+      "phase": "phase-8",
+      "status": "pending",
+      "depends_on": [
+        "task-10",
+        "task-22"
+      ],
+      "description": "# Task 32 \u2014 Multi-Monitor Deploy Validation (>=2 displays)\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nValidate multi-monitor spread and snapping on real added displays.\n\n## Scope\n- Test with >=2 physical displays; panels spread/snap across monitors correctly.\n- Presets that span monitors; per-monitor DPI/scale correctness.\n- Document the arrangement setup.\n\n## Acceptance Criteria\n- Panels spread/snap across >=2 displays.\n- Spanning presets work.\n- Crisp on each display.\n\n## Delivery\n- Create feature branch `task-32`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-33",
+      "name": "Packaging, Signing & Vera.app Build",
+      "phase": "phase-8",
+      "status": "pending",
+      "depends_on": [
+        "task-31",
+        "task-30"
+      ],
+      "description": "# Task 33 \u2014 Packaging, Signing & Vera.app Build\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nPackage and sign the app as Vera.app for clean distribution/auto-launch.\n\n## Scope\n- electron-builder (or equivalent) mac arm64 build; code signing/notarization as feasible.\n- Bundle bridge + voice companion processes or document their supervision.\n- Versioned artifact + install/update notes.\n\n## Acceptance Criteria\n- Signed Vera.app builds and runs on the Mac mini.\n- Companion processes start reliably.\n- Install documented.\n\n## Delivery\n- Create feature branch `task-33`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    },
+    {
+      "id": "task-34",
+      "name": "Production Cutover (Telegram Jon->Zeri) + Handoff Docs",
+      "phase": "phase-8",
+      "status": "pending",
+      "depends_on": [
+        "task-33",
+        "task-32",
+        "task-24",
+        "task-29"
+      ],
+      "description": "# Task 34 \u2014 Production Cutover (Telegram Jon->Zeri) + Handoff Docs\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n\n## Objective\nPerform the A5 production cutover and finalize handoff documentation.\n\n## Scope\n- Switch the Telegram target from Jon 6492555042 to Zeri's production channel (A5 deferred action).\n- Disable/remove the Jon test target.\n- Final KB + Linear updates; hand to Zeri; operator runbook.\n\n## Acceptance Criteria\n- Zeri's Telegram is the production target; Jon test-target disabled.\n- Documented in KB + Linear.\n- Runbook delivered; handed to Zeri.\n\n## Delivery\n- Create feature branch `task-34`, commit with clear messages, push, open a PR against `main`.\n- Ensure the build passes locally before pushing.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/*-warroom.json`, never hardcoded.\n"
+    }
+  ]
 }
