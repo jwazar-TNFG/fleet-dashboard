@@ -177,7 +177,7 @@
       "id": "task-13",
       "name": "HUD<->Bridge WebSocket Channel + Command Router",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-12",
         "task-07"
