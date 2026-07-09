@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T23:22:20Z",
+  "updated_at": "2026-07-09T23:38:29Z",
   "phases": [
     {
       "id": "phase-0",
@@ -188,7 +188,7 @@
       "id": "task-14",
       "name": "Command Handlers (orb/panel/layout/speak) + Mock Data Feed",
       "phase": "phase-3",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-13",
         "task-10",
