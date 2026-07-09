@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T20:34:46Z",
+  "updated_at": "2026-07-09T20:34:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -64,7 +64,7 @@
       "id": "task-02",
       "name": "Design System & TNFG Theme Tokens",
       "phase": "phase-1",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
