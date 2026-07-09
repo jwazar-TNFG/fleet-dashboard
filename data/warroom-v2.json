@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T23:38:29Z",
+  "updated_at": "2026-07-09T23:43:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -200,7 +200,7 @@
       "id": "task-15",
       "name": "Vera \"War Room\" Skill (war-room) Authoring",
       "phase": "phase-4",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-11"
       ],
