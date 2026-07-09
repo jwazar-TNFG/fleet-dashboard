@@ -1,0 +1,33 @@
+{
+  "name": "War Room v2 (VERA HUD)",
+  "slug": "warroom-v2",
+  "repo": "jwazar-TNFG/warroom-v2",
+  "updated_at": "2026-07-09T19:16:28Z",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "HUD Shell + 9-Panel Window/Snap Engine"
+    },
+    {
+      "id": "phase-2",
+      "name": "Bridge + Vera Integration"
+    },
+    {
+      "id": "phase-3",
+      "name": "Telegram-Driven Interaction"
+    },
+    {
+      "id": "phase-4",
+      "name": "Data Wiring"
+    },
+    {
+      "id": "phase-5",
+      "name": "Voice Pipeline (after USB mic on-site)"
+    },
+    {
+      "id": "phase-6",
+      "name": "Kiosk Packaging + Multi-Monitor Deploy + Production Cutover"
+    }
+  ],
+  "tasks": []
+}

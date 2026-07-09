@@ -10,5 +10,11 @@
     "name": "No Fault App 2.0",
     "repo": "jwazar-TNFG/nofault-app-2",
     "description": "React + Capacitor + Supabase \u2014 internal employee app rebuild (iPhone target)"
+  },
+  {
+    "slug": "warroom-v2",
+    "name": "War Room v2 (VERA HUD)",
+    "repo": "jwazar-TNFG/warroom-v2",
+    "description": "Jarvis-style ops HUD for Zeri \u2014 Vera-driven, multi-monitor, voice + Telegram (Electron on Mac mini)"
   }
 ]
