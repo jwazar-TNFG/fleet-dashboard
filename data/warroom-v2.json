@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T22:46:50Z",
+  "updated_at": "2026-07-09T22:46:53Z",
   "phases": [
     {
       "id": "phase-0",
@@ -157,7 +157,7 @@
       "id": "task-11",
       "name": "HUD Protocol Types + Validator (versioned vocabulary)",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
