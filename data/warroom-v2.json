@@ -188,7 +188,7 @@
       "id": "task-14",
       "name": "Command Handlers (orb/panel/layout/speak) + Mock Data Feed",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-13",
         "task-10",
