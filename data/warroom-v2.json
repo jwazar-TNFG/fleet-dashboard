@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-09T23:43:32Z",
+  "updated_at": "2026-07-10T00:01:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -210,7 +210,7 @@
       "id": "task-16",
       "name": "warroom_emit Tool (bridge-gated) + Registration",
       "phase": "phase-4",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-15",
         "task-12"
