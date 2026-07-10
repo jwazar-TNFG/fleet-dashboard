@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T00:01:07Z",
+  "updated_at": "2026-07-10T00:22:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -221,7 +221,7 @@
       "id": "task-17",
       "name": "End-to-End Vera-Drives-HUD Integration + Resilience",
       "phase": "phase-4",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-16",
         "task-14"
