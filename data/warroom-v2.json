@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T03:53:16Z",
+  "updated_at": "2026-07-10T03:53:18Z",
   "phases": [
     {
       "id": "phase-0",
@@ -443,11 +443,13 @@
       "id": "task-27",
       "name": "ElevenLabs TTS (Vera voice) + Cartesia Fallback",
       "phase": "phase-7",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-25"
       ],
-      "description": "# Task 27 \u2014 ElevenLabs TTS (Vera voice) + Cartesia Fallback\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-25\n\n## Objective\nIntegrate ElevenLabs TTS with the custom Vera voice; wire Cartesia as fallback.\n\n## Scope\n- ElevenLabs primary; Vera voice id from secret (jvnCTAsyvaJHAdFjL4sm).\n- Cartesia Sonic fallback if latency breaks flow.\n- Streaming synthesis; audio tags.\n\n## Acceptance Criteria\n- Vera speaks in her branded voice.\n- Fallback switchable.\n- Keys from secrets.\n\n## Delivery\n- Create feature branch `task-27`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 27 \u2014 ElevenLabs TTS (Vera voice) + Cartesia Fallback\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-25\n\n## Objective\nIntegrate ElevenLabs TTS with the custom Vera voice; wire Cartesia as fallback.\n\n## Scope\n- ElevenLabs primary; Vera voice id from secret (jvnCTAsyvaJHAdFjL4sm).\n- Cartesia Sonic fallback if latency breaks flow.\n- Streaming synthesis; audio tags.\n\n## Acceptance Criteria\n- Vera speaks in her branded voice.\n- Fallback switchable.\n- Keys from secrets.\n\n## Delivery\n- Create feature branch `task-27`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T03:53:18Z",
+      "startedAt": "2026-07-10T03:53:18Z"
     },
     {
       "id": "task-28",
