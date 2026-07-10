@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T06:15:08Z",
+  "updated_at": "2026-07-10T06:15:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -304,11 +304,13 @@
       "id": "task-35",
       "name": "Vera Core-Integrity Gate (additive/reversible proof)",
       "phase": "phase-4",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-16"
       ],
-      "description": "# Task 35 \u2014 Vera Core-Integrity Gate (additive/reversible proof)\n\n**Phase 4** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-16\n\n## Objective\nProve \u2014 not merely assert \u2014 that installing the War Room tool/skill leaves Vera's core untouched and is cleanly reversible.\n\n## Scope\n- Capture a BEFORE snapshot of Vera's install on the Mac mini: agent config, prompt/identity files, skill inventory, tool registry, and file hashes/manifest of the core install dir.\n- Install the war-room skill + warroom_emit tool (additive), then capture an AFTER snapshot.\n- Diff: the ONLY differences permitted are the added skill file + the added tool registration. Any change to core prompt/identity/config/other-skills FAILS the gate.\n- Then run the reversal (remove skill + unregister tool) and capture a THIRD snapshot; it must match the BEFORE snapshot exactly.\n- Emit a signed integrity report (before/after/reverted manifests + diff) committed to the repo.\n\n## Acceptance Criteria\n- Before->after diff shows ONLY the additive skill + tool; nothing else changed.\n- After->reverted returns byte-for-byte to the before state.\n- Integrity report committed; this gate blocks Phase 4 completion.\n\n## Delivery\n- Create feature branch `task-35`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 35 \u2014 Vera Core-Integrity Gate (additive/reversible proof)\n\n**Phase 4** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-16\n\n## Objective\nProve \u2014 not merely assert \u2014 that installing the War Room tool/skill leaves Vera's core untouched and is cleanly reversible.\n\n## Scope\n- Capture a BEFORE snapshot of Vera's install on the Mac mini: agent config, prompt/identity files, skill inventory, tool registry, and file hashes/manifest of the core install dir.\n- Install the war-room skill + warroom_emit tool (additive), then capture an AFTER snapshot.\n- Diff: the ONLY differences permitted are the added skill file + the added tool registration. Any change to core prompt/identity/config/other-skills FAILS the gate.\n- Then run the reversal (remove skill + unregister tool) and capture a THIRD snapshot; it must match the BEFORE snapshot exactly.\n- Emit a signed integrity report (before/after/reverted manifests + diff) committed to the repo.\n\n## Acceptance Criteria\n- Before->after diff shows ONLY the additive skill + tool; nothing else changed.\n- After->reverted returns byte-for-byte to the before state.\n- Integrity report committed; this gate blocks Phase 4 completion.\n\n## Delivery\n- Create feature branch `task-35`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T06:15:14Z",
+      "startedAt": "2026-07-10T06:15:14Z"
     },
     {
       "id": "task-18",
