@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T19:30:14Z",
+  "updated_at": "2026-07-10T19:44:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -652,11 +652,13 @@
       "id": "task-42",
       "name": "Split-cell / half-size panel layout (RND-56)",
       "phase": "phase-9",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "# Task 42 \u2014 Split-cell / half-size panel layout (RND-56)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-56 \u00b7 **Priority:** P2 (Jon's feature request)\n\n## Context\nJon's idea from Layer-1 testing: allow shrinking a panel to **half** a standard grid cell so a single one of the 9 sections can hold **two** data panels \u2014 a finer-grained grid for higher information density without losing the clean 3\u00d73 look.\n\n## Objective\nExtend the layout engine so a standard cell can be split to host two half-size panels.\n\n## Scope\n- Layout/placement model + `GridCanvas` support for half-cell panels (split a cell vertically and/or horizontally into two slots).\n- Edit-mode UX to split/merge a cell and assign a view to each half (coordinate with task-41's Change View).\n- Persist split-cell layouts in presets; ensure drag/snap/resize behave sensibly with half cells.\n- Preserve the option of a plain 3\u00d73 (no forced splitting).\n\n## Acceptance Criteria\n- An operator can split a grid section and place two distinct data panels within it.\n- Split layouts persist across relaunch via presets.\n- The default clean 3\u00d73 look is unchanged when no split is applied; no regression to existing layout behaviors.\n\n## Delivery\n- Branch `task-42`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-56), hud/src/renderer/src/layout/GridCanvas.tsx + layout config/placements.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n",
-      "lastActivity": "2026-07-10T19:30:14Z",
-      "startedAt": "2026-07-10T19:30:14Z"
+      "lastActivity": "2026-07-10T19:44:56Z",
+      "startedAt": "2026-07-10T19:30:14Z",
+      "finishedAt": "2026-07-10T19:44:56Z",
+      "durationSeconds": 882
     },
     {
       "id": "task-43",
