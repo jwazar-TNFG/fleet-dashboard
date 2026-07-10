@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T23:52:27Z",
+  "updated_at": "2026-07-10T23:55:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -781,9 +781,11 @@
       "id": "task-51",
       "name": "warroom_emit non-optional so it enters Vera's toolset (RND-68)",
       "phase": "phase-12",
-      "status": "in_progress",
-      "lastActivity": "2026-07-10T23:52:27Z",
-      "startedAt": "2026-07-10T23:52:27Z"
+      "status": "completed",
+      "lastActivity": "2026-07-10T23:55:45Z",
+      "startedAt": "2026-07-10T23:52:27Z",
+      "finishedAt": "2026-07-10T23:55:45Z",
+      "durationSeconds": 198
     },
     {
       "id": "task-52",
