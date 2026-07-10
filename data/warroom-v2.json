@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T04:58:50Z",
+  "updated_at": "2026-07-10T05:24:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -472,13 +472,15 @@
       "id": "task-29",
       "name": "Wake Word (additive; Porcupine/openWakeWord) + C6 Spoken Confirmation",
       "phase": "phase-7",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-28"
       ],
       "description": "# Task 29 \u2014 Wake Word (additive; Porcupine/openWakeWord) + C6 Spoken Confirmation\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-28\n\n## Objective\nAdd the 'Vera' wake word as an ADDITIVE enhancement on top of the working PTT (task-28), and enforce C6 spoken confirmation. Must NOT block earlier phases; Picovoice approval may take days.\n\n## Scope\n- C6 (regardless of wake word): read-only executes freely; mutating actions require spoken read-back + explicit 'yes'.\n- Wake word (additive): Porcupine custom 'Vera' if a Picovoice AccessKey is present in ~/.openclaw/secrets/warroom/picovoice.json; else locally-trained openWakeWord 'Vera'. Config-driven; no rebuild to switch from PTT.\n- Coexists with the PTT button; if neither engine configured, ship with wake word disabled + PTT sole activation, cleanly.\n\n## Acceptance Criteria\n- C6 enforced.\n- With an engine: 'Vera' wakes listening, low false-trigger, PTT still works.\n- With NO engine: runs fine on PTT alone, reports wake-word 'not configured' (no failure).\n- Engine selection + Picovoice-later path documented.\n\n## Delivery\n- Create feature branch `task-29`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T04:58:50Z",
-      "startedAt": "2026-07-10T04:58:50Z"
+      "lastActivity": "2026-07-10T05:24:01Z",
+      "startedAt": "2026-07-10T04:58:50Z",
+      "finishedAt": "2026-07-10T05:24:01Z",
+      "durationSeconds": 1511
     },
     {
       "id": "task-30",
