@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T02:20:15Z",
+  "updated_at": "2026-07-10T02:20:18Z",
   "phases": [
     {
       "id": "phase-0",
@@ -386,11 +386,13 @@
       "id": "task-23",
       "name": "Hybrid Refresh + Single-Source-of-Truth Guard",
       "phase": "phase-6",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-22"
       ],
-      "description": "# Task 23 \u2014 Hybrid Refresh + Single-Source-of-Truth Guard\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-22\n\n## Objective\nAdd hybrid refresh (polling + on-demand) and enforce spoken==panel figures.\n\n## Scope\n- Per-panel polling (30-120s); on-demand refresh via Vera command; real-time reserved for live-ops-feed if warranted.\n- Single-source guard: spoken figure and panel figure come from the same layer.\n- Backoff on source errors.\n\n## Acceptance Criteria\n- Polling works per panel; 'update intake' forces refresh.\n- Spoken == panel figure (spot-checked).\n- Errors degrade gracefully.\n\n## Delivery\n- Create feature branch `task-23`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 23 \u2014 Hybrid Refresh + Single-Source-of-Truth Guard\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-22\n\n## Objective\nAdd hybrid refresh (polling + on-demand) and enforce spoken==panel figures.\n\n## Scope\n- Per-panel polling (30-120s); on-demand refresh via Vera command; real-time reserved for live-ops-feed if warranted.\n- Single-source guard: spoken figure and panel figure come from the same layer.\n- Backoff on source errors.\n\n## Acceptance Criteria\n- Polling works per panel; 'update intake' forces refresh.\n- Spoken == panel figure (spot-checked).\n- Errors degrade gracefully.\n\n## Delivery\n- Create feature branch `task-23`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T02:20:18Z",
+      "startedAt": "2026-07-10T02:20:18Z"
     },
     {
       "id": "task-24",
