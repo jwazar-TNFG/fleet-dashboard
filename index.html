@@ -365,6 +365,8 @@
       font-variant-numeric: tabular-nums;
     }
     .task-time { font-size: 11px; color: var(--text-muted); white-space: nowrap; margin-right: 8px; }
+    .task-timing { font-size: 11px; color: var(--text-muted); white-space: nowrap; margin-right: 8px; font-variant-numeric: tabular-nums; opacity: 0.85; }
+    @media (max-width: 640px) { .task-deps { display: none; } .task-timing { margin-right: 6px; } }
 
     .task-deps {
       font-size: 11px;
@@ -1160,7 +1162,9 @@ function renderProject(project) {
   const avgCostPerTask = completed > 0 ? totalCost / completed : 0;
   const estimatedTotal = avgCostPerTask * total;
   const formatCost = (v) => v < 0.01 ? '$0.00' : '$' + v.toFixed(2);
-  const formatDuration = (s) => { if (!s) return '—'; const m = Math.floor(s/60); const ss = s%60; return m > 0 ? `${m}m ${ss}s` : `${ss}s`; };
+  const formatDuration = (s) => { if (!s) return '—'; const h = Math.floor(s/3600); const m = Math.floor((s%3600)/60); const ss = s%60; if (h > 0) return `${h}h ${m}m`; return m > 0 ? `${m}m ${ss}s` : `${ss}s`; };
+  // Compact wall-clock like "9:42 PM" in the viewer's local time.
+  const formatClock = (iso) => { if (!iso) return ''; const d = new Date(iso); if (isNaN(d)) return ''; return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); };
   const formatTokens = (n) => { if (!n) return '0'; if (n >= 1000000) return (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return (n/1000).toFixed(1) + 'K'; return n.toString(); };
 
   let projectHtml = '';
@@ -1298,12 +1302,29 @@ function renderProject(project) {
       const taskDur = task.durationSeconds ? formatDuration(task.durationSeconds) : '';
       const costTag = taskCost ? `<span class="task-cost" title="${taskTurns} · ${taskDur}">${taskCost}</span>` : '';
 
+      // Compact timing line: "Started 9:42 PM · 21m" (start clock + total duration).
+      // For an in-progress task with a start but no final duration, show a live
+      // running elapsed instead of a fixed total.
+      const startClock = task.startedAt ? formatClock(task.startedAt) : '';
+      let durText = '';
+      if (task.durationSeconds) {
+        durText = formatDuration(task.durationSeconds);
+      } else if (task.status === 'in_progress' && task.startedAt) {
+        const elapsed = Math.max(0, Math.floor((Date.now() - new Date(task.startedAt).getTime()) / 1000));
+        durText = formatDuration(elapsed) + '…';
+      }
+      const timeBits = [];
+      if (startClock) timeBits.push(`Started ${startClock}`);
+      if (durText) timeBits.push(durText);
+      const timingTag = timeBits.length ? `<span class="task-timing">${timeBits.join(' · ')}</span>` : '';
+
       projectHtml += `
         <div class="task-row" onclick="event.stopPropagation(); showTaskDetail('${project.slug}','${task.id}')">
           <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
           <span class="task-id">${task.id}</span>
           <span class="task-name">${task.name}</span>
           ${costTag}
+          ${timingTag}
           ${timeAgo ? `<span class="task-time">${timeAgo}</span>` : ''}
           <span class="task-deps">${deps}</span>
         </div>
@@ -1846,6 +1867,9 @@ function toggleTaskInfo(slug, taskId) {
       <div class="ip-row"><strong>Status:</strong><span class="ip-status ${status}">${esc(status)}</span></div>
       <div class="ip-row"><strong>Description:</strong>${doneWhen}</div>
       <div class="ip-row"><strong>Dependencies:</strong>${deps}</div>
+      ${task.startedAt ? `<div class="ip-row"><strong>Started:</strong>${esc(new Date(task.startedAt).toLocaleString())}</div>` : ''}
+      ${task.finishedAt ? `<div class="ip-row"><strong>Finished:</strong>${esc(new Date(task.finishedAt).toLocaleString())}</div>` : ''}
+      ${(task.durationSeconds || (task.status === 'in_progress' && task.startedAt)) ? `<div class="ip-row"><strong>Total time:</strong>${task.durationSeconds ? esc(formatDuration(task.durationSeconds)) : esc(formatDuration(Math.max(0, Math.floor((Date.now() - new Date(task.startedAt).getTime())/1000)))) + ' (running)'}</div>` : ''}
       <div class="ip-row"><strong>Last activity:</strong>${esc(timeAgo)}${ts ? ' · <span style="color:var(--text-muted)">' + esc(ts) + '</span>' : ''}</div>
       ${task.costUSD ? `<div class="ip-row"><strong>Cost:</strong><span style="color:var(--accent);font-weight:600">$${task.costUSD.toFixed(2)}</span> · ${task.numTurns || 0} turns · ${formatDuration(task.durationSeconds || 0)} · <span style="color:var(--text-muted)">${formatTokens((task.inputTokens||0)+(task.outputTokens||0)+(task.cacheReadTokens||0))} tokens</span></div>` : ''}
     </div>`;
