@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T22:35:05Z",
+  "updated_at": "2026-07-10T22:46:18Z",
   "phases": [
     {
       "id": "phase-0",
@@ -749,13 +749,15 @@
       "id": "task-49",
       "name": "warroom_emit reliably enters agent toolset when bridge reachable (RND-66a)",
       "phase": "phase-11",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-48"
       ],
       "description": "# task-49 \u2014 Make the warroom_emit tool reliably enter the agent toolset when the bridge is reachable (RND-66 part A)\n\n## Context (read first)\nOn the 2026-07-10 live Layer-3 test, with the bridge FULLY reachable\n(`gateway.state: connected`, `session.mode: active`, HUD listening on 18795,\n`/health` answering on 18796 \u2014 the first candidate the tool probes), Vera still\nreported **TOOL_ABSENT** across 5 agent turns, including a turn AFTER the\ngateway was restarted with the bridge already up (so it is not only a\nstartup-probe race).\n\nThe tool factory (`vera/tools/warroom-emit/src/index.ts`) registers a **dynamic\nper-turn factory**:\n\n```ts\napi.registerTool((toolContext) => {\n  void gate.refresh();                 // async probe, NOT awaited\n  const bridgeBaseUrl = gate.activeBaseUrl();\n  if (!gate.reachable() || bridgeBaseUrl === null) return null;  // \u2190 returns null\n  return createWarroomEmitTool(...);\n}, { names: ['warroom_emit'] });\n```\n\nTwo problems:\n1. **Fire-and-forget probe race:** `gate.refresh()` is async and NOT awaited, so\n   `gate.reachable()` is read on the same synchronous tick and reflects the\n   PREVIOUS settled value. On a process whose eager probe settled `false`\n   (bridge was down at that moment), the factory returns `null` and never\n   recovers within that turn.\n2. **Factory-returns-null may not re-materialize the tool** the way the plugin\n   assumes on OpenClaw 2026.5.2 \u2014 returning `null` from the per-turn factory\n   appears to drop `warroom_emit` from the toolset with no later re-evaluation\n   that brings it back.\n\n## Goal\nWhen the bridge is reachable, `warroom_emit` MUST be present in Vera's toolset\non the very next agent turn \u2014 deterministically, not racily \u2014 while preserving\nthe safety property that a DOWN bridge does not break Vera (the tool may be\npresent but must nack cleanly, OR be absent; pick the approach that is both\nreliable on 2026.5.2 AND safe).\n\n## Requirements\nChoose the most robust approach for 2026.5.2 (justify in the PR), likely:\n1. **Register the tool statically** (always present in the toolset) and move the\n   reachability decision to **execute-time**: if the bridge is unreachable when\n   a command is emitted, return the existing `ERR_HUD_UNAVAILABLE` nack instead\n   of throwing \u2014 Vera stays unharmed, and the tool never mysteriously vanishes.\n   This removes the per-turn null-return entirely. -- OR --\n2. If a dynamic factory must be kept, make reachability **synchronously\n   readable and fresh**: maintain a cached `reachable` refreshed by a\n   background interval (e.g. a short timer that probes `/health` and updates the\n   cached flag), so the factory reads an up-to-date value without awaiting\n   inside the factory. Ensure the interval is unref'd and cleaned up.\n   (Option 1 is preferred for determinism; use option 2 only if static\n   registration is not compatible with the desired UX.)\n3. Preserve: bridge-dies-mid-turn safety (execute nacks, never throws into\n   Vera's turn); the origin stamping (`originFromToolContext`); and the\n   optional/`toolMetadata` shape.\n4. Keep the plugin ADDITIVE and inert-when-down in spirit: a down bridge must\n   never degrade Vera's normal behavior.\n\n## Tests / proof (must pass in CI)\n- Test proving that with a reachable bridge stub, the registered tool is\n  present/usable on the first evaluation (no dependence on a prior settled\n  probe) \u2014 i.e. the race is gone.\n- Test proving that with the bridge DOWN, emitting returns the\n  `ERR_HUD_UNAVAILABLE` nack (option 1) or the tool is cleanly absent (option\n  2), and in NEITHER case does Vera's turn throw.\n- `npm run build` + `npm test` green; do not weaken existing tool tests.\n\n## Depends on\n- task-48 (so a reachable-bridge emit actually succeeds end-to-end rather than\n  hitting the scope error). Author may develop in parallel but the live proof\n  needs both.\n\n## Definition of done\n- `warroom_emit` deterministically present when the bridge is reachable; safe\n  when it is not. Race removed. CI green; PR merged with ci-gate green.\n",
-      "lastActivity": "2026-07-10T22:35:05Z",
-      "startedAt": "2026-07-10T22:35:05Z"
+      "lastActivity": "2026-07-10T22:46:18Z",
+      "startedAt": "2026-07-10T22:35:05Z",
+      "finishedAt": "2026-07-10T22:46:18Z",
+      "durationSeconds": 673
     },
     {
       "id": "task-50",
