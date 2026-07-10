@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T05:56:34Z",
+  "updated_at": "2026-07-10T05:56:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -525,12 +525,14 @@
       "id": "task-32",
       "name": "Multi-Monitor Deploy Validation (>=2 displays)",
       "phase": "phase-8",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-10",
         "task-22"
       ],
-      "description": "# Task 32 \u2014 Multi-Monitor Deploy Validation (>=2 displays)\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-10, task-22\n\n## Objective\nValidate multi-monitor spread and snapping on real added displays.\n\n## Scope\n- Test with >=2 physical displays; panels spread/snap across monitors.\n- Presets that span monitors; per-monitor DPI/scale correctness.\n- Document the arrangement setup.\n\n## Acceptance Criteria\n- Panels spread/snap across >=2 displays.\n- Spanning presets work.\n- Crisp on each display.\n\n## Delivery\n- Create feature branch `task-32`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 32 \u2014 Multi-Monitor Deploy Validation (>=2 displays)\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-10, task-22\n\n## Objective\nValidate multi-monitor spread and snapping on real added displays.\n\n## Scope\n- Test with >=2 physical displays; panels spread/snap across monitors.\n- Presets that span monitors; per-monitor DPI/scale correctness.\n- Document the arrangement setup.\n\n## Acceptance Criteria\n- Panels spread/snap across >=2 displays.\n- Spanning presets work.\n- Crisp on each display.\n\n## Delivery\n- Create feature branch `task-32`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T05:56:38Z",
+      "startedAt": "2026-07-10T05:56:38Z"
     },
     {
       "id": "task-33",
