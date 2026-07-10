@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T19:08:23Z",
+  "updated_at": "2026-07-10T19:30:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -640,11 +640,13 @@
       "id": "task-41",
       "name": "\"Change View\" panel-menu item (RND-57)",
       "phase": "phase-9",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "# Task 41 \u2014 \"Change View\" panel-menu item to re-assign panel content (RND-57)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-57 \u00b7 **Priority:** P2\n\n## Context\nLayer-1 Check 5 gap: there is no user-facing control to change what a panel displays. In `hud/src/renderer/src/layout/GridCanvas.tsx`, the per-panel three-dots menu is suppressed in edit mode (`if (editing) return undefined`) and in normal mode offers only Focus/Exit Focus. The capability exists under the hood (panels are driven by a `view` field in the layout config; `setView` is used in DevGallery + AdminOverlay), but no button was built for operators.\n\n## Objective\nAdd a \"Change View\" control so an operator can re-task any panel (including the center/orb slot) to a different view from the HUD UI.\n\n## Scope\n- Add a \"Change View\" item to the panel menu (surface it in edit mode) listing the available registered views.\n- Wire it to the existing `setView`/layout `view` mechanism; persist the change with the layout/preset system so it survives relaunch.\n- Include the center/orb slot as a retargetable panel.\n- Keep it consistent with the TNFG palette + existing menu styling.\n\n## Acceptance Criteria\n- In edit mode, each panel exposes \"Change View\"; selecting a view swaps the panel's content live.\n- The change persists via the existing preset/layout persistence across a full relaunch.\n- No regression to Focus/Exit-Focus or drag/snap/resize.\n\n## Delivery\n- Branch `task-41`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-57), hud/src/renderer/src/layout/GridCanvas.tsx, DevGallery/AdminOverlay view-switch code.\n**Global rules:** TNFG palette teal `#5BA4B5`/cyan `#00D4E0` on near-black `#04080C`; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n",
-      "lastActivity": "2026-07-10T19:08:23Z",
-      "startedAt": "2026-07-10T19:08:23Z"
+      "lastActivity": "2026-07-10T19:30:10Z",
+      "startedAt": "2026-07-10T19:08:23Z",
+      "finishedAt": "2026-07-10T19:30:10Z",
+      "durationSeconds": 1307
     },
     {
       "id": "task-42",
