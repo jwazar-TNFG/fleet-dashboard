@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T08:19:43Z",
+  "updated_at": "2026-07-10T17:45:20Z",
   "phases": [
     {
       "id": "phase-0",
@@ -39,6 +39,10 @@
     {
       "id": "phase-8",
       "name": "Kiosk, Admin & Deploy"
+    },
+    {
+      "id": "phase-9",
+      "name": "Round 2 / Layer-3 Enablement"
     }
   ],
   "tasks": [
@@ -592,6 +596,65 @@
       "startedAt": "2026-07-10T08:06:47Z",
       "finishedAt": "2026-07-10T08:19:43Z",
       "durationSeconds": 776
+    },
+    {
+      "id": "task-38",
+      "name": "Bridge<->gateway protocol mismatch vs OpenClaw 2026.5.2 (RND-62)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 38 \u2014 Bridge\u2194gateway protocol mismatch vs live OpenClaw 2026.5.2 (RND-62)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none (round-2 entry) \u00b7 **Linear:** RND-62 \u00b7 **Priority:** P0 (Layer-3 blocker)\n\n## Context\nDuring Layer-2/3 validation on Vera's Mac mini, the bridge's gateway-session connected to Vera's LIVE gateway (`ws://127.0.0.1:18789`, OpenClaw **2026.5.2 / 8b2a6e5**) and the gateway closed the socket with **`code:1002 reason:\"protocol mismatch\"`** on the bridge handshake (`protocol:4`), then the bridge retried in a tight loop. Layer 2 was isolated by pointing the bridge at a dead port (18999). Layer 3 (Vera drives the HUD) cannot connect until this handshake succeeds against the installed gateway.\n\n## Objective\nMake the bridge hold a stable gateway session against the installed OpenClaw 2026.5.2 gateway.\n\n## Scope\n- Inspect `bridge/src/gateway-session.ts`, `bridge/src/gateway.ts`, `bridge/src/main.ts`.\n- Determine the correct gateway session protocol version expected by installed OpenClaw 2026.5.2 (do NOT assume `4`); align the bridge handshake. Prefer negotiating/validating against the running gateway rather than hardcoding a guess.\n- Determine whether the live gateway requires an auth token for the session; support it via `WARROOM_GATEWAY_TOKEN` (and/or a `gateway` secret file under `WARROOM_SECRETS_DIR`). There is currently no `~/.openclaw/secrets/warroom/gateway` staged \u2014 document what is needed.\n- Add clear startup logging + a health field that distinguishes \"gateway protocol mismatch\" from \"gateway down\" (different failure modes).\n\n## Acceptance Criteria\n- Bridge holds a stable session against a real OpenClaw 2026.5.2 gateway (health shows `gateway.state: connected`); no reconnect loop.\n- Protocol mismatch vs connection-refused are logged distinctly.\n- Auth-token path documented and honored when required.\n- Unit/integration coverage for the handshake where feasible; no regressions to Layer-2 behavior (dead-port isolation still backs off cleanly).\n\n## Delivery\n- Branch `task-38`, clear commits, PR against `main`, CI (ci-gate) green before merge (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-62 section), HUD-PROTOCOL.md, README-DEV.md, bridge/src/config.ts.\n**Global rules:** TNFG palette teal `#5BA4B5`/cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. **Never modify Vera's core install.** HUD renders/speaks only \u2014 no external mutating actions. Secrets from `~/.openclaw/secrets/warroom/*.json`, never hardcoded. **Never disturb Vera's live gateway (port 18789); test against a disposable/local gateway.**\n"
+    },
+    {
+      "id": "task-39",
+      "name": "Bridge default HUD port 18791 collision (RND-60)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 39 \u2014 Bridge default HUD port 18791 collides with Vera's live gateway (RND-60)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-60 \u00b7 **Priority:** P1\n\n## Context\n`DEFAULT_HUD_PORT = 18791` in `bridge/src/config.ts`. On Vera's Mac mini, the LIVE OpenClaw gateway also LISTENs on `127.0.0.1:18791`, so starting the bridge fails `EADDRINUSE 18791`. Layer-2 workaround used relocated ports (`WARROOM_HUD_WS_PORT=18795`, `WARROOM_BRIDGE_HEALTH_PORT=18796`, HUD via `VITE_WARROOM_BRIDGE_URL=ws://127.0.0.1:18795`). Note the health-port env var is `WARROOM_BRIDGE_HEALTH_PORT` (NOT `WARROOM_HEALTH_PORT`).\n\n## Objective\nEliminate the default port collision so the War Room stack co-exists with Vera's gateway out of the box.\n\n## Scope\n- Change the bridge default HUD WS port off 18791 (and reassess the health port default vs the gateway's 18789/18790 neighborhood), and/or implement auto-select of a free port with the chosen port advertised to the HUD.\n- Ensure the HUD picks up the resolved port (VITE env / a discovery mechanism) so a non-default bridge port does not require manual HUD env edits.\n- Do NOT solve by moving Vera's live gateway.\n- Update README-DEV.md / config docs with the co-located deployment port map.\n\n## Acceptance Criteria\n- With Vera's gateway occupying 18789 (+ its neighbors), the bridge starts cleanly with no manual port overrides, and the HUD connects.\n- Env overrides (`WARROOM_HUD_WS_PORT`, `WARROOM_BRIDGE_HEALTH_PORT`) still work and are documented with correct names.\n- No regressions to Layer-2 command routing.\n\n## Delivery\n- Branch `task-39`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-60), bridge/src/config.ts, README-DEV.md.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`; never disturb Vera's live gateway.\n"
+    },
+    {
+      "id": "task-40",
+      "name": "Install/register warroom_emit plugin in Vera (RND-61)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [
+        "task-38",
+        "task-39"
+      ],
+      "description": "# Task 40 \u2014 Install/register warroom_emit plugin in Vera's agent (RND-61)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** 38, 39 \u00b7 **Linear:** RND-61 \u00b7 **Priority:** P0 (Layer-3 blocker)\n\n## Context\n`warroom_emit` is NOT registered in Vera's live agent. Her `~/.openclaw/openclaw.json` `tools` = `{web:{search:{}}}`; `plugins` has no warroom entry. The tool exists only as built artifacts in the smoke repo. Layer-2 command tests were driven by invoking the built tool as a LOCAL process, not through Vera. Layer 3 (Vera drives the HUD) requires the plugin installed + registered, which means restarting Vera's agent (Zeri's live EA).\n\n## Objective\nMake the warroom_emit plugin installable and registerable into Vera's OpenClaw 2026.5.2 agent, fully reversibly, with the task-35 core-unmodified guarantee proven.\n\n## Scope\n- Verify the plugin registration hook `WarroomPluginApi.registerTool` in `vera/tools/warroom-emit/src/index.ts` matches the **installed OpenClaw 2026.5.2** plugin API; adapt that one file if the host exposes a different registration hook.\n- Ensure the installed plugin points at the (possibly relocated, see task-39) bridge via `WARROOM_BRIDGE_HTTP_URL`; default `18790` must be overridable.\n- Confirm the hidden/inert behavior: bridge down at registration \u2192 tool NOT registered (toolset byte-for-byte unchanged); bridge dies after registration \u2192 `execute` returns `ERR_HUD_UNAVAILABLE`, never throws into Vera's turn.\n- Provide/verify an install script + the one-line `plugins.load.paths` registration, and the rollback (`rm -rf` dir + remove line).\n- Wire in / verify the **task-35 before/after core manifest** proof.\n\n## Acceptance Criteria\n- With the bridge up, Vera's toolset gains exactly `warroom_emit`; with the bridge down, her toolset is byte-for-byte unchanged (task-35 manifest confirms).\n- A Vera turn can emit a HUD-PROTOCOL batch that reaches the bridge.\n- Install and rollback are documented and verified reversible.\n- **The actual live install on Vera is NOT performed by this task** \u2014 it requires Jon's approved maintenance window. This task delivers the verified installable artifact + adapted hook + proof harness.\n\n## Delivery\n- Branch `task-40`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-61), vera/tools/warroom-emit/README.md, task-16 + task-35 prompts.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; **never modify Vera's core install**; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`; never disturb Vera's live gateway (no live restart in this task).\n"
+    },
+    {
+      "id": "task-41",
+      "name": "\"Change View\" panel-menu item (RND-57)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 41 \u2014 \"Change View\" panel-menu item to re-assign panel content (RND-57)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-57 \u00b7 **Priority:** P2\n\n## Context\nLayer-1 Check 5 gap: there is no user-facing control to change what a panel displays. In `hud/src/renderer/src/layout/GridCanvas.tsx`, the per-panel three-dots menu is suppressed in edit mode (`if (editing) return undefined`) and in normal mode offers only Focus/Exit Focus. The capability exists under the hood (panels are driven by a `view` field in the layout config; `setView` is used in DevGallery + AdminOverlay), but no button was built for operators.\n\n## Objective\nAdd a \"Change View\" control so an operator can re-task any panel (including the center/orb slot) to a different view from the HUD UI.\n\n## Scope\n- Add a \"Change View\" item to the panel menu (surface it in edit mode) listing the available registered views.\n- Wire it to the existing `setView`/layout `view` mechanism; persist the change with the layout/preset system so it survives relaunch.\n- Include the center/orb slot as a retargetable panel.\n- Keep it consistent with the TNFG palette + existing menu styling.\n\n## Acceptance Criteria\n- In edit mode, each panel exposes \"Change View\"; selecting a view swaps the panel's content live.\n- The change persists via the existing preset/layout persistence across a full relaunch.\n- No regression to Focus/Exit-Focus or drag/snap/resize.\n\n## Delivery\n- Branch `task-41`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-57), hud/src/renderer/src/layout/GridCanvas.tsx, DevGallery/AdminOverlay view-switch code.\n**Global rules:** TNFG palette teal `#5BA4B5`/cyan `#00D4E0` on near-black `#04080C`; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n"
+    },
+    {
+      "id": "task-42",
+      "name": "Split-cell / half-size panel layout (RND-56)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 42 \u2014 Split-cell / half-size panel layout (RND-56)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-56 \u00b7 **Priority:** P2 (Jon's feature request)\n\n## Context\nJon's idea from Layer-1 testing: allow shrinking a panel to **half** a standard grid cell so a single one of the 9 sections can hold **two** data panels \u2014 a finer-grained grid for higher information density without losing the clean 3\u00d73 look.\n\n## Objective\nExtend the layout engine so a standard cell can be split to host two half-size panels.\n\n## Scope\n- Layout/placement model + `GridCanvas` support for half-cell panels (split a cell vertically and/or horizontally into two slots).\n- Edit-mode UX to split/merge a cell and assign a view to each half (coordinate with task-41's Change View).\n- Persist split-cell layouts in presets; ensure drag/snap/resize behave sensibly with half cells.\n- Preserve the option of a plain 3\u00d73 (no forced splitting).\n\n## Acceptance Criteria\n- An operator can split a grid section and place two distinct data panels within it.\n- Split layouts persist across relaunch via presets.\n- The default clean 3\u00d73 look is unchanged when no split is applied; no regression to existing layout behaviors.\n\n## Delivery\n- Branch `task-42`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-56), hud/src/renderer/src/layout/GridCanvas.tsx + layout config/placements.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n"
+    },
+    {
+      "id": "task-43",
+      "name": "Fix duplicate React key in LiveOpsFeedView (RND-58)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 43 \u2014 Fix duplicate React key in LiveOpsFeedView (RND-58)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-58 \u00b7 **Priority:** P2 (minor/cosmetic)\n\n## Context\nLayer-1 console warning: \"two children with the same key\" at `hud/src/renderer/src/views/builtin/LiveOpsFeedView.tsx:43`. The mock feed derives React keys from `timestamp+text`, so same-minute identical entries collide (e.g. two \"11:49-\u2026\" rows). Cosmetic; cannot occur with real bridge data, but should be clean.\n\n## Objective\nEliminate the duplicate-key warning.\n\n## Scope\n- In `LiveOpsFeedView.tsx`, build list keys from a stable unique id (or append the array index) instead of `timestamp+text`.\n- Verify no duplicate-key warning under the mock feed and under bridge-driven data.\n\n## Acceptance Criteria\n- No React duplicate-key warning in the console for the live-ops feed, including same-minute identical mock entries.\n- No visual/behavioral regression to the feed.\n\n## Delivery\n- Branch `task-43`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-58), hud/src/renderer/src/views/builtin/LiveOpsFeedView.tsx:43.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n"
+    },
+    {
+      "id": "task-44",
+      "name": "HUD WS client backoff + log-once (RND-59)",
+      "phase": "phase-9",
+      "status": "pending",
+      "depends_on": [],
+      "description": "# Task 44 \u2014 HUD WS client backoff + log-once (RND-59)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-59 \u00b7 **Priority:** P2 (improvement)\n\n## Context\nDuring Layer 1 (bridge down), the HUD WS client (`hud/src/renderer/src/bridge/client.ts:74`) retried several times/second and logged every failure, producing 1,200+ identical red console lines. The browser surfaces the connection-refused as a misleading `HTTP Authentication failed; no valid credentials available` \u2014 the HUD WS server has NO auth; that text just means \"nothing listening.\" Functionally fine (auto-recovery works), but noisy.\n\n## Objective\nMake the HUD WS client reconnect politely and log once per connection-state change.\n\n## Scope\n- Add exponential backoff (with a sane cap) to the reconnect loop in `client.ts`.\n- Log once per state transition (disconnected/reconnecting/connected) instead of per attempt; keep a clear single \"bridge unavailable, retrying\" message.\n- Preserve prompt auto-reconnect when the bridge returns (Layer-2 Check 5 behavior must still pass).\n- Optionally clarify/annotate the misleading auth-text so future debugging is not misled.\n\n## Acceptance Criteria\n- With the bridge down, the console shows a small number of clear messages, not a per-attempt flood.\n- When the bridge returns, the HUD reconnects promptly and automatically (no HUD restart), matching Layer-2 Check 5.\n\n## Delivery\n- Branch `task-44`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-59), hud/src/renderer/src/bridge/client.ts:74.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n"
     }
   ]
 }
