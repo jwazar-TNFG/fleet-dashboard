@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T02:01:17Z",
+  "updated_at": "2026-07-10T02:20:15Z",
   "phases": [
     {
       "id": "phase-0",
@@ -371,14 +371,16 @@
       "id": "task-22",
       "name": "9 Default Ops Pulse Views (render + bind)",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-21",
         "task-14"
       ],
       "description": "# Task 22 \u2014 9 Default Ops Pulse Views (render + bind)\n\n**Phase 6** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-21, task-14\n\n## Objective\nImplement the 9 default Ops Pulse panel views bound to real data shapes.\n\n## Scope\n- Views: live-ops-feed, clock-brand, case-status-donut, intake-kpis, vera-orb(center), weekly-lead-volume, perf-7day, flags-alerts, cor-by-location.\n- Each renders from the registry; re-taskable to any panel (B4).\n- Params support (e.g. cor-by-location region=SFL).\n\n## Acceptance Criteria\n- All 9 views render correct data.\n- Re-taskable via panel.set.\n- cor-by-location filters by region.\n\n## Delivery\n- Create feature branch `task-22`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
       "startedAt": "2026-07-10T02:01:16Z",
-      "lastActivity": "2026-07-10T02:01:16Z"
+      "lastActivity": "2026-07-10T02:20:15Z",
+      "finishedAt": "2026-07-10T02:20:15Z",
+      "durationSeconds": 1139
     },
     {
       "id": "task-23",
