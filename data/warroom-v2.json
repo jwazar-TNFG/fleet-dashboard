@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T04:06:23Z",
+  "updated_at": "2026-07-10T04:24:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -463,7 +463,7 @@
         "task-27"
       ],
       "description": "# Task 28 \u2014 Turn-Taking, Barge-In, EOT + Push-to-Talk (on-HUD PTT button)\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-26, task-27\n\n## Objective\nImplement the real-time conversational layer with push-to-talk as the PRIMARY, self-contained input, including a visible on-HUD PTT button.\n\n## Scope\n- VAD + end-of-turn detection; barge-in interrupts TTS and adapts.\n- Push-to-talk is PRIMARY for v1 (wake word is an additive follow-on in task-29, must not block this).\n- REQUIRED on-HUD PTT button: visible, clickable (hold-to-talk + click-to-toggle), active/listening state tied to listen.state + orb; keyboard shortcut as convenience.\n- Round-trip tuned toward sub-1.5s; listen.state reflected on HUD (orb + button).\n\n## Acceptance Criteria\n- Visible HUD PTT button starts/stops listening (hold and toggle); active state matches orb listening.\n- Keyboard PTT works too.\n- Barge-in works; latency conversational.\n- COMPLETE and usable WITHOUT any wake-word engine (Picovoice not required).\n\n## Delivery\n- Create feature branch `task-28`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T04:06:23Z",
+      "lastActivity": "2026-07-10T04:24:25Z",
       "startedAt": "2026-07-10T04:06:23Z"
     },
     {
