@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T07:34:38Z",
+  "updated_at": "2026-07-10T08:06:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -564,14 +564,16 @@
       "id": "task-37",
       "name": "Rollback Runbook \u2014 cleanly remove the War Room & restore Vera",
       "phase": "phase-8",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-33",
         "task-35"
       ],
       "description": "# Task 37 \u2014 Rollback Runbook \u2014 cleanly remove the War Room & restore Vera\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-33, task-35\n\n## Objective\nAuthor and dry-run a single documented procedure to fully remove the War Room from the Mac mini and restore Vera to her pre-War-Room state.\n\n## Scope\n- A RUNBOOK.md: stop + disable auto-launch/LaunchAgent; quit HUD/bridge/voice processes; remove Vera.app; remove the war-room skill + unregister warroom_emit (reuse task-35 reversal); remove `~/.openclaw/secrets/warroom/`; remove the analyst-01 fail-safe secret (reverting task-20 middleware to inert).\n- Each step: exact command + expected result + verification.\n- DRY-RUN the reversal on the Mac mini (or a safe equivalent) and confirm Vera returns to normal (core-integrity snapshot from task 35 matches).\n- Include a fast 'demo-safe abort' short-path (kill the room, Vera keeps running) for a live-demo emergency.\n\n## Acceptance Criteria\n- RUNBOOK.md fully removes the War Room and restores Vera; verified against the task-35 before-snapshot.\n- Includes a one-command 'demo-safe abort' that stops the room without touching Vera.\n- Dry-run evidence committed.\n\n## Delivery\n- Create feature branch `task-37`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T07:34:38Z",
-      "startedAt": "2026-07-10T07:34:38Z"
+      "lastActivity": "2026-07-10T08:06:42Z",
+      "startedAt": "2026-07-10T07:34:38Z",
+      "finishedAt": "2026-07-10T08:06:42Z",
+      "durationSeconds": 1924
     },
     {
       "id": "task-34",
