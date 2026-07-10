@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T08:06:47Z",
+  "updated_at": "2026-07-10T08:19:43Z",
   "phases": [
     {
       "id": "phase-0",
@@ -579,7 +579,7 @@
       "id": "task-34",
       "name": "Production Cutover (Telegram Jon->Zeri) + Handoff Docs",
       "phase": "phase-8",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-33",
         "task-32",
@@ -588,8 +588,10 @@
         "task-37"
       ],
       "description": "# Task 34 \u2014 Production Cutover (Telegram Jon->Zeri) + Handoff Docs\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-33, task-32, task-24, task-29, task-37\n\n## Objective\nPerform the A5 production cutover and finalize handoff documentation.\n\n## Scope\n- Switch the Telegram target from Jon 6492555042 to Zeri's production channel.\n- Disable/remove the Jon test target.\n- Final KB + Linear updates; operator runbook; hand to Zeri.\n\n## Acceptance Criteria\n- Zeri's Telegram is the production target; Jon test-target disabled.\n- Documented in KB + Linear.\n- Handed to Zeri.\n\n## Delivery\n- Create feature branch `task-34`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T08:06:47Z",
-      "startedAt": "2026-07-10T08:06:47Z"
+      "lastActivity": "2026-07-10T08:19:43Z",
+      "startedAt": "2026-07-10T08:06:47Z",
+      "finishedAt": "2026-07-10T08:19:43Z",
+      "durationSeconds": 776
     }
   ]
 }
