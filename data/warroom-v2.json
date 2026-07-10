@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T02:01:14Z",
+  "updated_at": "2026-07-10T02:01:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -283,7 +283,7 @@
       "id": "task-22",
       "name": "9 Default Ops Pulse Views (render + bind)",
       "phase": "phase-6",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-21",
         "task-14"
