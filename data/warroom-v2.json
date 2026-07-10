@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T01:39:40Z",
+  "updated_at": "2026-07-10T02:01:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -273,7 +273,7 @@
       "id": "task-21",
       "name": "Data View Registry + Supabase Fallback Adapter",
       "phase": "phase-6",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-20"
       ],
