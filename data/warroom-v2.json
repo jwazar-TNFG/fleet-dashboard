@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T05:38:58Z",
+  "updated_at": "2026-07-10T05:39:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -501,11 +501,13 @@
       "id": "task-31",
       "name": "Auto-Launch at Login + Locked-Down Kiosk Hardening",
       "phase": "phase-8",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-04"
       ],
-      "description": "# Task 31 \u2014 Auto-Launch at Login + Locked-Down Kiosk Hardening\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-04\n\n## Objective\nConfigure auto-launch at login and harden the kiosk lockdown on the Mac mini.\n\n## Scope\n- Launch-at-login (LaunchAgent or Electron API); relaunch on crash.\n- Lock down: no dock/menu/cursor/quit; survive reboot into the War Room.\n- Discreet admin/exit path retained.\n\n## Acceptance Criteria\n- Boots into the War Room automatically; survives reboot.\n- Locked down for daily use.\n- Admin exit reachable.\n\n## Delivery\n- Create feature branch `task-31`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 31 \u2014 Auto-Launch at Login + Locked-Down Kiosk Hardening\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-04\n\n## Objective\nConfigure auto-launch at login and harden the kiosk lockdown on the Mac mini.\n\n## Scope\n- Launch-at-login (LaunchAgent or Electron API); relaunch on crash.\n- Lock down: no dock/menu/cursor/quit; survive reboot into the War Room.\n- Discreet admin/exit path retained.\n\n## Acceptance Criteria\n- Boots into the War Room automatically; survives reboot.\n- Locked down for daily use.\n- Admin exit reachable.\n\n## Delivery\n- Create feature branch `task-31`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T05:39:05Z",
+      "startedAt": "2026-07-10T05:39:05Z"
     },
     {
       "id": "task-36",
