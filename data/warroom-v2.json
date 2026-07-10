@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T19:55:11Z",
+  "updated_at": "2026-07-10T20:09:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -676,11 +676,13 @@
       "id": "task-44",
       "name": "HUD WS client backoff + log-once (RND-59)",
       "phase": "phase-9",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "# Task 44 \u2014 HUD WS client backoff + log-once (RND-59)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-59 \u00b7 **Priority:** P2 (improvement)\n\n## Context\nDuring Layer 1 (bridge down), the HUD WS client (`hud/src/renderer/src/bridge/client.ts:74`) retried several times/second and logged every failure, producing 1,200+ identical red console lines. The browser surfaces the connection-refused as a misleading `HTTP Authentication failed; no valid credentials available` \u2014 the HUD WS server has NO auth; that text just means \"nothing listening.\" Functionally fine (auto-recovery works), but noisy.\n\n## Objective\nMake the HUD WS client reconnect politely and log once per connection-state change.\n\n## Scope\n- Add exponential backoff (with a sane cap) to the reconnect loop in `client.ts`.\n- Log once per state transition (disconnected/reconnecting/connected) instead of per attempt; keep a clear single \"bridge unavailable, retrying\" message.\n- Preserve prompt auto-reconnect when the bridge returns (Layer-2 Check 5 behavior must still pass).\n- Optionally clarify/annotate the misleading auth-text so future debugging is not misled.\n\n## Acceptance Criteria\n- With the bridge down, the console shows a small number of clear messages, not a per-attempt flood.\n- When the bridge returns, the HUD reconnects promptly and automatically (no HUD restart), matching Layer-2 Check 5.\n\n## Delivery\n- Branch `task-44`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-59), hud/src/renderer/src/bridge/client.ts:74.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n",
-      "lastActivity": "2026-07-10T19:55:11Z",
-      "startedAt": "2026-07-10T19:55:11Z"
+      "lastActivity": "2026-07-10T20:09:01Z",
+      "startedAt": "2026-07-10T19:55:11Z",
+      "finishedAt": "2026-07-10T20:09:01Z",
+      "durationSeconds": 830
     }
   ]
 }
