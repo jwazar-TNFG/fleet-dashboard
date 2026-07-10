@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T05:24:08Z",
+  "updated_at": "2026-07-10T05:38:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -486,14 +486,16 @@
       "id": "task-30",
       "name": "Services Configuration Admin Screen (key manager + file spec)",
       "phase": "phase-8",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-05",
         "task-20"
       ],
       "description": "# Task 30 \u2014 Services Configuration Admin Screen (key manager + file spec)\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-05, task-20\n\n## Objective\nBuild the in-app admin Services/API-Keys screen and implement the defined secure secrets-file storage.\n\n## Scope\n- SECRETS-FILE SPEC (authoritative): directory `~/.openclaw/secrets/warroom/` (mode 700); one JSON file per service \u2014 assemblyai.json, elevenlabs.json, cartesia.json, picovoice.json, analyst01-bridge.json \u2014 each `{ \"key\": \"...\", \"updatedAt\": \"ISO\", \"note\": \"...\" }`, file mode 600, owner-only. A single `services.json` index lists which are configured (no secret values). NEVER commit; add to .gitignore.\n- Admin screen (behind the admin hotkey) pastes/rotates each key, writing atomically to its file with mode 600; never re-displays a saved secret in plaintext (masked, with a live-probe 'validate' button).\n- Bridge + voice processes read keys from these files only.\n- Reachable only via the admin hotkey.\n\n## Acceptance Criteria\n- Admin can paste/rotate each key without editing shell files; files land at `~/.openclaw/secrets/warroom/<svc>.json` mode 600.\n- Saved keys never re-shown in plaintext; validate button live-probes each.\n- Secrets dir gitignored; hidden from normal operation.\n\n## Delivery\n- Create feature branch `task-30`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T05:24:08Z",
-      "startedAt": "2026-07-10T05:24:08Z"
+      "lastActivity": "2026-07-10T05:38:58Z",
+      "startedAt": "2026-07-10T05:24:08Z",
+      "finishedAt": "2026-07-10T05:38:58Z",
+      "durationSeconds": 890
     },
     {
       "id": "task-31",
