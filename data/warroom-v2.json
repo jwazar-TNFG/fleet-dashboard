@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T19:45:04Z",
+  "updated_at": "2026-07-10T19:55:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -664,11 +664,13 @@
       "id": "task-43",
       "name": "Fix duplicate React key in LiveOpsFeedView (RND-58)",
       "phase": "phase-9",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "# Task 43 \u2014 Fix duplicate React key in LiveOpsFeedView (RND-58)\n\n**Phase 9 \u2014 Round 2 / Layer-3 Enablement** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** none \u00b7 **Linear:** RND-58 \u00b7 **Priority:** P2 (minor/cosmetic)\n\n## Context\nLayer-1 console warning: \"two children with the same key\" at `hud/src/renderer/src/views/builtin/LiveOpsFeedView.tsx:43`. The mock feed derives React keys from `timestamp+text`, so same-minute identical entries collide (e.g. two \"11:49-\u2026\" rows). Cosmetic; cannot occur with real bridge data, but should be clean.\n\n## Objective\nEliminate the duplicate-key warning.\n\n## Scope\n- In `LiveOpsFeedView.tsx`, build list keys from a stable unique id (or append the array index) instead of `timestamp+text`.\n- Verify no duplicate-key warning under the mock feed and under bridge-driven data.\n\n## Acceptance Criteria\n- No React duplicate-key warning in the console for the live-ops feed, including same-minute identical mock entries.\n- No visual/behavioral regression to the feed.\n\n## Delivery\n- Branch `task-43`, PR against `main`, CI green (auto-merge).\n\n**Reference:** ROUND-2-BUILD-PACKAGE.md (RND-58), hud/src/renderer/src/views/builtin/LiveOpsFeedView.tsx:43.\n**Global rules:** TNFG palette; TypeScript; build passes before PR; never modify Vera's core install; HUD renders/speaks only; secrets from `~/.openclaw/secrets/warroom/*.json`.\n",
-      "lastActivity": "2026-07-10T19:45:04Z",
-      "startedAt": "2026-07-10T19:45:04Z"
+      "lastActivity": "2026-07-10T19:55:07Z",
+      "startedAt": "2026-07-10T19:45:04Z",
+      "finishedAt": "2026-07-10T19:55:07Z",
+      "durationSeconds": 603
     },
     {
       "id": "task-44",
