@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T00:51:35Z",
+  "updated_at": "2026-07-10T00:51:37Z",
   "phases": [
     {
       "id": "phase-0",
@@ -252,7 +252,7 @@
       "id": "task-19",
       "name": "Briefing Choreography (brief.start beats) E2E",
       "phase": "phase-5",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-18",
         "task-14"
