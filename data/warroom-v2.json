@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T22:59:47Z",
+  "updated_at": "2026-07-10T19:40:25-0400",
   "phases": [
     {
       "id": "phase-0",
@@ -51,6 +51,10 @@
     {
       "id": "phase-11",
       "name": "Round 4 / Tool-Surface & Scope Fix"
+    },
+    {
+      "id": "phase-12",
+      "name": "Round 5 / Tool-Optional & Recovery Fix"
     }
   ],
   "tasks": [
@@ -772,6 +776,24 @@
       "startedAt": "2026-07-10T22:46:22Z",
       "finishedAt": "2026-07-10T22:59:47Z",
       "durationSeconds": 805
+    },
+    {
+      "id": "task-51",
+      "name": "warroom_emit non-optional so it enters Vera's toolset (RND-68)",
+      "phase": "phase-12",
+      "status": "pending"
+    },
+    {
+      "id": "task-52",
+      "name": "Purge install record on recovery; uninstall tolerates missing dist (RND-69)",
+      "phase": "phase-12",
+      "status": "pending"
+    },
+    {
+      "id": "task-53",
+      "name": "Uninstall drift-guard compares plugins.allow order-independently (RND-70)",
+      "phase": "phase-12",
+      "status": "pending"
     }
   ]
 }
