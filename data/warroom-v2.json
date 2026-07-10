@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T00:22:25Z",
+  "updated_at": "2026-07-10T00:22:28Z",
   "phases": [
     {
       "id": "phase-0",
@@ -242,7 +242,7 @@
       "id": "task-18",
       "name": "Telegram Activity Subscription + Command Fan-Out (Jon-only)",
       "phase": "phase-5",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-17"
       ],
