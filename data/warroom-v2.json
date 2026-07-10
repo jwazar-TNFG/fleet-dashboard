@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T06:34:42Z",
+  "updated_at": "2026-07-10T06:34:46Z",
   "phases": [
     {
       "id": "phase-0",
@@ -519,11 +519,13 @@
       "id": "task-36",
       "name": "Early macOS Smoke Test on Vera's Mac mini",
       "phase": "phase-8",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-05"
       ],
-      "description": "# Task 36 \u2014 Early macOS Smoke Test on Vera's Mac mini\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-05\n\n## Objective\nProve the Electron shell actually runs on the real target hardware right after Phase 1, so platform breakage surfaces early \u2014 not at packaging.\n\n## Scope\n- Deploy the Phase-1 shell build to Vera's Mac mini (M4 Pro, macOS, Apple Silicon) over the `vera` SSH alias.\n- Launch it: verify fullscreen kiosk, cursor hide, crash auto-recover, and the admin/exit hotkey all behave on real macOS.\n- Probe the macOS-only seams early: Electron `screen` display-topology API returns the real arrangement; app runs arm64 natively; speakers enumerate.\n- Record findings; file any platform issues as notes for the relevant later tasks. This is a GATE: if the shell will not run on the Mac mini, later phases stop until fixed.\n\n## Acceptance Criteria\n- Phase-1 shell launches fullscreen on Vera's actual Mac mini via the `vera` alias.\n- screen topology API + arm64 + audio device enumeration verified on real hardware.\n- Smoke-test report committed; blocks progression if the shell fails on macOS.\n\n## Delivery\n- Create feature branch `task-36`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n"
+      "description": "# Task 36 \u2014 Early macOS Smoke Test on Vera's Mac mini\n\n**Phase 8** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-05\n\n## Objective\nProve the Electron shell actually runs on the real target hardware right after Phase 1, so platform breakage surfaces early \u2014 not at packaging.\n\n## Scope\n- Deploy the Phase-1 shell build to Vera's Mac mini (M4 Pro, macOS, Apple Silicon) over the `vera` SSH alias.\n- Launch it: verify fullscreen kiosk, cursor hide, crash auto-recover, and the admin/exit hotkey all behave on real macOS.\n- Probe the macOS-only seams early: Electron `screen` display-topology API returns the real arrangement; app runs arm64 natively; speakers enumerate.\n- Record findings; file any platform issues as notes for the relevant later tasks. This is a GATE: if the shell will not run on the Mac mini, later phases stop until fixed.\n\n## Acceptance Criteria\n- Phase-1 shell launches fullscreen on Vera's actual Mac mini via the `vera` alias.\n- screen topology API + arm64 + audio device enumeration verified on real hardware.\n- Smoke-test report committed; blocks progression if the shell fails on macOS.\n\n## Delivery\n- Create feature branch `task-36`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
+      "lastActivity": "2026-07-10T06:34:46Z",
+      "startedAt": "2026-07-10T06:34:46Z"
     },
     {
       "id": "task-32",
