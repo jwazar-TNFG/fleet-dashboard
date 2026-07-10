@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T03:02:49Z",
+  "updated_at": "2026-07-10T03:34:27Z",
   "phases": [
     {
       "id": "phase-0",
@@ -415,13 +415,15 @@
       "id": "task-25",
       "name": "Pipecat Orchestration Skeleton + Audio I/O",
       "phase": "phase-7",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-17"
       ],
       "description": "# Task 25 \u2014 Pipecat Orchestration Skeleton + Audio I/O\n\n**Phase 7** \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2\n**Depends on:** task-17\n\n## Objective\nStand up the Pipecat voice orchestration skeleton with speaker output and USB mic input.\n\n## Scope\n- Pipecat pipeline scaffold; audio out to Mac-mini speakers; audio in from the USB mic.\n- Routes reasoning to Vera via the bridge (framework orchestrates audio only).\n- Config-driven device selection.\n\n## Acceptance Criteria\n- Audio in/out works on the Mac mini.\n- A spoken turn routes to Vera and plays a spoken reply.\n- Device selection configurable.\n\n## Delivery\n- Create feature branch `task-25`, commit with clear messages, push, open a PR against `main`.\n- CI (task-00) must be green before merge.\n\n**Reference docs (repo root):** SPEC.md, HUD-PROTOCOL.md, BUILD-PLAN.md, DEPENDENCIES.md, EXPERIENCE.md, VERA-WARROOM-SKILL.md, DECISIONS.md.\n\n**Global rules:** TNFG palette teal `#5BA4B5` / cyan `#00D4E0` on near-black `#04080C`, red `#D32F2F` alerts. TypeScript everywhere. Build must pass before PR. Never modify Vera's core install. HUD renders/speaks only \u2014 no external mutating actions. Secrets loaded from `~/.openclaw/secrets/warroom/*.json` (see task 30 spec), never hardcoded.\n",
-      "lastActivity": "2026-07-10T03:02:49Z",
-      "startedAt": "2026-07-10T03:02:49Z"
+      "lastActivity": "2026-07-10T03:34:27Z",
+      "startedAt": "2026-07-10T03:02:49Z",
+      "finishedAt": "2026-07-10T03:34:27Z",
+      "durationSeconds": 1898
     },
     {
       "id": "task-26",
