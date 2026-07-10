@@ -202,7 +202,8 @@
     .progress-segment.running { background: var(--blue); color: #000; animation: pulse 2s ease-in-out infinite; }
     .progress-segment.failed { background: var(--red); color: #fff; }
 
-    @keyframes pulse { 50% { opacity: 0.7; } }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .progress-label {
       display: flex;
@@ -346,7 +347,10 @@
     }
 
     .task-status-icon.completed { background: var(--green); color: #000; }
-    .task-status-icon.running { background: var(--blue); color: #000; animation: pulse 2s ease-in-out infinite; }
+    .task-status-icon.running,
+    .task-status-icon.in_progress { background: var(--blue); color: #fff; box-shadow: 0 0 0 3px rgba(88,166,255,0.28); animation: pulse 1.6s ease-in-out infinite; }
+    .task-status-icon.running > .spin-glyph,
+    .task-status-icon.in_progress > .spin-glyph { display: inline-block; animation: spin 1.1s linear infinite; }
     .task-status-icon.failed { background: var(--red); color: #fff; }
     .task-status-icon.pending { background: var(--border); color: var(--text-muted); }
     .task-status-icon.skipped { background: var(--yellow); color: #000; }
@@ -1030,6 +1034,7 @@ let currentFilter = '__all__';
 const STATUS_ICONS = {
   completed: '✓',
   running: '⟳',
+  in_progress: '⟳',
   failed: '✗',
   pending: '·',
   skipped: '⊘'
@@ -1348,7 +1353,7 @@ function renderProject(project) {
 
       projectHtml += `
         <div class="task-row" onclick="event.stopPropagation(); showTaskDetail('${project.slug}','${task.id}')">
-          <div class="task-status-icon ${task.status}">${STATUS_ICONS[task.status] || '·'}</div>
+          <div class="task-status-icon ${task.status}">${(task.status === 'in_progress' || task.status === 'running') ? `<span class="spin-glyph">${STATUS_ICONS[task.status]}</span>` : (STATUS_ICONS[task.status] || '·')}</div>
           <div class="task-main">
             <div class="task-line1">
               <span class="task-id">${task.id}</span>
@@ -1851,9 +1856,10 @@ function renderInfoBtn(cx, cy, slug, taskId) {
 
 function statusIconColor(status) {
   switch (status) {
-    case 'completed': return '#3fb950';
-    case 'running':   return '#58a6ff';
-    case 'failed':    return '#f85149';
+    case 'completed':   return '#3fb950';
+    case 'running':     return '#58a6ff';
+    case 'in_progress': return '#58a6ff';
+    case 'failed':      return '#f85149';
     case 'skipped':   return '#d29922';
     default:          return '#8b949e';
   }
