@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-11T23:48:41Z",
+  "updated_at": "2026-07-11T23:54:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -853,11 +853,13 @@
       "id": "task-57",
       "name": "verify-loaded harness sends valid session selector (RND-75)",
       "phase": "phase-13",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "scripts/layer3-verify-loaded.sh must always send a valid session selector; unset WARROOM_PROBE_SESSION_KEY causes a target-less turn the gateway rejects -> false FAIL mimicking RND-65 (RND-75).",
-      "lastActivity": "2026-07-11T23:48:41Z",
-      "startedAt": "2026-07-11T23:48:41Z"
+      "lastActivity": "2026-07-11T23:54:57Z",
+      "startedAt": "2026-07-11T23:48:41Z",
+      "finishedAt": "2026-07-11T23:54:57Z",
+      "durationSeconds": 376
     },
     {
       "id": "task-58",
