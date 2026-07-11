@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-11T23:44:12Z",
+  "updated_at": "2026-07-11T23:48:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -841,11 +841,13 @@
       "id": "task-56",
       "name": "Preflight version assertion fix, false NO-GO on 2026.6.x (RND-74)",
       "phase": "phase-13",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "Fix scripts/layer3-preflight.sh hard-coded 2026.5. version grep that false-NO-GOs on 2026.6.6; use a real >=2026.5.17 comparison (RND-74).",
-      "lastActivity": "2026-07-11T23:44:12Z",
-      "startedAt": "2026-07-11T23:44:12Z"
+      "lastActivity": "2026-07-11T23:48:38Z",
+      "startedAt": "2026-07-11T23:44:12Z",
+      "finishedAt": "2026-07-11T23:48:38Z",
+      "durationSeconds": 266
     },
     {
       "id": "task-57",
