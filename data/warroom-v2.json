@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-11T23:54:57Z",
+  "updated_at": "2026-07-11T23:55:03Z",
   "phases": [
     {
       "id": "phase-0",
@@ -865,9 +865,11 @@
       "id": "task-58",
       "name": "Integrity VOLATILE_PATTERNS excludes live agent sqlite (RND-76)",
       "phase": "phase-13",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
-      "description": "Add openclaw-agent.sqlite(-shm/-wal/-journal) to integrity VOLATILE_PATTERNS so live-agent DB churn no longer false-fails the core-unchanged gate (RND-76)."
+      "description": "Add openclaw-agent.sqlite(-shm/-wal/-journal) to integrity VOLATILE_PATTERNS so live-agent DB churn no longer false-fails the core-unchanged gate (RND-76).",
+      "lastActivity": "2026-07-11T23:55:03Z",
+      "startedAt": "2026-07-11T23:55:03Z"
     }
   ]
 }
