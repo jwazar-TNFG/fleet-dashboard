@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-10T23:56:03Z",
+  "updated_at": "2026-07-11T00:08:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -791,9 +791,11 @@
       "id": "task-52",
       "name": "Purge install record on recovery; uninstall tolerates missing dist (RND-69)",
       "phase": "phase-12",
-      "status": "in_progress",
-      "lastActivity": "2026-07-10T23:56:03Z",
-      "startedAt": "2026-07-10T23:56:03Z"
+      "status": "completed",
+      "lastActivity": "2026-07-11T00:08:22Z",
+      "startedAt": "2026-07-10T23:56:03Z",
+      "finishedAt": "2026-07-11T00:08:22Z",
+      "durationSeconds": 739
     },
     {
       "id": "task-53",
