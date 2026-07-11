@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-11T23:35:21Z",
+  "updated_at": "2026-07-11T23:35:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -827,11 +827,13 @@
       "id": "task-55",
       "name": "layout.apply view-reset / layout.reset (B-3 proper fix) (RND-73)",
       "phase": "phase-13",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-54"
       ],
-      "description": "Add a first-class view-reset to layout.apply (resetViews flag) or a layout.reset command so preset apply restores DEFAULT_OPS_PULSE_LAYOUT views, not just placements (B-3)."
+      "description": "Add a first-class view-reset to layout.apply (resetViews flag) or a layout.reset command so preset apply restores DEFAULT_OPS_PULSE_LAYOUT views, not just placements (B-3).",
+      "lastActivity": "2026-07-11T23:35:26Z",
+      "startedAt": "2026-07-11T23:35:26Z"
     },
     {
       "id": "task-56",
