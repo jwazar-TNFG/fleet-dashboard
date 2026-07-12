@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T00:02:21Z",
+  "updated_at": "2026-07-12T00:13:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -59,6 +59,10 @@
     {
       "id": "phase-13",
       "name": "Round 6 / Briefing Choreography + Harness Hardening"
+    },
+    {
+      "id": "phase-14",
+      "name": "Round 7 / CI Reconciliation (briefing e2e + HUD tsconfig)"
     }
   ],
   "tasks": [
@@ -815,27 +819,23 @@
       "id": "task-54",
       "name": "Briefing choreography (Option B) commit + tests (RND-72)",
       "phase": "phase-13",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [],
       "description": "Commit + test the Option-B briefing choreography verified live with Jon on Vera's mini (orb center-stage via layout.apply briefing; beats on visible flanking panels 1/3/4/6/9; self-resetting handoff). Source: build/round6-mini-briefing.patch.",
-      "lastActivity": "2026-07-11T23:35:21Z",
-      "startedAt": "2026-07-11T23:32:54Z",
-      "finishedAt": "2026-07-11T23:35:21Z",
-      "durationSeconds": 147
+      "lastActivity": "2026-07-12T00:13:36Z",
+      "startedAt": "2026-07-11T23:32:54Z"
     },
     {
       "id": "task-55",
       "name": "layout.apply view-reset / layout.reset (B-3 proper fix) (RND-73)",
       "phase": "phase-13",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-54"
       ],
       "description": "Add a first-class view-reset to layout.apply (resetViews flag) or a layout.reset command so preset apply restores DEFAULT_OPS_PULSE_LAYOUT views, not just placements (B-3).",
-      "lastActivity": "2026-07-11T23:44:07Z",
-      "startedAt": "2026-07-11T23:35:26Z",
-      "finishedAt": "2026-07-11T23:44:07Z",
-      "durationSeconds": 521
+      "lastActivity": "2026-07-12T00:13:36Z",
+      "startedAt": "2026-07-11T23:35:26Z"
     },
     {
       "id": "task-56",
@@ -872,6 +872,26 @@
       "startedAt": "2026-07-11T23:55:03Z",
       "finishedAt": "2026-07-12T00:02:21Z",
       "durationSeconds": 438
+    },
+    {
+      "id": "task-59",
+      "name": "Reconcile e2e briefing test with Option-B choreography (RND-77)",
+      "phase": "phase-14",
+      "status": "pending",
+      "depends_on": [
+        "task-54"
+      ],
+      "description": "Update e2e/test/briefing.test.ts stale assertions (command counts, open sequence, ops panels, flags pulse panel 9, handoff tail) to match the shipped Option-B briefing choreography. Fixes the node(e2e) CI failure blocking task-54 / PR #55."
+    },
+    {
+      "id": "task-60",
+      "name": "Fix HUD tsconfig scoping for layout-reset test (RND-78)",
+      "phase": "phase-14",
+      "status": "pending",
+      "depends_on": [
+        "task-55"
+      ],
+      "description": "Route hud/test/layout-apply-reset.test.ts to the DOM-capable tsconfig.web.json (exclude from tsconfig.node.json) like its sibling renderer tests. Fixes the node(hud) typecheck CI failure blocking task-55 / PR #56."
     }
   ]
 }
