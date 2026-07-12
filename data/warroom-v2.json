@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T15:51:31Z",
+  "updated_at": "2026-07-12T16:06:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1083,7 +1083,7 @@
       "status": "in_progress",
       "depends_on": [],
       "description": "The Opening Briefing choreography advances panels/orb on bridge-ack (ms) while Vera's TTS narration plays on its own slower timeline, so the screen finishes well before the voice. No audio-visual sync mechanism exists today. Fix: emit a real speak.done completion event from the voice pipeline (TTSStoppedFrame / interruption, carrying the speak cmdId) up the existing HUD-WS channel; the bridge routes it (validateHudEventJson + schema); warroom_emit/runBriefing await each beat's speak.done (bounded timeout fallback, barge-in aware) before advancing. Keeps locked beat order + Option-B preset; best-effort/non-fatal; preserves Task 66 Sonnet pin + A5 gate. Prompt build/prompts/task-67.md.",
-      "lastActivity": "2026-07-12T15:51:31Z",
+      "lastActivity": "2026-07-12T16:06:00Z",
       "startedAt": "2026-07-12T15:51:31Z"
     },
     {
