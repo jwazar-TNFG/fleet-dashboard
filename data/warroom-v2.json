@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T05:50:56Z",
+  "updated_at": "2026-07-12T05:55:32Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1029,11 +1029,12 @@
       "status": "completed",
       "depends_on": [],
       "description": "Voice latency measured 7.09s (accept->speak) for a 342-char reply because bridge/src/voice-reply.ts discards streaming deltas (if state==='delta' return) and speaks only on final. Consume deltas for voice runs (identify by VOICE_RUN_PREFIX), chunk on sentence boundaries, emit speak per sentence so first audio lands ~1-1.5s instead of ~7s; flush tail on final without double-speak; clear buffer on barge-in/abort; leave non-voice turns untouched. Prompt build/prompts/task-63.md.",
-      "lastActivity": "2026-07-12T05:50:56Z",
+      "lastActivity": "2026-07-12T05:55:32Z",
       "startedAt": "2026-07-12T05:37:26Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-12T05:50:56Z",
-      "durationSeconds": 810
+      "durationSeconds": 810,
+      "mergedAt": "2026-07-12T05:55:32Z"
     },
     {
       "id": "task-64",
