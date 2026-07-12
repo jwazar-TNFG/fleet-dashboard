@@ -347,6 +347,8 @@
     }
 
     .task-status-icon.completed { background: var(--green); color: #000; }
+    /* Completed by the pipeline but the PR has not merged to main yet. */
+    .task-status-icon.completed.not-landed { background: var(--yellow); color: #000; }
     .task-status-icon.running,
     .task-status-icon.in_progress { background: var(--blue); color: #fff; box-shadow: 0 0 0 3px rgba(88,166,255,0.28); animation: pulse 1.6s ease-in-out infinite; }
     .task-status-icon.running > .spin-glyph,
@@ -648,6 +650,7 @@
       transition: filter 0.15s;
     }
     .depgraph-svg .task-rect.completed { fill: rgba(63,185,80,0.18); stroke: #3fb950; }
+    .depgraph-svg .task-rect.completed.not-landed { fill: rgba(210,153,34,0.18); stroke: #d29922; }
     .depgraph-svg .task-rect.running   { fill: rgba(88,166,255,0.20); stroke: #58a6ff; animation: nodePulse 2s ease-in-out infinite; }
     .depgraph-svg .task-rect.failed    { fill: rgba(248,81,73,0.20);  stroke: #f85149; }
     .depgraph-svg .task-rect.pending   { fill: transparent;            stroke: #30363d; }
@@ -730,6 +733,7 @@
       display: inline-block;
     }
     .depgraph-legend .lg-swatch.completed { background: rgba(63,185,80,0.18); border-color: #3fb950; }
+    .depgraph-legend .lg-swatch.not-landed { background: rgba(210,153,34,0.18); border-color: #d29922; }
     .depgraph-legend .lg-swatch.running   { background: rgba(88,166,255,0.20); border-color: #58a6ff; }
     .depgraph-legend .lg-swatch.failed    { background: rgba(248,81,73,0.20);  border-color: #f85149; }
     .depgraph-legend .lg-swatch.pending   { background: transparent;            border-color: #30363d; }
@@ -803,6 +807,7 @@
       letter-spacing: 0.4px;
     }
     .depgraph-info-panel .ip-status.completed { background: rgba(63,185,80,0.15); color: #3fb950; }
+    .depgraph-info-panel .ip-status.completed.not-landed { background: rgba(210,153,34,0.15); color: #d29922; }
     .depgraph-info-panel .ip-status.running   { background: rgba(88,166,255,0.15); color: #58a6ff; }
     .depgraph-info-panel .ip-status.failed    { background: rgba(248,81,73,0.15); color: #f85149; }
     .depgraph-info-panel .ip-status.pending   { background: rgba(139,148,158,0.15); color: var(--text-muted); }
@@ -922,6 +927,7 @@
       font-weight: 600;
     }
     .td-status-badge.completed { background: rgba(63,185,80,0.15); color: var(--green); }
+    .td-status-badge.completed.not-landed { background: rgba(210,153,34,0.15); color: var(--yellow); }
     .td-status-badge.running    { background: rgba(88,166,255,0.15); color: var(--blue); }
     .td-status-badge.failed     { background: rgba(248,81,73,0.15); color: var(--red); }
     .td-status-badge.pending    { background: rgba(139,148,158,0.1); color: var(--text-muted); }
@@ -1039,6 +1045,22 @@ const STATUS_ICONS = {
   pending: '·',
   skipped: '⊘'
 };
+
+// A completed task is "landed" once its PR is merged to main. Until then it is
+// pipeline-complete but not landed — shown yellow instead of green. `landed`
+// defaults to true for legacy tasks with no flag, so old data stays green.
+function isLanded(task) {
+  return task.status === 'completed' && task.landed === false ? false : true;
+}
+// Extra CSS class for a task's status icon/rect (adds `not-landed` when apt).
+function landedClass(task) {
+  return (task.status === 'completed' && task.landed === false) ? ' not-landed' : '';
+}
+// Human label for the completed sub-state (used in tooltips/badges).
+function landedLabel(task) {
+  if (task.status !== 'completed') return '';
+  return task.landed === false ? 'complete (not yet merged to main)' : 'complete + landed on main';
+}
 
 function formatTimeAgo(isoStr) {
   if (!isoStr) return '';
@@ -1353,7 +1375,7 @@ function renderProject(project) {
 
       projectHtml += `
         <div class="task-row" onclick="event.stopPropagation(); showTaskDetail('${project.slug}','${task.id}')">
-          <div class="task-status-icon ${task.status}">${(task.status === 'in_progress' || task.status === 'running') ? `<span class="spin-glyph">${STATUS_ICONS[task.status]}</span>` : (STATUS_ICONS[task.status] || '·')}</div>
+          <div class="task-status-icon ${task.status}${landedClass(task)}"${task.status === 'completed' ? ` title="${landedLabel(task)}"` : ''}>${(task.status === 'in_progress' || task.status === 'running') ? `<span class="spin-glyph">${STATUS_ICONS[task.status]}</span>` : (STATUS_ICONS[task.status] || '·')}</div>
           <div class="task-main">
             <div class="task-line1">
               <span class="task-id">${task.id}</span>
@@ -1774,6 +1796,8 @@ function renderDepGraph(project, phaseNames) {
     if (!p) continue;
     const status = t.status || 'pending';
     const icon = STATUS_ICONS[status] || '·';
+    const rectExtra = landedClass(t); // ' not-landed' for completed-but-unmerged
+    const iconColor = (status === 'completed' && t.landed === false) ? '#d29922' : statusIconColor(status);
     const timeAgo = t.lastActivity ? formatTimeAgo(t.lastActivity) : '';
 
     if (p.isGate) {
@@ -1791,10 +1815,10 @@ function renderDepGraph(project, phaseNames) {
       // Regular task node
       const name = truncate(t.name, 22);
       svgNodes += `<g class="task-node" onclick="toggleTaskInfo('${esc(project.slug)}','${esc(t.id)}')">`;
-      svgNodes += `<rect class="task-rect ${status}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="8"/>`;
+      svgNodes += `<rect class="task-rect ${status}${rectExtra}" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}" rx="8"/>`;
       // Top row: task id (left) + status icon (right)
       svgNodes += `<text class="task-id-text" x="${p.x + 10}" y="${p.y + 14}">${esc(t.id.replace('task-','T'))}</text>`;
-      svgNodes += `<text class="task-id-text" x="${p.x + p.w - 22}" y="${p.y + 14}" text-anchor="end" style="font-size:11px;fill:${statusIconColor(status)}">${esc(icon)}</text>`;
+      svgNodes += `<text class="task-id-text" x="${p.x + p.w - 22}" y="${p.y + 14}" text-anchor="end" style="font-size:11px;fill:${iconColor}">${esc(icon)}</text>`;
       // Task name (middle)
       svgNodes += `<text class="task-name-text" x="${p.x + 10}" y="${p.y + 30}">${esc(name)}</text>`;
       // Time ago (bottom-left)
@@ -1810,7 +1834,8 @@ function renderDepGraph(project, phaseNames) {
   // ---- Legend (HTML, above the SVG)
   const legendHtml = `
     <div class="depgraph-legend">
-      <span class="lg-item"><span class="lg-swatch completed"></span>completed</span>
+      <span class="lg-item"><span class="lg-swatch completed"></span>complete + landed</span>
+      <span class="lg-item"><span class="lg-swatch not-landed"></span>complete (not merged)</span>
       <span class="lg-item"><span class="lg-swatch running"></span>running</span>
       <span class="lg-item"><span class="lg-swatch failed"></span>failed</span>
       <span class="lg-item"><span class="lg-swatch pending"></span>pending</span>
@@ -1899,7 +1924,7 @@ function toggleTaskInfo(slug, taskId) {
         </div>
         <button class="ip-close" onclick="closeTaskInfo('${esc(slug)}')" title="Close">×</button>
       </div>
-      <div class="ip-row"><strong>Status:</strong><span class="ip-status ${status}">${esc(status)}</span></div>
+      <div class="ip-row"><strong>Status:</strong><span class="ip-status ${status}${landedClass(task)}">${esc(status === 'completed' ? (task.landed === false ? 'complete (not merged)' : 'complete + landed') : status)}</span></div>
       <div class="ip-row"><strong>Description:</strong>${doneWhen}</div>
       <div class="ip-row"><strong>Dependencies:</strong>${deps}</div>
       ${task.startedAt ? `<div class="ip-row"><strong>Started:</strong>${esc(new Date(task.startedAt).toLocaleString())}</div>` : ''}
@@ -2152,7 +2177,9 @@ function showTaskDetail(slug, taskId) {
   const esc = s => String(s == null ? '' : s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const status = task.status || 'pending';
-  const statusLabel = status.charAt(0).toUpperCase() + status.slice(1);
+  const statusLabel = status === 'completed'
+    ? (task.landed === false ? 'Complete (not merged)' : 'Complete + landed')
+    : status.charAt(0).toUpperCase() + status.slice(1);
   const icon = STATUS_ICONS[status] || '·';
 
   // Phase info
@@ -2229,7 +2256,7 @@ function showTaskDetail(slug, taskId) {
       <div class="td-body">
         <div class="td-section">
           <div class="td-label">Status</div>
-          <div class="td-value"><span class="td-status-badge ${status}">${statusLabel}</span></div>
+          <div class="td-value"><span class="td-status-badge ${status}${landedClass(task)}">${statusLabel}</span></div>
         </div>
         <div class="td-section">
           <div class="td-label">Phase</div>
