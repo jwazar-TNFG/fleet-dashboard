@@ -949,26 +949,6 @@
       "durationSeconds": 438,
       "landed": true,
       "mergedAt": "2026-07-12T00:35:06Z"
-    },
-    {
-      "id": "task-59",
-      "name": "Reconcile e2e briefing test with Option-B choreography (RND-77)",
-      "phase": "phase-14",
-      "status": "pending",
-      "depends_on": [
-        "task-54"
-      ],
-      "description": "Update e2e/test/briefing.test.ts stale assertions (command counts, open sequence, ops panels, flags pulse panel 9, handoff tail) to match the shipped Option-B briefing choreography. Fixes the node(e2e) CI failure blocking task-54 / PR #55."
-    },
-    {
-      "id": "task-60",
-      "name": "Fix HUD tsconfig scoping for layout-reset test (RND-78)",
-      "phase": "phase-14",
-      "status": "pending",
-      "depends_on": [
-        "task-55"
-      ],
-      "description": "Route hud/test/layout-apply-reset.test.ts to the DOM-capable tsconfig.web.json (exclude from tsconfig.node.json) like its sibling renderer tests. Fixes the node(hud) typecheck CI failure blocking task-55 / PR #56."
     }
   ]
 }
