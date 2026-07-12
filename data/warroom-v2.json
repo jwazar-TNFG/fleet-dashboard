@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T02:23:05Z",
+  "updated_at": "2026-07-12T02:23:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -971,11 +971,13 @@
       "id": "task-60",
       "name": "Voice pipeline probes HUD-WS ladder, shares one bridge (RND-80)",
       "phase": "phase-15",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-59"
       ],
-      "description": "Companion to task-59. Voice run hardcodes 18795 while HUD probes the ladder -> split. Add voice/warroom_voice/ports.py mirroring protocol/src/ports.ts; SpeakListener probes ladder; pick lowest-ladderIndex primary; pair emit health port; status prints ports + fails if >1 bridge. Prompt build/prompts/task-60.md."
+      "description": "Companion to task-59. Voice run hardcodes 18795 while HUD probes the ladder -> split. Add voice/warroom_voice/ports.py mirroring protocol/src/ports.ts; SpeakListener probes ladder; pick lowest-ladderIndex primary; pair emit health port; status prints ports + fails if >1 bridge. Prompt build/prompts/task-60.md.",
+      "lastActivity": "2026-07-12T02:23:07Z",
+      "startedAt": "2026-07-12T02:23:07Z"
     }
   ]
 }
