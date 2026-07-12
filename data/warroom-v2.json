@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T04:07:12Z",
+  "updated_at": "2026-07-12T04:07:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -997,11 +997,12 @@
         "task-62"
       ],
       "description": "FINAL Layer-4 voice blocker. Vera's final reply streams back (chatEventsSeen>0, lastTurn state=final on the voice session) but bridge only emit('chat') to the C5 receipt tracker; NO chat->speak conversion, so voice pipeline waits forever (button PROCESSING, orb thinking, no audio). Add chat->speak: track voice runIds from sendAgentTurn, on final chat for a voice runId emit makeCommand('speak',{text,voice:'vera'}) via hud.sendCommand + orb.state speaking, reset listen.state/orb to idle after; skip delta/non-voice/empty; error/aborted -> idle (unwedge). Prompt build/prompts/task-61.md.",
-      "lastActivity": "2026-07-12T04:07:12Z",
+      "lastActivity": "2026-07-12T04:07:14Z",
       "startedAt": "2026-07-12T03:47:55Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-12T04:07:12Z",
-      "durationSeconds": 1157
+      "durationSeconds": 1157,
+      "mergedAt": "2026-07-12T04:07:14Z"
     },
     {
       "id": "task-62",
