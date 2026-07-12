@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T00:34:57Z",
+  "updated_at": "2026-07-12T00:34:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -871,11 +871,12 @@
       "name": "Uninstall drift-guard compares plugins.allow order-independently (RND-70)",
       "phase": "phase-12",
       "status": "completed",
-      "lastActivity": "2026-07-11T00:17:56Z",
+      "lastActivity": "2026-07-12T00:34:59Z",
       "startedAt": "2026-07-11T00:14:30Z",
       "finishedAt": "2026-07-11T00:17:56Z",
       "durationSeconds": 206,
-      "landed": true
+      "landed": true,
+      "mergedAt": "2026-07-12T00:34:59Z"
     },
     {
       "id": "task-54",
