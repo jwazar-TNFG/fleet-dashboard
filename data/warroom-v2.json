@@ -2,7 +2,7 @@
  "name": "War Room v2 (VERA HUD)",
  "slug": "warroom-v2",
  "repo": "jwazar-TNFG/warroom-v2",
- "updated_at": "2026-07-12T14:44:09.766729Z",
+ "updated_at": "2026-07-12T14:51:43.712738Z",
  "phases": [
   {
    "id": "phase-0",
@@ -75,10 +75,6 @@
   {
    "id": "phase-17",
    "name": "Round 10 / Voice Latency + C6 Enforcement + Orb Speaking"
-  },
-  {
-   "id": "phase-18",
-   "name": "Round 11 / Briefing Audio-Visual Sync"
   }
  ],
  "tasks": [
@@ -1073,10 +1069,18 @@
   {
    "id": "task-67",
    "name": "Briefing audio-visual sync - advance beats on TTS completion (RND-87)",
-   "phase": "phase-18",
+   "phase": "phase-17",
    "status": "pending",
    "depends_on": [],
    "description": "The Opening Briefing choreography advances panels/orb on bridge-ack (ms) while Vera's TTS narration plays on its own slower timeline, so the screen finishes well before the voice. No audio-visual sync mechanism exists today. Fix: emit a real speak.done completion event from the voice pipeline (TTSStoppedFrame / interruption, carrying the speak cmdId) up the existing HUD-WS channel; the bridge routes it (validateHudEventJson + schema); warroom_emit/runBriefing await each beat's speak.done (bounded timeout fallback, barge-in aware) before advancing. Keeps locked beat order + Option-B preset; best-effort/non-fatal; preserves Task 66 Sonnet pin + A5 gate. Prompt build/prompts/task-67.md."
+  },
+  {
+   "id": "task-68",
+   "name": "Fix voice-session emit denied by A5 - webchat origin leak (RND-88)",
+   "phase": "phase-17",
+   "status": "pending",
+   "depends_on": [],
+   "description": "Live-reproduced (mini 2026-07-12 14:29:50Z): running the briefing from the room mic (PTT) fails - bridge rejects every command with ERR_ORIGIN_NOT_ALLOWED, reason 'channel webchat is not a War Room surface (A5)'. Root cause: the dedicated voice session is created via sessions.create{key,model} with NO channel identity, so Vera's warroom_emit inherits the runtime default channel 'webchat'; decideOrigin is deny-by-default for non-telegram channels. Intended contract: room-voice turns are originless (local traffic, allowed). Fix on the origin-derivation/gate side: stamp voice-run emits as room-voice-originless (or an explicit warroom-voice channel A5 allows), reusing the existing VOICE_RUN_PREFIX voice-run marker; keep webchat + non-allowlisted telegram denied. Same root cause blocks Vera running the briefing by voice. Prompt build/prompts/task-68.md."
   }
  ]
 }
