@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T15:41:22Z",
+  "updated_at": "2026-07-12T15:41:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1053,9 +1053,11 @@
       "id": "task-65",
       "name": "Orb shows speaking animation during Vera TTS playback (RND-85)",
       "phase": "phase-17",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
-      "description": "Cosmetic: orb does not switch to speaking during Vera's audio. Bridge already emits orb.state speaking and renderer supports it (orbRenderer.ts:221 waveform); gap is reconciliation - orb likely prioritizes listenStore (listen.state idle sent back-to-back) over orb.state param speaking. Fix HUD-side so orb.state speaking wins/holds during playback then returns idle; works with streamed multi-chunk speak. Prompt build/prompts/task-65.md."
+      "description": "Cosmetic: orb does not switch to speaking during Vera's audio. Bridge already emits orb.state speaking and renderer supports it (orbRenderer.ts:221 waveform); gap is reconciliation - orb likely prioritizes listenStore (listen.state idle sent back-to-back) over orb.state param speaking. Fix HUD-side so orb.state speaking wins/holds during playback then returns idle; works with streamed multi-chunk speak. Prompt build/prompts/task-65.md.",
+      "lastActivity": "2026-07-12T15:41:26Z",
+      "startedAt": "2026-07-12T15:41:26Z"
     },
     {
       "id": "task-66",
