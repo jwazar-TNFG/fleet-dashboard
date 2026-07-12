@@ -2,7 +2,7 @@
  "name": "War Room v2 (VERA HUD)",
  "slug": "warroom-v2",
  "repo": "jwazar-TNFG/warroom-v2",
- "updated_at": "2026-07-12T14:51:43.712738Z",
+ "updated_at": "2026-07-12T15:01:01.224792Z",
  "phases": [
   {
    "id": "phase-0",
@@ -1081,6 +1081,14 @@
    "status": "pending",
    "depends_on": [],
    "description": "Live-reproduced (mini 2026-07-12 14:29:50Z): running the briefing from the room mic (PTT) fails - bridge rejects every command with ERR_ORIGIN_NOT_ALLOWED, reason 'channel webchat is not a War Room surface (A5)'. Root cause: the dedicated voice session is created via sessions.create{key,model} with NO channel identity, so Vera's warroom_emit inherits the runtime default channel 'webchat'; decideOrigin is deny-by-default for non-telegram channels. Intended contract: room-voice turns are originless (local traffic, allowed). Fix on the origin-derivation/gate side: stamp voice-run emits as room-voice-originless (or an explicit warroom-voice channel A5 allows), reusing the existing VOICE_RUN_PREFIX voice-run marker; keep webchat + non-allowlisted telegram denied. Same root cause blocks Vera running the briefing by voice. Prompt build/prompts/task-68.md."
+  },
+  {
+   "id": "task-69",
+   "name": "Per-turn thinking control for voice + HUD - fast by default, deep on demand (RND-89)",
+   "phase": "phase-17",
+   "status": "pending",
+   "depends_on": [],
+   "description": "Latency still high on voice even after Task 66 Sonnet routing. Root cause: Claude 4.6 defaults to 'adaptive' thinking when unset; the Task-66 voice pin does sessions.create{key,model} with NO thinking param, so the Sonnet voice session runs adaptive reasoning on every turn (fast model, slow because it still thinks first). Zeri wants per-message thinking control (deep for complex, off for quick), ideally via voice command or HUD button. OpenClaw already supports this natively (inline /think <level> stripped before model; agent request accepts top-level thinking; levels off|minimal|low|medium|high|xhigh|adaptive|max). Work = wire the War Room path: (A) voice pin defaults to fast thinking (off/minimal) via WARROOM_VOICE_THINKING - biggest immediate win; (B) spoken 'think hard' toggle sets next-turn thinking; (C) HUD Fast/Deep button+hotkey+indicator. Telegram/cron/EA unchanged; A5 + Task 66 pin intact. Prompt build/prompts/task-69.md."
   }
  ]
 }
