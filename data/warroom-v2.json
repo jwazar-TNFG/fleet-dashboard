@@ -2,7 +2,7 @@
  "name": "War Room v2 (VERA HUD)",
  "slug": "warroom-v2",
  "repo": "jwazar-TNFG/warroom-v2",
- "updated_at": "2026-07-12T15:01:01.224792Z",
+ "updated_at": "2026-07-12T15:05:39.406508Z",
  "phases": [
   {
    "id": "phase-0",
@@ -1089,6 +1089,14 @@
    "status": "pending",
    "depends_on": [],
    "description": "Latency still high on voice even after Task 66 Sonnet routing. Root cause: Claude 4.6 defaults to 'adaptive' thinking when unset; the Task-66 voice pin does sessions.create{key,model} with NO thinking param, so the Sonnet voice session runs adaptive reasoning on every turn (fast model, slow because it still thinks first). Zeri wants per-message thinking control (deep for complex, off for quick), ideally via voice command or HUD button. OpenClaw already supports this natively (inline /think <level> stripped before model; agent request accepts top-level thinking; levels off|minimal|low|medium|high|xhigh|adaptive|max). Work = wire the War Room path: (A) voice pin defaults to fast thinking (off/minimal) via WARROOM_VOICE_THINKING - biggest immediate win; (B) spoken 'think hard' toggle sets next-turn thinking; (C) HUD Fast/Deep button+hotkey+indicator. Telegram/cron/EA unchanged; A5 + Task 66 pin intact. Prompt build/prompts/task-69.md."
+  },
+  {
+   "id": "task-70",
+   "name": "Voice replies take the briefing stage then restore prior layout (RND-90)",
+   "phase": "phase-17",
+   "status": "pending",
+   "depends_on": [],
+   "description": "When Vera answers a voice (PTT) turn, switch the HUD to the briefing preset (orb center-stage) for the duration of her spoken reply, then auto-restore the layout showing before she started. Lands at existing seams in VoiceReplySpeaker (bridge/src/voice-reply.ts): reply-begins emits orb.state speaking (first chunk) - snapshot current layout (binder.snapshot) + apply briefing preset there; reply-ends via scheduleOrbIdle/final/barge-in - restore snapshotted layout there. Guards: fire stage-in once per run; restore on ALL terminal paths; coalesce barge-in (no flicker); CRITICAL suppress while a scripted briefing runs so it doesn't double-apply/clobber the briefing handoff. Env WARROOM_VOICE_STAGE (default on); best-effort/non-fatal. Prompt build/prompts/task-70.md."
   }
  ]
 }
