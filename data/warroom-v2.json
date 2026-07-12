@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T04:07:14Z",
+  "updated_at": "2026-07-12T05:32:37Z",
   "phases": [
     {
       "id": "phase-0",
@@ -71,6 +71,10 @@
     {
       "id": "phase-16",
       "name": "Round 9 / Voice Reply-to-Speak + Session-Key"
+    },
+    {
+      "id": "phase-17",
+      "name": "Round 10 / Voice Latency + C6 Enforcement + Orb Speaking"
     }
   ],
   "tasks": [
@@ -1017,6 +1021,30 @@
       "finishedAt": "2026-07-12T03:47:47Z",
       "durationSeconds": 1507,
       "mergedAt": "2026-07-12T03:47:49Z"
+    },
+    {
+      "id": "task-63",
+      "name": "Streaming TTS - speak Vera reply sentence-by-sentence (RND-83)",
+      "phase": "phase-17",
+      "status": "pending",
+      "depends_on": [],
+      "description": "Voice latency measured 7.09s (accept->speak) for a 342-char reply because bridge/src/voice-reply.ts discards streaming deltas (if state==='delta' return) and speaks only on final. Consume deltas for voice runs (identify by VOICE_RUN_PREFIX), chunk on sentence boundaries, emit speak per sentence so first audio lands ~1-1.5s instead of ~7s; flush tail on final without double-speak; clear buffer on barge-in/abort; leave non-voice turns untouched. Prompt build/prompts/task-63.md."
+    },
+    {
+      "id": "task-64",
+      "name": "C6 spoken-confirmation enforcement - fail-closed voice mutating-action gate (RND-84)",
+      "phase": "phase-17",
+      "status": "pending",
+      "depends_on": [],
+      "description": "P0 safety: voice 'send a message to my Telegram' executed with no read-back/no spoken yes. Infra is correct (war-room skill Ready+visible, warroom_emit registered, SKILL.md S7 correct); failure is behavioral - confirmation.py is audit-only, never a gate. Build a pending-action interlock for voice-originated mutating/outbound actions: hold action, speak read-back, require next-turn classify_confirmation=='yes' to execute one action, fail closed on anything else; read-only actions pass freely. Prompt build/prompts/task-64.md."
+    },
+    {
+      "id": "task-65",
+      "name": "Orb shows speaking animation during Vera TTS playback (RND-85)",
+      "phase": "phase-17",
+      "status": "pending",
+      "depends_on": [],
+      "description": "Cosmetic: orb does not switch to speaking during Vera's audio. Bridge already emits orb.state speaking and renderer supports it (orbRenderer.ts:221 waveform); gap is reconciliation - orb likely prioritizes listenStore (listen.state idle sent back-to-back) over orb.state param speaking. Fix HUD-side so orb.state speaking wins/holds during playback then returns idle; works with streamed multi-chunk speak. Prompt build/prompts/task-65.md."
     }
   ]
 }
