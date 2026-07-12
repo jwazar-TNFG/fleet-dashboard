@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T03:19:58Z",
+  "updated_at": "2026-07-12T03:22:40Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1003,10 +1003,11 @@
       "id": "task-62",
       "name": "Voice turns always carry a session target - durable session-key default (RND-82)",
       "phase": "phase-16",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
-      "landed": false,
-      "description": "Every voice turn was gateway-rejected UNAVAILABLE 'Pass --to/--session-key' because voiceSessionKey defaulted undefined (config.ts) and sendAgentTurn omits sessionKey when undefined -> target-less dispatch. Make durable: derive default voiceSessionKey from the single configured telegram target (agent:main:telegram:direct:<id>); fail loud (no target-less send, return error + agentTurnsFailed++) instead of silent; expose session.voiceSessionKeyConfigured in /health; preflight fails when false. Prompt build/prompts/task-62.md."
+      "description": "Every voice turn was gateway-rejected UNAVAILABLE 'Pass --to/--session-key' because voiceSessionKey defaulted undefined (config.ts) and sendAgentTurn omits sessionKey when undefined -> target-less dispatch. Make durable: derive default voiceSessionKey from the single configured telegram target (agent:main:telegram:direct:<id>); fail loud (no target-less send, return error + agentTurnsFailed++) instead of silent; expose session.voiceSessionKeyConfigured in /health; preflight fails when false. Prompt build/prompts/task-62.md.",
+      "lastActivity": "2026-07-12T03:22:40Z",
+      "startedAt": "2026-07-12T03:22:40Z"
     }
   ]
 }
