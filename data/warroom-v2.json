@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T00:35:34Z",
+  "updated_at": "2026-07-12T00:35:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -885,11 +885,12 @@
       "status": "completed",
       "depends_on": [],
       "description": "Commit + test the Option-B briefing choreography verified live with Jon on Vera's mini (orb center-stage via layout.apply briefing; beats on visible flanking panels 1/3/4/6/9; self-resetting handoff). Source: build/round6-mini-briefing.patch.",
-      "lastActivity": "2026-07-12T00:35:34Z",
+      "lastActivity": "2026-07-12T00:35:35Z",
       "startedAt": "2026-07-11T23:32:54Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-12T00:35:34Z",
-      "durationSeconds": 3760
+      "durationSeconds": 3760,
+      "mergedAt": "2026-07-12T00:35:35Z"
     },
     {
       "id": "task-55",
