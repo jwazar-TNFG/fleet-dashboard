@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T00:34:49Z",
+  "updated_at": "2026-07-12T00:34:52Z",
   "phases": [
     {
       "id": "phase-0",
@@ -835,11 +835,12 @@
         "task-46"
       ],
       "description": "# task-50 \u2014 Uninstall drift-guard must ignore volatile meta/state (RND-67), shared with the RND-64 gate comparator\n\n## Context (read first)\nDuring the 2026-07-10 Layer-3 teardown, the byte-exact uninstaller refused:\n\n```\nError: openclaw.json changed since install (beyond the warroom-emit registry\nentry/load path/meta stamp) \u2014 refusing to clobber; reconcile manually...\n```\n\nCause: two normal `openclaw gateway restart` calls between install and uninstall\nupdated volatile config **meta stamps** (e.g. `meta.lastTouchedAt`, and the\n2026.5.2 registry writes `plugins.installs.warroom-emit`, `plugins.entries.*`,\n`plugins.allow`). The uninstall drift-check in\n`vera/integrity/src/install.ts` (`uninstallWarroom`, ~line 213) does an\nover-broad comparison of current-config vs stashed-original and counts these\nvolatile/expected fields as \"unexpected drift,\" wedging the uninstaller.\n\nThis is the SAME family as RND-64: task-46 made the integrity GATE digest\nrestart-stable, but the UNINSTALL guard was not covered and still trips on\nroutine restarts. We recovered manually (restored the verified stash bytes \u2014\nsha matched baseline), but the byte-exact uninstall must work unattended.\n\n## Goal\n`openclaw plugins`-based uninstall must succeed after normal gateway restarts,\nwhile still refusing if the config was changed in a way that is genuinely\nunexpected (real safety, not brittleness).\n\n## Requirements\n1. Change the uninstall drift-guard to compare **only behavior-defining config**\n   minus the KNOWN expected install delta, excluding volatile/expected fields:\n   - the registry/enable entries the install itself added\n     (`plugins.installs.warroom-emit`, `plugins.entries.warroom-emit`,\n     `plugins.allow` additions, any load-path entry),\n   - volatile meta stamps (`meta.lastTouchedAt` and any restart-updated meta),\n   so that \"original + our install delta + restart churn\" is accepted as\n   reversible, and the uninstall proceeds to restore the stashed config.\n2. **Share one canonical comparator** between the RND-64 gate (task-46) and this\n   uninstall guard \u2014 a single \"expected-delta / volatile-exclusion\" module so\n   the two never drift apart again. Refactor task-46's logic into that shared\n   module if not already.\n3. Still REFUSE (with the existing clear manual-recovery hint) when the config\n   differs in a field OUTSIDE the expected delta + volatile set \u2014 that safety\n   must remain.\n4. On successful uninstall, the restored `openclaw.json` must be byte-identical\n   to the stashed original (the stash restore itself is already byte-exact; this\n   task only fixes the GUARD that decides whether to proceed).\n\n## Tests / proof (must pass in CI)\n- Test: install \u2192 simulate a restart that mutates ONLY volatile meta/registry\n  fields \u2192 uninstall SUCCEEDS and restores stashed bytes exactly.\n- Test: install \u2192 mutate a genuinely unexpected field (e.g. an agent prompt) \u2192\n  uninstall REFUSES with the manual-recovery message.\n- Test proving the gate (task-46) and the uninstall guard use the SAME\n  comparator (shared module referenced by both).\n- `npm run build` + `npm test` green; do not weaken existing safety tests.\n\n## Depends on\n- task-46 (RND-64 comparator to share). Independent of task-48/49 otherwise.\n\n## Definition of done\n- Uninstall succeeds after routine restarts; still refuses on real drift; one\n  shared comparator with the gate. CI green; PR merged with ci-gate green.\n",
-      "lastActivity": "2026-07-10T22:59:47Z",
+      "lastActivity": "2026-07-12T00:34:52Z",
       "startedAt": "2026-07-10T22:46:22Z",
       "finishedAt": "2026-07-10T22:59:47Z",
       "durationSeconds": 805,
-      "landed": true
+      "landed": true,
+      "mergedAt": "2026-07-12T00:34:52Z"
     },
     {
       "id": "task-51",
