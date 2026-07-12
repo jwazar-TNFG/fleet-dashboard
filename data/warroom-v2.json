@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T02:40:26Z",
+  "updated_at": "2026-07-12T02:40:28Z",
   "phases": [
     {
       "id": "phase-0",
@@ -977,11 +977,11 @@
         "task-59"
       ],
       "description": "Companion to task-59. Voice run hardcodes 18795 while HUD probes the ladder -> split. Add voice/warroom_voice/ports.py mirroring protocol/src/ports.ts; SpeakListener probes ladder; pick lowest-ladderIndex primary; pair emit health port; status prints ports + fails if >1 bridge. Prompt build/prompts/task-60.md.",
-      "lastActivity": "2026-07-12T02:39:49Z",
+      "lastActivity": "2026-07-12T02:40:28Z",
       "startedAt": "2026-07-12T02:23:07Z",
-      "landed": true,
-      "finishedAt": "2026-07-12T02:35:37Z",
-      "durationSeconds": 750,
+      "landed": false,
+      "finishedAt": "2026-07-12T02:40:28Z",
+      "durationSeconds": 1041,
       "mergedAt": "2026-07-12T02:39:49Z"
     }
   ]
