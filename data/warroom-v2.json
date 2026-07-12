@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T00:34:45Z",
+  "updated_at": "2026-07-12T00:34:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -803,11 +803,12 @@
       "status": "completed",
       "depends_on": [],
       "description": "# task-48 \u2014 Bridge gateway handshake must declare operator role + operator.write scope (RND-66 part B)\n\n## Context (read first)\nDuring the 2026-07-10 live Layer-3 test, the bridge connected to Vera's live\ngateway (session active) but every emit was rejected by the gateway with:\n\n```\nHTTP 502 {\"ok\":false,\"error\":\"missing scope: operator.write\"}\n```\n\nRoot cause is grounded in the OpenClaw 2026.5.2 Gateway WebSocket protocol\n(`docs/gateway/protocol.md`): operator/node clients **declare their `role` and\n`scopes` at handshake time**. A successful example handshake is:\n\n```json\n{ \"role\": \"operator\", \"scopes\": [\"operator.read\", \"operator.write\"] }\n```\n\nOur bridge's connect handshake (`bridge/src/gateway-session.ts`, ~lines\n250\u2013265) currently sends only `minProtocol`, `maxProtocol`, and\n`auth.token` \u2014 it declares **no role and no scopes**. So the gateway assigns a\ndefault/narrow scope set that lacks `operator.write`, and emits are refused.\n\n## Goal\nThe bridge must authenticate AS an operator with the scopes required to drive\nthe HUD (at minimum `operator.write`, plus `operator.read` for the activity\nsubscription it already uses), so emits succeed on a token-auth gateway.\n\n## Requirements\n1. In `gateway-session.ts`, extend the connect handshake params to declare:\n   - `role: \"operator\"`\n   - `scopes: [\"operator.read\", \"operator.write\"]` (make the scope list a\n     typed constant; do not request `operator.admin`/`operator.pairing` \u2014\n     least privilege: only what emit + activity subscription need).\n2. Keep the existing protocol range + `auth.token` behavior unchanged; the\n   scopes/role are additive to the same handshake frame.\n3. If the gateway still answers with an unauthorized/scope failure, classify it\n   with a CLEAR, distinct error (extend `HandshakeFailureKind` if useful, e.g.\n   `insufficient-scope`) and log the requested vs granted scopes so a future\n   operator sees exactly what to fix \u2014 no silent generic backoff for a scope\n   denial.\n4. Do NOT change the token staging mechanism\n   (`~/.openclaw/secrets/warroom/gateway.json` / `WARROOM_GATEWAY_TOKEN`) \u2014 that\n   is proven working. This is purely the declared role/scopes in the handshake.\n\n## Tests / proof (must pass in CI)\n- Unit test asserting the emitted connect frame includes\n  `role: \"operator\"` and `scopes` containing `operator.write` and\n  `operator.read`.\n- Test the new scope-denial classification path (given a simulated gateway\n  scope-refusal frame, the session surfaces the distinct failure + logs\n  requested/granted scopes) without crashing.\n- `npm run build` + `npm test` green; do not weaken existing gateway-session\n  handshake/backoff tests.\n\n## Definition of done\n- Bridge handshake declares operator role + `operator.write`/`operator.read`.\n- Scope denial is a first-class, well-logged failure mode.\n- CI green; PR merged with ci-gate green.\n",
-      "lastActivity": "2026-07-10T22:35:02Z",
+      "lastActivity": "2026-07-12T00:34:47Z",
       "startedAt": "2026-07-10T22:28:02Z",
       "finishedAt": "2026-07-10T22:35:02Z",
       "durationSeconds": 420,
-      "landed": true
+      "landed": true,
+      "mergedAt": "2026-07-12T00:34:47Z"
     },
     {
       "id": "task-49",
