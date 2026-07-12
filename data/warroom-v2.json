@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T15:08:43Z",
+  "updated_at": "2026-07-12T15:23:02Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1043,7 +1043,7 @@
       "status": "in_progress",
       "depends_on": [],
       "description": "P0 safety: voice 'send a message to my Telegram' executed with no read-back/no spoken yes. Infra is correct (war-room skill Ready+visible, warroom_emit registered, SKILL.md S7 correct); failure is behavioral - confirmation.py is audit-only, never a gate. Build a pending-action interlock for voice-originated mutating/outbound actions: hold action, speak read-back, require next-turn classify_confirmation=='yes' to execute one action, fail closed on anything else; read-only actions pass freely. Prompt build/prompts/task-64.md.",
-      "lastActivity": "2026-07-12T15:08:43Z",
+      "lastActivity": "2026-07-12T15:23:02Z",
       "startedAt": "2026-07-12T15:08:43Z"
     },
     {
