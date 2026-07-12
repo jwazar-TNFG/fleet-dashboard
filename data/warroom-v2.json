@@ -1051,6 +1051,14 @@
       "status": "pending",
       "depends_on": [],
       "description": "Cosmetic: orb does not switch to speaking during Vera's audio. Bridge already emits orb.state speaking and renderer supports it (orbRenderer.ts:221 waveform); gap is reconciliation - orb likely prioritizes listenStore (listen.state idle sent back-to-back) over orb.state param speaking. Fix HUD-side so orb.state speaking wins/holds during playback then returns idle; works with streamed multi-chunk speak. Prompt build/prompts/task-65.md."
+    },
+    {
+      "id": "task-66",
+      "name": "Route voice turns to fast model (Sonnet), keep Opus for everything else (RND-86)",
+      "phase": "phase-17",
+      "status": "pending",
+      "depends_on": [],
+      "description": "Latency root cause (measured live 2026-07-12): Opus-4-6 ~37.5s vs Sonnet-4-6 ~4.5s on a one-word probe; streaming (Task 63) cannot rescue a ~38s first-token wait. Route ONLY war-room voice-originated turns (VOICE_RUN_PREFIX) to a fast model (default anthropic/claude-sonnet-4-6 via WARROOM_VOICE_MODEL); keep Vera's global default (Opus) for Telegram/cron/EA work untouched. Gateway per-request model override is ADMIN-scoped; bridge is least-privilege operator.read/write and must NOT escalate - prefer per-session voice model resolution. Bridge-scoped, reversible. Prompt build/prompts/task-66.md."
     }
   ]
 }
