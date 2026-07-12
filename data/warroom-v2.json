@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-12T02:39:49Z",
+  "updated_at": "2026-07-12T02:40:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -961,11 +961,11 @@
       "status": "completed",
       "depends_on": [],
       "description": "CRITICAL Layer-4 blocker. Live PTT failed via dual-bridge split-brain (two warroom-bridge on 18795+18797). Add single-instance guard (bridge.lock; refuse start if live bridge exists unless WARROOM_BRIDGE_REPLACE=1; reclaim stale), observable non-primary-bind warn, self-describing /health (hudWsPort/healthPort/ladderIndex/siblingBridges). Prompt build/prompts/task-59.md.",
-      "lastActivity": "2026-07-12T02:39:47Z",
+      "lastActivity": "2026-07-12T02:40:26Z",
       "startedAt": "2026-07-12T02:14:11Z",
-      "landed": true,
-      "finishedAt": "2026-07-12T02:23:05Z",
-      "durationSeconds": 534,
+      "landed": false,
+      "finishedAt": "2026-07-12T02:40:26Z",
+      "durationSeconds": 1575,
       "mergedAt": "2026-07-12T02:39:47Z"
     },
     {
