@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T06:09:05Z",
+  "updated_at": "2026-07-13T06:29:34Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1220,14 +1220,17 @@
     {
       "id": "task-76",
       "phase": "phase-19",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-75"
       ],
       "name": "Voice captions hold for full utterance + flow words in as Vera speaks (RND-100)",
       "description": "Captions pop up and vanish quickly out of sync with Vera's voice. Root cause: hud useVoice.ts renders each speak for an ESTIMATED text.length*55ms timer (not real playback) and a new speak replaces the prior caption. Fix: gate caption lifetime on the real speak.done (playback-end / BotStoppedSpeakingFrame, from task-75) per cmdId so captions hold for the full utterance; progressively reveal words as she speaks (word/segment cadence via pipeline event, or approximated across the known playback window). Barge-in clears instantly; briefing beats sync per beat; no regression to orb speaking(75)/listen-wake. Build+HUD tests+CI green.",
-      "lastActivity": "2026-07-13T06:09:05Z",
-      "startedAt": "2026-07-13T06:09:05Z"
+      "lastActivity": "2026-07-13T06:29:34Z",
+      "startedAt": "2026-07-13T06:09:05Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T06:29:34Z",
+      "durationSeconds": 1229
     },
     {
       "id": "task-77",
