@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T23:09:33Z",
+  "updated_at": "2026-07-13T23:09:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1590,12 +1590,14 @@
       "id": "task-97",
       "name": "PM-3a: proactive relevance classifier (RND-123)",
       "phase": "phase-27",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-90",
         "task-96"
       ],
-      "description": "PM-3a classifier (RND-123): background relevance classifier over live turns; curated whitelist (offices/KPI/statuses), confidence threshold, opt-in per session. Emits a decision object only."
+      "description": "PM-3a classifier (RND-123): background relevance classifier over live turns; curated whitelist (offices/KPI/statuses), confidence threshold, opt-in per session. Emits a decision object only.",
+      "lastActivity": "2026-07-13T23:09:35Z",
+      "startedAt": "2026-07-13T23:09:35Z"
     },
     {
       "id": "task-98",
