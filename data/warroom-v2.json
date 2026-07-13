@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T20:39:33Z",
+  "updated_at": "2026-07-13T20:39:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1523,12 +1523,14 @@
       "id": "task-93",
       "name": "PM-2b: Meeting live transcript + recording indicator (RND-119)",
       "phase": "phase-26",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-92",
         "task-86"
       ],
-      "description": "PM-2b Meeting transcript (RND-119): full-screen live transcript view + mandatory recording indicator + start consent; start/end by button+voice; restore on end. Rides Substrate A/B/D."
+      "description": "PM-2b Meeting transcript (RND-119): full-screen live transcript view + mandatory recording indicator + start consent; start/end by button+voice; restore on end. Rides Substrate A/B/D.",
+      "lastActivity": "2026-07-13T20:39:36Z",
+      "startedAt": "2026-07-13T20:39:36Z"
     },
     {
       "id": "task-94",
