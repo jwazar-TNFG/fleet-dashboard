@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T08:37:35Z",
+  "updated_at": "2026-07-13T09:22:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1284,13 +1284,16 @@
       "id": "task-80",
       "name": "Per-panel view-picker UI (RND-104)",
       "phase": "phase-20",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-77"
       ],
       "description": "Any panel can display any registered view: click panel title -> dropdown of listViews() catalog -> panel.set + re-bind data; also voice ('put ratings on panel 3'); reuse the client registry + EDIT LAYOUT + preset save (no duplicate persistence); per-panel view assignment persists in the preset. Prompt build/prompts/task-80.md.",
-      "lastActivity": "2026-07-13T08:35:24Z",
-      "startedAt": "2026-07-13T08:35:24Z"
+      "lastActivity": "2026-07-13T09:22:25Z",
+      "startedAt": "2026-07-13T08:35:24Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T09:22:25Z",
+      "durationSeconds": 2821
     },
     {
       "id": "task-81",
