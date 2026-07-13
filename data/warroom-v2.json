@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T07:18:42Z",
+  "updated_at": "2026-07-13T07:19:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1226,11 +1226,12 @@
       ],
       "name": "Voice captions hold for full utterance + flow words in as Vera speaks (RND-100)",
       "description": "Captions pop up and vanish quickly out of sync with Vera's voice. Root cause: hud useVoice.ts renders each speak for an ESTIMATED text.length*55ms timer (not real playback) and a new speak replaces the prior caption. Fix: gate caption lifetime on the real speak.done (playback-end / BotStoppedSpeakingFrame, from task-75) per cmdId so captions hold for the full utterance; progressively reveal words as she speaks (word/segment cadence via pipeline event, or approximated across the known playback window). Barge-in clears instantly; briefing beats sync per beat; no regression to orb speaking(75)/listen-wake. Build+HUD tests+CI green.",
-      "lastActivity": "2026-07-13T07:18:40Z",
+      "lastActivity": "2026-07-13T07:19:10Z",
       "startedAt": "2026-07-13T06:09:05Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T07:18:40Z",
-      "durationSeconds": 4175
+      "durationSeconds": 4175,
+      "mergedAt": "2026-07-13T07:19:10Z"
     },
     {
       "id": "task-77",
@@ -1241,11 +1242,12 @@
         "task-76"
       ],
       "description": "Round 13 foundation. Build a shared JARVIS design layer all views compose from: design tokens (catalog palette #050A14 bg, cyan #22D3EE, emerald #34D399, red-orange #F87171/#FB923C, gold #FCD34D; Orbitron/Rajdhani hero, Inter labels, mono numerics), 8 reusable chart primitives (Gauge/Donut/LeaderboardBar/Sparkline/Heatmap/StackedBar/Ticker/KpiTileGrid) with target-aware coloring, motion utilities (digit-roll, tween-refresh, idle glow/scanline, alert pulse, overnight-dim, reduced-motion), and a PanelHeader (title+freshness+source+stale). No regression to the 11 existing views. Prompt build/prompts/task-77.md.",
-      "lastActivity": "2026-07-13T07:18:42Z",
+      "lastActivity": "2026-07-13T07:19:10Z",
       "startedAt": "2026-07-13T06:29:39Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T07:18:42Z",
-      "durationSeconds": 2943
+      "durationSeconds": 2943,
+      "mergedAt": "2026-07-13T07:19:10Z"
     },
     {
       "id": "task-78",
