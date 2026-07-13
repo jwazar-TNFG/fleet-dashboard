@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T22:53:12Z",
+  "updated_at": "2026-07-13T22:53:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1572,9 +1572,11 @@
       "id": "task-96",
       "name": "PM-3 infra: analyst-01 + Supabase reachable on Mini (RND-122)",
       "phase": "phase-27",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
-      "description": "PM-3 infra pre-req (RND-122): make analyst-01 + Supabase reachable from the bridge on Vera's Mini (today cosmetic warnings -> hard deps). Health reports real reachability. Mini secret placement gated on Jon."
+      "description": "PM-3 infra pre-req (RND-122): make analyst-01 + Supabase reachable from the bridge on Vera's Mini (today cosmetic warnings -> hard deps). Health reports real reachability. Mini secret placement gated on Jon.",
+      "lastActivity": "2026-07-13T22:53:14Z",
+      "startedAt": "2026-07-13T22:53:14Z"
     },
     {
       "id": "task-97",
