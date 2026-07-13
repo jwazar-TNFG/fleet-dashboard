@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T23:27:21Z",
+  "updated_at": "2026-07-13T23:43:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1607,14 +1607,17 @@
       "id": "task-98",
       "name": "PM-3b: proactive side-panel emit + guardrails (RND-124)",
       "phase": "phase-27",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-97",
         "task-90"
       ],
       "description": "PM-3b proactive emit + guardrails (RND-124): surface the chart/panel into FREE side panels only; never override briefing/stage/fullscreen/active panel; debounce/cooldown + instant mute. Ships last.",
-      "lastActivity": "2026-07-13T23:27:21Z",
-      "startedAt": "2026-07-13T23:27:21Z"
+      "lastActivity": "2026-07-13T23:43:04Z",
+      "startedAt": "2026-07-13T23:27:21Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T23:43:04Z",
+      "durationSeconds": 943
     },
     {
       "id": "task-99",
