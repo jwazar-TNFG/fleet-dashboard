@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T14:05:37Z",
+  "updated_at": "2026-07-13T14:22:40Z",
   "phases": [
     {
       "id": "phase-0",
@@ -91,6 +91,18 @@
     {
       "id": "phase-21",
       "name": "Round 14 / Post-MVP \u2014 Calendar (PM-1)"
+    },
+    {
+      "id": "phase-22",
+      "name": "Round 15 / Post-MVP \u2014 Search (PM-4)"
+    },
+    {
+      "id": "phase-23",
+      "name": "Round 16 / Post-MVP \u2014 Meeting Mode (PM-2)"
+    },
+    {
+      "id": "phase-24",
+      "name": "Round 17 / Post-MVP \u2014 Proactive Data Surfacing (PM-3, gated)"
     }
   ],
   "tasks": [
@@ -1368,6 +1380,37 @@
       "finishedAt": "2026-07-13T14:00:25Z",
       "durationSeconds": 3504,
       "mergedAt": "2026-07-13T14:05:37Z"
+    },
+    {
+      "id": "task-85",
+      "name": "\"Search\" command + button -> live web-search / research panel (RND-111)",
+      "phase": "phase-22",
+      "status": "pending",
+      "depends_on": [
+        "task-84"
+      ],
+      "description": "PM-4 Search: top-bar Search button (next to Calendar) + \"search for...\" voice + search.open/close command opens a full-screen research panel streaming Vera's live web search results + citations, restores prior layout on dismiss. Reuses task-84 button-tray + task-70 stage/restore. Prompt build/prompts/task-85.md."
+    },
+    {
+      "id": "task-86",
+      "name": "\"Meeting\" mode: live transcription + post-meeting summary (RND-112)",
+      "phase": "phase-23",
+      "status": "pending",
+      "depends_on": [
+        "task-84"
+      ],
+      "description": "PM-2 Meeting mode: Meeting button engages a continuous (non-PTT) mic capture mode with live on-screen transcription + speaker attribution; on end, produces a summary with takeaways + deliverables/dates grouped by participant. Largest post-MVP piece; guards against PTT interference. Prompt build/prompts/task-86.md."
+    },
+    {
+      "id": "task-87",
+      "name": "Vera auto-surfaces relevant data/charts during conversation (RND-113, gated)",
+      "phase": "phase-24",
+      "status": "pending",
+      "depends_on": [
+        "task-78",
+        "task-84"
+      ],
+      "description": "PM-3 Proactive surfacing: Vera auto-pulls relevant data/charts during conversation (intent/entity -> data source -> panel emit) with relevance threshold + cooldown guardrails. GATED: needs analyst-01 + Supabase reachable on the Mini; builds behind a feature flag + fixtures until live. Prompt build/prompts/task-87.md."
     }
   ]
 }
