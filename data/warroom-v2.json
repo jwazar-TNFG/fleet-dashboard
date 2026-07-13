@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T19:09:16Z",
+  "updated_at": "2026-07-13T19:09:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1465,11 +1465,12 @@
         "task-86"
       ],
       "description": "PM-5b KB Explorer UI (RND-108): full-screen force-directed knowledge graph + read-only reader panel + searchable index rail + wikilink traversal + voice read-aloud. Rides Substrate A/B/E.",
-      "lastActivity": "2026-07-13T18:42:34Z",
+      "lastActivity": "2026-07-13T19:09:22Z",
       "startedAt": "2026-07-13T18:05:06Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T18:42:34Z",
-      "durationSeconds": 2248
+      "durationSeconds": 2248,
+      "mergedAt": "2026-07-13T19:09:22Z"
     },
     {
       "id": "task-90",
