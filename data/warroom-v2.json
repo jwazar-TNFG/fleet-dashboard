@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T14:00:25Z",
+  "updated_at": "2026-07-13T14:05:37Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1362,11 +1362,12 @@
         "task-80"
       ],
       "description": "First post-MVP feature. Add a Calendar affordance (top-bar button next to DEV + \"view my calendar\" voice command + Vera/gateway calendar.open/close) that opens a full-screen day calendar from real Google Workspace events and restores the prior layout on dismiss (button/voice/Escape/barge-in). Reuses the task-79 triple-surface control shape and the task-70 snapshot/stage/restore seam; graceful offline fallback per task-78. Establishes the reusable top-bar button-tray + full-screen stage infra for later post-MVP items. Prompt build/prompts/task-84.md; ROUND-14-BUILD-PACKAGE.md.",
-      "lastActivity": "2026-07-13T14:00:25Z",
+      "lastActivity": "2026-07-13T14:05:37Z",
       "startedAt": "2026-07-13T13:02:01Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T14:00:25Z",
-      "durationSeconds": 3504
+      "durationSeconds": 3504,
+      "mergedAt": "2026-07-13T14:05:37Z"
     }
   ]
 }
