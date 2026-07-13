@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T17:07:27Z",
+  "updated_at": "2026-07-13T17:07:29Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1429,11 +1429,13 @@
       "id": "task-87",
       "name": "PM-6: Command Glossary / Voice+Button Index (RND-109)",
       "phase": "phase-23",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-86"
       ],
-      "description": "PM-6 Command Glossary (RND-109): full-screen auto-generated index of every voice command + its button + description, from the task-86 registry. Searchable; openable by voice+button."
+      "description": "PM-6 Command Glossary (RND-109): full-screen auto-generated index of every voice command + its button + description, from the task-86 registry. Searchable; openable by voice+button.",
+      "lastActivity": "2026-07-13T17:07:29Z",
+      "startedAt": "2026-07-13T17:07:29Z"
     },
     {
       "id": "task-88",
