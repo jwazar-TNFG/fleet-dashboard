@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T15:13:46Z",
+  "updated_at": "2026-07-13T15:17:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1418,11 +1418,12 @@
         "task-84"
       ],
       "description": "Substrate B (RND-115): generalize HeaderTray + registerHudCommand + bridge intent classify into ONE command registry so every control gets button+voice+state; migrate Calendar with parity. Foundation for D-3.",
-      "lastActivity": "2026-07-13T15:13:46Z",
+      "lastActivity": "2026-07-13T15:17:38Z",
       "startedAt": "2026-07-13T14:56:59Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T15:13:46Z",
-      "durationSeconds": 1007
+      "durationSeconds": 1007,
+      "mergedAt": "2026-07-13T15:17:38Z"
     },
     {
       "id": "task-87",
