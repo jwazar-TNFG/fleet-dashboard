@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T22:27:15Z",
+  "updated_at": "2026-07-13T22:53:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1556,13 +1556,16 @@
       "id": "task-95",
       "name": "PM-2d: summary delivery \u2014 email Zeri + dated KB page (RND-121)",
       "phase": "phase-26",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-94"
       ],
       "description": "PM-2d Meeting delivery (RND-121): email full summary to Zeri + write a dated searchable KB page per meeting. Both destinations required (Q3); each is C6-gated (no silent send/write).",
-      "lastActivity": "2026-07-13T22:27:15Z",
-      "startedAt": "2026-07-13T22:27:15Z"
+      "lastActivity": "2026-07-13T22:53:05Z",
+      "startedAt": "2026-07-13T22:27:15Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T22:53:05Z",
+      "durationSeconds": 1550
     },
     {
       "id": "task-96",
