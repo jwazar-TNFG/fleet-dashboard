@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T10:06:03Z",
+  "updated_at": "2026-07-13T10:06:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1315,12 +1315,14 @@
       "id": "task-82",
       "name": "Starter view library part 2: Retention / COR / System (RND-106)",
       "phase": "phase-20",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-77",
         "task-78"
       ],
-      "description": "Build retention-request-queue (LIVE, avg-response gauge red >4h), cor-by-attorney (INCLUDES KB/xSTAFF - documented cor-report exception), kpi-scoreboard (static KPI status board), plus register a team-presence dependency stub (completed in task-83) so it appears in the picker. Composed from task-77 primitives, target-aware, overnight-safe. Prompt build/prompts/task-82.md."
+      "description": "Build retention-request-queue (LIVE, avg-response gauge red >4h), cor-by-attorney (INCLUDES KB/xSTAFF - documented cor-report exception), kpi-scoreboard (static KPI status board), plus register a team-presence dependency stub (completed in task-83) so it appears in the picker. Composed from task-77 primitives, target-aware, overnight-safe. Prompt build/prompts/task-82.md.",
+      "lastActivity": "2026-07-13T10:06:10Z",
+      "startedAt": "2026-07-13T10:06:10Z"
     },
     {
       "id": "task-83",
