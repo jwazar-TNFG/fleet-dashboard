@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T17:04:31Z",
+  "updated_at": "2026-07-13T17:05:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1397,14 +1397,17 @@
       "id": "task-85",
       "name": "PM-1 Q2 fix: point Calendar at Zeri's calendar (RND-114)",
       "phase": "phase-22",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-84"
       ],
       "description": "PM-1 Q2 fix (RND-114): point the Calendar stage at Zeri's calendar (config-driven calendarId/token; read-only). GATED on Zeri Google OAuth/sharing; wire+test now, flip live when creds land.",
-      "lastActivity": "2026-07-13T17:04:31Z",
+      "lastActivity": "2026-07-13T17:05:07Z",
       "startedAt": "2026-07-13T14:46:23Z",
-      "mergedAt": "2026-07-13T14:55:08Z"
+      "mergedAt": "2026-07-13T14:55:08Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T17:05:07Z",
+      "durationSeconds": 8324
     },
     {
       "id": "task-86",
