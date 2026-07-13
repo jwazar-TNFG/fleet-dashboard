@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T02:20:14Z",
+  "updated_at": "2026-07-13T02:20:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1192,13 +1192,14 @@
     {
       "id": "task-75",
       "phase": "phase-18",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-72"
       ],
       "name": "Orb speaking state + speak.done hold until playback-end (BotStoppedSpeaking) not synthesis-end (RND-99)",
-      "description": "Orb 'speaking' waveform ends before Vera's voice finishes. Root cause: speaking state + task-67 speak.done gate off TTSStoppedFrame (synthesis end), not playback end; ElevenLabs streaming drains playback after synthesis stops (pipeline.py:62-63 acknowledges the drain). Fix: gate speaking-off + speak.done on Pipecat BotStoppedSpeakingFrame (playback end), not TTSStopped, in processors.py SpeakStateReporter. Barge-in still cuts instantly. Pairs with task-74 (RND-98) \u2014 same TTS-lifecycle->HUD path; build together. Acceptance: speaking waveform holds until audio fully stops; speak.done fires on playback end; barge-in instant; no regression to speaking-start, listen/wake precedence, task-71/72; build+voice tests+CI green."
+      "description": "Orb 'speaking' waveform ends before Vera's voice finishes. Root cause: speaking state + task-67 speak.done gate off TTSStoppedFrame (synthesis end), not playback end; ElevenLabs streaming drains playback after synthesis stops (pipeline.py:62-63 acknowledges the drain). Fix: gate speaking-off + speak.done on Pipecat BotStoppedSpeakingFrame (playback end), not TTSStopped, in processors.py SpeakStateReporter. Barge-in still cuts instantly. Pairs with task-74 (RND-98) \u2014 same TTS-lifecycle->HUD path; build together. Acceptance: speaking waveform holds until audio fully stops; speak.done fires on playback end; barge-in instant; no regression to speaking-start, listen/wake precedence, task-71/72; build+voice tests+CI green.",
+      "lastActivity": "2026-07-13T02:20:19Z",
+      "startedAt": "2026-07-13T02:20:19Z"
     }
   ]
 }
