@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T01:20:28Z",
+  "updated_at": "2026-07-13T01:49:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1147,7 +1147,7 @@
       "description": "Saying 'run the morning briefing' over PTT must reliably run the full briefing choreography SYNCED to Vera's narration, without depending on the LLM choosing to call warroom_emit. Live-reproduced 2026-07-12: Vera's PTT turns produced NO tool call (debug showed one tool-context entry all session, from a path already fixed); origin fix (Task 68) confirmed correct. Root cause is behavioral. Also blocks Task 67 sync because run-briefing.mjs shim uses fixed paced(3200), no speakDone, no TTS -> perpetual desync. Fix: first-class deterministic briefing intent on voice/HUD path that directly invokes canonical runBriefing with a real speakDone waiter (bridge GET /speak-done/<cmdId>), narration through TTS so speak.done fires per beat. Preserve A5 origin gating, Sonnet pin, locked beat order, Option-B preset, barge-in. Prompt build/prompts/task-71.md.",
       "lastActivity": "2026-07-13T01:18:46Z",
       "startedAt": "2026-07-13T00:29:17Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T01:18:46Z",
       "durationSeconds": 2969
     },
@@ -1160,7 +1160,7 @@
       "description": "Exactly one canonical briefing runner used by every trigger (voice intent, HUD button, operator/SSH). No path advances beats on a hardcoded paced(3200) timer as if it were choreography - that fallback is the source of Jon's 'voice and animations way out of sync, as if nothing changed' report. Consolidate on task-71's synced runBriefing({speakDone}); refactor run-briefing.mjs/trigger-briefing.sh (and any HUD trigger) to route through it, or run an explicitly-labeled silent mode when no TTS is attached. Remove divergent pacing logic. Depends logically on task-71. Prompt build/prompts/task-72.md.",
       "lastActivity": "2026-07-13T01:18:48Z",
       "startedAt": "2026-07-13T00:46:55Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T01:18:48Z",
       "durationSeconds": 1913
     },
