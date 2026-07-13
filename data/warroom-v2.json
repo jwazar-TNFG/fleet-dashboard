@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T02:56:43Z",
+  "updated_at": "2026-07-13T03:00:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1175,7 +1175,7 @@
       "description": "Round 10 Test 69b: deep-on-demand thinking works but two UX gaps - no visible Fast/Deep toggle in the running HUD, and no distinct 'thinking hard' visual vs normal. Engine already exists (task-69 ThinkingToggle.tsx mounted in VoiceOverlay, hotkey Ctrl+Shift+D; orb enters 'thinking' on every processing turn). Fix A: make the Fast/Deep toggle discoverable/visible beside PTT. Fix B: distinct deep-mode indicator (intensified orb variant and/or DEEP badge) only on deep turns. No regression to Task65/69/70/PTT. Prompt build/prompts/task-73.md.",
       "lastActivity": "2026-07-13T02:56:43Z",
       "startedAt": "2026-07-13T02:40:45Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T02:56:43Z",
       "durationSeconds": 958
     },
@@ -1190,7 +1190,7 @@
       "description": "Live acceptance (2026-07-12): deterministic trigger (task-71) fires reliably and latency is fixed, but briefing beats STILL sprint (~9s/5 beats, ~1.9s/beat) out of sync with narration. Root cause: the voice pipeline never emits per-beat speak.done (cmd_<uuid>) on TTSStoppedFrame, so the bridge's speakDone.wait (voice-briefing.ts:228) hits its bounded timeout every beat and advances. Fix: voice/warroom_voice emits speak.done with the beat's stamped cmdId when each narration segment ends; verify cmdId round-trips end-to-end (router.ts:330 -> SpeakDoneRegistry). Barge-in surfaces as interrupted speak.done. No regression to task-71 trigger, task-72 single-runner (no fixed timer), Sonnet pin, origin gating, beat order, preset restore, silent mode. Acceptance: beats hold until narration completes; one 'speak.done observed' per beat with matching cmdId; build+tests+CI green. Prompt build/prompts/task-74.md.",
       "lastActivity": "2026-07-13T02:20:14Z",
       "startedAt": "2026-07-13T01:59:31Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T02:20:14Z",
       "durationSeconds": 1243
     },
@@ -1205,7 +1205,7 @@
       "description": "Orb 'speaking' waveform ends before Vera's voice finishes. Root cause: speaking state + task-67 speak.done gate off TTSStoppedFrame (synthesis end), not playback end; ElevenLabs streaming drains playback after synthesis stops (pipeline.py:62-63 acknowledges the drain). Fix: gate speaking-off + speak.done on Pipecat BotStoppedSpeakingFrame (playback end), not TTSStopped, in processors.py SpeakStateReporter. Barge-in still cuts instantly. Pairs with task-74 (RND-98) \u2014 same TTS-lifecycle->HUD path; build together. Acceptance: speaking waveform holds until audio fully stops; speak.done fires on playback end; barge-in instant; no regression to speaking-start, listen/wake precedence, task-71/72; build+voice tests+CI green.",
       "lastActivity": "2026-07-13T02:40:25Z",
       "startedAt": "2026-07-13T02:20:19Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T02:40:25Z",
       "durationSeconds": 1206
     }
