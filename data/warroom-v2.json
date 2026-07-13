@@ -1260,7 +1260,7 @@
       "description": "Add read-only analyst-01 endpoints (GET /api/intake/inventory GROUP BY leadStatus [Jon-requested], /api/ops/referral-out company-wide location mix, /api/retention/drop-reasons GROUP BY reasonDrop, dated intake hourly ?date=) with standard exclusions, and wire the bridge (analyst.ts/registry.ts) to consume them with graceful MTD/rolling/last-business-day fallback when today is empty or an endpoint is absent. analyst-01 is a separate Virgil-owned project so endpoints may land as a coordinated change; the bridge deliverable must degrade so HUD work isn't blocked. Prompt build/prompts/task-78.md.",
       "lastActivity": "2026-07-13T07:36:40Z",
       "startedAt": "2026-07-13T07:16:01Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T07:36:40Z",
       "durationSeconds": 1239
     },
