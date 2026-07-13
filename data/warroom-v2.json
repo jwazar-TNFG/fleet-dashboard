@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T00:46:55Z",
+  "updated_at": "2026-07-13T01:03:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1154,12 +1154,15 @@
     {
       "id": "task-72",
       "phase": "phase-18",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "name": "Canonical briefing entry point - kill the desynced fixed-timer fallback (RND-92)",
       "description": "Exactly one canonical briefing runner used by every trigger (voice intent, HUD button, operator/SSH). No path advances beats on a hardcoded paced(3200) timer as if it were choreography - that fallback is the source of Jon's 'voice and animations way out of sync, as if nothing changed' report. Consolidate on task-71's synced runBriefing({speakDone}); refactor run-briefing.mjs/trigger-briefing.sh (and any HUD trigger) to route through it, or run an explicitly-labeled silent mode when no TTS is attached. Remove divergent pacing logic. Depends logically on task-71. Prompt build/prompts/task-72.md.",
-      "lastActivity": "2026-07-13T00:46:55Z",
-      "startedAt": "2026-07-13T00:46:55Z"
+      "lastActivity": "2026-07-13T01:03:33Z",
+      "startedAt": "2026-07-13T00:46:55Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T01:03:33Z",
+      "durationSeconds": 998
     }
   ]
 }
