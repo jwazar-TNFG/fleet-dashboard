@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T05:07:03Z",
+  "updated_at": "2026-07-13T06:00:02Z",
   "phases": [
     {
       "id": "phase-0",
@@ -83,6 +83,10 @@
     {
       "id": "phase-19",
       "name": "Round 12 / Voice Caption Streaming + Sync"
+    },
+    {
+      "id": "phase-20",
+      "name": "Round 13 / JARVIS Wall - View Library + Picker + Time-Range"
     }
   ],
   "tasks": [
@@ -1223,6 +1227,79 @@
       ],
       "name": "Voice captions hold for full utterance + flow words in as Vera speaks (RND-100)",
       "description": "Captions pop up and vanish quickly out of sync with Vera's voice. Root cause: hud useVoice.ts renders each speak for an ESTIMATED text.length*55ms timer (not real playback) and a new speak replaces the prior caption. Fix: gate caption lifetime on the real speak.done (playback-end / BotStoppedSpeakingFrame, from task-75) per cmdId so captions hold for the full utterance; progressively reveal words as she speaks (word/segment cadence via pipeline event, or approximated across the known playback window). Barge-in clears instantly; briefing beats sync per beat; no regression to orb speaking(75)/listen-wake. Build+HUD tests+CI green."
+    },
+    {
+      "id": "task-77",
+      "name": "JARVIS visual system: shared design tokens + reusable chart primitives + motion (RND-101)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-76"
+      ],
+      "description": "Round 13 foundation. Build a shared JARVIS design layer all views compose from: design tokens (catalog palette #050A14 bg, cyan #22D3EE, emerald #34D399, red-orange #F87171/#FB923C, gold #FCD34D; Orbitron/Rajdhani hero, Inter labels, mono numerics), 8 reusable chart primitives (Gauge/Donut/LeaderboardBar/Sparkline/Heatmap/StackedBar/Ticker/KpiTileGrid) with target-aware coloring, motion utilities (digit-roll, tween-refresh, idle glow/scanline, alert pulse, overnight-dim, reduced-motion), and a PanelHeader (title+freshness+source+stale). No regression to the 11 existing views. Prompt build/prompts/task-77.md."
+    },
+    {
+      "id": "task-78",
+      "name": "New read-only analyst-01 endpoints + bridge wiring + overnight fallback (RND-102)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-76"
+      ],
+      "description": "Add read-only analyst-01 endpoints (GET /api/intake/inventory GROUP BY leadStatus [Jon-requested], /api/ops/referral-out company-wide location mix, /api/retention/drop-reasons GROUP BY reasonDrop, dated intake hourly ?date=) with standard exclusions, and wire the bridge (analyst.ts/registry.ts) to consume them with graceful MTD/rolling/last-business-day fallback when today is empty or an endpoint is absent. analyst-01 is a separate Virgil-owned project so endpoints may land as a coordinated change; the bridge deliverable must degrade so HUD work isn't blocked. Prompt build/prompts/task-78.md."
+    },
+    {
+      "id": "task-79",
+      "name": "Global TIME-RANGE control: TODAY | MTD | YTD (RND-103)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-77"
+      ],
+      "description": "Wall-wide time-range selector (Jon 2026-07-13): top-bar segmented TODAY|MTD|YTD control + additive protocol command range.set(range) + bridge injects range into range-aware view queries and re-pushes panels + voice intents ('year to date'/'month to date'/'today') + point-in-time/LIVE views ignore range and show LIVE/NOW tag + signed-counter-hero shows other ranges as mini-context secondary figures + range persists in preset. Prompt build/prompts/task-79.md."
+    },
+    {
+      "id": "task-80",
+      "name": "Per-panel view-picker UI (RND-104)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-77"
+      ],
+      "description": "Any panel can display any registered view: click panel title -> dropdown of listViews() catalog -> panel.set + re-bind data; also voice ('put ratings on panel 3'); reuse the client registry + EDIT LAYOUT + preset save (no duplicate persistence); per-panel view assignment persists in the preset. Prompt build/prompts/task-80.md."
+    },
+    {
+      "id": "task-81",
+      "name": "Starter view library part 1: Intake + Ops (RND-105)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-77",
+        "task-78"
+      ],
+      "description": "Build 8 starter views composed from task-77 primitives, bound via the bridge: signed-counter-hero, intake-mtd-leaderboard, intake-pace (overnight fallback yesterday/last-week), intake-case-inventory (Jon-requested, LIVE ignores range), ops-office-leaderboard, ops-rep-top-bottom, ops-lead-rating-distribution (Jon's ratings view, MTD/rolling fallback), ops-productivity-daily. Target-aware coloring, overnight-safe, range-aware where applicable, standard exclusions, spoken==panel. Prompt build/prompts/task-81.md."
+    },
+    {
+      "id": "task-82",
+      "name": "Starter view library part 2: Retention / COR / System (RND-106)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-77",
+        "task-78"
+      ],
+      "description": "Build retention-request-queue (LIVE, avg-response gauge red >4h), cor-by-attorney (INCLUDES KB/xSTAFF - documented cor-report exception), kpi-scoreboard (static KPI status board), plus register a team-presence dependency stub (completed in task-83) so it appears in the picker. Composed from task-77 primitives, target-aware, overnight-safe. Prompt build/prompts/task-82.md."
+    },
+    {
+      "id": "task-83",
+      "name": "Slack team-presence panel + 30-min scan cadence + default CEO preset (RND-107)",
+      "phase": "phase-20",
+      "status": "pending",
+      "depends_on": [
+        "task-78",
+        "task-82"
+      ],
+      "description": "Complete team-presence view (Jon-requested Slack board) from /api/retention/pulse/current: IN/BREAK/OUT roster + activity ticker + emoji/team tags + relative last-seen (retention channel C09TSJWUCRZ); LIVE ignores global range; overnight all-OUT reads as intentional. Add a bridge ~30-min presence refresh scheduler (poll interval, NO cron, restart-resilient). Assemble the default CEO starter-wall preset from the ~12 starter views and make it the boot default. Prompt build/prompts/task-83.md."
     }
   ]
 }
