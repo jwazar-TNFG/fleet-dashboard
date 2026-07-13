@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T19:32:38Z",
+  "updated_at": "2026-07-13T20:08:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1492,14 +1492,17 @@
       "id": "task-91",
       "name": "PM-4b: Search full-screen streaming research view (RND-97)",
       "phase": "phase-25",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-90",
         "task-86"
       ],
       "description": "PM-4b Search UI (RND-97): full-screen streaming research panel (Perplexity-style), quick+deep modes, source chips, read-aloud, save-to-KB (C6-gated). Rides Substrate A/B/C.",
-      "lastActivity": "2026-07-13T19:32:38Z",
-      "startedAt": "2026-07-13T19:09:26Z"
+      "lastActivity": "2026-07-13T20:08:59Z",
+      "startedAt": "2026-07-13T19:09:26Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T20:08:59Z",
+      "durationSeconds": 3573
     },
     {
       "id": "task-92",
