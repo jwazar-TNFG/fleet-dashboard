@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T09:22:25Z",
+  "updated_at": "2026-07-13T09:22:32Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1299,12 +1299,14 @@
       "id": "task-81",
       "name": "Starter view library part 1: Intake + Ops (RND-105)",
       "phase": "phase-20",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-77",
         "task-78"
       ],
-      "description": "Build 8 starter views composed from task-77 primitives, bound via the bridge: signed-counter-hero, intake-mtd-leaderboard, intake-pace (overnight fallback yesterday/last-week), intake-case-inventory (Jon-requested, LIVE ignores range), ops-office-leaderboard, ops-rep-top-bottom, ops-lead-rating-distribution (Jon's ratings view, MTD/rolling fallback), ops-productivity-daily. Target-aware coloring, overnight-safe, range-aware where applicable, standard exclusions, spoken==panel. Prompt build/prompts/task-81.md."
+      "description": "Build 8 starter views composed from task-77 primitives, bound via the bridge: signed-counter-hero, intake-mtd-leaderboard, intake-pace (overnight fallback yesterday/last-week), intake-case-inventory (Jon-requested, LIVE ignores range), ops-office-leaderboard, ops-rep-top-bottom, ops-lead-rating-distribution (Jon's ratings view, MTD/rolling fallback), ops-productivity-daily. Target-aware coloring, overnight-safe, range-aware where applicable, standard exclusions, spoken==panel. Prompt build/prompts/task-81.md.",
+      "lastActivity": "2026-07-13T09:22:32Z",
+      "startedAt": "2026-07-13T09:22:32Z"
     },
     {
       "id": "task-82",
