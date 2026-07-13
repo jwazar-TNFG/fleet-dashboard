@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T22:27:05Z",
+  "updated_at": "2026-07-13T22:27:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1545,11 +1545,12 @@
         "task-93"
       ],
       "description": "PM-2c Meeting summary (RND-120): takeaways + deliverables/dates grouped by participant; participant auto-map from calendar attendees + transcript + a wrap-up confirm panel. On-screen card.",
-      "lastActivity": "2026-07-13T22:27:05Z",
+      "lastActivity": "2026-07-13T22:27:13Z",
       "startedAt": "2026-07-13T21:22:29Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T22:27:05Z",
-      "durationSeconds": 3876
+      "durationSeconds": 3876,
+      "mergedAt": "2026-07-13T22:27:13Z"
     },
     {
       "id": "task-95",
