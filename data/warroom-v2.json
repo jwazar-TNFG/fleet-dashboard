@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T11:16:01Z",
+  "updated_at": "2026-07-13T11:16:03Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1242,12 +1242,12 @@
         "task-76"
       ],
       "description": "Round 13 foundation. Build a shared JARVIS design layer all views compose from: design tokens (catalog palette #050A14 bg, cyan #22D3EE, emerald #34D399, red-orange #F87171/#FB923C, gold #FCD34D; Orbitron/Rajdhani hero, Inter labels, mono numerics), 8 reusable chart primitives (Gauge/Donut/LeaderboardBar/Sparkline/Heatmap/StackedBar/Ticker/KpiTileGrid) with target-aware coloring, motion utilities (digit-roll, tween-refresh, idle glow/scanline, alert pulse, overnight-dim, reduced-motion), and a PanelHeader (title+freshness+source+stale). No regression to the 11 existing views. Prompt build/prompts/task-77.md.",
-      "lastActivity": "2026-07-13T07:19:10Z",
+      "lastActivity": "2026-07-13T11:16:03Z",
       "startedAt": "2026-07-13T06:29:39Z",
       "landed": true,
       "finishedAt": "2026-07-13T07:18:42Z",
       "durationSeconds": 2943,
-      "mergedAt": "2026-07-13T07:19:10Z"
+      "mergedAt": "2026-07-13T11:16:03Z"
     },
     {
       "id": "task-78",
