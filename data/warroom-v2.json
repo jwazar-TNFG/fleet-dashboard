@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T00:42:42Z",
+  "updated_at": "2026-07-13T00:46:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1141,12 +1141,15 @@
     {
       "id": "task-71",
       "phase": "phase-18",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "name": "Reliable voice-triggered synced briefing - deterministic intent + speak.done pacing (RND-91)",
       "description": "Saying 'run the morning briefing' over PTT must reliably run the full briefing choreography SYNCED to Vera's narration, without depending on the LLM choosing to call warroom_emit. Live-reproduced 2026-07-12: Vera's PTT turns produced NO tool call (debug showed one tool-context entry all session, from a path already fixed); origin fix (Task 68) confirmed correct. Root cause is behavioral. Also blocks Task 67 sync because run-briefing.mjs shim uses fixed paced(3200), no speakDone, no TTS -> perpetual desync. Fix: first-class deterministic briefing intent on voice/HUD path that directly invokes canonical runBriefing with a real speakDone waiter (bridge GET /speak-done/<cmdId>), narration through TTS so speak.done fires per beat. Preserve A5 origin gating, Sonnet pin, locked beat order, Option-B preset, barge-in. Prompt build/prompts/task-71.md.",
-      "lastActivity": "2026-07-13T00:42:42Z",
-      "startedAt": "2026-07-13T00:29:17Z"
+      "lastActivity": "2026-07-13T00:46:49Z",
+      "startedAt": "2026-07-13T00:29:17Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T00:46:49Z",
+      "durationSeconds": 1052
     },
     {
       "id": "task-72",
