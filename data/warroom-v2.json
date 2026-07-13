@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T01:18:48Z",
+  "updated_at": "2026-07-13T01:20:28Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1163,6 +1163,16 @@
       "landed": false,
       "finishedAt": "2026-07-13T01:18:48Z",
       "durationSeconds": 1913
+    },
+    {
+      "id": "task-73",
+      "phase": "phase-18",
+      "status": "pending",
+      "depends_on": [
+        "task-69"
+      ],
+      "name": "Deep-thinking HUD affordances - visible Fast/Deep toggle + distinct thinking-hard orb (RND-93)",
+      "description": "Round 10 Test 69b: deep-on-demand thinking works but two UX gaps - no visible Fast/Deep toggle in the running HUD, and no distinct 'thinking hard' visual vs normal. Engine already exists (task-69 ThinkingToggle.tsx mounted in VoiceOverlay, hotkey Ctrl+Shift+D; orb enters 'thinking' on every processing turn). Fix A: make the Fast/Deep toggle discoverable/visible beside PTT. Fix B: distinct deep-mode indicator (intensified orb variant and/or DEEP badge) only on deep turns. No regression to Task65/69/70/PTT. Prompt build/prompts/task-73.md."
     }
   ]
 }
