@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T14:22:40Z",
+  "updated_at": "2026-07-13T14:41:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -94,15 +94,27 @@
     },
     {
       "id": "phase-22",
-      "name": "Round 15 / Post-MVP \u2014 Search (PM-4)"
+      "name": "Round 15 / Post-MVP \u2014 Calendar->Zeri + Command Registry (Substrate B)"
     },
     {
       "id": "phase-23",
-      "name": "Round 16 / Post-MVP \u2014 Meeting Mode (PM-2)"
+      "name": "Round 16 / Post-MVP \u2014 Command Glossary (PM-6)"
     },
     {
       "id": "phase-24",
-      "name": "Round 17 / Post-MVP \u2014 Proactive Data Surfacing (PM-3, gated)"
+      "name": "Round 17 / Post-MVP \u2014 KB Explorer (PM-5)"
+    },
+    {
+      "id": "phase-25",
+      "name": "Round 18 / Post-MVP \u2014 Search (PM-4)"
+    },
+    {
+      "id": "phase-26",
+      "name": "Round 19 / Post-MVP \u2014 Meeting Mode (PM-2)"
+    },
+    {
+      "id": "phase-27",
+      "name": "Round 20 / Post-MVP \u2014 Proactive Data Surfacing (PM-3)"
     }
   ],
   "tasks": [
@@ -1383,34 +1395,142 @@
     },
     {
       "id": "task-85",
-      "name": "\"Search\" command + button -> live web-search / research panel (RND-111)",
+      "name": "PM-1 Q2 fix: point Calendar at Zeri's calendar (RND-114)",
       "phase": "phase-22",
       "status": "pending",
       "depends_on": [
         "task-84"
       ],
-      "description": "PM-4 Search: top-bar Search button (next to Calendar) + \"search for...\" voice + search.open/close command opens a full-screen research panel streaming Vera's live web search results + citations, restores prior layout on dismiss. Reuses task-84 button-tray + task-70 stage/restore. Prompt build/prompts/task-85.md."
+      "description": "PM-1 Q2 fix (RND-114): point the Calendar stage at Zeri's calendar (config-driven calendarId/token; read-only). GATED on Zeri Google OAuth/sharing; wire+test now, flip live when creds land."
     },
     {
       "id": "task-86",
-      "name": "\"Meeting\" mode: live transcription + post-meeting summary (RND-112)",
-      "phase": "phase-23",
+      "name": "Substrate B: command/button + voice-intent registry (RND-115)",
+      "phase": "phase-22",
       "status": "pending",
       "depends_on": [
         "task-84"
       ],
-      "description": "PM-2 Meeting mode: Meeting button engages a continuous (non-PTT) mic capture mode with live on-screen transcription + speaker attribution; on end, produces a summary with takeaways + deliverables/dates grouped by participant. Largest post-MVP piece; guards against PTT interference. Prompt build/prompts/task-86.md."
+      "description": "Substrate B (RND-115): generalize HeaderTray + registerHudCommand + bridge intent classify into ONE command registry so every control gets button+voice+state; migrate Calendar with parity. Foundation for D-3."
     },
     {
       "id": "task-87",
-      "name": "Vera auto-surfaces relevant data/charts during conversation (RND-113, gated)",
+      "name": "PM-6: Command Glossary / Voice+Button Index (RND-109)",
+      "phase": "phase-23",
+      "status": "pending",
+      "depends_on": [
+        "task-86"
+      ],
+      "description": "PM-6 Command Glossary (RND-109): full-screen auto-generated index of every voice command + its button + description, from the task-86 registry. Searchable; openable by voice+button."
+    },
+    {
+      "id": "task-88",
+      "name": "PM-5a Substrate E: read-only KB graph + content service (RND-116)",
+      "phase": "phase-24",
+      "status": "pending",
+      "depends_on": [],
+      "description": "PM-5a Substrate E (RND-116): read-only KB graph builder + content service (GET /api/kb/graph, /api/kb/page) from the Virgil Brain vault; sanitized, daily refresh, exclude inbox/system."
+    },
+    {
+      "id": "task-89",
+      "name": "PM-5b: KB Explorer full-screen graph + reader + index (RND-108)",
       "phase": "phase-24",
       "status": "pending",
       "depends_on": [
-        "task-78",
-        "task-84"
+        "task-88",
+        "task-86"
       ],
-      "description": "PM-3 Proactive surfacing: Vera auto-pulls relevant data/charts during conversation (intent/entity -> data source -> panel emit) with relevance threshold + cooldown guardrails. GATED: needs analyst-01 + Supabase reachable on the Mini; builds behind a feature flag + fixtures until live. Prompt build/prompts/task-87.md."
+      "description": "PM-5b KB Explorer UI (RND-108): full-screen force-directed knowledge graph + read-only reader panel + searchable index rail + wikilink traversal + voice read-aloud. Rides Substrate A/B/E."
+    },
+    {
+      "id": "task-90",
+      "name": "PM-4a Substrate C: streaming surface pipeline (RND-117)",
+      "phase": "phase-25",
+      "status": "pending",
+      "depends_on": [
+        "task-86"
+      ],
+      "description": "PM-4a Substrate C (RND-117): turn-context->source->panel streaming pipeline (explicit + implicit entry points); citations, debounce, never-override guard. Shared by PM-4 + PM-3."
+    },
+    {
+      "id": "task-91",
+      "name": "PM-4b: Search full-screen streaming research view (RND-97)",
+      "phase": "phase-25",
+      "status": "pending",
+      "depends_on": [
+        "task-90",
+        "task-86"
+      ],
+      "description": "PM-4b Search UI (RND-97): full-screen streaming research panel (Perplexity-style), quick+deep modes, source chips, read-aloud, save-to-KB (C6-gated). Rides Substrate A/B/C."
+    },
+    {
+      "id": "task-92",
+      "name": "PM-2a Substrate D: continuous open-mic capture (RND-118)",
+      "phase": "phase-26",
+      "status": "pending",
+      "depends_on": [],
+      "description": "PM-2a Substrate D (RND-118): continuous (non-PTT) open-mic capture mode via AssemblyAI streaming; mutually exclusive with PTT (must not break PTT/wake/briefing). Largest voice piece."
+    },
+    {
+      "id": "task-93",
+      "name": "PM-2b: Meeting live transcript + recording indicator (RND-119)",
+      "phase": "phase-26",
+      "status": "pending",
+      "depends_on": [
+        "task-92",
+        "task-86"
+      ],
+      "description": "PM-2b Meeting transcript (RND-119): full-screen live transcript view + mandatory recording indicator + start consent; start/end by button+voice; restore on end. Rides Substrate A/B/D."
+    },
+    {
+      "id": "task-94",
+      "name": "PM-2c: meeting summary + participant wrap-up panel (RND-120)",
+      "phase": "phase-26",
+      "status": "pending",
+      "depends_on": [
+        "task-93"
+      ],
+      "description": "PM-2c Meeting summary (RND-120): takeaways + deliverables/dates grouped by participant; participant auto-map from calendar attendees + transcript + a wrap-up confirm panel. On-screen card."
+    },
+    {
+      "id": "task-95",
+      "name": "PM-2d: summary delivery \u2014 email Zeri + dated KB page (RND-121)",
+      "phase": "phase-26",
+      "status": "pending",
+      "depends_on": [
+        "task-94"
+      ],
+      "description": "PM-2d Meeting delivery (RND-121): email full summary to Zeri + write a dated searchable KB page per meeting. Both destinations required (Q3); each is C6-gated (no silent send/write)."
+    },
+    {
+      "id": "task-96",
+      "name": "PM-3 infra: analyst-01 + Supabase reachable on Mini (RND-122)",
+      "phase": "phase-27",
+      "status": "pending",
+      "depends_on": [],
+      "description": "PM-3 infra pre-req (RND-122): make analyst-01 + Supabase reachable from the bridge on Vera's Mini (today cosmetic warnings -> hard deps). Health reports real reachability. Mini secret placement gated on Jon."
+    },
+    {
+      "id": "task-97",
+      "name": "PM-3a: proactive relevance classifier (RND-123)",
+      "phase": "phase-27",
+      "status": "pending",
+      "depends_on": [
+        "task-90",
+        "task-96"
+      ],
+      "description": "PM-3a classifier (RND-123): background relevance classifier over live turns; curated whitelist (offices/KPI/statuses), confidence threshold, opt-in per session. Emits a decision object only."
+    },
+    {
+      "id": "task-98",
+      "name": "PM-3b: proactive side-panel emit + guardrails (RND-124)",
+      "phase": "phase-27",
+      "status": "pending",
+      "depends_on": [
+        "task-97",
+        "task-90"
+      ],
+      "description": "PM-3b proactive emit + guardrails (RND-124): surface the chart/panel into FREE side panels only; never override briefing/stage/fullscreen/active panel; debounce/cooldown + instant mute. Ships last."
     }
   ]
 }
