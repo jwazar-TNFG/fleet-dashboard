@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T23:43:39Z",
+  "updated_at": "2026-07-13T23:51:21Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1624,9 +1624,11 @@
       "id": "task-99",
       "name": "PG-a: Proving Ground catalog schema + full A-Z catalog generator (RND-126)",
       "phase": "phase-28",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [],
-      "description": "Catalog schema + generator inventorying every HUD/Vera feature+command into build/proving-ground/catalog.json."
+      "description": "Catalog schema + generator inventorying every HUD/Vera feature+command into build/proving-ground/catalog.json.",
+      "lastActivity": "2026-07-13T23:51:21Z",
+      "startedAt": "2026-07-13T23:51:21Z"
     },
     {
       "id": "task-100",
