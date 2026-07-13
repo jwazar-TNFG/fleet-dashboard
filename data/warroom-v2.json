@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T07:50:27Z",
+  "updated_at": "2026-07-13T08:35:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1268,13 +1268,16 @@
       "id": "task-79",
       "name": "Global TIME-RANGE control: TODAY | MTD | YTD (RND-103)",
       "phase": "phase-20",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-77"
       ],
       "description": "Wall-wide time-range selector (Jon 2026-07-13): top-bar segmented TODAY|MTD|YTD control + additive protocol command range.set(range) + bridge injects range into range-aware view queries and re-pushes panels + voice intents ('year to date'/'month to date'/'today') + point-in-time/LIVE views ignore range and show LIVE/NOW tag + signed-counter-hero shows other ranges as mini-context secondary figures + range persists in preset. Prompt build/prompts/task-79.md.",
-      "lastActivity": "2026-07-13T07:50:27Z",
-      "startedAt": "2026-07-13T07:36:46Z"
+      "lastActivity": "2026-07-13T08:35:11Z",
+      "startedAt": "2026-07-13T07:36:46Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T08:35:11Z",
+      "durationSeconds": 3505
     },
     {
       "id": "task-80",
