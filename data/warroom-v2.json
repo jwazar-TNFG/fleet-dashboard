@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T19:09:22Z",
+  "updated_at": "2026-07-13T19:09:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1481,11 +1481,12 @@
         "task-86"
       ],
       "description": "PM-4a Substrate C (RND-117): turn-context->source->panel streaming pipeline (explicit + implicit entry points); citations, debounce, never-override guard. Shared by PM-4 + PM-3.",
-      "lastActivity": "2026-07-13T19:09:16Z",
+      "lastActivity": "2026-07-13T19:09:24Z",
       "startedAt": "2026-07-13T18:42:46Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T19:09:16Z",
-      "durationSeconds": 1590
+      "durationSeconds": 1590,
+      "mergedAt": "2026-07-13T19:09:24Z"
     },
     {
       "id": "task-91",
