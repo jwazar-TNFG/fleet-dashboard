@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T10:52:51Z",
+  "updated_at": "2026-07-13T11:00:50Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1334,14 +1334,17 @@
       "id": "task-83",
       "name": "Slack team-presence panel + 30-min scan cadence + default CEO preset (RND-107)",
       "phase": "phase-20",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-78",
         "task-82"
       ],
       "description": "Complete team-presence view (Jon-requested Slack board) from /api/retention/pulse/current: IN/BREAK/OUT roster + activity ticker + emoji/team tags + relative last-seen (retention channel C09TSJWUCRZ); LIVE ignores global range; overnight all-OUT reads as intentional. Add a bridge ~30-min presence refresh scheduler (poll interval, NO cron, restart-resilient). Assemble the default CEO starter-wall preset from the ~12 starter views and make it the boot default. Prompt build/prompts/task-83.md.",
-      "lastActivity": "2026-07-13T10:30:38Z",
-      "startedAt": "2026-07-13T10:30:38Z"
+      "lastActivity": "2026-07-13T11:00:50Z",
+      "startedAt": "2026-07-13T10:30:38Z",
+      "landed": false,
+      "finishedAt": "2026-07-13T11:00:50Z",
+      "durationSeconds": 1812
     }
   ]
 }
