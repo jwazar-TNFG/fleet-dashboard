@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-13T18:04:55Z",
+  "updated_at": "2026-07-13T18:05:03Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1448,11 +1448,12 @@
       "status": "completed",
       "depends_on": [],
       "description": "PM-5a Substrate E (RND-116): read-only KB graph builder + content service (GET /api/kb/graph, /api/kb/page) from the Virgil Brain vault; sanitized, daily refresh, exclude inbox/system.",
-      "lastActivity": "2026-07-13T18:04:55Z",
+      "lastActivity": "2026-07-13T18:05:03Z",
       "startedAt": "2026-07-13T17:51:33Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-13T18:04:55Z",
-      "durationSeconds": 802
+      "durationSeconds": 802,
+      "mergedAt": "2026-07-13T18:05:03Z"
     },
     {
       "id": "task-89",
