@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T20:54:31Z",
+  "updated_at": "2026-07-14T21:07:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1821,7 +1821,7 @@
       "name": "PG-m: Catalog visual-smoke tagging + TEST tab verdict surfacing (RND-139)",
       "phase": "phase-30",
       "status": "in_progress",
-      "lastActivity": "2026-07-14T20:54:31Z",
+      "lastActivity": "2026-07-14T21:07:17Z",
       "startedAt": "2026-07-14T20:54:31Z"
     }
   ]
