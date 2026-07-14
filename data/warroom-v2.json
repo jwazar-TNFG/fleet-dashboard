@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T18:36:06Z",
+  "updated_at": "2026-07-14T18:47:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1758,13 +1758,16 @@
       "id": "task-107",
       "name": "PG-i: Show TEST tab + yellow banner during autopilot runs (RND-135)",
       "phase": "phase-29",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-105"
       ],
       "description": "Broadcast run-active state to the HUD and gate the TEST tab + yellow banner on (armed OR runActive) so pilots are watchable/reviewable without arming Test Mode. Preserve D-1 zero footprint when idle.",
-      "lastActivity": "2026-07-14T18:36:06Z",
-      "startedAt": "2026-07-14T18:36:06Z"
+      "lastActivity": "2026-07-14T18:47:17Z",
+      "startedAt": "2026-07-14T18:36:06Z",
+      "landed": false,
+      "finishedAt": "2026-07-14T18:47:17Z",
+      "durationSeconds": 671
     },
     {
       "id": "task-108",
