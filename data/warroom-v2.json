@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T00:47:04Z",
+  "updated_at": "2026-07-14T01:03:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1659,7 +1659,7 @@
         "task-100"
       ],
       "description": "Yellow chat overlay north of the Orb showing injected input live; visible only in Test Mode; zero footprint off.",
-      "lastActivity": "2026-07-14T00:47:04Z",
+      "lastActivity": "2026-07-14T01:03:05Z",
       "startedAt": "2026-07-14T00:47:04Z"
     },
     {
