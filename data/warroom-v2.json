@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T19:14:10Z",
+  "updated_at": "2026-07-14T19:15:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1780,11 +1780,12 @@
         "task-106"
       ],
       "description": "Give each catalog item a clean Vera context (per-item ephemeral session), retries share within an item, so stateful items (KB-save, meeting, confirm-gate) score on their own intent. Preserve RND-82/RND-86, C6 dry-run, real PTT.",
-      "lastActivity": "2026-07-14T19:14:10Z",
+      "lastActivity": "2026-07-14T19:15:01Z",
       "startedAt": "2026-07-14T18:47:55Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T19:14:10Z",
-      "durationSeconds": 1575
+      "durationSeconds": 1575,
+      "mergedAt": "2026-07-14T19:15:01Z"
     }
   ]
 }
