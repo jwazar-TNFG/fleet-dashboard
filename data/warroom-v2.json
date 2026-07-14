@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T19:15:01Z",
+  "updated_at": "2026-07-14T19:20:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1750,8 +1750,8 @@
       "description": "Land the verified speak.done/quiet-settle pacing fix + 2 regression tests on main via CI. Fix already deployed as interim hotfix on the Mini.",
       "lastActivity": "2026-07-14T18:23:58Z",
       "startedAt": "2026-07-14T18:20:35Z",
-      "landed": false,
-      "finishedAt": "2026-07-14T18:23:58Z",
+      "landed": true,
+      "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 203
     },
     {
@@ -1766,7 +1766,7 @@
       "lastActivity": "2026-07-14T18:47:52Z",
       "startedAt": "2026-07-14T18:36:06Z",
       "landed": true,
-      "finishedAt": "2026-07-14T18:47:17Z",
+      "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 671,
       "mergedAt": "2026-07-14T18:47:52Z"
     },
@@ -1783,7 +1783,7 @@
       "lastActivity": "2026-07-14T19:15:01Z",
       "startedAt": "2026-07-14T18:47:55Z",
       "landed": true,
-      "finishedAt": "2026-07-14T19:14:10Z",
+      "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 1575,
       "mergedAt": "2026-07-14T19:15:01Z"
     }
