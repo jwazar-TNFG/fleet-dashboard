@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T00:46:55Z",
+  "updated_at": "2026-07-14T00:47:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1643,11 +1643,12 @@
         "task-99"
       ],
       "description": "Jon-only Test Mode arm; inject via real turn path; per-item 3-attempt/6-exchange loop; verdict engine; entering Test Mode pauses run; dry-run mutations.",
-      "lastActivity": "2026-07-14T00:46:55Z",
+      "lastActivity": "2026-07-14T00:47:04Z",
       "startedAt": "2026-07-14T00:21:56Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T00:46:55Z",
-      "durationSeconds": 1499
+      "durationSeconds": 1499,
+      "mergedAt": "2026-07-14T00:47:04Z"
     },
     {
       "id": "task-101",
