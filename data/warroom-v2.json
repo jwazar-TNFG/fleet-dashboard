@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T02:33:48Z",
+  "updated_at": "2026-07-14T18:16:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -119,6 +119,10 @@
     {
       "id": "phase-28",
       "name": "Round 21 / Proving Ground \u2014 in-app self-driving test harness"
+    },
+    {
+      "id": "phase-29",
+      "name": "Round 22 / Proving Ground Hardening \u2014 pacing re-land, TEST tab in autopilot, per-item context isolation"
     }
   ],
   "tasks": [
@@ -1734,6 +1738,37 @@
       "finishedAt": "2026-07-14T02:33:12Z",
       "durationSeconds": 1556,
       "mergedAt": "2026-07-14T02:33:48Z"
+    },
+    {
+      "id": "task-106",
+      "name": "PG-h: Re-land harness turn-completion pacing fix on main (RND-134)",
+      "phase": "phase-29",
+      "status": "pending",
+      "depends_on": [
+        "task-105"
+      ],
+      "description": "Land the verified speak.done/quiet-settle pacing fix + 2 regression tests on main via CI. Fix already deployed as interim hotfix on the Mini."
+    },
+    {
+      "id": "task-107",
+      "name": "PG-i: Show TEST tab + yellow banner during autopilot runs (RND-135)",
+      "phase": "phase-29",
+      "status": "pending",
+      "depends_on": [
+        "task-105"
+      ],
+      "description": "Broadcast run-active state to the HUD and gate the TEST tab + yellow banner on (armed OR runActive) so pilots are watchable/reviewable without arming Test Mode. Preserve D-1 zero footprint when idle."
+    },
+    {
+      "id": "task-108",
+      "name": "PG-j: Per-item context isolation so catalog items do not bleed state (RND-136)",
+      "phase": "phase-29",
+      "status": "pending",
+      "depends_on": [
+        "task-105",
+        "task-106"
+      ],
+      "description": "Give each catalog item a clean Vera context (per-item ephemeral session), retries share within an item, so stateful items (KB-save, meeting, confirm-gate) score on their own intent. Preserve RND-82/RND-86, C6 dry-run, real PTT."
     }
   ]
 }
