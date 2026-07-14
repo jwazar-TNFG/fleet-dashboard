@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T20:20:08Z",
+  "updated_at": "2026-07-14T20:54:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1808,9 +1808,12 @@
       "id": "task-110",
       "name": "PG-l: Visual verification layer 3 \u2014 screenshot capture + vision grading (RND-138)",
       "phase": "phase-30",
-      "status": "in_progress",
-      "lastActivity": "2026-07-14T20:20:08Z",
-      "startedAt": "2026-07-14T20:11:50Z"
+      "status": "completed",
+      "lastActivity": "2026-07-14T20:54:24Z",
+      "startedAt": "2026-07-14T20:11:50Z",
+      "landed": false,
+      "finishedAt": "2026-07-14T20:54:24Z",
+      "durationSeconds": 2554
     },
     {
       "id": "task-111",
