@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T18:16:56Z",
+  "updated_at": "2026-07-14T18:20:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1743,11 +1743,13 @@
       "id": "task-106",
       "name": "PG-h: Re-land harness turn-completion pacing fix on main (RND-134)",
       "phase": "phase-29",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-105"
       ],
-      "description": "Land the verified speak.done/quiet-settle pacing fix + 2 regression tests on main via CI. Fix already deployed as interim hotfix on the Mini."
+      "description": "Land the verified speak.done/quiet-settle pacing fix + 2 regression tests on main via CI. Fix already deployed as interim hotfix on the Mini.",
+      "lastActivity": "2026-07-14T18:20:35Z",
+      "startedAt": "2026-07-14T18:20:35Z"
     },
     {
       "id": "task-107",
