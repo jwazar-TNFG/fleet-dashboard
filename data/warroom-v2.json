@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T18:47:52Z",
+  "updated_at": "2026-07-14T18:47:55Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1774,12 +1774,14 @@
       "id": "task-108",
       "name": "PG-j: Per-item context isolation so catalog items do not bleed state (RND-136)",
       "phase": "phase-29",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-105",
         "task-106"
       ],
-      "description": "Give each catalog item a clean Vera context (per-item ephemeral session), retries share within an item, so stateful items (KB-save, meeting, confirm-gate) score on their own intent. Preserve RND-82/RND-86, C6 dry-run, real PTT."
+      "description": "Give each catalog item a clean Vera context (per-item ephemeral session), retries share within an item, so stateful items (KB-save, meeting, confirm-gate) score on their own intent. Preserve RND-82/RND-86, C6 dry-run, real PTT.",
+      "lastActivity": "2026-07-14T18:47:55Z",
+      "startedAt": "2026-07-14T18:47:55Z"
     }
   ]
 }
