@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T01:34:15Z",
+  "updated_at": "2026-07-14T01:34:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1686,12 +1686,14 @@
       "id": "task-103",
       "name": "PG-e: TEST Tab UI \u2014 list, status, expand, notes + image paste/upload, persistence (RND-130)",
       "phase": "phase-28",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-99",
         "task-102"
       ],
-      "description": "On-demand TEST Tab: catalog list, status indicators, expand, ellipsis notes + clipboard-paste image (primary) / upload, persisted."
+      "description": "On-demand TEST Tab: catalog list, status indicators, expand, ellipsis notes + clipboard-paste image (primary) / upload, persisted.",
+      "lastActivity": "2026-07-14T01:34:17Z",
+      "startedAt": "2026-07-14T01:34:17Z"
     },
     {
       "id": "task-104",
