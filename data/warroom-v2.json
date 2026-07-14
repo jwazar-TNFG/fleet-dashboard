@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T01:34:08Z",
+  "updated_at": "2026-07-14T01:34:15Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1675,11 +1675,12 @@
         "task-100"
       ],
       "description": "Per-run log run-<ISO>.json/.md; end-of-run inventory + auto-summary + draft next-round instructions (test-then-plan).",
-      "lastActivity": "2026-07-14T01:34:08Z",
+      "lastActivity": "2026-07-14T01:34:15Z",
       "startedAt": "2026-07-14T01:17:21Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T01:34:08Z",
-      "durationSeconds": 1007
+      "durationSeconds": 1007,
+      "mergedAt": "2026-07-14T01:34:15Z"
     },
     {
       "id": "task-103",
