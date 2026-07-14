@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T00:21:56Z",
+  "updated_at": "2026-07-14T00:46:55Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1638,13 +1638,16 @@
       "id": "task-100",
       "name": "PG-b: Test Mode arming + harness core, real-pipeline injection, 3-attempt/6-exchange loop (RND-127)",
       "phase": "phase-28",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-99"
       ],
       "description": "Jon-only Test Mode arm; inject via real turn path; per-item 3-attempt/6-exchange loop; verdict engine; entering Test Mode pauses run; dry-run mutations.",
-      "lastActivity": "2026-07-14T00:21:56Z",
-      "startedAt": "2026-07-14T00:21:56Z"
+      "lastActivity": "2026-07-14T00:46:55Z",
+      "startedAt": "2026-07-14T00:21:56Z",
+      "landed": false,
+      "finishedAt": "2026-07-14T00:46:55Z",
+      "durationSeconds": 1499
     },
     {
       "id": "task-101",
