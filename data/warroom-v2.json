@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T20:11:39Z",
+  "updated_at": "2026-07-14T20:11:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1797,11 +1797,12 @@
       "name": "PG-k: Visual verification layer 2.5 \u2014 DOM/panel-state assertions (RND-137)",
       "phase": "phase-30",
       "status": "completed",
-      "lastActivity": "2026-07-14T20:11:39Z",
+      "lastActivity": "2026-07-14T20:11:48Z",
       "startedAt": "2026-07-14T19:48:13Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T20:11:39Z",
-      "durationSeconds": 1406
+      "durationSeconds": 1406,
+      "mergedAt": "2026-07-14T20:11:48Z"
     },
     {
       "id": "task-110",
