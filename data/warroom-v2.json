@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T02:33:12Z",
+  "updated_at": "2026-07-14T02:33:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1728,11 +1728,12 @@
         "task-104"
       ],
       "description": "Randomly score 10 of the full catalog end-to-end; produce first annotated result set + draft next-round instructions.",
-      "lastActivity": "2026-07-14T02:33:12Z",
+      "lastActivity": "2026-07-14T02:33:48Z",
       "startedAt": "2026-07-14T02:07:16Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T02:33:12Z",
-      "durationSeconds": 1556
+      "durationSeconds": 1556,
+      "mergedAt": "2026-07-14T02:33:48Z"
     }
   ]
 }
