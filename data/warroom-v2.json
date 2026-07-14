@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T19:20:51Z",
+  "updated_at": "2026-07-14T19:36:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -123,6 +123,11 @@
     {
       "id": "phase-29",
       "name": "Round 22 / Proving Ground Hardening \u2014 pacing re-land, TEST tab in autopilot, per-item context isolation"
+    },
+    {
+      "id": "phase-30",
+      "name": "Round 23 \u2014 Proving Ground Visual Verification",
+      "status": "in_progress"
     }
   ],
   "tasks": [
@@ -1786,6 +1791,27 @@
       "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 1575,
       "mergedAt": "2026-07-14T19:15:01Z"
+    },
+    {
+      "id": "task-109",
+      "name": "PG-k: Visual verification layer 2.5 \u2014 DOM/panel-state assertions (RND-137)",
+      "phase": "phase-30",
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": "task-110",
+      "name": "PG-l: Visual verification layer 3 \u2014 screenshot capture + vision grading (RND-138)",
+      "phase": "phase-30",
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": "task-111",
+      "name": "PG-m: Catalog visual-smoke tagging + TEST tab verdict surfacing (RND-139)",
+      "phase": "phase-30",
+      "status": "pending",
+      "landed": false
     }
   ]
 }
