@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T02:00:44Z",
+  "updated_at": "2026-07-14T02:00:46Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1703,11 +1703,13 @@
       "id": "task-104",
       "name": "PG-f: TEST Tab filter + search (RND-131)",
       "phase": "phase-28",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-103"
       ],
-      "description": "Testing Area dropdown filter + keyword search over the TEST Tab list."
+      "description": "Testing Area dropdown filter + keyword search over the TEST Tab list.",
+      "lastActivity": "2026-07-14T02:00:46Z",
+      "startedAt": "2026-07-14T02:00:46Z"
     },
     {
       "id": "task-105",
