@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T02:07:14Z",
+  "updated_at": "2026-07-14T02:07:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1719,7 +1719,7 @@
       "id": "task-105",
       "name": "PG-g: Random-10 pilot runner + first pilot run (RND-132)",
       "phase": "phase-28",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-100",
         "task-101",
@@ -1727,7 +1727,9 @@
         "task-103",
         "task-104"
       ],
-      "description": "Randomly score 10 of the full catalog end-to-end; produce first annotated result set + draft next-round instructions."
+      "description": "Randomly score 10 of the full catalog end-to-end; produce first annotated result set + draft next-round instructions.",
+      "lastActivity": "2026-07-14T02:07:16Z",
+      "startedAt": "2026-07-14T02:07:16Z"
     }
   ]
 }
