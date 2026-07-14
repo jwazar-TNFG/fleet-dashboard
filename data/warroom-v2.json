@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-14T00:21:44Z",
+  "updated_at": "2026-07-14T00:21:52Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1627,11 +1627,12 @@
       "status": "completed",
       "depends_on": [],
       "description": "Catalog schema + generator inventorying every HUD/Vera feature+command into build/proving-ground/catalog.json.",
-      "lastActivity": "2026-07-14T00:21:44Z",
+      "lastActivity": "2026-07-14T00:21:52Z",
       "startedAt": "2026-07-13T23:51:21Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-14T00:21:44Z",
-      "durationSeconds": 1823
+      "durationSeconds": 1823,
+      "mergedAt": "2026-07-14T00:21:52Z"
     },
     {
       "id": "task-100",
