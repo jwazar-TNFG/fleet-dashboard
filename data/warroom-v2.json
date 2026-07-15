@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T03:45:39Z",
+  "updated_at": "2026-07-15T03:46:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1900,11 +1900,12 @@
       "name": "RND-145: regression tests \u2014 narration + shape guard",
       "phase": "phase-32",
       "status": "completed",
-      "lastActivity": "2026-07-15T03:45:39Z",
+      "lastActivity": "2026-07-15T03:46:14Z",
       "startedAt": "2026-07-15T03:38:18Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T03:45:39Z",
-      "durationSeconds": 441
+      "durationSeconds": 441,
+      "mergedAt": "2026-07-15T03:46:14Z"
     }
   ]
 }
