@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T20:58:12Z",
+  "updated_at": "2026-07-15T20:58:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1994,11 +1994,12 @@
       "name": "RND-152: RUN MODE toggle visual latch (cosmetic)",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T20:58:12Z",
+      "lastActivity": "2026-07-15T20:58:16Z",
       "startedAt": "2026-07-15T20:52:35Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T20:58:12Z",
-      "durationSeconds": 337
+      "durationSeconds": 337,
+      "mergedAt": "2026-07-15T20:58:16Z"
     },
     {
       "id": "task-125",
