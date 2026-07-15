@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T20:11:33Z",
+  "updated_at": "2026-07-15T20:29:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1982,7 +1982,7 @@
       "name": "RND-151: bottom-docked result block with inline Next/Stop/Note/Screenshot/Save",
       "phase": "phase-34",
       "status": "in_progress",
-      "lastActivity": "2026-07-15T20:11:33Z",
+      "lastActivity": "2026-07-15T20:29:30Z",
       "startedAt": "2026-07-15T20:11:33Z"
     },
     {
