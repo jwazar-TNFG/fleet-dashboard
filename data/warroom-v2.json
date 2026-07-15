@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T21:14:42Z",
+  "updated_at": "2026-07-15T21:14:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2017,8 +2017,9 @@
       "id": "task-126",
       "name": "RND-154: in-UI add/edit/delete test items (catalog authoring)",
       "phase": "phase-34",
-      "status": "pending",
-      "lastActivity": "2026-07-15T19:40:45Z"
+      "status": "in_progress",
+      "lastActivity": "2026-07-15T21:14:45Z",
+      "startedAt": "2026-07-15T21:14:45Z"
     },
     {
       "id": "task-127",
