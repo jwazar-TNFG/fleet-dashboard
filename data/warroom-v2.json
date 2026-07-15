@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T01:25:20Z",
+  "updated_at": "2026-07-15T01:25:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1849,8 +1849,9 @@
       "id": "task-113",
       "name": "PG-o: Capture render endpoint for command-only items (RND-141)",
       "phase": "phase-31",
-      "status": "pending",
-      "landed": false
+      "status": "in_progress",
+      "lastActivity": "2026-07-15T01:25:23Z",
+      "startedAt": "2026-07-15T01:25:23Z"
     },
     {
       "id": "task-114",
