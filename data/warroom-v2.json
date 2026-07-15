@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T13:30:02Z",
+  "updated_at": "2026-07-15T13:30:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1952,8 +1952,9 @@
       "id": "task-121",
       "name": "RND-149: least-privilege ephemeral PG session reaper",
       "phase": "phase-33",
-      "status": "pending",
-      "lastActivity": "2026-07-15T12:31:22Z"
+      "status": "in_progress",
+      "lastActivity": "2026-07-15T13:30:04Z",
+      "startedAt": "2026-07-15T13:30:04Z"
     }
   ]
 }
