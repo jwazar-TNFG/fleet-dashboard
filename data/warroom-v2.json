@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T03:38:08Z",
+  "updated_at": "2026-07-15T03:38:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1888,11 +1888,12 @@
       "name": "RND-144: unknown reply-shape guard (fail-loud)",
       "phase": "phase-32",
       "status": "completed",
-      "lastActivity": "2026-07-15T03:38:08Z",
+      "lastActivity": "2026-07-15T03:38:16Z",
       "startedAt": "2026-07-15T03:29:40Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T03:38:08Z",
-      "durationSeconds": 508
+      "durationSeconds": 508,
+      "mergedAt": "2026-07-15T03:38:16Z"
     },
     {
       "id": "task-117",
