@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T13:11:47Z",
+  "updated_at": "2026-07-15T13:11:54Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1929,11 +1929,12 @@
       "name": "RND-147: TEST tab Auto/Step toggle + Next-item control",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T13:11:47Z",
+      "lastActivity": "2026-07-15T13:11:54Z",
       "startedAt": "2026-07-15T12:49:18Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T13:11:47Z",
-      "durationSeconds": 1349
+      "durationSeconds": 1349,
+      "mergedAt": "2026-07-15T13:11:54Z"
     },
     {
       "id": "task-120",
