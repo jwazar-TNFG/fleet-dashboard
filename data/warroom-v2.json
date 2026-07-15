@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T19:40:45Z",
+  "updated_at": "2026-07-15T19:57:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2006,6 +2006,13 @@
       "phase": "phase-34",
       "status": "pending",
       "lastActivity": "2026-07-15T19:40:45Z"
+    },
+    {
+      "id": "task-128",
+      "name": "RND-156: halt Vera mid-item (abort in-flight turn without ending the run)",
+      "phase": "phase-34",
+      "status": "pending",
+      "lastActivity": "2026-07-15T19:57:49Z"
     }
   ]
 }
