@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T21:54:42Z",
+  "updated_at": "2026-07-15T21:54:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2030,11 +2030,12 @@
       "name": "RND-155: TEST tab always visible + arm/disarm Test Mode from within it",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T21:54:42Z",
+      "lastActivity": "2026-07-15T21:54:49Z",
       "startedAt": "2026-07-15T21:32:27Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T21:54:42Z",
-      "durationSeconds": 1335
+      "durationSeconds": 1335,
+      "mergedAt": "2026-07-15T21:54:49Z"
     },
     {
       "id": "task-128",
