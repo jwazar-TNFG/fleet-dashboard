@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T20:11:23Z",
+  "updated_at": "2026-07-15T20:11:31Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1970,11 +1970,12 @@
       "name": "RND-150: run-on-wall \u2014 minimize TEST tab on START so live HUD is visible",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T20:11:23Z",
+      "lastActivity": "2026-07-15T20:11:31Z",
       "startedAt": "2026-07-15T20:00:02Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T20:11:23Z",
-      "durationSeconds": 681
+      "durationSeconds": 681,
+      "mergedAt": "2026-07-15T20:11:31Z"
     },
     {
       "id": "task-123",
