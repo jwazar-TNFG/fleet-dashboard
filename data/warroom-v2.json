@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T20:58:19Z",
+  "updated_at": "2026-07-15T21:14:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2005,9 +2005,12 @@
       "id": "task-125",
       "name": "RND-153: item multi-select + run the selected set",
       "phase": "phase-34",
-      "status": "in_progress",
-      "lastActivity": "2026-07-15T20:58:19Z",
-      "startedAt": "2026-07-15T20:58:19Z"
+      "status": "completed",
+      "lastActivity": "2026-07-15T21:14:35Z",
+      "startedAt": "2026-07-15T20:58:19Z",
+      "landed": false,
+      "finishedAt": "2026-07-15T21:14:35Z",
+      "durationSeconds": 976
     },
     {
       "id": "task-126",
