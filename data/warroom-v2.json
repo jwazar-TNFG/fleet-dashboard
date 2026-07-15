@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T12:49:08Z",
+  "updated_at": "2026-07-15T12:49:15Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1917,11 +1917,12 @@
       "name": "RND-146: harness manual STEP mode (click-to-advance)",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T12:49:08Z",
+      "lastActivity": "2026-07-15T12:49:15Z",
       "startedAt": "2026-07-15T12:38:15Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T12:49:08Z",
-      "durationSeconds": 653
+      "durationSeconds": 653,
+      "mergedAt": "2026-07-15T12:49:15Z"
     },
     {
       "id": "task-119",
