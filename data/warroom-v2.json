@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T03:28:58Z",
+  "updated_at": "2026-07-15T03:29:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1876,11 +1876,12 @@
       "name": "RND-143: narration completion gating (briefing + range)",
       "phase": "phase-32",
       "status": "completed",
-      "lastActivity": "2026-07-15T03:28:58Z",
+      "lastActivity": "2026-07-15T03:29:38Z",
       "startedAt": "2026-07-15T03:24:51Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-15T03:28:58Z",
-      "durationSeconds": 247
+      "durationSeconds": 247,
+      "mergedAt": "2026-07-15T03:29:38Z"
     },
     {
       "id": "task-116",
