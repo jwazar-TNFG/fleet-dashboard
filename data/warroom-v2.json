@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T02:02:19Z",
+  "updated_at": "2026-07-15T03:21:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -133,6 +133,11 @@
       "id": "phase-31",
       "name": "Round 24 \u2014 Proving Ground Harness Completion Gating",
       "status": "completed"
+    },
+    {
+      "id": "phase-32",
+      "name": "Round 25 \u2014 Harness Narration Gating + Reply-Shape Guard",
+      "status": "in_progress"
     }
   ],
   "tasks": [
@@ -1865,6 +1870,27 @@
       "lastActivity": "2026-07-15T01:38:55Z",
       "startedAt": "2026-07-15T01:38:55Z",
       "landed": true
+    },
+    {
+      "id": "task-115",
+      "name": "RND-143: narration completion gating (briefing + range)",
+      "phase": "phase-32",
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": "task-116",
+      "name": "RND-144: unknown reply-shape guard (fail-loud)",
+      "phase": "phase-32",
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": "task-117",
+      "name": "RND-145: regression tests \u2014 narration + shape guard",
+      "phase": "phase-32",
+      "status": "pending",
+      "landed": false
     }
   ]
 }
