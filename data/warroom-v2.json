@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T13:11:54Z",
+  "updated_at": "2026-07-15T13:11:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1940,8 +1940,9 @@
       "id": "task-120",
       "name": "RND-148: context precondition seeding for context-dependent items",
       "phase": "phase-33",
-      "status": "pending",
-      "lastActivity": "2026-07-15T12:31:22Z"
+      "status": "in_progress",
+      "lastActivity": "2026-07-15T13:11:56Z",
+      "startedAt": "2026-07-15T13:11:56Z"
     },
     {
       "id": "task-121",
