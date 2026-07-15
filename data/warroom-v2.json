@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T01:38:55Z",
+  "updated_at": "2026-07-15T02:02:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -132,7 +132,7 @@
     {
       "id": "phase-31",
       "name": "Round 24 \u2014 Proving Ground Harness Completion Gating",
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "tasks": [
@@ -1861,9 +1861,10 @@
       "id": "task-114",
       "name": "PG-p: Harness completion-gating regression tests (RND-142)",
       "phase": "phase-31",
-      "status": "in_progress",
+      "status": "completed",
       "lastActivity": "2026-07-15T01:38:55Z",
-      "startedAt": "2026-07-15T01:38:55Z"
+      "startedAt": "2026-07-15T01:38:55Z",
+      "landed": true
     }
   ]
 }
