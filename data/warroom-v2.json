@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-15T01:12:36Z",
+  "updated_at": "2026-07-15T01:25:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -1837,9 +1837,12 @@
       "id": "task-112",
       "name": "PG-n: Per-item completion gating (RND-140)",
       "phase": "phase-31",
-      "status": "in_progress",
-      "lastActivity": "2026-07-15T01:12:36Z",
-      "startedAt": "2026-07-15T01:12:36Z"
+      "status": "completed",
+      "lastActivity": "2026-07-15T01:25:13Z",
+      "startedAt": "2026-07-15T01:12:36Z",
+      "landed": false,
+      "finishedAt": "2026-07-15T01:25:13Z",
+      "durationSeconds": 757
     },
     {
       "id": "task-113",
