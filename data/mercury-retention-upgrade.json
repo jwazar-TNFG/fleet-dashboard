@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:42:51Z",
+  "updated_at": "2026-07-16T13:43:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -101,11 +101,13 @@
       "id": "task-05",
       "name": "ITEM#4 standalone notes (RND-172)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Decouple note from status change; note-by-id command available to submitters too."
+      "description": "Decouple note from status change; note-by-id command available to submitters too.",
+      "startedAt": "2026-07-16T13:43:05Z",
+      "lastActivity": "2026-07-16T13:43:05Z"
     },
     {
       "id": "task-06",
