@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T01:35:49Z",
+  "updated_at": "2026-07-16T01:40:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2057,54 +2057,54 @@
       "id": "task-129",
       "phase": "phase-35",
       "status": "completed",
-      "title": "RND-157: verdict must honor rendered error state (kill the false PASS)",
       "lastActivity": "2026-07-16T01:07:57Z",
       "startedAt": "2026-07-16T00:50:39Z",
       "landed": true,
       "finishedAt": "2026-07-16T01:07:52Z",
       "durationSeconds": 1033,
-      "mergedAt": "2026-07-16T01:07:57Z"
+      "mergedAt": "2026-07-16T01:07:57Z",
+      "name": "RND-157: verdict must honor rendered error state (kill the false PASS)"
     },
     {
       "id": "task-130",
       "phase": "phase-35",
       "status": "completed",
-      "title": "RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)",
       "lastActivity": "2026-07-16T01:35:47Z",
       "startedAt": "2026-07-16T01:08:00Z",
       "landed": true,
       "finishedAt": "2026-07-16T01:35:39Z",
       "durationSeconds": 1659,
-      "mergedAt": "2026-07-16T01:35:47Z"
+      "mergedAt": "2026-07-16T01:35:47Z",
+      "name": "RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)"
     },
     {
       "id": "task-131",
       "phase": "phase-35",
       "status": "in_progress",
-      "title": "RND-159: session reaper actually reaps (repair RND-149 regression)",
       "lastActivity": "2026-07-16T01:35:49Z",
-      "startedAt": "2026-07-16T01:35:49Z"
+      "startedAt": "2026-07-16T01:35:49Z",
+      "name": "RND-159: session reaper actually reaps (repair RND-149 regression)"
     },
     {
       "id": "task-132",
       "phase": "phase-35",
       "status": "pending",
-      "title": "RND-160: summary reference resolution for research read-aloud",
-      "lastActivity": "2026-07-16T00:43:00Z"
+      "lastActivity": "2026-07-16T00:43:00Z",
+      "name": "RND-160: summary reference resolution for research read-aloud"
     },
     {
       "id": "task-133",
       "phase": "phase-35",
       "status": "pending",
-      "title": "RND-161: RUN MODE visual latch verification + fix",
-      "lastActivity": "2026-07-16T00:43:00Z"
+      "lastActivity": "2026-07-16T00:43:00Z",
+      "name": "RND-161: RUN MODE visual latch verification + fix"
     },
     {
       "id": "task-134",
       "phase": "phase-35",
       "status": "pending",
-      "title": "RND-162: TEST tab stays minimized across STEP boundaries (no forced re-arm)",
-      "lastActivity": "2026-07-16T01:12:00Z"
+      "lastActivity": "2026-07-16T01:12:00Z",
+      "name": "RND-162: TEST tab stays minimized across STEP boundaries (no forced re-arm)"
     }
   ]
 }
