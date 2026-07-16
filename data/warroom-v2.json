@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T01:57:52Z",
+  "updated_at": "2026-07-16T02:15:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2092,10 +2092,13 @@
     {
       "id": "task-132",
       "phase": "phase-35",
-      "status": "in_progress",
-      "lastActivity": "2026-07-16T01:57:52Z",
+      "status": "completed",
+      "lastActivity": "2026-07-16T02:15:00Z",
       "name": "RND-160: summary reference resolution for research read-aloud",
-      "startedAt": "2026-07-16T01:57:52Z"
+      "startedAt": "2026-07-16T01:57:52Z",
+      "landed": false,
+      "finishedAt": "2026-07-16T02:15:00Z",
+      "durationSeconds": 1028
     },
     {
       "id": "task-133",
