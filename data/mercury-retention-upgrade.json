@@ -32,12 +32,13 @@
       "phase": "phase-0",
       "status": "completed",
       "depends_on": [],
-      "description": "Establish the testing contract every other task must satisfy: a Python pytest harness for sources/bot with a conftest that mocks Supabase + Slack (no network), a Node test/lint harness for sources/dashboard, and .github/workflows/ci.yml (ci-gate) that runs both.",
+      "description": "**task-00 — Repo & CI Readiness (the testing contract)**\n\n**Objective**\n\nStand up the test/lint harnesses and CI gate that every subsequent task must\nsatisfy. Nothing else. This task defines HOW future tasks prove correctness:\n`pytest` for the Python bot (with Supabase + Slack fully mocked, no network) and\n`node --test` + `eslint` for the Node dashboard, both run by a GitHub Actions\n`ci-gate` workflow.\n\n**Files in scope**\n\n- `sources/bot/` — add a Python test harness:\n  - `sources/bot/requirements-dev.txt` (pytest; anything else needed for tests).\n  - `sources/bot/tests/conftest.py` — pytest fixtures that MOCK the Supabase\n    client and the Slack HTTP layer so `handlers.py` / `supabase_service.py` /\n    `slack_client.py` are importable and unit-testable WITHOUT any network or\n    real `secrets.json`. Provide a fake/stub `secrets.json` (or monkeypatch\n    `config`) so `import config` does not fail. Never use real credentials.\n  - `sources/bot/tests/test_smoke.py` — a trivial test proving the harness and\n    the mocks import cleanly (e.g. `handle_help` can be called with a mocked\n    event and the mocked `send_ …\n\n**Acceptance criteria**\n\n- `cd sources/bot && pip install -r requirements-dev.txt && pytest` passes with\n  ZERO network access (mocks only).\n- `cd sources/dashboard && npm install && npm run lint && npm test` passes.\n- The `ci-gate` workflow has a Python job and a Node job; both must pass for the\n  gate to be green.\n- No real secrets committed; `secrets.json` used by tests is a stub/fixture.\n\n**Reference**\n\n- SPEC.md (context), README.md (hybrid model), `docs/AFDT-HANDOFF-PROCESS.md`.\n- `sources/bot/config.py` (how secrets load — you must stub this for tests).\n- `sources/dashboard/services/supabase.js` (the client you must mock).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-00.md)",
       "startedAt": "2026-07-16T12:56:47Z",
       "lastActivity": "2026-07-16T13:04:09Z",
       "finishedAt": "2026-07-16T13:04:09Z",
       "landed": true,
-      "durationSeconds": 442
+      "durationSeconds": 442,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-00.md"
     },
     {
       "id": "task-01",
@@ -47,27 +48,29 @@
       "depends_on": [
         "task-00"
       ],
-      "description": "Validate db/001_phase0_migration.sql against a local scratch Postgres in CI and add data-layer shims for the new columns/table in sources/bot and sources/dashboard. NO prod writes.",
+      "description": "**task-01 — Data Model (validate migration + data-layer shims)**\n\n**Objective**\n\nProve the Phase-0 migration is valid and give both surfaces a data-layer shim\nfor the new columns/table so later tasks have a stable API to build on. NO prod\nwrites — validation runs against a local scratch database in CI only.\n\n**Files in scope**\n\n- `db/001_phase0_migration.sql` — do NOT rewrite the schema; you may only fix\n  outright SQL errors discovered during scratch-DB validation. The intended\n  schema is authoritative in SPEC.md.\n- CI validation: extend `.github/workflows/ci.yml` (or add a dedicated job)\n  that spins up a **local scratch Postgres** (e.g. the `postgres` service\n  container) and runs `db/001_phase0_migration.sql` against an EMPTY scratch\n  schema to prove it applies cleanly and is idempotent (run it twice). Create\n  minimal stub tables (`requests`, `mercury_users`) in the scratch DB first so\n  the `ALTER TABLE` statements have something to alter. This job must NEVER\n  point at production Supabase — it uses only th …\n\n**Acceptance criteria**\n\n- CI's scratch-DB job applies the migration twice with no error (idempotent).\n- `add_history(...)` calls the (mocked) Supabase client with a well-formed\n  `request_history` row; unit test proves it.\n- Dashboard shim returns `[]` for missing attachments and parses a populated\n  `attachments` array; unit test proves it.\n- All existing tests still pass.\n\n**Reference**\n\n- SPEC.md → \"PLANNED SCHEMA CHANGES\"; `db/001_phase0_migration.sql`; `db/README.md`.\n- `sources/bot/supabase_service.py` (existing `log_status_change` is the closest\n  analog — the new `request_history` table supersedes the ad-hoc status log).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-01.md)",
       "startedAt": "2026-07-16T13:23:19Z",
       "lastActivity": "2026-07-16T13:25:47Z",
       "finishedAt": "2026-07-16T13:25:47Z",
       "landed": true,
-      "durationSeconds": 148
+      "durationSeconds": 148,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-01.md"
     },
     {
       "id": "task-02",
-      "name": "ITEM#1 5\u20136 digit lead IDs (RND-169)",
+      "name": "ITEM#1 5–6 digit lead IDs (RND-169)",
       "phase": "phase-2",
       "status": "completed",
       "depends_on": [
         "task-01"
       ],
-      "description": "Accept 5\u20136 digit lead IDs; reject other lengths / non-numeric.",
+      "description": "**task-02 — ITEM#1: Accept 5–6 digit lead IDs (RND-169)**\n\n**Objective**\n\nThe Mercury `@help` bot currently requires exactly a **6-digit** lead ID. Change\nit to accept **5 OR 6 digit** lead IDs and reject other lengths / non-numeric,\nper SPEC.md Q1.\n\n**Files in scope**\n\n- `sources/bot/handlers.py`:\n  - Update `_extract_lead_id(text)` so it matches a 5 **or** 6 digit lead ID\n    (still stripping phone patterns first so phone digits are not mistaken for\n    a lead ID). Return the matched id as a string, or `None`.\n  - Update the `@help` help text and the \"missing lead id\" prompt to say\n    **5–6 digit lead ID** (currently says \"6-digit\").\n- Tests: `sources/bot/tests/test_lead_id.py`.\n\n**Acceptance criteria**\n\n- `5` and `6` digit numeric IDs are ACCEPTED (extracted correctly).\n- `4` digit and `7`+ digit numbers are REJECTED (not treated as a lead id).\n- Non-numeric input is rejected.\n- Phone numbers embedded in text (e.g. `555-123-4567`, `(305) 555-1234`,\n  bare 10-digit) are still stripped and NOT mistaken for a lead id.\n- Help text + missing-id prompt updated to \"5–6 digit\".\n- Existing tests still pass.\n\n**Reference**\n\n- SPEC.md Q1 (#1 5–6 digit IDs, RND-169).\n- `sources/bot/handlers.py` → `_extract_lead_id` and `handle_help` (help text +\n  the `missing_lead_id` branch near \"CREATE NEW REQUEST\").\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-02.md)",
       "startedAt": "2026-07-16T13:26:04Z",
       "lastActivity": "2026-07-16T13:29:08Z",
       "finishedAt": "2026-07-16T13:29:08Z",
       "landed": true,
-      "durationSeconds": 184
+      "durationSeconds": 184,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-02.md"
     },
     {
       "id": "task-03",
@@ -77,25 +80,27 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Dedupe on id_lead: append timestamped note to existing request instead of new; reopen Resolved/Completed \u2192 In Progress; write request_history.",
+      "description": "**task-03 — ITEM#2: Dedupe by id_lead + reopen (RND-170)**\n\n**Objective**\n\nPrevent duplicate requests for the same lead. Per SPEC.md Q2/Q3: store the lead\nid on create (already wired), and when a NEW `@help` submission carries an\n`id_lead` that already exists on a request, **append a timestamped note to that\nexisting request instead of creating a new one**. If the matched request is\n`Resolved` or `Completed`, **reopen** it (set status → `In Progress`). Write a\n`request_history` row for the dedupe/reopen.\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - Add `find_open_or_recent_request_by_lead(id_lead)` (or similar) that returns\n    the most relevant existing request for an `id_lead` (define + document the\n    match rule; prefer the most recently updated request for that lead).\n  - Add `append_note_and_maybe_reopen(request, note_text, actor, actor_name)`\n    that appends a timestamped note (reuse the existing note-append format),\n    and if the request status is `Resolved`/`Completed`, sets it to\n    `In Progress`. Write a `request_history` row (`action='reopen'` when it\n    reopens, `action='note'` otherwise) via the task-01 `add_history` shim.\n- `sources/bot/handlers.py`:\n  - In the CREATE NEW REQU …\n\n**Acceptance criteria**\n\n- New submission with a lead id that has NO existing request → creates a new\n  request (unchanged behaviour).\n- New submission with a lead id that HAS an existing open request → appends a\n  timestamped note, does NOT create a new request, writes a `note`\n  `request_history` row.\n- If the matched request was `Resolved`/`Completed` → status becomes\n  `In Progress` and a `reopen` `request_history` row is written.\n- The bot reply clearly states it updated/reopened request #N.\n- Supabase + Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q2, Q3 (#2 dedupe + reopen, RND-170).\n- `sources/bot/handlers.py` CREATE NEW REQUEST branch + `create_help_request`.\n- `sources/bot/supabase_service.py` note-append format in `add_request_note` /\n  `update_request_status`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-03.md)",
       "startedAt": "2026-07-16T13:29:11Z",
       "lastActivity": "2026-07-16T13:34:07Z",
       "finishedAt": "2026-07-16T13:34:07Z",
       "landed": true,
-      "durationSeconds": 296
+      "durationSeconds": 296,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-03.md"
     },
     {
       "id": "task-04",
-      "name": "ITEM#3 files/images \u2192 Supabase Storage (RND-171)",
+      "name": "ITEM#3 files/images → Supabase Storage (RND-171)",
       "phase": "phase-2",
       "status": "completed",
       "depends_on": [
         "task-01"
       ],
-      "description": "Download Slack files, upload to mercury-attachments bucket, record into requests.attachments; thread-reply / ask-for-id logic; new 'file #N' command.",
+      "description": "**task-04 — ITEM#3: Files/images → Supabase Storage (RND-171)**\n\n**Objective**\n\nLet the Mercury `@help` bot capture Slack file/image attachments and store them\ndurably in the private Supabase Storage bucket `mercury-attachments`, recording\nmetadata into `requests.attachments`. Per SPEC.md Q4/Q5.\n\n**Files in scope**\n\n- `sources/bot/slack_client.py`:\n  - Add `download_slack_file(file_obj_or_url, token)` that fetches a Slack file's\n    bytes via the Slack API (uses the file's `url_private_download` with the bot\n    token). Return `(bytes, filename, mime, size)`.\n  - Add `upload_attachment_to_storage(request_number, filename, data, mime)` that\n    uploads to the `mercury-attachments` bucket at a path like\n    `requests/<request_number>/<uuid>-<filename>` and returns the stored object\n    path (NOT a public URL — the bucket is private). Use the Supabase client;\n    keep the actual client call thin so it is mockable.\n- `sources/bot/supabase_service.py`:\n  - Add `add_attachment(request_number, {filename,url,mi …\n\n**Acceptance criteria**\n\n- `file #N <with file>` attaches the file to request N and records a well-formed\n  attachment object in `requests.attachments`; writes an `attach` history row.\n- `file` with no valid `#N` replies asking for the request id and saves nothing.\n- File-only post in a request thread attaches to that request.\n- File-only NEW post with no id → bot asks for the lead id (saves nothing).\n- Slack download + Supabase Storage are mocked; NO network, NO real bucket writes.\n- Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q4, Q5 (#3 files/images, RND-171); `db/README.md` (bucket + signed URLs).\n- `sources/bot/slack_client.py` (existing Slack API call pattern);\n  `sources/bot/handlers.py` (`note #N` command as a shape reference).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-04.md)",
       "startedAt": "2026-07-16T13:34:09Z",
       "lastActivity": "2026-07-16T13:42:51Z",
-      "finishedAt": "2026-07-16T13:42:51Z"
+      "finishedAt": "2026-07-16T13:42:51Z",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-04.md"
     },
     {
       "id": "task-05",
@@ -105,11 +110,12 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Decouple note from status change; note-by-id command available to submitters too.",
+      "description": "**task-05 — ITEM#4: Standalone notes (RND-172)**\n\n**Objective**\n\nDecouple adding a note from changing status, and let the ORIGINAL SUBMITTER (not\njust retention) add a note to their own request. Per SPEC.md Q6.\n\n**Files in scope**\n\n- `sources/bot/handlers.py`:\n  - The existing `note #N` command is gated behind `is_retention_team`. Loosen\n    it so a submitter can add a note to a request THEY submitted (retention/\n    supervisor/admin can note any request). Keep the note append working with no\n    status change.\n  - Ensure the note path writes a `request_history` row (`action='note'`) via\n    the shim (coordinate with task-06; if history-writing lands there, at least\n    call `add_request_note` which task-06 will instrument).\n- `sources/bot/supabase_service.py`:\n  - Confirm `add_request_note` does NOT alter status (it already should) and\n    that it is callable for a submitter-owned request. Add an ownership-aware\n    h …\n\n**Acceptance criteria**\n\n- A submitter can `note #N` on a request they submitted; status is unchanged.\n- A non-submitter, non-retention user CANNOT note someone else's request.\n- Retention/supervisor/admin can note any request.\n- Adding a note never changes the request status.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q6 (#4 standalone notes, RND-172).\n- `sources/bot/handlers.py` `note_match` branch; `sources/bot/supabase_service.py`\n  `add_request_note`, `is_retention_team`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-05.md)",
       "startedAt": "2026-07-16T13:43:05Z",
       "lastActivity": "2026-07-16T13:49:54Z",
       "finishedAt": "2026-07-16T13:49:54Z",
-      "durationSeconds": 409
+      "durationSeconds": 409,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-05.md"
     },
     {
       "id": "task-06",
@@ -119,7 +125,7 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Write request_history on every claim/assign/status/note/type/reopen; new '@help history #N' command.",
+      "description": "**task-06 — ITEM#5: Change history + `@help history #N` (RND-173)**\n\n**Objective**\n\nTrack ALL changes to a request in `request_history` and expose them via a new\n`@help history #N` bot command. Per SPEC.md Q7.\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - Instrument every mutating path to write a `request_history` row via the\n    task-01 `add_history` shim: `claim_request`, `assign_request`,\n    `update_request_status`, `add_request_note`, `complete_request`, request\n    `type` changes, and reopen (from task-03). Each row records\n    `actor`, `actor_name`, `action`, `field`, `old_value`, `new_value`.\n  - Add `get_request_history(request_number)` reading the NEW `request_history`\n    table (ordered by `created_at`) and a `format_history(rows)` helper for\n    Slack output. (The old `request_status_history`-based function may be left\n    or superseded — prefer the new table.)\n- `sources/bot/handlers.py`: …\n\n**Acceptance criteria**\n\n- Claim/assign/status/note/type/reopen each write a `request_history` row with\n  the correct `action` and old/new values (proven with mocked Supabase).\n- `@help history #N` returns a readable, time-ordered history.\n- Access: submitter of #N or retention/supervisor/admin can view; others cannot.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q7 (#5 history, RND-173); task-01 `add_history` shim.\n- `sources/bot/supabase_service.py` mutating functions + existing\n  `log_status_change`/`get_request_history`; `sources/bot/handlers.py` command\n  parsing.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-06.md)",
       "startedAt": "2026-07-16T13:58:04Z",
       "lastActivity": "2026-07-16T14:05:13Z",
       "finishedAt": "2026-07-16T14:05:13Z",
@@ -130,7 +136,8 @@
       "outputTokens": 25007,
       "cacheReadTokens": 1132393,
       "cacheCreationTokens": 67205,
-      "landed": true
+      "landed": true,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-06.md"
     },
     {
       "id": "task-07",
@@ -140,7 +147,7 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Bot DISPLAYS request_type in status/detail output (dashboard-only to set).",
+      "description": "**task-07 — ITEM#6 (display): Bot displays request_type (RND-174)**\n\n**Objective**\n\nThe request `type` is set ONLY on the dashboard (a dropdown). The bot must be\nable to DISPLAY the type in its status/detail output, but never set it. Per\nSPEC.md Q8/Q9 (type is optional and never blocks submit/resolve).\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - In `format_request_detail` (and `format_request_summary` where sensible),\n    show the `request_type` when present. When absent/NULL, omit it gracefully\n    (do not print \"None\").\n- `sources/bot/handlers.py`:\n  - No new command; ensure the `@help status #N` detail path surfaces the type\n    via the formatter. Confirm the bot NEVER writes `request_type`.\n- Tests: `sources/bot/tests/test_type_display.py`.\n\n**Acceptance criteria**\n\n- A request WITH a `request_type` shows it in the detail output.\n- A request WITHOUT a type shows no type line (no \"None\"/empty label).\n- No bot code path sets/mutates `request_type`.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q8, Q9 (#6 type, RND-174); the 9 dropdown options list in SPEC.md.\n- `sources/bot/supabase_service.py` `format_request_detail` /\n  `format_request_summary`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-07.md)",
       "startedAt": "2026-07-16T14:05:15Z",
       "lastActivity": "2026-07-16T14:09:06Z",
       "finishedAt": "2026-07-16T14:09:06Z",
@@ -151,7 +158,8 @@
       "outputTokens": 8903,
       "cacheReadTokens": 363875,
       "cacheCreationTokens": 24366,
-      "landed": true
+      "landed": true,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-07.md"
     },
     {
       "id": "task-08",
@@ -161,7 +169,7 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Per-user status counts + resolved-today + resolved-this-week + Unassigned aggregate; role-scoped.",
+      "description": "**task-08 — ITEM#8: Performance API (RND-176)**\n\n**Objective**\n\nAdd a Retention Command Center backend endpoint that powers the Performance tab:\nper-user request status counts plus resolved-today and resolved-this-week, an\n\"Unassigned\" aggregate for unclaimed backlog, and role-scoped visibility. Per\nSPEC.md Q11/Q12.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - Add `GET /api/retention/performance`. Returns, per user (keyed by\n    `assigned_to`, enriched with `mercury_users.display_name`):\n    - status counts (Untouched / In Progress / Pending / Resolved / Completed),\n    - `resolved_today` and `resolved_this_week` (use the existing eastern-day\n      helpers `easternDateStr` / `easternDayRangeUtc` for correct TZ bucketing).\n  - Include a synthetic **\"Unassigned\"** row aggregating requests with no\n    `assigned_to` (unclaimed backlog).\n  - Role scoping: a `retention` user gets ONLY their own card; `supervisor`/\n    `admin` get all cards + the Unassigned card. Derive the requesting user's\n    role from `m …\n\n**Acceptance criteria**\n\n- Endpoint returns per-user status counts + resolved-today + resolved-this-week.\n- An \"Unassigned\" aggregate card is present for supervisors/admins.\n- A `retention` user's response contains only their own card.\n- Week/day counts use the eastern-TZ helpers (no naive UTC bucketing).\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q11, Q12 (#8 Performance, RND-176).\n- `sources/dashboard/routes/retention.js` — existing `/stats` endpoint and the\n  `easternDateStr` / `easternDayRangeUtc` helpers.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-08.md)",
       "startedAt": "2026-07-16T14:09:09Z",
       "lastActivity": "2026-07-16T14:14:58Z",
       "finishedAt": "2026-07-16T14:14:58Z",
@@ -172,7 +180,8 @@
       "outputTokens": 17069,
       "cacheReadTokens": 549708,
       "cacheCreationTokens": 35960,
-      "landed": true
+      "landed": true,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-08.md"
     },
     {
       "id": "task-09",
@@ -182,7 +191,7 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "retention/supervisor/admin model; server-side self-scoping for retention; mercury_users-driven allowlist; assign restricted to supervisor/admin.",
+      "description": "**task-09 — ITEM#9: Roles + access-filtering API (RND-177)**\n\n**Objective**\n\nImplement the `retention` / `supervisor` / `admin` role model on the Retention\nCommand Center backend, with server-side filtering so a regular `retention`\nuser only sees requests assigned to OR created by them, while supervisors/admins\nsee all. Drive access from `mercury_users` (single source of truth), and\nrestrict assign/reassign to supervisor/admin. Per SPEC.md Q14/Q15/Q17/Q18.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - Add a role helper `getRole(email)` reading `mercury_users` (role ∈\n    retention/supervisor/admin; treat admin as supervisor+). Cache briefly if\n    convenient.\n  - `GET /api/retention/requests` and `/requests/:id`: apply server-side\n    scoping. A `retention` user only receives requests where\n    `assigned_to == theirSlackId` OR `submitted_by == theirSlackId` (resolve\n    their slack id via `mercury_users` by email). Supervisor/admin: no filter.\n  - `POST /requests/:id/assign` (and any reassign path): reject with 403 unless\n    the caller is supervisor/admin. `claim` may remain open to any retention\n    user (claiming self).\n  - `GET /api/reten …\n\n**Acceptance criteria**\n\n- `retention` user: `/requests` returns only their assigned-or-created requests.\n- supervisor/admin: `/requests` returns all requests.\n- `assign` returns 403 for a `retention` caller; succeeds for supervisor/admin.\n- `/access` returns the correct role + tab set, sourced from `mercury_users`.\n- A user NOT in `mercury_users` is denied (no access).\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q14, Q15, Q17, Q18 (#9 access/roles, RND-177).\n- `sources/dashboard/routes/retention.js` — existing `/requests`, `/assign`,\n  `/retention-team`, and the `req.user.email` auth context.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-09.md)",
       "startedAt": "2026-07-16T14:15:01Z",
       "lastActivity": "2026-07-16T14:22:13Z",
       "finishedAt": "2026-07-16T14:22:13Z",
@@ -193,7 +202,8 @@
       "outputTokens": 21358,
       "cacheReadTokens": 1032576,
       "cacheCreationTokens": 46525,
-      "landed": true
+      "landed": true,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-09.md"
     },
     {
       "id": "task-10",
@@ -203,9 +213,10 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "Join id_lead \u2192 rep_logs/leads returning the full @info field set + the request_history; clean not-found marker; office from the lead lookup.",
+      "description": "**task-10 — ITEM#11: Detail lead-join + history API (RND-179)**\n\n**Objective**\n\nAdd a Retention Command Center endpoint that, given a request, joins its\n`id_lead` to the live lead/case data and returns the FULL `@info` field set,\nplus the request's `request_history`. A lead id with no matching record returns\na clean \"not found\" marker (not an error). Office is derived from the lead/case\nlookup, NOT the employees table. Per SPEC.md Q19/Q20/Q21/Q22.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - Add `GET /api/retention/requests/:id/detail`. Steps:\n    1. Load the request; get its `id_lead`.\n    2. Look up the case first (`rep_logs` by `idlead`), then the lead\n       (`leads` by `idLead`) — mirror the bot's `@info id:` resolution order.\n    3. Return the FULL `@info` field set for the matched record. The FIELD\n       CONTRACT is the set produced by `sources/bot/detail_formatters.py`\n       (`format_case_detail_enhanced` / `format_lead_detail_enhanced`):\n       quick view (name, DOA, color tag, converted value, attorney, rep, tx\n       location, legal/clinical status, visits), rep info (rep, rep phone,\n       supervisor, supervisor phone) …\n\n**Acceptance criteria**\n\n- Endpoint returns the full `@info` field set (structured) for a matching lead/case.\n- Field set matches the `detail_formatters.py` contract (no invented fields).\n- `request_history` is included.\n- No-match lead id → `lead_match:false` + clean message, HTTP 200 (no 500).\n- Office is taken from the lead/case record, not employees.\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q19, Q20, Q21, Q22 (#11 detail lead+history, RND-179).\n- `sources/bot/detail_formatters.py` (THE field contract to reuse).\n- `sources/bot/handlers.py` `@info id:` resolution order (case → lead).\n- `sources/dashboard/routes/retention.js` `/requests/:id`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-10.md)",
       "startedAt": "2026-07-16T14:22:15Z",
-      "lastActivity": "2026-07-16T14:22:15Z"
+      "lastActivity": "2026-07-16T14:22:15Z",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-10.md"
     },
     {
       "id": "task-11",
@@ -215,7 +226,8 @@
       "depends_on": [
         "task-01"
       ],
-      "description": "/requests accepts submitter/office/assigned_to/status/request_type/date + lead attrs + free-text lead search; filters AND-combine."
+      "description": "**task-11 — ITEM#12: Filters API (RND-180)**\n\n**Objective**\n\nExtend the Retention Command Center `/requests` endpoint to accept a rich set of\nfilter params, including filters derived from the joined lead/case record, plus\nfree-text lead search. Multiple filters combine as **AND**. Per SPEC.md\nQ22/Q23/Q24.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - `GET /api/retention/requests` accepts (all optional) query params:\n    - Request-level: `submitter`, `assigned_to`, `status`, `request_type`,\n      `created_after`, `created_before` (created date range).\n    - Lead-derived (via the `id_lead` → lead/case join from task-10 logic):\n      `office`, `attorney`, `legal_status`, `tx_location` (treatment location).\n    - `q` — free-text search across lead fields (name/phone/attorney/etc.).\n  - Combine ALL provided filters with AND semantics. Request-level filters\n    should be pushed to the DB query where possible; lead-derived filters may be\n    applied after joining each request's lead/case (keep it c …\n\n**Acceptance criteria**\n\n- Each filter param narrows results correctly in isolation.\n- Multiple filters AND-combine (a request must satisfy all provided filters).\n- Lead-derived filters (office/attorney/legal_status/tx_location) use the\n  lead/case join; office comes from the lead/case, not employees.\n- `q` free-text matches across lead fields.\n- Role scoping from task-09 is still enforced.\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q22, Q23, Q24 (#12 filters, RND-180).\n- `sources/dashboard/routes/retention.js` `/requests`; task-10 lead-join helper.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-11.md)",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-11.md"
     },
     {
       "id": "task-12",
@@ -227,7 +239,8 @@
         "task-09",
         "task-10"
       ],
-      "description": "queue.html + js/requests.js: type dropdown (#6), note-anyone / assign-supervisor-only (#10/#4), detail panel reusing @info layout for lead+history+attachments (#11)."
+      "description": "**task-12 — Dashboard Frontend A: type dropdown, note/assign perms, detail panel (RND-174 / RND-178 / RND-172 / RND-179)**\n\n**Objective**\n\nWire the queue page frontend to the new backend: a request-`type` dropdown\n(#6), note-by-anyone + assign-supervisor-only controls (#10/#4), and a request\ndetail panel that shows the joined lead/case info (reusing the `@info` field\nlayout), the change history, and attachments (#11).\n\n**Files in scope**\n\n- `sources/dashboard/public/retention/queue.html`\n- `sources/dashboard/public/retention/js/requests.js`\n- `sources/dashboard/public/retention/css/dashboard.css`\n- (read) `sources/dashboard/public/retention/js/auth.js`,\n  `js/common.js`, `js/supabase-client.js` for the existing patterns.\n\nImplement:\n- **Type dropdown (#6):** in the detail/row UI, a dropdown of the 9 request-type\n  options (see SPEC.md). Setting it PATCHes the request type via the backend.\n  (Add/confirm a backend set-type call; if none exists, use the status/note\n  pattern.) Optional — blank allowed.\n- **Note anyone (#4/#10):** any allowed user can add a note; the note control is\n  visible to submitters + retention. Calls the …\n\n**Acceptance criteria**\n\n- Type dropdown lists the 9 options and persists a selection via the backend.\n- Note control works for a submitter and for retention.\n- Assign control is hidden/disabled for `retention` role; shown for supervisor/admin.\n- Detail panel renders the joined lead/case fields (matching the @info sections),\n  the history timeline, and attachments; no-match shows the clean message.\n- `eslint` passes; any DOM/unit tests you add pass. Bump the `?v=` cache-bust on\n  edited client assets referenced in the HTML.\n\n**Reference**\n\n- SPEC.md Q6/Q8/Q9 (#6), Q6/Q18 (#4/#10), Q19–Q22 (#11); the 9 type options list.\n- Backend: task-09 `/access`, task-10 `/requests/:id/detail`, existing\n  `/requests/:id/note`, `/assign`.\n- `sources/bot/detail_formatters.py` (the field layout to mirror);\n  `sources/dashboard/public/retention/*`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-12.md)",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-12.md"
     },
     {
       "id": "task-13",
@@ -238,7 +251,8 @@
         "task-08",
         "task-09"
       ],
-      "description": "performance.html + js/performance.js: per-user cards + Unassigned card (#8); tab gating by role (#9/#16) driven by mercury_users; bump ?v=."
+      "description": "**task-13 — Dashboard Frontend B: Performance tab + role-gated tabs (RND-176 / RND-177)**\n\n**Objective**\n\nAdd the Performance tab (per-user cards + an Unassigned card) and gate the tile's\ntabs by role: regular `retention` users see Request / Info / Performance only;\nsupervisor/admin see all tabs (incl. Staffing/Pulse). The tab allowlist is\ndriven by `mercury_users` (via the backend `/access` endpoint). Per SPEC.md\nQ11/Q12/Q16/Q17.\n\n**Files in scope**\n\n- NEW `sources/dashboard/public/retention/performance.html`\n- NEW `sources/dashboard/public/retention/js/performance.js`\n- Nav wiring in the existing pages\n  (`queue.html`, `staffing.html`, `info.html`) — add the Performance tab and\n  apply role gating to the nav.\n- `sources/dashboard/public/retention/css/dashboard.css` (cards styling).\n- (read) `js/auth.js`, `js/common.js`, `js/supabase-client.js`.\n\nImplement:\n- **Performance tab (#8):** `performance.js` calls\n  `GET /api/retention/performance` and renders one card per user with status\n  counts + resolved-today + resolved-this-week, plus a distinct **Unassigned**\n  card for unclaimed backlog. A `retention` user sees only their own card\n  (b …\n\n**Acceptance criteria**\n\n- Performance page renders per-user cards + an Unassigned card from the API.\n- `retention` role: Staffing/Pulse tabs are hidden; only Requests/Info/\n  Performance show. supervisor/admin: all tabs show.\n- Tab visibility is driven by the backend `/access` role (mercury_users), not a\n  static array.\n- `?v=` bumped on edited client assets.\n- `eslint` passes; any tests you add pass.\n\n**Reference**\n\n- SPEC.md Q11, Q12, Q16, Q17 (#8 Performance, #9 tab gating, RND-176/177).\n- Backend: task-08 `/performance`, task-09 `/access`.\n- `sources/dashboard/public/retention/queue.html` nav structure;\n  `js/supabase-client.js` (`__MERCURY_ALLOWLIST`).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-13.md)",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-13.md"
     },
     {
       "id": "task-14",
@@ -251,7 +265,8 @@
         "task-06",
         "task-09"
       ],
-      "description": "Rewrite hardcoded @help help text: history #N, file #N, submitter note #N; role-gated. Text-only; runs last."
+      "description": "**task-14 — Refresh the `@help help` listing (role-aware capstone) (RND-183)**\n\n**Objective**\n\nRewrite the hardcoded `@help help` listing in `handle_help` so it reflects the\nFULL, final command set delivered by this build, gated by the new\nretention / supervisor / admin role model. This is a documentation-in-lockstep\ncapstone: several earlier tasks add or widen user-facing `@help` commands but do\nNOT touch the help text, so without this task those commands ship functional but\ninvisible in `@help help`.\n\nCommands that must now appear (added/changed by earlier tasks):\n- `@help history #N`      — view change history (task-06). Submitter of #N OR\n                            retention/supervisor/admin.\n- `@help file #N`         — attach the posted file(s) to request N (task-04).\n- `@help note #N [text]`  — now available to the ORIGINAL SUBMITTER on their own\n                            request, not just retention (task-05).\n- request_type awareness  — the dashboard-only type dropdown e …\n\n**Requirements**\n\n1. **Base (all users)** section keeps: submit (5–6 digit lead ID), status,\n   status #N, my requests, complete #N. ADD the submitter-accessible\n   `note #N [text]` here (it is no longer retention-only). ADD `history #N`\n   (submitter can view their own request's history). ADD `file #N` (attach a\n   posted file to a request the user can act on).\n2. **Role-aware extra section.** The current code appends a \"Retention Team\n   Commands\" block when `USE_SUPABASE and is_retention_team(user_id)`. Preserve\n   that pattern but make it reflect the NEW role model:\n   - Resolve the caller's role via the task-09 role helper / `mercury_users`\n     (retention / supervisor / admin). If a direct helper is not importable in\n     the bot, fall back to `is_retention_team(user_id)` for the team block and\n     `is_assignment_admin(user_id)` (widened to supervisor+admin) for the\n     assign line.\n   - Team block (retention/supervisor/admin) lists: queue, assigned, claim #N,\n     update #N <status>, resolve #N [note], note #N, history #N.\n   - Assign/reassign line (`assign #N @user`) shown ONLY to supervisor/admin\n     (mirror the existing `is_assignment_admin` gate used by the assign command\n     so the help text matches what the user can actually run).\n3. Keep the existing Slack mrkdwn formatting style (bold `*...*`, bullet `•`,\n   the `_Tip: ..._` footer). Keep messages concise.\n4. Do not invent commands that do not exist in the dispatch. Every line in the\n   help text MUST correspond to a real handled command in `handle_help`.\n\n**Files in scope**\n\n- `sources/bot/handlers.py` → `handle_help`, ONLY the `help_text` string block\n  (the branch guarded by `request_text in ('help','test','?','commands',...)`).\n  Do NOT change any command dispatch/parse logic — this task is text only.\n\n**Acceptance criteria**\n\n- `@help help` (and aliases `commands`, `?`, etc.) for a NON-retention submitter\n  lists: submit, status, status #N, my requests, note #N (own request),\n  history #N (own request), complete #N, file #N — and does NOT show queue/\n  assign/claim.\n- For a retention (non-admin) user: the team block additionally shows queue,\n  assigned, claim #N, update #N, resolve #N, history #N — but NOT\n  `assign #N @user`.\n- For a supervisor/admin: the team block additionally shows `assign #N @user`.\n- Every command listed is one that `handle_help` actually parses and handles.\n- No dispatch/parse logic changed; only the `help_text` string(s).\n- Existing tests pass; add/extend a test (e.g. `tests/test_help_listing.py`)\n  asserting: submitter listing contains \"history\" and \"file\" and \"note\"; the\n  assign line only appears under the admin/supervisor gate (mock the role\n  helpers). Mock Slack/Supabase; no network.\n\n**Reference**\n\n- `sources/bot/handlers.py` `handle_help` (help_text block ~lines 274–312);\n  role gates `is_retention_team`, `is_assignment_admin`.\n- task-04 (`file #N`), task-05 (submitter `note #N`), task-06 (`history #N`),\n  task-09 (retention/supervisor/admin role model + widened assign gate).\n- SPEC.md Q14/Q18 (roles + who may assign).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-14.md)",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-14.md"
     }
   ]
 }

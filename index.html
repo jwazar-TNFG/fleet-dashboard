@@ -2223,6 +2223,11 @@ function showTaskDetail(slug, taskId) {
       </div>`;
   }
 
+  // Prompt link (full instructions fed to the build agent)
+  const promptLinkHtml = task.promptUrl
+    ? `<div class="td-section"><div class="td-label">Build Prompt</div><div class="td-value"><a href="${esc(task.promptUrl)}" target="_blank" rel="noopener" style="color:var(--blue);">📄 View full prompt fed to the build agent →</a></div></div>`
+    : '';
+
   // Description section
   let descHtml = '';
   if (fullDesc) {
@@ -2273,6 +2278,7 @@ function showTaskDetail(slug, taskId) {
         </div>
         ${costHtml}
         ${descHtml}
+        ${promptLinkHtml}
       </div>
       <div class="td-nav">
         <button class="td-nav-btn" ${prevTask ? `onclick="showTaskDetail('${esc(slug)}','${esc(prevTask.id)}')"` : 'disabled'}>${prevTask ? '← ' + esc(prevTask.id) : '← Prev'}</button>
