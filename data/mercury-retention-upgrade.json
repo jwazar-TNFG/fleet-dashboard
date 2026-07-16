@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:56:42Z",
+  "updated_at": "2026-07-16T13:58:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -115,11 +115,13 @@
       "id": "task-06",
       "name": "ITEM#5 history writes + @help history #N (RND-173)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Write request_history on every claim/assign/status/note/type/reopen; new '@help history #N' command."
+      "description": "Write request_history on every claim/assign/status/note/type/reopen; new '@help history #N' command.",
+      "startedAt": "2026-07-16T13:58:04Z",
+      "lastActivity": "2026-07-16T13:58:04Z"
     },
     {
       "id": "task-07",
