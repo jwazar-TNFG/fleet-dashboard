@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:49:54Z",
+  "updated_at": "2026-07-16T13:56:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -193,6 +193,19 @@
         "task-09"
       ],
       "description": "performance.html + js/performance.js: per-user cards + Unassigned card (#8); tab gating by role (#9/#16) driven by mercury_users; bump ?v=."
+    },
+    {
+      "id": "task-14",
+      "name": "Refresh @help help listing (role-aware capstone) (RND-183)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-04",
+        "task-05",
+        "task-06",
+        "task-09"
+      ],
+      "description": "Rewrite hardcoded @help help text: history #N, file #N, submitter note #N; role-gated. Text-only; runs last."
     }
   ]
 }
