@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:30:10Z",
+  "updated_at": "2026-07-16T15:30:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -112,10 +112,11 @@
       ],
       "description": "**task-05 — ITEM#4: Standalone notes (RND-172)**\n\n**Objective**\n\nDecouple adding a note from changing status, and let the ORIGINAL SUBMITTER (not\njust retention) add a note to their own request. Per SPEC.md Q6.\n\n**Files in scope**\n\n- `sources/bot/handlers.py`:\n  - The existing `note #N` command is gated behind `is_retention_team`. Loosen\n    it so a submitter can add a note to a request THEY submitted (retention/\n    supervisor/admin can note any request). Keep the note append working with no\n    status change.\n  - Ensure the note path writes a `request_history` row (`action='note'`) via\n    the shim (coordinate with task-06; if history-writing lands there, at least\n    call `add_request_note` which task-06 will instrument).\n- `sources/bot/supabase_service.py`:\n  - Confirm `add_request_note` does NOT alter status (it already should) and\n    that it is callable for a submitter-owned request. Add an ownership-aware\n    h …\n\n**Acceptance criteria**\n\n- A submitter can `note #N` on a request they submitted; status is unchanged.\n- A non-submitter, non-retention user CANNOT note someone else's request.\n- Retention/supervisor/admin can note any request.\n- Adding a note never changes the request status.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q6 (#4 standalone notes, RND-172).\n- `sources/bot/handlers.py` `note_match` branch; `sources/bot/supabase_service.py`\n  `add_request_note`, `is_retention_team`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-05.md)",
       "startedAt": "2026-07-16T13:43:05Z",
-      "lastActivity": "2026-07-16T13:49:54Z",
-      "finishedAt": "2026-07-16T13:49:54Z",
-      "durationSeconds": 409,
-      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-05.md"
+      "lastActivity": "2026-07-16T15:30:13Z",
+      "finishedAt": "2026-07-16T15:30:13Z",
+      "durationSeconds": 6428,
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-05.md",
+      "landed": true
     },
     {
       "id": "task-06",
