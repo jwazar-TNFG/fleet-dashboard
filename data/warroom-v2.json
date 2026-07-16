@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T02:53:41Z",
+  "updated_at": "2026-07-16T03:03:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2121,10 +2121,13 @@
     {
       "id": "task-134",
       "phase": "phase-36",
-      "status": "in_progress",
-      "lastActivity": "2026-07-16T02:53:41Z",
+      "status": "completed",
+      "lastActivity": "2026-07-16T03:03:17Z",
       "name": "RND-162: TEST tab stays minimized across STEP boundaries (no forced re-arm)",
-      "startedAt": "2026-07-16T02:53:41Z"
+      "startedAt": "2026-07-16T02:53:41Z",
+      "landed": false,
+      "finishedAt": "2026-07-16T03:03:17Z",
+      "durationSeconds": 576
     },
     {
       "id": "task-135",
