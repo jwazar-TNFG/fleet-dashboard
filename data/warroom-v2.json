@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T01:07:52Z",
+  "updated_at": "2026-07-16T01:07:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2058,11 +2058,12 @@
       "phase": "phase-35",
       "status": "completed",
       "title": "RND-157: verdict must honor rendered error state (kill the false PASS)",
-      "lastActivity": "2026-07-16T01:07:52Z",
+      "lastActivity": "2026-07-16T01:07:57Z",
       "startedAt": "2026-07-16T00:50:39Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-16T01:07:52Z",
-      "durationSeconds": 1033
+      "durationSeconds": 1033,
+      "mergedAt": "2026-07-16T01:07:57Z"
     },
     {
       "id": "task-130",
