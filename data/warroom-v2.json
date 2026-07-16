@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T01:35:39Z",
+  "updated_at": "2026-07-16T01:35:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2070,11 +2070,12 @@
       "phase": "phase-35",
       "status": "completed",
       "title": "RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)",
-      "lastActivity": "2026-07-16T01:35:39Z",
+      "lastActivity": "2026-07-16T01:35:47Z",
       "startedAt": "2026-07-16T01:08:00Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-16T01:35:39Z",
-      "durationSeconds": 1659
+      "durationSeconds": 1659,
+      "mergedAt": "2026-07-16T01:35:47Z"
     },
     {
       "id": "task-131",
