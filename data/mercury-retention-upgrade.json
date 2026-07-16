@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:29:08Z",
+  "updated_at": "2026-07-16T13:29:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -70,11 +70,13 @@
       "id": "task-03",
       "name": "ITEM#2 dedupe by id_lead + reopen (RND-170)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Dedupe on id_lead: append timestamped note to existing request instead of new; reopen Resolved/Completed \u2192 In Progress; write request_history."
+      "description": "Dedupe on id_lead: append timestamped note to existing request instead of new; reopen Resolved/Completed \u2192 In Progress; write request_history.",
+      "startedAt": "2026-07-16T13:29:11Z",
+      "lastActivity": "2026-07-16T13:29:11Z"
     },
     {
       "id": "task-04",
