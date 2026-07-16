@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:25:47Z",
+  "updated_at": "2026-07-16T13:26:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -56,11 +56,13 @@
       "id": "task-02",
       "name": "ITEM#1 5\u20136 digit lead IDs (RND-169)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Accept 5\u20136 digit lead IDs; reject other lengths / non-numeric."
+      "description": "Accept 5\u20136 digit lead IDs; reject other lengths / non-numeric.",
+      "startedAt": "2026-07-16T13:26:04Z",
+      "lastActivity": "2026-07-16T13:26:04Z"
     },
     {
       "id": "task-03",
