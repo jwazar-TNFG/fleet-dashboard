@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T02:15:10Z",
+  "updated_at": "2026-07-16T02:23:40Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2104,10 +2104,13 @@
     {
       "id": "task-133",
       "phase": "phase-35",
-      "status": "in_progress",
-      "lastActivity": "2026-07-16T02:15:10Z",
+      "status": "completed",
+      "lastActivity": "2026-07-16T02:23:40Z",
       "name": "RND-161: RUN MODE visual latch verification + fix",
-      "startedAt": "2026-07-16T02:15:10Z"
+      "startedAt": "2026-07-16T02:15:10Z",
+      "landed": false,
+      "finishedAt": "2026-07-16T02:23:40Z",
+      "durationSeconds": 510
     },
     {
       "id": "task-134",
