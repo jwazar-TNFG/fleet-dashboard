@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:14:58Z",
+  "updated_at": "2026-07-16T14:15:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -178,11 +178,13 @@
       "id": "task-09",
       "name": "ITEM#9 roles + access-filtering API (RND-177)",
       "phase": "phase-3",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "retention/supervisor/admin model; server-side self-scoping for retention; mercury_users-driven allowlist; assign restricted to supervisor/admin."
+      "description": "retention/supervisor/admin model; server-side self-scoping for retention; mercury_users-driven allowlist; assign restricted to supervisor/admin.",
+      "startedAt": "2026-07-16T14:15:01Z",
+      "lastActivity": "2026-07-16T14:15:01Z"
     },
     {
       "id": "task-10",
