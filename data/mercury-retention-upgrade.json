@@ -36,7 +36,8 @@
       "startedAt": "2026-07-16T12:56:47Z",
       "lastActivity": "2026-07-16T13:04:09Z",
       "finishedAt": "2026-07-16T13:04:09Z",
-      "landed": true
+      "landed": true,
+      "durationSeconds": 442
     },
     {
       "id": "task-01",
@@ -50,7 +51,8 @@
       "startedAt": "2026-07-16T13:23:19Z",
       "lastActivity": "2026-07-16T13:25:47Z",
       "finishedAt": "2026-07-16T13:25:47Z",
-      "landed": true
+      "landed": true,
+      "durationSeconds": 148
     },
     {
       "id": "task-02",
@@ -64,7 +66,8 @@
       "startedAt": "2026-07-16T13:26:04Z",
       "lastActivity": "2026-07-16T13:29:08Z",
       "finishedAt": "2026-07-16T13:29:08Z",
-      "landed": true
+      "landed": true,
+      "durationSeconds": 184
     },
     {
       "id": "task-03",
@@ -78,7 +81,8 @@
       "startedAt": "2026-07-16T13:29:11Z",
       "lastActivity": "2026-07-16T13:34:07Z",
       "finishedAt": "2026-07-16T13:34:07Z",
-      "landed": true
+      "landed": true,
+      "durationSeconds": 296
     },
     {
       "id": "task-04",
