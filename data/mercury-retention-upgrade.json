@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T12:55:34Z",
+  "updated_at": "2026-07-16T12:55:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -33,8 +33,8 @@
       "status": "in_progress",
       "depends_on": [],
       "description": "Establish the testing contract every other task must satisfy: a Python pytest harness for sources/bot with a conftest that mocks Supabase + Slack (no network), a Node test/lint harness for sources/dashboard, and .github/workflows/ci.yml (ci-gate) that runs both.",
-      "startedAt": "2026-07-16T12:55:34Z",
-      "lastActivity": "2026-07-16T12:55:34Z"
+      "startedAt": "2026-07-16T12:55:45Z",
+      "lastActivity": "2026-07-16T12:55:45Z"
     },
     {
       "id": "task-01",
