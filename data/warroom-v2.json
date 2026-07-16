@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T04:17:48Z",
+  "updated_at": "2026-07-16T04:17:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2182,11 +2182,12 @@
         "task-137"
       ],
       "name": "RND-166: Meeting DELIVER button emitting meeting.deliver (close D-3 gap A2)",
-      "lastActivity": "2026-07-16T04:17:48Z",
+      "lastActivity": "2026-07-16T04:17:57Z",
       "startedAt": "2026-07-16T03:57:01Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-16T04:17:48Z",
-      "durationSeconds": 1247
+      "durationSeconds": 1247,
+      "mergedAt": "2026-07-16T04:17:57Z"
     },
     {
       "id": "task-139",
