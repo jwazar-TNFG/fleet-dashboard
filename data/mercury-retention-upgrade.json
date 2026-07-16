@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:08:58Z",
+  "updated_at": "2026-07-16T14:09:06Z",
   "phases": [
     {
       "id": "phase-0",
@@ -142,15 +142,16 @@
       ],
       "description": "Bot DISPLAYS request_type in status/detail output (dashboard-only to set).",
       "startedAt": "2026-07-16T14:05:15Z",
-      "lastActivity": "2026-07-16T14:08:58Z",
-      "finishedAt": "2026-07-16T14:08:58Z",
-      "durationSeconds": 223,
+      "lastActivity": "2026-07-16T14:09:06Z",
+      "finishedAt": "2026-07-16T14:09:06Z",
+      "durationSeconds": 231,
       "costUSD": 0.5581,
       "numTurns": 27,
       "inputTokens": 44,
       "outputTokens": 8903,
       "cacheReadTokens": 363875,
-      "cacheCreationTokens": 24366
+      "cacheCreationTokens": 24366,
+      "landed": true
     },
     {
       "id": "task-08",
