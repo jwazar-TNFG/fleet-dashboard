@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T04:17:57Z",
+  "updated_at": "2026-07-16T04:17:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2192,11 +2192,13 @@
     {
       "id": "task-139",
       "phase": "phase-36",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-138"
       ],
-      "name": "RND-167: widen deterministic intent regexes for common fall-through phrasings (gap B)"
+      "name": "RND-167: widen deterministic intent regexes for common fall-through phrasings (gap B)",
+      "lastActivity": "2026-07-16T04:17:59Z",
+      "startedAt": "2026-07-16T04:17:59Z"
     },
     {
       "id": "task-140",
