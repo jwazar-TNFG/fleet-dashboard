@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:59:41Z",
+  "updated_at": "2026-07-16T14:59:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -256,15 +256,16 @@
       "description": "**task-12 — Dashboard Frontend A: type dropdown, note/assign perms, detail panel (RND-174 / RND-178 / RND-172 / RND-179)**\n\n**Objective**\n\nWire the queue page frontend to the new backend: a request-`type` dropdown\n(#6), note-by-anyone + assign-supervisor-only controls (#10/#4), and a request\ndetail panel that shows the joined lead/case info (reusing the `@info` field\nlayout), the change history, and attachments (#11).\n\n**Files in scope**\n\n- `sources/dashboard/public/retention/queue.html`\n- `sources/dashboard/public/retention/js/requests.js`\n- `sources/dashboard/public/retention/css/dashboard.css`\n- (read) `sources/dashboard/public/retention/js/auth.js`,\n  `js/common.js`, `js/supabase-client.js` for the existing patterns.\n\nImplement:\n- **Type dropdown (#6):** in the detail/row UI, a dropdown of the 9 request-type\n  options (see SPEC.md). Setting it PATCHes the request type via the backend.\n  (Add/confirm a backend set-type call; if none exists, use the status/note\n  pattern.) Optional — blank allowed.\n- **Note anyone (#4/#10):** any allowed user can add a note; the note control is\n  visible to submitters + retention. Calls the …\n\n**Acceptance criteria**\n\n- Type dropdown lists the 9 options and persists a selection via the backend.\n- Note control works for a submitter and for retention.\n- Assign control is hidden/disabled for `retention` role; shown for supervisor/admin.\n- Detail panel renders the joined lead/case fields (matching the @info sections),\n  the history timeline, and attachments; no-match shows the clean message.\n- `eslint` passes; any DOM/unit tests you add pass. Bump the `?v=` cache-bust on\n  edited client assets referenced in the HTML.\n\n**Reference**\n\n- SPEC.md Q6/Q8/Q9 (#6), Q6/Q18 (#4/#10), Q19–Q22 (#11); the 9 type options list.\n- Backend: task-09 `/access`, task-10 `/requests/:id/detail`, existing\n  `/requests/:id/note`, `/assign`.\n- `sources/bot/detail_formatters.py` (the field layout to mirror);\n  `sources/dashboard/public/retention/*`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-12.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-12.md",
       "startedAt": "2026-07-16T14:46:19Z",
-      "lastActivity": "2026-07-16T14:59:41Z",
-      "finishedAt": "2026-07-16T14:59:41Z",
-      "durationSeconds": 802,
+      "lastActivity": "2026-07-16T14:59:51Z",
+      "finishedAt": "2026-07-16T14:59:51Z",
+      "durationSeconds": 812,
       "costUSD": 3.4665,
       "numTurns": 57,
       "inputTokens": 98,
       "outputTokens": 50555,
       "cacheReadTokens": 3049632,
-      "cacheCreationTokens": 108131
+      "cacheCreationTokens": 108131,
+      "landed": true
     },
     {
       "id": "task-13",
