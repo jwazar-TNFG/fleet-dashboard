@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:09:09Z",
+  "updated_at": "2026-07-16T14:14:50Z",
   "phases": [
     {
       "id": "phase-0",
@@ -157,13 +157,21 @@
       "id": "task-08",
       "name": "ITEM#8 Performance API (RND-176)",
       "phase": "phase-3",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-01"
       ],
       "description": "Per-user status counts + resolved-today + resolved-this-week + Unassigned aggregate; role-scoped.",
       "startedAt": "2026-07-16T14:09:09Z",
-      "lastActivity": "2026-07-16T14:09:09Z"
+      "lastActivity": "2026-07-16T14:14:50Z",
+      "finishedAt": "2026-07-16T14:14:50Z",
+      "durationSeconds": 341,
+      "costUSD": 0.9278,
+      "numTurns": 28,
+      "inputTokens": 44,
+      "outputTokens": 17069,
+      "cacheReadTokens": 549708,
+      "cacheCreationTokens": 35960
     },
     {
       "id": "task-09",
