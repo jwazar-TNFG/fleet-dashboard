@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T02:24:14Z",
+  "updated_at": "2026-07-16T03:05:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -152,6 +152,11 @@
     {
       "id": "phase-35",
       "name": "Round 28 - Verdict Error-State Fidelity + HUD Run-Banner Resync + Session Reaper Repair + Summary Resolution + RUN MODE Latch",
+      "status": "pending"
+    },
+    {
+      "id": "phase-36",
+      "name": "Round 29 \u2014 Proving Ground + Voice UX (TEST-tab STEP re-arm, Halt reposition, orb speech-end sync, Briefing button A1, Meeting Deliver button A2, intent-regex widenings B, boundary catalog items B)",
       "status": "pending"
     }
   ],
@@ -2115,10 +2120,64 @@
     },
     {
       "id": "task-134",
-      "phase": "phase-35",
+      "phase": "phase-36",
       "status": "pending",
       "lastActivity": "2026-07-16T01:12:00Z",
       "name": "RND-162: TEST tab stays minimized across STEP boundaries (no forced re-arm)"
+    },
+    {
+      "id": "task-135",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-134"
+      ],
+      "name": "RND-163: move the Halt button clear of the voice captions"
+    },
+    {
+      "id": "task-136",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-135"
+      ],
+      "name": "RND-164: sync voice/orb speaking animation to actual speech end"
+    },
+    {
+      "id": "task-137",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-136"
+      ],
+      "name": "RND-165: Briefing HUD button (close D-3 parity gap A1)"
+    },
+    {
+      "id": "task-138",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-137"
+      ],
+      "name": "RND-166: Meeting DELIVER button emitting meeting.deliver (close D-3 gap A2)"
+    },
+    {
+      "id": "task-139",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-138"
+      ],
+      "name": "RND-167: widen deterministic intent regexes for common fall-through phrasings (gap B)"
+    },
+    {
+      "id": "task-140",
+      "phase": "phase-36",
+      "status": "pending",
+      "depends_on": [
+        "task-139"
+      ],
+      "name": "RND-168: add negative/boundary Proving Ground catalog items PG-068..076 (gap B)"
     }
   ]
 }
