@@ -16,5 +16,11 @@
     "name": "War Room v2 (VERA HUD)",
     "repo": "jwazar-TNFG/warroom-v2",
     "description": "Jarvis-style ops HUD for Zeri \u2014 Vera-driven, multi-monitor, voice + Telegram (Electron on Mac mini)"
+  },
+  {
+    "slug": "mercury-retention-upgrade",
+    "name": "Mercury Retention Upgrade",
+    "repo": "jwazar-TNFG/mercury-retention-upgrade",
+    "description": "12-item Mercury @help bot (TNFG01) + Retention Command Center tile (analyst01) upgrade. Pipeline builds/tests extracted copies; Virgil deploys to live under Jon's order."
   }
 ]

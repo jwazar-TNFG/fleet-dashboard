@@ -1,0 +1,171 @@
+{
+  "name": "Mercury Retention Upgrade",
+  "slug": "mercury-retention-upgrade",
+  "repo": "jwazar-TNFG/mercury-retention-upgrade",
+  "updated_at": "2026-07-16T12:46:55Z",
+  "phases": [
+    {
+      "id": "phase-0",
+      "name": "Repo & CI Readiness"
+    },
+    {
+      "id": "phase-1",
+      "name": "Data Model"
+    },
+    {
+      "id": "phase-2",
+      "name": "Bot Features"
+    },
+    {
+      "id": "phase-3",
+      "name": "Dashboard Backend"
+    },
+    {
+      "id": "phase-4",
+      "name": "Dashboard Frontend"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-00",
+      "name": "Repo & CI readiness (pytest + node test/eslint harness, ci-gate)",
+      "phase": "phase-0",
+      "status": "pending",
+      "depends_on": [],
+      "description": "Establish the testing contract every other task must satisfy: a Python pytest harness for sources/bot with a conftest that mocks Supabase + Slack (no network), a Node test/lint harness for sources/dashboard, and .github/workflows/ci.yml (ci-gate) that runs both."
+    },
+    {
+      "id": "task-01",
+      "name": "Data model: validate migration vs scratch DB + data-layer shims",
+      "phase": "phase-1",
+      "status": "pending",
+      "depends_on": [
+        "task-00"
+      ],
+      "description": "Validate db/001_phase0_migration.sql against a local scratch Postgres in CI and add data-layer shims for the new columns/table in sources/bot and sources/dashboard. NO prod writes."
+    },
+    {
+      "id": "task-02",
+      "name": "ITEM#1 5\u20136 digit lead IDs (RND-169)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Accept 5\u20136 digit lead IDs; reject other lengths / non-numeric."
+    },
+    {
+      "id": "task-03",
+      "name": "ITEM#2 dedupe by id_lead + reopen (RND-170)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Dedupe on id_lead: append timestamped note to existing request instead of new; reopen Resolved/Completed \u2192 In Progress; write request_history."
+    },
+    {
+      "id": "task-04",
+      "name": "ITEM#3 files/images \u2192 Supabase Storage (RND-171)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Download Slack files, upload to mercury-attachments bucket, record into requests.attachments; thread-reply / ask-for-id logic; new 'file #N' command."
+    },
+    {
+      "id": "task-05",
+      "name": "ITEM#4 standalone notes (RND-172)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Decouple note from status change; note-by-id command available to submitters too."
+    },
+    {
+      "id": "task-06",
+      "name": "ITEM#5 history writes + @help history #N (RND-173)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Write request_history on every claim/assign/status/note/type/reopen; new '@help history #N' command."
+    },
+    {
+      "id": "task-07",
+      "name": "ITEM#6-display request_type in bot output (RND-174)",
+      "phase": "phase-2",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Bot DISPLAYS request_type in status/detail output (dashboard-only to set)."
+    },
+    {
+      "id": "task-08",
+      "name": "ITEM#8 Performance API (RND-176)",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Per-user status counts + resolved-today + resolved-this-week + Unassigned aggregate; role-scoped."
+    },
+    {
+      "id": "task-09",
+      "name": "ITEM#9 roles + access-filtering API (RND-177)",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "retention/supervisor/admin model; server-side self-scoping for retention; mercury_users-driven allowlist; assign restricted to supervisor/admin."
+    },
+    {
+      "id": "task-10",
+      "name": "ITEM#11 detail lead-join + history API (RND-179)",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "Join id_lead \u2192 rep_logs/leads returning the full @info field set + the request_history; clean not-found marker; office from the lead lookup."
+    },
+    {
+      "id": "task-11",
+      "name": "ITEM#12 filters API (RND-180)",
+      "phase": "phase-3",
+      "status": "pending",
+      "depends_on": [
+        "task-01"
+      ],
+      "description": "/requests accepts submitter/office/assigned_to/status/request_type/date + lead attrs + free-text lead search; filters AND-combine."
+    },
+    {
+      "id": "task-12",
+      "name": "Dashboard frontend A: type dropdown, notes/assign perms, detail panel (RND-174/178/172/179)",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": [
+        "task-07",
+        "task-09",
+        "task-10"
+      ],
+      "description": "queue.html + js/requests.js: type dropdown (#6), note-anyone / assign-supervisor-only (#10/#4), detail panel reusing @info layout for lead+history+attachments (#11)."
+    },
+    {
+      "id": "task-13",
+      "name": "Dashboard frontend B: Performance tab + role-gated tabs (RND-176/177)",
+      "phase": "phase-4",
+      "status": "pending",
+      "depends_on": [
+        "task-08",
+        "task-09"
+      ],
+      "description": "performance.html + js/performance.js: per-user cards + Unassigned card (#8); tab gating by role (#9/#16) driven by mercury_users; bump ?v=."
+    }
+  ]
+}
