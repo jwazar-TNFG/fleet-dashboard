@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T01:40:00Z",
+  "updated_at": "2026-07-16T01:57:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2080,10 +2080,13 @@
     {
       "id": "task-131",
       "phase": "phase-35",
-      "status": "in_progress",
-      "lastActivity": "2026-07-16T01:35:49Z",
+      "status": "completed",
+      "lastActivity": "2026-07-16T01:57:45Z",
       "startedAt": "2026-07-16T01:35:49Z",
-      "name": "RND-159: session reaper actually reaps (repair RND-149 regression)"
+      "name": "RND-159: session reaper actually reaps (repair RND-149 regression)",
+      "landed": false,
+      "finishedAt": "2026-07-16T01:57:45Z",
+      "durationSeconds": 1316
     },
     {
       "id": "task-132",
