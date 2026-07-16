@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:05:05Z",
+  "updated_at": "2026-07-16T14:05:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -121,15 +121,16 @@
       ],
       "description": "Write request_history on every claim/assign/status/note/type/reopen; new '@help history #N' command.",
       "startedAt": "2026-07-16T13:58:04Z",
-      "lastActivity": "2026-07-16T14:05:05Z",
-      "finishedAt": "2026-07-16T14:05:05Z",
-      "durationSeconds": 421,
+      "lastActivity": "2026-07-16T14:05:13Z",
+      "finishedAt": "2026-07-16T14:05:13Z",
+      "durationSeconds": 429,
       "costUSD": 1.6129,
       "numTurns": 38,
       "inputTokens": 50,
       "outputTokens": 25007,
       "cacheReadTokens": 1132393,
-      "cacheCreationTokens": 67205
+      "cacheCreationTokens": 67205,
+      "landed": true
     },
     {
       "id": "task-07",
