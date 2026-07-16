@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:34:07Z",
+  "updated_at": "2026-07-16T13:34:09Z",
   "phases": [
     {
       "id": "phase-0",
@@ -84,11 +84,13 @@
       "id": "task-04",
       "name": "ITEM#3 files/images \u2192 Supabase Storage (RND-171)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Download Slack files, upload to mercury-attachments bucket, record into requests.attachments; thread-reply / ask-for-id logic; new 'file #N' command."
+      "description": "Download Slack files, upload to mercury-attachments bucket, record into requests.attachments; thread-reply / ask-for-id logic; new 'file #N' command.",
+      "startedAt": "2026-07-16T13:34:09Z",
+      "lastActivity": "2026-07-16T13:34:09Z"
     },
     {
       "id": "task-05",
