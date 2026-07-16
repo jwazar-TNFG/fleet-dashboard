@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T03:15:20Z",
+  "updated_at": "2026-07-16T03:24:31Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2148,13 +2148,16 @@
     {
       "id": "task-136",
       "phase": "phase-36",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-135"
       ],
       "name": "RND-164: sync voice/orb speaking animation to actual speech end",
-      "lastActivity": "2026-07-16T03:15:20Z",
-      "startedAt": "2026-07-16T03:15:20Z"
+      "lastActivity": "2026-07-16T03:24:31Z",
+      "startedAt": "2026-07-16T03:15:20Z",
+      "landed": false,
+      "finishedAt": "2026-07-16T03:24:31Z",
+      "durationSeconds": 551
     },
     {
       "id": "task-137",
