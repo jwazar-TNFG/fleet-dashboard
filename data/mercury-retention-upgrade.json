@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:30:38Z",
+  "updated_at": "2026-07-16T15:40:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -295,7 +295,7 @@
       "id": "task-14",
       "name": "Refresh @help help listing (role-aware capstone) (RND-183)",
       "phase": "phase-2",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-04",
         "task-05",
@@ -305,7 +305,15 @@
       "description": "**task-14 — Refresh the `@help help` listing (role-aware capstone) (RND-183)**\n\n**Objective**\n\nRewrite the hardcoded `@help help` listing in `handle_help` so it reflects the\nFULL, final command set delivered by this build, gated by the new\nretention / supervisor / admin role model. This is a documentation-in-lockstep\ncapstone: several earlier tasks add or widen user-facing `@help` commands but do\nNOT touch the help text, so without this task those commands ship functional but\ninvisible in `@help help`.\n\nCommands that must now appear (added/changed by earlier tasks):\n- `@help history #N`      — view change history (task-06). Submitter of #N OR\n                            retention/supervisor/admin.\n- `@help file #N`         — attach the posted file(s) to request N (task-04).\n- `@help note #N [text]`  — now available to the ORIGINAL SUBMITTER on their own\n                            request, not just retention (task-05).\n- request_type awareness  — the dashboard-only type dropdown e …\n\n**Requirements**\n\n1. **Base (all users)** section keeps: submit (5–6 digit lead ID), status,\n   status #N, my requests, complete #N. ADD the submitter-accessible\n   `note #N [text]` here (it is no longer retention-only). ADD `history #N`\n   (submitter can view their own request's history). ADD `file #N` (attach a\n   posted file to a request the user can act on).\n2. **Role-aware extra section.** The current code appends a \"Retention Team\n   Commands\" block when `USE_SUPABASE and is_retention_team(user_id)`. Preserve\n   that pattern but make it reflect the NEW role model:\n   - Resolve the caller's role via the task-09 role helper / `mercury_users`\n     (retention / supervisor / admin). If a direct helper is not importable in\n     the bot, fall back to `is_retention_team(user_id)` for the team block and\n     `is_assignment_admin(user_id)` (widened to supervisor+admin) for the\n     assign line.\n   - Team block (retention/supervisor/admin) lists: queue, assigned, claim #N,\n     update #N <status>, resolve #N [note], note #N, history #N.\n   - Assign/reassign line (`assign #N @user`) shown ONLY to supervisor/admin\n     (mirror the existing `is_assignment_admin` gate used by the assign command\n     so the help text matches what the user can actually run).\n3. Keep the existing Slack mrkdwn formatting style (bold `*...*`, bullet `•`,\n   the `_Tip: ..._` footer). Keep messages concise.\n4. Do not invent commands that do not exist in the dispatch. Every line in the\n   help text MUST correspond to a real handled command in `handle_help`.\n\n**Files in scope**\n\n- `sources/bot/handlers.py` → `handle_help`, ONLY the `help_text` string block\n  (the branch guarded by `request_text in ('help','test','?','commands',...)`).\n  Do NOT change any command dispatch/parse logic — this task is text only.\n\n**Acceptance criteria**\n\n- `@help help` (and aliases `commands`, `?`, etc.) for a NON-retention submitter\n  lists: submit, status, status #N, my requests, note #N (own request),\n  history #N (own request), complete #N, file #N — and does NOT show queue/\n  assign/claim.\n- For a retention (non-admin) user: the team block additionally shows queue,\n  assigned, claim #N, update #N, resolve #N, history #N — but NOT\n  `assign #N @user`.\n- For a supervisor/admin: the team block additionally shows `assign #N @user`.\n- Every command listed is one that `handle_help` actually parses and handles.\n- No dispatch/parse logic changed; only the `help_text` string(s).\n- Existing tests pass; add/extend a test (e.g. `tests/test_help_listing.py`)\n  asserting: submitter listing contains \"history\" and \"file\" and \"note\"; the\n  assign line only appears under the admin/supervisor gate (mock the role\n  helpers). Mock Slack/Supabase; no network.\n\n**Reference**\n\n- `sources/bot/handlers.py` `handle_help` (help_text block ~lines 274–312);\n  role gates `is_retention_team`, `is_assignment_admin`.\n- task-04 (`file #N`), task-05 (submitter `note #N`), task-06 (`history #N`),\n  task-09 (retention/supervisor/admin role model + widened assign gate).\n- SPEC.md Q14/Q18 (roles + who may assign).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-14.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-14.md",
       "startedAt": "2026-07-16T15:30:38Z",
-      "lastActivity": "2026-07-16T15:30:38Z"
+      "lastActivity": "2026-07-16T15:40:33Z",
+      "finishedAt": "2026-07-16T15:40:33Z",
+      "durationSeconds": 595,
+      "costUSD": 1.5554,
+      "numTurns": 59,
+      "inputTokens": 104,
+      "outputTokens": 22751,
+      "cacheReadTokens": 1361484,
+      "cacheCreationTokens": 48559
     }
   ]
 }
