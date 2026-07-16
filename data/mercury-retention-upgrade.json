@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:08:28Z",
+  "updated_at": "2026-07-16T15:30:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -82,10 +82,10 @@
       ],
       "description": "**task-03 — ITEM#2: Dedupe by id_lead + reopen (RND-170)**\n\n**Objective**\n\nPrevent duplicate requests for the same lead. Per SPEC.md Q2/Q3: store the lead\nid on create (already wired), and when a NEW `@help` submission carries an\n`id_lead` that already exists on a request, **append a timestamped note to that\nexisting request instead of creating a new one**. If the matched request is\n`Resolved` or `Completed`, **reopen** it (set status → `In Progress`). Write a\n`request_history` row for the dedupe/reopen.\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - Add `find_open_or_recent_request_by_lead(id_lead)` (or similar) that returns\n    the most relevant existing request for an `id_lead` (define + document the\n    match rule; prefer the most recently updated request for that lead).\n  - Add `append_note_and_maybe_reopen(request, note_text, actor, actor_name)`\n    that appends a timestamped note (reuse the existing note-append format),\n    and if the request status is `Resolved`/`Completed`, sets it to\n    `In Progress`. Write a `request_history` row (`action='reopen'` when it\n    reopens, `action='note'` otherwise) via the task-01 `add_history` shim.\n- `sources/bot/handlers.py`:\n  - In the CREATE NEW REQU …\n\n**Acceptance criteria**\n\n- New submission with a lead id that has NO existing request → creates a new\n  request (unchanged behaviour).\n- New submission with a lead id that HAS an existing open request → appends a\n  timestamped note, does NOT create a new request, writes a `note`\n  `request_history` row.\n- If the matched request was `Resolved`/`Completed` → status becomes\n  `In Progress` and a `reopen` `request_history` row is written.\n- The bot reply clearly states it updated/reopened request #N.\n- Supabase + Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q2, Q3 (#2 dedupe + reopen, RND-170).\n- `sources/bot/handlers.py` CREATE NEW REQUEST branch + `create_help_request`.\n- `sources/bot/supabase_service.py` note-append format in `add_request_note` /\n  `update_request_status`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-03.md)",
       "startedAt": "2026-07-16T13:29:11Z",
-      "lastActivity": "2026-07-16T13:34:07Z",
-      "finishedAt": "2026-07-16T13:34:07Z",
+      "lastActivity": "2026-07-16T15:30:10Z",
+      "finishedAt": "2026-07-16T15:30:10Z",
       "landed": true,
-      "durationSeconds": 296,
+      "durationSeconds": 7259,
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-03.md"
     },
     {
