@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T03:15:10Z",
+  "updated_at": "2026-07-16T03:15:18Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2138,11 +2138,12 @@
         "task-134"
       ],
       "name": "RND-163: move the Halt button clear of the voice captions",
-      "lastActivity": "2026-07-16T03:15:10Z",
+      "lastActivity": "2026-07-16T03:15:18Z",
       "startedAt": "2026-07-16T03:03:26Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-16T03:15:10Z",
-      "durationSeconds": 704
+      "durationSeconds": 704,
+      "mergedAt": "2026-07-16T03:15:18Z"
     },
     {
       "id": "task-136",
