@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:38:56Z",
+  "updated_at": "2026-07-16T14:38:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -121,13 +121,13 @@
       "id": "task-06",
       "name": "ITEM#5 history writes + @help history #N (RND-173)",
       "phase": "phase-2",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
       "description": "**task-06 — ITEM#5: Change history + `@help history #N` (RND-173)**\n\n**Objective**\n\nTrack ALL changes to a request in `request_history` and expose them via a new\n`@help history #N` bot command. Per SPEC.md Q7.\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - Instrument every mutating path to write a `request_history` row via the\n    task-01 `add_history` shim: `claim_request`, `assign_request`,\n    `update_request_status`, `add_request_note`, `complete_request`, request\n    `type` changes, and reopen (from task-03). Each row records\n    `actor`, `actor_name`, `action`, `field`, `old_value`, `new_value`.\n  - Add `get_request_history(request_number)` reading the NEW `request_history`\n    table (ordered by `created_at`) and a `format_history(rows)` helper for\n    Slack output. (The old `request_status_history`-based function may be left\n    or superseded — prefer the new table.)\n- `sources/bot/handlers.py`: …\n\n**Acceptance criteria**\n\n- Claim/assign/status/note/type/reopen each write a `request_history` row with\n  the correct `action` and old/new values (proven with mocked Supabase).\n- `@help history #N` returns a readable, time-ordered history.\n- Access: submitter of #N or retention/supervisor/admin can view; others cannot.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q7 (#5 history, RND-173); task-01 `add_history` shim.\n- `sources/bot/supabase_service.py` mutating functions + existing\n  `log_status_change`/`get_request_history`; `sources/bot/handlers.py` command\n  parsing.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-06.md)",
-      "startedAt": "2026-07-16T13:58:04Z",
-      "lastActivity": "2026-07-16T14:05:13Z",
+      "startedAt": "2026-07-16T14:38:58Z",
+      "lastActivity": "2026-07-16T14:38:58Z",
       "finishedAt": "2026-07-16T14:05:13Z",
       "durationSeconds": 429,
       "costUSD": 1.6129,
