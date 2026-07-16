@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:42:42Z",
+  "updated_at": "2026-07-16T14:42:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -149,9 +149,9 @@
       ],
       "description": "**task-07 — ITEM#6 (display): Bot displays request_type (RND-174)**\n\n**Objective**\n\nThe request `type` is set ONLY on the dashboard (a dropdown). The bot must be\nable to DISPLAY the type in its status/detail output, but never set it. Per\nSPEC.md Q8/Q9 (type is optional and never blocks submit/resolve).\n\n**Files in scope**\n\n- `sources/bot/supabase_service.py`:\n  - In `format_request_detail` (and `format_request_summary` where sensible),\n    show the `request_type` when present. When absent/NULL, omit it gracefully\n    (do not print \"None\").\n- `sources/bot/handlers.py`:\n  - No new command; ensure the `@help status #N` detail path surfaces the type\n    via the formatter. Confirm the bot NEVER writes `request_type`.\n- Tests: `sources/bot/tests/test_type_display.py`.\n\n**Acceptance criteria**\n\n- A request WITH a `request_type` shows it in the detail output.\n- A request WITHOUT a type shows no type line (no \"None\"/empty label).\n- No bot code path sets/mutates `request_type`.\n- Supabase/Slack mocked; no network. Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q8, Q9 (#6 type, RND-174); the 9 dropdown options list in SPEC.md.\n- `sources/bot/supabase_service.py` `format_request_detail` /\n  `format_request_summary`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-07.md)",
       "startedAt": "2026-07-16T14:40:56Z",
-      "lastActivity": "2026-07-16T14:42:42Z",
-      "finishedAt": "2026-07-16T14:42:42Z",
-      "durationSeconds": 106,
+      "lastActivity": "2026-07-16T14:42:47Z",
+      "finishedAt": "2026-07-16T14:42:47Z",
+      "durationSeconds": 111,
       "costUSD": 0.2008,
       "numTurns": 14,
       "inputTokens": 20,
