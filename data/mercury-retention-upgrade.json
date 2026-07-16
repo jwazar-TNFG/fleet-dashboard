@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:30:23Z",
+  "updated_at": "2026-07-16T15:30:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -216,10 +216,10 @@
       ],
       "description": "**task-10 — ITEM#11: Detail lead-join + history API (RND-179)**\n\n**Objective**\n\nAdd a Retention Command Center endpoint that, given a request, joins its\n`id_lead` to the live lead/case data and returns the FULL `@info` field set,\nplus the request's `request_history`. A lead id with no matching record returns\na clean \"not found\" marker (not an error). Office is derived from the lead/case\nlookup, NOT the employees table. Per SPEC.md Q19/Q20/Q21/Q22.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - Add `GET /api/retention/requests/:id/detail`. Steps:\n    1. Load the request; get its `id_lead`.\n    2. Look up the case first (`rep_logs` by `idlead`), then the lead\n       (`leads` by `idLead`) — mirror the bot's `@info id:` resolution order.\n    3. Return the FULL `@info` field set for the matched record. The FIELD\n       CONTRACT is the set produced by `sources/bot/detail_formatters.py`\n       (`format_case_detail_enhanced` / `format_lead_detail_enhanced`):\n       quick view (name, DOA, color tag, converted value, attorney, rep, tx\n       location, legal/clinical status, visits), rep info (rep, rep phone,\n       supervisor, supervisor phone) …\n\n**Acceptance criteria**\n\n- Endpoint returns the full `@info` field set (structured) for a matching lead/case.\n- Field set matches the `detail_formatters.py` contract (no invented fields).\n- `request_history` is included.\n- No-match lead id → `lead_match:false` + clean message, HTTP 200 (no 500).\n- Office is taken from the lead/case record, not employees.\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q19, Q20, Q21, Q22 (#11 detail lead+history, RND-179).\n- `sources/bot/detail_formatters.py` (THE field contract to reuse).\n- `sources/bot/handlers.py` `@info id:` resolution order (case → lead).\n- `sources/dashboard/routes/retention.js` `/requests/:id`.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-10.md)",
       "startedAt": "2026-07-16T14:22:15Z",
-      "lastActivity": "2026-07-16T14:30:37Z",
+      "lastActivity": "2026-07-16T15:30:26Z",
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-10.md",
-      "finishedAt": "2026-07-16T14:30:37Z",
-      "durationSeconds": 502,
+      "finishedAt": "2026-07-16T15:30:26Z",
+      "durationSeconds": 4091,
       "landed": true
     },
     {
