@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:25:44Z",
+  "updated_at": "2026-07-16T13:25:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -48,8 +48,9 @@
       ],
       "description": "Validate db/001_phase0_migration.sql against a local scratch Postgres in CI and add data-layer shims for the new columns/table in sources/bot and sources/dashboard. NO prod writes.",
       "startedAt": "2026-07-16T13:23:19Z",
-      "lastActivity": "2026-07-16T13:25:44Z",
-      "finishedAt": "2026-07-16T13:25:44Z"
+      "lastActivity": "2026-07-16T13:25:47Z",
+      "finishedAt": "2026-07-16T13:25:47Z",
+      "landed": true
     },
     {
       "id": "task-02",
