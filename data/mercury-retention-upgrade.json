@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:30:33Z",
+  "updated_at": "2026-07-16T15:30:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -280,9 +280,9 @@
       "description": "**task-13 — Dashboard Frontend B: Performance tab + role-gated tabs (RND-176 / RND-177)**\n\n**Objective**\n\nAdd the Performance tab (per-user cards + an Unassigned card) and gate the tile's\ntabs by role: regular `retention` users see Request / Info / Performance only;\nsupervisor/admin see all tabs (incl. Staffing/Pulse). The tab allowlist is\ndriven by `mercury_users` (via the backend `/access` endpoint). Per SPEC.md\nQ11/Q12/Q16/Q17.\n\n**Files in scope**\n\n- NEW `sources/dashboard/public/retention/performance.html`\n- NEW `sources/dashboard/public/retention/js/performance.js`\n- Nav wiring in the existing pages\n  (`queue.html`, `staffing.html`, `info.html`) — add the Performance tab and\n  apply role gating to the nav.\n- `sources/dashboard/public/retention/css/dashboard.css` (cards styling).\n- (read) `js/auth.js`, `js/common.js`, `js/supabase-client.js`.\n\nImplement:\n- **Performance tab (#8):** `performance.js` calls\n  `GET /api/retention/performance` and renders one card per user with status\n  counts + resolved-today + resolved-this-week, plus a distinct **Unassigned**\n  card for unclaimed backlog. A `retention` user sees only their own card\n  (b …\n\n**Acceptance criteria**\n\n- Performance page renders per-user cards + an Unassigned card from the API.\n- `retention` role: Staffing/Pulse tabs are hidden; only Requests/Info/\n  Performance show. supervisor/admin: all tabs show.\n- Tab visibility is driven by the backend `/access` role (mercury_users), not a\n  static array.\n- `?v=` bumped on edited client assets.\n- `eslint` passes; any tests you add pass.\n\n**Reference**\n\n- SPEC.md Q11, Q12, Q16, Q17 (#8 Performance, #9 tab gating, RND-176/177).\n- Backend: task-08 `/performance`, task-09 `/access`.\n- `sources/dashboard/public/retention/queue.html` nav structure;\n  `js/supabase-client.js` (`__MERCURY_ALLOWLIST`).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-13.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-13.md",
       "startedAt": "2026-07-16T14:59:53Z",
-      "lastActivity": "2026-07-16T15:08:28Z",
-      "finishedAt": "2026-07-16T15:08:28Z",
-      "durationSeconds": 515,
+      "lastActivity": "2026-07-16T15:30:35Z",
+      "finishedAt": "2026-07-16T15:30:35Z",
+      "durationSeconds": 1842,
       "costUSD": 1.8089,
       "numTurns": 47,
       "inputTokens": 66,
