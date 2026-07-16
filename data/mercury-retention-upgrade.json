@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T15:40:33Z",
+  "updated_at": "2026-07-16T15:41:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -98,9 +98,11 @@
       ],
       "description": "**task-04 — ITEM#3: Files/images → Supabase Storage (RND-171)**\n\n**Objective**\n\nLet the Mercury `@help` bot capture Slack file/image attachments and store them\ndurably in the private Supabase Storage bucket `mercury-attachments`, recording\nmetadata into `requests.attachments`. Per SPEC.md Q4/Q5.\n\n**Files in scope**\n\n- `sources/bot/slack_client.py`:\n  - Add `download_slack_file(file_obj_or_url, token)` that fetches a Slack file's\n    bytes via the Slack API (uses the file's `url_private_download` with the bot\n    token). Return `(bytes, filename, mime, size)`.\n  - Add `upload_attachment_to_storage(request_number, filename, data, mime)` that\n    uploads to the `mercury-attachments` bucket at a path like\n    `requests/<request_number>/<uuid>-<filename>` and returns the stored object\n    path (NOT a public URL — the bucket is private). Use the Supabase client;\n    keep the actual client call thin so it is mockable.\n- `sources/bot/supabase_service.py`:\n  - Add `add_attachment(request_number, {filename,url,mi …\n\n**Acceptance criteria**\n\n- `file #N <with file>` attaches the file to request N and records a well-formed\n  attachment object in `requests.attachments`; writes an `attach` history row.\n- `file` with no valid `#N` replies asking for the request id and saves nothing.\n- File-only post in a request thread attaches to that request.\n- File-only NEW post with no id → bot asks for the lead id (saves nothing).\n- Slack download + Supabase Storage are mocked; NO network, NO real bucket writes.\n- Existing tests pass.\n\n**Reference**\n\n- SPEC.md Q4, Q5 (#3 files/images, RND-171); `db/README.md` (bucket + signed URLs).\n- `sources/bot/slack_client.py` (existing Slack API call pattern);\n  `sources/bot/handlers.py` (`note #N` command as a shape reference).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-04.md)",
       "startedAt": "2026-07-16T13:34:09Z",
-      "lastActivity": "2026-07-16T13:42:51Z",
-      "finishedAt": "2026-07-16T13:42:51Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-04.md"
+      "lastActivity": "2026-07-16T15:41:10Z",
+      "finishedAt": "2026-07-16T15:41:10Z",
+      "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-04.md",
+      "landed": true,
+      "durationSeconds": 7621
     },
     {
       "id": "task-05",
