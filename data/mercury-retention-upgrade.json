@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:22:04Z",
+  "updated_at": "2026-07-16T14:22:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -184,15 +184,16 @@
       ],
       "description": "retention/supervisor/admin model; server-side self-scoping for retention; mercury_users-driven allowlist; assign restricted to supervisor/admin.",
       "startedAt": "2026-07-16T14:15:01Z",
-      "lastActivity": "2026-07-16T14:22:04Z",
-      "finishedAt": "2026-07-16T14:22:04Z",
-      "durationSeconds": 423,
+      "lastActivity": "2026-07-16T14:22:13Z",
+      "finishedAt": "2026-07-16T14:22:13Z",
+      "durationSeconds": 432,
       "costUSD": 1.3426,
       "numTurns": 36,
       "inputTokens": 64,
       "outputTokens": 21358,
       "cacheReadTokens": 1032576,
-      "cacheCreationTokens": 46525
+      "cacheCreationTokens": 46525,
+      "landed": true
     },
     {
       "id": "task-10",
