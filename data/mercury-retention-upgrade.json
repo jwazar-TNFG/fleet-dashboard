@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:38:49Z",
+  "updated_at": "2026-07-16T14:38:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -232,15 +232,16 @@
       "description": "**task-11 — ITEM#12: Filters API (RND-180)**\n\n**Objective**\n\nExtend the Retention Command Center `/requests` endpoint to accept a rich set of\nfilter params, including filters derived from the joined lead/case record, plus\nfree-text lead search. Multiple filters combine as **AND**. Per SPEC.md\nQ22/Q23/Q24.\n\n**Files in scope**\n\n- `sources/dashboard/routes/retention.js`:\n  - `GET /api/retention/requests` accepts (all optional) query params:\n    - Request-level: `submitter`, `assigned_to`, `status`, `request_type`,\n      `created_after`, `created_before` (created date range).\n    - Lead-derived (via the `id_lead` → lead/case join from task-10 logic):\n      `office`, `attorney`, `legal_status`, `tx_location` (treatment location).\n    - `q` — free-text search across lead fields (name/phone/attorney/etc.).\n  - Combine ALL provided filters with AND semantics. Request-level filters\n    should be pushed to the DB query where possible; lead-derived filters may be\n    applied after joining each request's lead/case (keep it c …\n\n**Acceptance criteria**\n\n- Each filter param narrows results correctly in isolation.\n- Multiple filters AND-combine (a request must satisfy all provided filters).\n- Lead-derived filters (office/attorney/legal_status/tx_location) use the\n  lead/case join; office comes from the lead/case, not employees.\n- `q` free-text matches across lead fields.\n- Role scoping from task-09 is still enforced.\n- Supabase mocked; no network. Lint + existing tests pass.\n\n**Reference**\n\n- SPEC.md Q22, Q23, Q24 (#12 filters, RND-180).\n- `sources/dashboard/routes/retention.js` `/requests`; task-10 lead-join helper.\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-11.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/mercury-retention-upgrade/blob/main/build/prompts/task-11.md",
       "startedAt": "2026-07-16T14:30:40Z",
-      "lastActivity": "2026-07-16T14:38:49Z",
-      "finishedAt": "2026-07-16T14:38:49Z",
-      "durationSeconds": 489,
+      "lastActivity": "2026-07-16T14:38:56Z",
+      "finishedAt": "2026-07-16T14:38:56Z",
+      "durationSeconds": 496,
       "costUSD": 1.7608,
       "numTurns": 25,
       "inputTokens": 40,
       "outputTokens": 33501,
       "cacheReadTokens": 948748,
-      "cacheCreationTokens": 71592
+      "cacheCreationTokens": 71592,
+      "landed": true
     },
     {
       "id": "task-12",
