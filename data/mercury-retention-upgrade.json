@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T13:34:00Z",
+  "updated_at": "2026-07-16T13:34:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -76,8 +76,9 @@
       ],
       "description": "Dedupe on id_lead: append timestamped note to existing request instead of new; reopen Resolved/Completed \u2192 In Progress; write request_history.",
       "startedAt": "2026-07-16T13:29:11Z",
-      "lastActivity": "2026-07-16T13:34:00Z",
-      "finishedAt": "2026-07-16T13:34:00Z"
+      "lastActivity": "2026-07-16T13:34:07Z",
+      "finishedAt": "2026-07-16T13:34:07Z",
+      "landed": true
     },
     {
       "id": "task-04",
