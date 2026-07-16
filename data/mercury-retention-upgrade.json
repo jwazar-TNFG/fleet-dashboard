@@ -2,7 +2,7 @@
   "name": "Mercury Retention Upgrade",
   "slug": "mercury-retention-upgrade",
   "repo": "jwazar-TNFG/mercury-retention-upgrade",
-  "updated_at": "2026-07-16T14:05:13Z",
+  "updated_at": "2026-07-16T14:05:15Z",
   "phases": [
     {
       "id": "phase-0",
@@ -136,11 +136,13 @@
       "id": "task-07",
       "name": "ITEM#6-display request_type in bot output (RND-174)",
       "phase": "phase-2",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
-      "description": "Bot DISPLAYS request_type in status/detail output (dashboard-only to set)."
+      "description": "Bot DISPLAYS request_type in status/detail output (dashboard-only to set).",
+      "startedAt": "2026-07-16T14:05:15Z",
+      "lastActivity": "2026-07-16T14:05:15Z"
     },
     {
       "id": "task-08",
