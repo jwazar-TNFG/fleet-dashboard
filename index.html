@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Force browsers to revalidate the HTML/JS on every load so shipped fixes
+       take effect immediately (GitHub Pages otherwise lets clients cache the
+       page for up to 10 min, which stranded users on old broken JS). -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>AI Fleet Dev Team — Dashboard</title>
   <style>
     :root {
@@ -1342,11 +1348,11 @@ function renderProject(project) {
       badgeText = 'Not started';
     }
 
-    // Phases render EXPANDED by default so every task row (including completed
-    // phases) stays visible and clickable for its detail modal. Previously we
-    // auto-collapsed fully-completed phases, which hid all prior tasks and made
-    // them unclickable — the phase header remains a manual collapse toggle.
-    const collapsed = '';
+    // Auto-collapse fully-completed phases to keep finished rounds tidy (Jon is
+    // fine with this now that the detail modal works when expanded). The phase
+    // header (▾ chevron) remains a manual toggle to expand and click into any
+    // task. In-progress / failed phases stay open so active work is visible.
+    const collapsed = (phaseCompleted === phaseTotal && phaseFailed === 0) ? ' collapsed' : '';
 
     // Format phase header: "Phase 1 — Foundation" style
     const phaseLabel = phaseNames[phaseName]
