@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T19:19:04Z",
+  "updated_at": "2026-07-19T19:19:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2488,13 +2488,14 @@
     {
       "id": "task-147",
       "phase": "phase-38",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-146"
       ],
       "name": "RND-170: verdict fidelity \u2014 no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)",
-      "lastActivity": "2026-07-19T18:52:39Z",
-      "description": "RND-170: verdict fidelity \u2014 no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-147.md. Linear: RND-201..204. Awaiting Jon build-start order."
+      "lastActivity": "2026-07-19T19:19:19Z",
+      "description": "RND-170: verdict fidelity \u2014 no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-147.md. Linear: RND-201..204. Awaiting Jon build-start order.",
+      "startedAt": "2026-07-19T19:19:19Z"
     },
     {
       "id": "task-148",
