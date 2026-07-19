@@ -1046,6 +1046,25 @@ const STATUS_ICONS = {
   skipped: '⊘'
 };
 
+// GLOBAL formatters — must live at module scope so BOTH renderProject() and
+// showTaskDetail() can use them. (Bug fix: showTaskDetail referenced a
+// formatDuration that was only a local const inside renderProject, so opening
+// the detail modal for any task with costUSD threw ReferenceError and silently
+// failed. After the cost backfill every task has costUSD, which exposed it for
+// all older tasks.)
+function formatDuration(s) {
+  if (!s) return '\u2014';
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
+  if (h > 0) return `${h}h ${m}m`;
+  return m > 0 ? `${m}m ${ss}s` : `${ss}s`;
+}
+function formatTokens(n) {
+  if (!n) return '0';
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toString();
+}
+
 // A completed task is "landed" once its PR is merged to main. Until then it is
 // pipeline-complete but not landed — shown yellow instead of green. `landed`
 // defaults to true for legacy tasks with no flag, so old data stays green.
