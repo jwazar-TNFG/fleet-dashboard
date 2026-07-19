@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-16T04:55:59Z",
+  "updated_at": "2026-07-19T16:10:02Z",
   "phases": [
     {
       "id": "phase-0",
@@ -158,6 +158,11 @@
       "id": "phase-36",
       "name": "Round 29 — Proving Ground + Voice UX (TEST-tab STEP re-arm, Halt reposition, orb speech-end sync, Briefing button A1, Meeting Deliver button A2, intent-regex widenings B, boundary catalog items B)",
       "status": "pending"
+    },
+    {
+      "id": "phase-37",
+      "name": "Round 30 — State-of-the-art chart kit + Signed-by-Office real feed (glow pass, TimeSeriesChart/ColumnBar/AreaChart, ChartCard story-layer, kit-wide cascade, analyst-01 signed-by-office feed + HUD view)",
+      "status": "completed"
     }
   ],
   "tasks": [
@@ -2394,6 +2399,71 @@
       "mergedAt": "2026-07-16T04:55:59Z",
       "description": "**task-140 / RND-168 — Add negative/boundary Proving Ground catalog items (gap B, make the fast-path↔LLM boundary testable)**\n\n**Objective**\n\nAdd these items to `build/proving-ground/catalog.json` (validate against\n`build/proving-ground/catalog.schema.json`; keep the existing 67 intact — this brings the catalog to\n76 items). Use the existing item schema keys: `id, title, testingArea, command, expected, mutation,\npreconditions, tags`.\n\n- **PG-068** (Voice, `intent:range`): \"Vera, today.\" → after task-139 this is now a POSITIVE range flip\n  to TODAY **when no Vera question is pending**. EXPECT: range flips to TODAY. tag `boundary`.\n- **PG-069** (Voice, `intent:search`): \"Vera, find tampa jury verdicts.\" → after task-139 \"find\" is a\n  search verb. EXPECT: web search runs for \"tampa jury verdicts\". tag `boundary`.\n- **PG-070** (Voice, `intent:meeting`): \"Vera, start recording.\" → after task-139 this opens meeting/\n  capture. EXPECT: meeting mode / capture starts. tag `boundary`.\n- **PG-071** (Voice, `intent:panel-assign`): \"Vera, move case status to panel 2.\" → after task-139\n  \" …\n\n**Acceptance criteria**\n\n- `catalog.json` parses as valid JSON and validates against `catalog.schema.json`; total = 76 items;\n  the original 67 are byte-unchanged.\n- Each new item has all required schema keys and an `expected` consistent with post-task-139 behavior.\n- New items are tagged (`boundary` / `button` / `fallthrough`) so they are filterable.\n- `npm run build` clean (if any schema/type checks cover the catalog, they pass).\n\n---\n📄 [Full prompt fed to the build agent →](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md"
+    },
+    {
+      "id": "task-141",
+      "phase": "phase-37",
+      "status": "completed",
+      "depends_on": [
+        "task-140"
+      ],
+      "name": "Glow pass: mid-intensity JARVIS glow across all chart primitives",
+      "lastActivity": "2026-07-19T16:10:02Z",
+      "landed": true,
+      "finishedAt": "2026-07-19T16:10:02Z",
+      "description": "Glow pass: mid-intensity JARVIS glow across all chart primitives\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+    },
+    {
+      "id": "task-142",
+      "phase": "phase-37",
+      "status": "completed",
+      "depends_on": [
+        "task-141"
+      ],
+      "name": "New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year)",
+      "lastActivity": "2026-07-19T16:10:02Z",
+      "landed": true,
+      "finishedAt": "2026-07-19T16:10:02Z",
+      "description": "New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year)\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+    },
+    {
+      "id": "task-143",
+      "phase": "phase-37",
+      "status": "completed",
+      "depends_on": [
+        "task-142"
+      ],
+      "name": "Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines, callout pills, rounded caps, round-tick axes, bezier smoothing",
+      "lastActivity": "2026-07-19T16:10:02Z",
+      "landed": true,
+      "finishedAt": "2026-07-19T16:10:02Z",
+      "description": "Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines, callout pills, rounded caps, round-tick axes, bezier smoothing\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+    },
+    {
+      "id": "task-144",
+      "phase": "phase-37",
+      "status": "completed",
+      "depends_on": [
+        "task-143"
+      ],
+      "name": "Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props",
+      "lastActivity": "2026-07-19T16:10:02Z",
+      "landed": true,
+      "finishedAt": "2026-07-19T16:10:02Z",
+      "description": "Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+    },
+    {
+      "id": "task-145",
+      "phase": "phase-37",
+      "status": "completed",
+      "depends_on": [
+        "task-144"
+      ],
+      "name": "Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view",
+      "lastActivity": "2026-07-19T16:10:02Z",
+      "landed": true,
+      "finishedAt": "2026-07-19T16:10:02Z",
+      "description": "Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
     }
   ]
 }
