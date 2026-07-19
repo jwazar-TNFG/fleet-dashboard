@@ -1349,7 +1349,9 @@ function renderProject(project) {
         : '';
 
       const timeAgo = task.lastActivity ? formatTimeAgo(task.lastActivity) : '';
-      const taskCost = task.costUSD ? formatCost(task.costUSD) : '';
+      // Prefix estimated (backfilled) costs with a tilde so they are visually
+      // distinct from real, captured costs. Real costs render plain.
+      const taskCost = task.costUSD ? (task.costEstimated ? '~' : '') + formatCost(task.costUSD) : '';
 
       // Timing bits: start clock + total duration (live elapsed if in progress).
       const startClock = task.startedAt ? formatClock(task.startedAt) : '';
@@ -1366,7 +1368,7 @@ function renderProject(project) {
       const metaParts = [];
       if (startClock) metaParts.push(`<span class="task-timing">Started ${startClock}</span>`);
       if (durText) metaParts.push(`<span class="task-timing">${durText}</span>`);
-      if (taskCost) metaParts.push(`<span class="task-cost">${taskCost}</span>`);
+      if (taskCost) metaParts.push(`<span class="task-cost"${task.costEstimated ? ' title="Estimated (backfilled from duration × measured rate)"' : ''}>${taskCost}</span>`);
       if (timeAgo) metaParts.push(`<span class="task-time">${timeAgo}</span>`);
       if (deps) metaParts.push(`<span class="task-deps">${deps}</span>`);
       const metaLine = metaParts.length
@@ -2209,11 +2211,14 @@ function showTaskDetail(slug, taskId) {
   if (task.costUSD) {
     const fmtDur = task.durationSeconds ? formatDuration(task.durationSeconds) : '—';
     const fmtTokens = (n) => { if (!n) return '0'; if (n >= 1000000) return (n/1000000).toFixed(1) + 'M'; if (n >= 1000) return (n/1000).toFixed(1) + 'K'; return n.toString(); };
+    const costEst = !!task.costEstimated;
+    const costPrefix = costEst ? '~' : '';
+    const costLbl = costEst ? 'API Cost (estimated)' : 'API Cost (measured)';
     costHtml = `
       <div class="td-section">
-        <div class="td-label">Performance</div>
+        <div class="td-label">Performance${costEst ? ' <span style="color:var(--text-muted);font-weight:400">— estimated from duration × measured rate</span>' : ''}</div>
         <div class="td-cost-grid">
-          <div class="td-cost-cell"><div class="num">$${task.costUSD.toFixed(2)}</div><div class="lbl">API Cost (est.)</div></div>
+          <div class="td-cost-cell"><div class="num">${costPrefix}$${task.costUSD.toFixed(2)}</div><div class="lbl">${costLbl}</div></div>
           <div class="td-cost-cell"><div class="num">${task.numTurns || 0}</div><div class="lbl">Turns</div></div>
           <div class="td-cost-cell"><div class="num">${fmtDur}</div><div class="lbl">Duration</div></div>
           <div class="td-cost-cell"><div class="num">${fmtTokens((task.inputTokens||0)+(task.outputTokens||0))}</div><div class="lbl">Tokens (in+out)</div></div>

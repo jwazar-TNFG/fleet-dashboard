@@ -183,7 +183,12 @@
       "durationSeconds": 222,
       "lastActivity": "2026-07-09T20:28:40Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-00.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-00.md",
+      "costUSD": 0.1852,
+      "inputTokens": 11,
+      "outputTokens": 2446,
+      "cacheReadTokens": 130047,
+      "costEstimated": true
     },
     {
       "id": "task-01",
@@ -199,7 +204,12 @@
       "durationSeconds": 363,
       "lastActivity": "2026-07-09T20:34:45Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-01.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-01.md",
+      "costUSD": 0.3029,
+      "inputTokens": 19,
+      "outputTokens": 4000,
+      "cacheReadTokens": 212644,
+      "costEstimated": true
     },
     {
       "id": "task-02",
@@ -215,7 +225,12 @@
       "durationSeconds": 1560,
       "lastActivity": "2026-07-09T21:00:48Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-02.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-02.md",
+      "costUSD": 1.3017,
+      "inputTokens": 83,
+      "outputTokens": 17193,
+      "cacheReadTokens": 913844,
+      "costEstimated": true
     },
     {
       "id": "task-03",
@@ -231,7 +246,12 @@
       "durationSeconds": 1107,
       "lastActivity": "2026-07-09T21:19:18Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-03.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-03.md",
+      "costUSD": 0.9237,
+      "inputTokens": 59,
+      "outputTokens": 12200,
+      "cacheReadTokens": 648477,
+      "costEstimated": true
     },
     {
       "id": "task-04",
@@ -247,7 +267,12 @@
       "durationSeconds": 454,
       "lastActivity": "2026-07-09T21:26:55Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-04.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-04.md",
+      "costUSD": 0.3788,
+      "inputTokens": 24,
+      "outputTokens": 5003,
+      "cacheReadTokens": 265952,
+      "costEstimated": true
     },
     {
       "id": "task-05",
@@ -263,7 +288,12 @@
       "durationSeconds": 1132,
       "lastActivity": "2026-07-09T21:45:49Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-05.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-05.md",
+      "costUSD": 0.9445,
+      "inputTokens": 60,
+      "outputTokens": 12476,
+      "cacheReadTokens": 663122,
+      "costEstimated": true
     },
     {
       "id": "task-06",
@@ -280,7 +310,12 @@
       "durationSeconds": 895,
       "lastActivity": "2026-07-09T22:00:47Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-06.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-06.md",
+      "costUSD": 0.7468,
+      "inputTokens": 47,
+      "outputTokens": 9864,
+      "cacheReadTokens": 524288,
+      "costEstimated": true
     },
     {
       "id": "task-07",
@@ -297,7 +332,12 @@
       "durationSeconds": 509,
       "lastActivity": "2026-07-09T22:09:18Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-07.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-07.md",
+      "costUSD": 0.4247,
+      "inputTokens": 27,
+      "outputTokens": 5609,
+      "cacheReadTokens": 298170,
+      "costEstimated": true
     },
     {
       "id": "task-08",
@@ -313,7 +353,12 @@
       "durationSeconds": 652,
       "lastActivity": "2026-07-09T22:20:10Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md",
+      "costUSD": 0.544,
+      "inputTokens": 34,
+      "outputTokens": 7185,
+      "cacheReadTokens": 381940,
+      "costEstimated": true
     },
     {
       "id": "task-09",
@@ -330,7 +375,12 @@
       "durationSeconds": 725,
       "lastActivity": "2026-07-09T22:32:22Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-09.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-09.md",
+      "costUSD": 0.6049,
+      "inputTokens": 38,
+      "outputTokens": 7990,
+      "cacheReadTokens": 424703,
+      "costEstimated": true
     },
     {
       "id": "task-10",
@@ -346,7 +396,12 @@
       "durationSeconds": 865,
       "lastActivity": "2026-07-09T22:46:49Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-10.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-10.md",
+      "costUSD": 0.7218,
+      "inputTokens": 46,
+      "outputTokens": 9533,
+      "cacheReadTokens": 506714,
+      "costEstimated": true
     },
     {
       "id": "task-11",
@@ -362,7 +417,12 @@
       "durationSeconds": 449,
       "lastActivity": "2026-07-09T22:54:21Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-11.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-11.md",
+      "costUSD": 0.3746,
+      "inputTokens": 24,
+      "outputTokens": 4948,
+      "cacheReadTokens": 263023,
+      "costEstimated": true
     },
     {
       "id": "task-12",
@@ -378,7 +438,12 @@
       "durationSeconds": 460,
       "lastActivity": "2026-07-09T23:02:04Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-12.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-12.md",
+      "costUSD": 0.3838,
+      "inputTokens": 24,
+      "outputTokens": 5069,
+      "cacheReadTokens": 269466,
+      "costEstimated": true
     },
     {
       "id": "task-13",
@@ -395,7 +460,12 @@
       "durationSeconds": 1215,
       "lastActivity": "2026-07-09T23:22:19Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-13.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-13.md",
+      "costUSD": 1.0138,
+      "inputTokens": 65,
+      "outputTokens": 13391,
+      "cacheReadTokens": 711744,
+      "costEstimated": true
     },
     {
       "id": "task-14",
@@ -413,7 +483,12 @@
       "durationSeconds": 966,
       "lastActivity": "2026-07-09T23:38:28Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-14.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-14.md",
+      "costUSD": 0.806,
+      "inputTokens": 51,
+      "outputTokens": 10646,
+      "cacheReadTokens": 565880,
+      "costEstimated": true
     },
     {
       "id": "task-15",
@@ -429,7 +504,12 @@
       "durationSeconds": 301,
       "lastActivity": "2026-07-09T23:43:29Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-15.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-15.md",
+      "costUSD": 0.2512,
+      "inputTokens": 16,
+      "outputTokens": 3317,
+      "cacheReadTokens": 176325,
+      "costEstimated": true
     },
     {
       "id": "task-16",
@@ -446,7 +526,12 @@
       "durationSeconds": 1052,
       "lastActivity": "2026-07-10T00:01:03Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-16.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-16.md",
+      "costUSD": 0.8778,
+      "inputTokens": 56,
+      "outputTokens": 11594,
+      "cacheReadTokens": 616259,
+      "costEstimated": true
     },
     {
       "id": "task-17",
@@ -463,7 +548,12 @@
       "durationSeconds": 1278,
       "lastActivity": "2026-07-10T00:22:24Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-17.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-17.md",
+      "costUSD": 1.0664,
+      "inputTokens": 68,
+      "outputTokens": 14085,
+      "cacheReadTokens": 748649,
+      "costEstimated": true
     },
     {
       "id": "task-35",
@@ -479,7 +569,12 @@
       "finishedAt": "2026-07-10T06:34:42Z",
       "durationSeconds": 1168,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-35.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-35.md",
+      "costUSD": 0.9746,
+      "inputTokens": 62,
+      "outputTokens": 12873,
+      "cacheReadTokens": 684211,
+      "costEstimated": true
     },
     {
       "id": "task-18",
@@ -495,7 +590,12 @@
       "durationSeconds": 1747,
       "lastActivity": "2026-07-10T00:51:34Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-18.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-18.md",
+      "costUSD": 1.4577,
+      "inputTokens": 93,
+      "outputTokens": 19254,
+      "cacheReadTokens": 1023388,
+      "costEstimated": true
     },
     {
       "id": "task-19",
@@ -512,7 +612,12 @@
       "durationSeconds": 1093,
       "lastActivity": "2026-07-10T01:09:49Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-19.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-19.md",
+      "costUSD": 0.912,
+      "inputTokens": 58,
+      "outputTokens": 12046,
+      "cacheReadTokens": 640276,
+      "costEstimated": true
     },
     {
       "id": "task-20",
@@ -528,7 +633,12 @@
       "durationSeconds": 902,
       "lastActivity": "2026-07-10T01:24:54Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-20.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-20.md",
+      "costUSD": 0.7526,
+      "inputTokens": 48,
+      "outputTokens": 9941,
+      "cacheReadTokens": 528389,
+      "costEstimated": true
     },
     {
       "id": "task-21",
@@ -544,7 +654,12 @@
       "durationSeconds": 1294,
       "lastActivity": "2026-07-10T02:01:13Z",
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-21.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-21.md",
+      "costUSD": 1.0797,
+      "inputTokens": 69,
+      "outputTokens": 14261,
+      "cacheReadTokens": 758022,
+      "costEstimated": true
     },
     {
       "id": "task-22",
@@ -561,7 +676,12 @@
       "finishedAt": "2026-07-10T02:20:15Z",
       "durationSeconds": 1139,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-22.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-22.md",
+      "costUSD": 0.9504,
+      "inputTokens": 61,
+      "outputTokens": 12553,
+      "cacheReadTokens": 667223,
+      "costEstimated": true
     },
     {
       "id": "task-23",
@@ -577,7 +697,12 @@
       "finishedAt": "2026-07-10T02:43:41Z",
       "durationSeconds": 1403,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-23.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-23.md",
+      "costUSD": 1.1707,
+      "inputTokens": 75,
+      "outputTokens": 15463,
+      "cacheReadTokens": 821874,
+      "costEstimated": true
     },
     {
       "id": "task-24",
@@ -594,7 +719,12 @@
       "finishedAt": "2026-07-10T03:02:47Z",
       "durationSeconds": 1144,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-24.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-24.md",
+      "costUSD": 0.9545,
+      "inputTokens": 61,
+      "outputTokens": 12608,
+      "cacheReadTokens": 670152,
+      "costEstimated": true
     },
     {
       "id": "task-25",
@@ -610,7 +740,12 @@
       "finishedAt": "2026-07-10T03:34:27Z",
       "durationSeconds": 1898,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-25.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-25.md",
+      "costUSD": 1.5837,
+      "inputTokens": 101,
+      "outputTokens": 20918,
+      "cacheReadTokens": 1111843,
+      "costEstimated": true
     },
     {
       "id": "task-26",
@@ -626,7 +761,12 @@
       "finishedAt": "2026-07-10T03:53:16Z",
       "durationSeconds": 1129,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-26.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-26.md",
+      "costUSD": 0.942,
+      "inputTokens": 60,
+      "outputTokens": 12443,
+      "cacheReadTokens": 661365,
+      "costEstimated": true
     },
     {
       "id": "task-27",
@@ -642,7 +782,12 @@
       "finishedAt": "2026-07-10T04:06:21Z",
       "durationSeconds": 783,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-27.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-27.md",
+      "costUSD": 0.6533,
+      "inputTokens": 41,
+      "outputTokens": 8629,
+      "cacheReadTokens": 458679,
+      "costEstimated": true
     },
     {
       "id": "task-28",
@@ -659,7 +804,12 @@
       "finishedAt": "2026-07-10T04:58:46Z",
       "durationSeconds": 3143,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-28.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-28.md",
+      "costUSD": 2.6225,
+      "inputTokens": 168,
+      "outputTokens": 34640,
+      "cacheReadTokens": 1841161,
+      "costEstimated": true
     },
     {
       "id": "task-29",
@@ -675,7 +825,12 @@
       "finishedAt": "2026-07-10T05:24:01Z",
       "durationSeconds": 1511,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-29.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-29.md",
+      "costUSD": 1.2608,
+      "inputTokens": 81,
+      "outputTokens": 16653,
+      "cacheReadTokens": 885140,
+      "costEstimated": true
     },
     {
       "id": "task-30",
@@ -692,7 +847,12 @@
       "finishedAt": "2026-07-10T05:38:58Z",
       "durationSeconds": 890,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-30.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-30.md",
+      "costUSD": 0.7426,
+      "inputTokens": 47,
+      "outputTokens": 9809,
+      "cacheReadTokens": 521359,
+      "costEstimated": true
     },
     {
       "id": "task-31",
@@ -708,7 +868,12 @@
       "finishedAt": "2026-07-10T05:56:34Z",
       "durationSeconds": 1049,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-31.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-31.md",
+      "costUSD": 0.8753,
+      "inputTokens": 56,
+      "outputTokens": 11561,
+      "cacheReadTokens": 614501,
+      "costEstimated": true
     },
     {
       "id": "task-36",
@@ -724,7 +889,12 @@
       "finishedAt": "2026-07-10T06:59:40Z",
       "durationSeconds": 1494,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-36.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-36.md",
+      "costUSD": 1.2466,
+      "inputTokens": 80,
+      "outputTokens": 16466,
+      "cacheReadTokens": 875181,
+      "costEstimated": true
     },
     {
       "id": "task-32",
@@ -741,7 +911,12 @@
       "finishedAt": "2026-07-10T06:15:08Z",
       "durationSeconds": 1110,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-32.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-32.md",
+      "costUSD": 0.9262,
+      "inputTokens": 59,
+      "outputTokens": 12233,
+      "cacheReadTokens": 650235,
+      "costEstimated": true
     },
     {
       "id": "task-33",
@@ -759,7 +934,12 @@
       "finishedAt": "2026-07-10T07:34:31Z",
       "durationSeconds": 2084,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-33.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-33.md",
+      "costUSD": 1.7389,
+      "inputTokens": 111,
+      "outputTokens": 22968,
+      "cacheReadTokens": 1220802,
+      "costEstimated": true
     },
     {
       "id": "task-37",
@@ -776,7 +956,12 @@
       "finishedAt": "2026-07-10T08:06:42Z",
       "durationSeconds": 1924,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-37.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-37.md",
+      "costUSD": 1.6054,
+      "inputTokens": 103,
+      "outputTokens": 21205,
+      "cacheReadTokens": 1127074,
+      "costEstimated": true
     },
     {
       "id": "task-34",
@@ -796,7 +981,12 @@
       "finishedAt": "2026-07-10T08:19:43Z",
       "durationSeconds": 776,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-34.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-34.md",
+      "costUSD": 0.6475,
+      "inputTokens": 41,
+      "outputTokens": 8552,
+      "cacheReadTokens": 454578,
+      "costEstimated": true
     },
     {
       "id": "task-38",
@@ -810,7 +1000,12 @@
       "finishedAt": "2026-07-10T18:10:20Z",
       "durationSeconds": 1305,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-38.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-38.md",
+      "costUSD": 1.0889,
+      "inputTokens": 69,
+      "outputTokens": 14382,
+      "cacheReadTokens": 764465,
+      "costEstimated": true
     },
     {
       "id": "task-39",
@@ -824,7 +1019,12 @@
       "finishedAt": "2026-07-10T18:28:38Z",
       "durationSeconds": 1094,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-39.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-39.md",
+      "costUSD": 0.9128,
+      "inputTokens": 58,
+      "outputTokens": 12057,
+      "cacheReadTokens": 640862,
+      "costEstimated": true
     },
     {
       "id": "task-40",
@@ -841,7 +1041,12 @@
       "finishedAt": "2026-07-10T19:08:20Z",
       "durationSeconds": 2379,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-40.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-40.md",
+      "costUSD": 1.985,
+      "inputTokens": 127,
+      "outputTokens": 26220,
+      "cacheReadTokens": 1393612,
+      "costEstimated": true
     },
     {
       "id": "task-41",
@@ -855,7 +1060,12 @@
       "finishedAt": "2026-07-10T19:30:10Z",
       "durationSeconds": 1307,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-41.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-41.md",
+      "costUSD": 1.0906,
+      "inputTokens": 70,
+      "outputTokens": 14405,
+      "cacheReadTokens": 765637,
+      "costEstimated": true
     },
     {
       "id": "task-42",
@@ -869,7 +1079,12 @@
       "finishedAt": "2026-07-10T19:44:56Z",
       "durationSeconds": 882,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-42.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-42.md",
+      "costUSD": 0.7359,
+      "inputTokens": 47,
+      "outputTokens": 9720,
+      "cacheReadTokens": 516673,
+      "costEstimated": true
     },
     {
       "id": "task-43",
@@ -883,7 +1098,12 @@
       "finishedAt": "2026-07-10T19:55:07Z",
       "durationSeconds": 603,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-43.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-43.md",
+      "costUSD": 0.5031,
+      "inputTokens": 32,
+      "outputTokens": 6645,
+      "cacheReadTokens": 353235,
+      "costEstimated": true
     },
     {
       "id": "task-44",
@@ -897,7 +1117,12 @@
       "finishedAt": "2026-07-10T20:09:01Z",
       "durationSeconds": 830,
       "landed": true,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-44.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-44.md",
+      "costUSD": 0.6925,
+      "inputTokens": 44,
+      "outputTokens": 9147,
+      "cacheReadTokens": 486211,
+      "costEstimated": true
     },
     {
       "id": "task-45",
@@ -912,7 +1137,12 @@
       "durationSeconds": 1273,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:40Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-45.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-45.md",
+      "costUSD": 1.0622,
+      "inputTokens": 68,
+      "outputTokens": 14030,
+      "cacheReadTokens": 745720,
+      "costEstimated": true
     },
     {
       "id": "task-46",
@@ -929,7 +1159,12 @@
       "durationSeconds": 966,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:43Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-46.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-46.md",
+      "costUSD": 0.806,
+      "inputTokens": 51,
+      "outputTokens": 10646,
+      "cacheReadTokens": 565880,
+      "costEstimated": true
     },
     {
       "id": "task-47",
@@ -947,7 +1182,12 @@
       "durationSeconds": 1249,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:45Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-47.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-47.md",
+      "costUSD": 1.0422,
+      "inputTokens": 66,
+      "outputTokens": 13765,
+      "cacheReadTokens": 731661,
+      "costEstimated": true
     },
     {
       "id": "task-48",
@@ -962,7 +1202,12 @@
       "durationSeconds": 420,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:47Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-48.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-48.md",
+      "costUSD": 0.3504,
+      "inputTokens": 22,
+      "outputTokens": 4629,
+      "cacheReadTokens": 246034,
+      "costEstimated": true
     },
     {
       "id": "task-49",
@@ -979,7 +1224,12 @@
       "durationSeconds": 673,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:49Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-49.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-49.md",
+      "costUSD": 0.5615,
+      "inputTokens": 36,
+      "outputTokens": 7417,
+      "cacheReadTokens": 394241,
+      "costEstimated": true
     },
     {
       "id": "task-50",
@@ -996,7 +1246,12 @@
       "durationSeconds": 805,
       "landed": true,
       "mergedAt": "2026-07-12T00:34:52Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-50.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-50.md",
+      "costUSD": 0.6717,
+      "inputTokens": 43,
+      "outputTokens": 8872,
+      "cacheReadTokens": 471567,
+      "costEstimated": true
     },
     {
       "id": "task-51",
@@ -1010,7 +1265,12 @@
       "landed": true,
       "mergedAt": "2026-07-12T00:34:54Z",
       "description": "**Task 51 \u2014 warroom_emit must be a NON-OPTIONAL tool so it enters Vera's toolset (RND-68)**\n\n**Objective**\n\n1. **`vera/tools/warroom-emit/openclaw.plugin.json`** \u2014 make `warroom_emit` non-optional so it is\n   always offered to the model. Prefer removing the `optional: true` entry entirely. If a\n   `toolMetadata.warroom_emit` object must remain for other fields, set `optional: false`\n   explicitly. If `toolMetadata` becomes empty, drop the empty `toolMetadata` object so the\n   manifest stays minimal. Keep `contracts.tools: [\"warroom_emit\"]` intact.\n2. **Verify the runtime registration matches** (`vera/tools/warroom-emit/src/index.ts`): the\n   `api.registerTool(..., { names: ['warroom_emit'] })` call must NOT pass any `optional`/opt-in\n   flag. If the SDK's registerTool options support an explicit non-optional/required marker on\n   2026.x, set it consistently with the manifest. Do not otherwise change the tool factory\n   behavior (bridge-down still nacks `ERR_HUD_UNAVAILABLE` at execute time \u2014 that safety stays).\n3. **Build step** \u2014 `package.js \u2026\n\n**Acceptance criteria**\n\n- Add/adjust a unit test asserting the manifest exposes `warroom_emit` in `contracts.tools` AND\n  does NOT mark it `optional: true` (i.e. optional is absent or false).\n- Update the existing metadata test in `vera/tools/warroom-emit/test/` accordingly.\n- `npm run build` produces a `dist/openclaw.plugin.json` with no `optional: true` for warroom_emit.\n- CI (lint + typecheck + tests) green.\n\n**Out of scope**\n\nDo not change the bridge, gateway handshake, or the integrity installer here. Manifest + tool\nregistration + tests only.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-51.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-51.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-51.md",
+      "costUSD": 0.1652,
+      "inputTokens": 10,
+      "outputTokens": 2182,
+      "cacheReadTokens": 115987,
+      "costEstimated": true
     },
     {
       "id": "task-52",
@@ -1024,7 +1284,12 @@
       "landed": true,
       "mergedAt": "2026-07-12T00:34:57Z",
       "description": "**Task 52 \u2014 Purge the install RECORD on recovery; CLI uninstall must tolerate a missing dist (RND-69)**\n\n**Objective**\n\n### A. Manual-recovery / uninstaller resilience (`vera/integrity/src/install.ts`)\n- In `uninstallWarroom` (and any documented manual-recovery routine), after the registry\n  uninstall attempt, **explicitly purge** `installRecords.<pluginId>` from\n  `<home>/plugins/installs.json` (and prune any matching entry in `plugins[]` by `pluginId`) if it\n  still exists \u2014 back up `installs.json` first (timestamped `.bak-...`, mode 600), then rewrite.\n  This makes recovery idempotent even when the CLI uninstall cannot run.\n- Make the registry uninstall call **non-interactive** and **tolerant of a missing dist**: pass the\n  force/non-interactive flag (already `--force`; ensure it does not block on a prompt), and wrap the\n  call so that a \"cannot import dist/entry.js\" style failure is caught and downgraded to the manual\n  record-purge path above rather than aborting the whole uninstall. Log clearly which path ran.\n\n### B. Preflight robustness (`scripts \u2026\n\n**Acceptance criteria**\n\n- Unit test: given a fixture `installs.json` containing `installRecords.warroom-emit` and a\n  matching `plugins[]` entry, the purge routine removes both, writes a backup, and leaves other\n  records untouched.\n- Unit test: uninstall path where the plugin dir/dist is absent still completes (falls back to the\n  manual record purge) and does not throw.\n- CI green.\n\n**Out of scope**\n\nDo not alter the drift-guard comparison semantics here (that is task-53 / RND-70). This task is\nabout record purging + tolerating a missing dist during uninstall/recovery.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-52.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-52.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-52.md",
+      "costUSD": 0.6166,
+      "inputTokens": 39,
+      "outputTokens": 8144,
+      "cacheReadTokens": 432904,
+      "costEstimated": true
     },
     {
       "id": "task-53",
@@ -1038,7 +1303,12 @@
       "landed": true,
       "mergedAt": "2026-07-12T00:34:59Z",
       "description": "**Task 53 \u2014 Uninstall drift-guard must compare `plugins.allow` order-independently (RND-70, extends RND-67)**\n\n**Objective**\n\n### `vera/integrity/src/expected-delta.ts` (the shared comparator used by RND-64 gate + RND-67 uninstall guard)\n- After stripping the expected install footprint (our `plugins.allow` entry, `plugins.entries.<id>`,\n  `plugins.installs.<id>`, `plugins.load.paths` linked dir, and volatile meta stamps), normalize\n  `plugins.allow` **order-independently** so that a reorder of the SAME membership is treated as\n  equal to the reference. Concretely: when comparing/normalizing, sort both the reference `allow`\n  and the candidate `allow` (or compare them as multisets/sets) before the deep-equality check, so\n  `[a,b,c]` and `[c,a,b]` are equivalent.\n- Do this in the ONE shared comparator so both the integrity gate (RND-64) and the uninstall\n  drift-guard (RND-67) benefit \u2014 do not fork the logic.\n- Preserve strictness elsewhere: only `plugins.allow` ordering is normalized. Any genuine\n  membership change (an id added/removed beyond our own) must STI \u2026\n\n**Acceptance criteria**\n\n- Unit test: reference `allow=[telegram,anthropic,...]`, candidate `allow=[anthropic,bonjour,...]+[warroom-emit]`\n  (same members reordered + our id) \u2192 comparator treats config as matching (uninstall would proceed).\n- Unit test: candidate `allow` with a genuinely NEW member (not our id) \u2192 comparator reports drift\n  (uninstall refuses).\n- Unit test: candidate `allow` MISSING a member present in reference \u2192 drift (refuses).\n- Existing RND-64/RND-67 tests still pass (restart-stable digest + reversible uninstall).\n- CI green.\n\n**Out of scope**\n\nDo not change manifest/optional (task-51) or record-purge/missing-dist handling (task-52) here;\nthis task is solely the order-independent `plugins.allow` comparison in the shared comparator.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-53.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-53.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-53.md",
+      "costUSD": 0.1719,
+      "inputTokens": 11,
+      "outputTokens": 2270,
+      "cacheReadTokens": 120674,
+      "costEstimated": true
     },
     {
       "id": "task-54",
@@ -1053,7 +1323,12 @@
       "finishedAt": "2026-07-12T00:35:34Z",
       "durationSeconds": 3760,
       "mergedAt": "2026-07-12T00:35:35Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-54.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-54.md",
+      "costUSD": 3.1373,
+      "inputTokens": 201,
+      "outputTokens": 41440,
+      "cacheReadTokens": 2202598,
+      "costEstimated": true
     },
     {
       "id": "task-55",
@@ -1070,7 +1345,12 @@
       "finishedAt": "2026-07-12T00:35:34Z",
       "durationSeconds": 3608,
       "mergedAt": "2026-07-12T00:35:37Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-55.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-55.md",
+      "costUSD": 3.0105,
+      "inputTokens": 193,
+      "outputTokens": 39765,
+      "cacheReadTokens": 2113557,
+      "costEstimated": true
     },
     {
       "id": "task-56",
@@ -1085,7 +1365,12 @@
       "durationSeconds": 266,
       "landed": true,
       "mergedAt": "2026-07-12T00:35:01Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-56.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-56.md",
+      "costUSD": 0.2219,
+      "inputTokens": 14,
+      "outputTokens": 2931,
+      "cacheReadTokens": 155822,
+      "costEstimated": true
     },
     {
       "id": "task-57",
@@ -1100,7 +1385,12 @@
       "durationSeconds": 376,
       "landed": true,
       "mergedAt": "2026-07-12T00:35:04Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-57.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-57.md",
+      "costUSD": 0.3137,
+      "inputTokens": 20,
+      "outputTokens": 4144,
+      "cacheReadTokens": 220259,
+      "costEstimated": true
     },
     {
       "id": "task-58",
@@ -1115,7 +1405,12 @@
       "durationSeconds": 438,
       "landed": true,
       "mergedAt": "2026-07-12T00:35:06Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-58.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-58.md",
+      "costUSD": 0.3655,
+      "inputTokens": 23,
+      "outputTokens": 4827,
+      "cacheReadTokens": 256579,
+      "costEstimated": true
     },
     {
       "id": "task-59",
@@ -1130,7 +1425,12 @@
       "finishedAt": "2026-07-12T02:40:26Z",
       "durationSeconds": 1575,
       "mergedAt": "2026-07-12T02:40:59Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-59.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-59.md",
+      "costUSD": 1.3142,
+      "inputTokens": 84,
+      "outputTokens": 17358,
+      "cacheReadTokens": 922631,
+      "costEstimated": true
     },
     {
       "id": "task-60",
@@ -1147,7 +1447,12 @@
       "finishedAt": "2026-07-12T02:40:28Z",
       "durationSeconds": 1041,
       "mergedAt": "2026-07-12T02:41:01Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-60.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-60.md",
+      "costUSD": 0.8686,
+      "inputTokens": 55,
+      "outputTokens": 11473,
+      "cacheReadTokens": 609815,
+      "costEstimated": true
     },
     {
       "id": "task-61",
@@ -1164,7 +1469,12 @@
       "finishedAt": "2026-07-12T04:07:12Z",
       "durationSeconds": 1157,
       "mergedAt": "2026-07-12T04:07:14Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-61.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-61.md",
+      "costUSD": 0.9654,
+      "inputTokens": 62,
+      "outputTokens": 12751,
+      "cacheReadTokens": 677767,
+      "costEstimated": true
     },
     {
       "id": "task-62",
@@ -1179,7 +1489,12 @@
       "finishedAt": "2026-07-12T03:47:47Z",
       "durationSeconds": 1507,
       "mergedAt": "2026-07-12T03:47:49Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-62.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-62.md",
+      "costUSD": 1.2574,
+      "inputTokens": 80,
+      "outputTokens": 16609,
+      "cacheReadTokens": 882796,
+      "costEstimated": true
     },
     {
       "id": "task-63",
@@ -1194,7 +1509,12 @@
       "finishedAt": "2026-07-12T05:50:56Z",
       "durationSeconds": 810,
       "mergedAt": "2026-07-12T05:55:32Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-63.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-63.md",
+      "costUSD": 0.6759,
+      "inputTokens": 43,
+      "outputTokens": 8927,
+      "cacheReadTokens": 474496,
+      "costEstimated": true
     },
     {
       "id": "task-64",
@@ -1209,7 +1529,12 @@
       "finishedAt": "2026-07-12T15:41:22Z",
       "durationSeconds": 1959,
       "mergedAt": "2026-07-12T15:42:02Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-64.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-64.md",
+      "costUSD": 1.6346,
+      "inputTokens": 105,
+      "outputTokens": 21591,
+      "cacheReadTokens": 1147577,
+      "costEstimated": true
     },
     {
       "id": "task-65",
@@ -1224,7 +1549,12 @@
       "finishedAt": "2026-07-12T17:09:16Z",
       "durationSeconds": 5270,
       "mergedAt": "2026-07-12T15:52:26Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-65.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-65.md",
+      "costUSD": 4.3973,
+      "inputTokens": 282,
+      "outputTokens": 58083,
+      "cacheReadTokens": 3087153,
+      "costEstimated": true
     },
     {
       "id": "task-66",
@@ -1239,7 +1569,12 @@
       "finishedAt": "2026-07-12T11:12:46Z",
       "durationSeconds": 12511,
       "mergedAt": "2026-07-12T11:13:17Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-66.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-66.md",
+      "costUSD": 10.4391,
+      "inputTokens": 670,
+      "outputTokens": 137889,
+      "cacheReadTokens": 7328913,
+      "costEstimated": true
     },
     {
       "id": "task-67",
@@ -1254,7 +1589,12 @@
       "finishedAt": "2026-07-12T16:23:04Z",
       "durationSeconds": 1893,
       "mergedAt": "2026-07-12T16:23:56Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-67.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-67.md",
+      "costUSD": 1.5795,
+      "inputTokens": 101,
+      "outputTokens": 20863,
+      "cacheReadTokens": 1108914,
+      "costEstimated": true
     },
     {
       "id": "task-68",
@@ -1269,7 +1609,12 @@
       "finishedAt": "2026-07-12T16:32:43Z",
       "durationSeconds": 574,
       "mergedAt": "2026-07-12T16:33:39Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-68.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-68.md",
+      "costUSD": 0.4789,
+      "inputTokens": 30,
+      "outputTokens": 6326,
+      "cacheReadTokens": 336247,
+      "costEstimated": true
     },
     {
       "id": "task-69",
@@ -1284,7 +1629,12 @@
       "finishedAt": "2026-07-12T16:56:11Z",
       "durationSeconds": 1403,
       "mergedAt": "2026-07-12T16:57:04Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-69.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-69.md",
+      "costUSD": 1.1707,
+      "inputTokens": 75,
+      "outputTokens": 15463,
+      "cacheReadTokens": 821874,
+      "costEstimated": true
     },
     {
       "id": "task-70",
@@ -1299,7 +1649,12 @@
       "finishedAt": "2026-07-12T17:08:36Z",
       "durationSeconds": 740,
       "mergedAt": "2026-07-12T17:09:23Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-70.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-70.md",
+      "costUSD": 0.6175,
+      "inputTokens": 39,
+      "outputTokens": 8155,
+      "cacheReadTokens": 433490,
+      "costEstimated": true
     },
     {
       "id": "task-71",
@@ -1313,7 +1668,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T01:18:46Z",
       "durationSeconds": 2969,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-71.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-71.md",
+      "costUSD": 2.4773,
+      "inputTokens": 159,
+      "outputTokens": 32722,
+      "cacheReadTokens": 1739233,
+      "costEstimated": true
     },
     {
       "id": "task-72",
@@ -1327,7 +1687,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T01:18:48Z",
       "durationSeconds": 1913,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-72.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-72.md",
+      "costUSD": 1.5962,
+      "inputTokens": 102,
+      "outputTokens": 21084,
+      "cacheReadTokens": 1120630,
+      "costEstimated": true
     },
     {
       "id": "task-73",
@@ -1343,7 +1708,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T02:56:43Z",
       "durationSeconds": 958,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-73.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-73.md",
+      "costUSD": 0.7994,
+      "inputTokens": 51,
+      "outputTokens": 10558,
+      "cacheReadTokens": 561194,
+      "costEstimated": true
     },
     {
       "id": "task-74",
@@ -1359,7 +1729,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T02:20:14Z",
       "durationSeconds": 1243,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-74.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-74.md",
+      "costUSD": 1.0372,
+      "inputTokens": 66,
+      "outputTokens": 13699,
+      "cacheReadTokens": 728146,
+      "costEstimated": true
     },
     {
       "id": "task-75",
@@ -1375,7 +1750,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T02:40:25Z",
       "durationSeconds": 1206,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-75.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-75.md",
+      "costUSD": 1.0063,
+      "inputTokens": 64,
+      "outputTokens": 13291,
+      "cacheReadTokens": 706471,
+      "costEstimated": true
     },
     {
       "id": "task-76",
@@ -1392,7 +1772,12 @@
       "finishedAt": "2026-07-13T07:18:40Z",
       "durationSeconds": 4175,
       "mergedAt": "2026-07-13T11:16:01Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-76.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-76.md",
+      "costUSD": 3.4836,
+      "inputTokens": 223,
+      "outputTokens": 46014,
+      "cacheReadTokens": 2445704,
+      "costEstimated": true
     },
     {
       "id": "task-77",
@@ -1409,7 +1794,12 @@
       "finishedAt": "2026-07-13T07:18:42Z",
       "durationSeconds": 2943,
       "mergedAt": "2026-07-13T11:16:03Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-77.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-77.md",
+      "costUSD": 2.4556,
+      "inputTokens": 157,
+      "outputTokens": 32436,
+      "cacheReadTokens": 1724002,
+      "costEstimated": true
     },
     {
       "id": "task-78",
@@ -1426,7 +1816,12 @@
       "finishedAt": "2026-07-13T07:36:40Z",
       "durationSeconds": 1239,
       "mergedAt": "2026-07-13T11:16:06Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-78.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-78.md",
+      "costUSD": 1.0338,
+      "inputTokens": 66,
+      "outputTokens": 13655,
+      "cacheReadTokens": 725803,
+      "costEstimated": true
     },
     {
       "id": "task-79",
@@ -1443,7 +1838,12 @@
       "finishedAt": "2026-07-13T08:35:11Z",
       "durationSeconds": 3505,
       "mergedAt": "2026-07-13T08:37:35Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-79.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-79.md",
+      "costUSD": 2.9246,
+      "inputTokens": 187,
+      "outputTokens": 38630,
+      "cacheReadTokens": 2053220,
+      "costEstimated": true
     },
     {
       "id": "task-80",
@@ -1460,7 +1860,12 @@
       "finishedAt": "2026-07-13T09:22:25Z",
       "durationSeconds": 2821,
       "mergedAt": "2026-07-13T10:52:48Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-80.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-80.md",
+      "costUSD": 2.3538,
+      "inputTokens": 151,
+      "outputTokens": 31091,
+      "cacheReadTokens": 1652534,
+      "costEstimated": true
     },
     {
       "id": "task-81",
@@ -1478,7 +1883,12 @@
       "finishedAt": "2026-07-13T10:06:03Z",
       "durationSeconds": 2611,
       "mergedAt": "2026-07-13T10:52:49Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-81.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-81.md",
+      "costUSD": 2.1786,
+      "inputTokens": 140,
+      "outputTokens": 28777,
+      "cacheReadTokens": 1529517,
+      "costEstimated": true
     },
     {
       "id": "task-82",
@@ -1496,7 +1906,12 @@
       "finishedAt": "2026-07-13T10:30:14Z",
       "durationSeconds": 1444,
       "mergedAt": "2026-07-13T10:52:51Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-82.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-82.md",
+      "costUSD": 1.2049,
+      "inputTokens": 77,
+      "outputTokens": 15914,
+      "cacheReadTokens": 845891,
+      "costEstimated": true
     },
     {
       "id": "task-83",
@@ -1514,7 +1929,12 @@
       "finishedAt": "2026-07-13T11:02:58Z",
       "durationSeconds": 1940,
       "mergedAt": "2026-07-13T11:16:07Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-83.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-83.md",
+      "costUSD": 1.6187,
+      "inputTokens": 104,
+      "outputTokens": 21381,
+      "cacheReadTokens": 1136447,
+      "costEstimated": true
     },
     {
       "id": "task-84",
@@ -1532,7 +1952,12 @@
       "finishedAt": "2026-07-13T14:00:25Z",
       "durationSeconds": 3504,
       "mergedAt": "2026-07-13T14:05:37Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-84.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-84.md",
+      "costUSD": 2.9237,
+      "inputTokens": 187,
+      "outputTokens": 38619,
+      "cacheReadTokens": 2052634,
+      "costEstimated": true
     },
     {
       "id": "task-85",
@@ -1549,7 +1974,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T17:05:07Z",
       "durationSeconds": 8324,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-85.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-85.md",
+      "costUSD": 6.9455,
+      "inputTokens": 446,
+      "outputTokens": 91742,
+      "cacheReadTokens": 4876179,
+      "costEstimated": true
     },
     {
       "id": "task-86",
@@ -1566,7 +1996,12 @@
       "landed": true,
       "finishedAt": "2026-07-13T17:07:22Z",
       "durationSeconds": 7823,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-86.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-86.md",
+      "costUSD": 6.5275,
+      "inputTokens": 419,
+      "outputTokens": 86220,
+      "cacheReadTokens": 4582694,
+      "costEstimated": true
     },
     {
       "id": "task-87",
@@ -1583,7 +2018,12 @@
       "finishedAt": "2026-07-13T17:51:20Z",
       "durationSeconds": 2631,
       "mergedAt": "2026-07-13T17:51:31Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-87.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-87.md",
+      "costUSD": 2.1953,
+      "inputTokens": 141,
+      "outputTokens": 28997,
+      "cacheReadTokens": 1541233,
+      "costEstimated": true
     },
     {
       "id": "task-88",
@@ -1598,7 +2038,12 @@
       "finishedAt": "2026-07-13T18:04:55Z",
       "durationSeconds": 802,
       "mergedAt": "2026-07-13T18:05:03Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-88.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-88.md",
+      "costUSD": 0.6692,
+      "inputTokens": 43,
+      "outputTokens": 8839,
+      "cacheReadTokens": 469809,
+      "costEstimated": true
     },
     {
       "id": "task-89",
@@ -1616,7 +2061,12 @@
       "finishedAt": "2026-07-13T18:42:34Z",
       "durationSeconds": 2248,
       "mergedAt": "2026-07-13T19:09:22Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-89.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-89.md",
+      "costUSD": 1.8757,
+      "inputTokens": 120,
+      "outputTokens": 24776,
+      "cacheReadTokens": 1316872,
+      "costEstimated": true
     },
     {
       "id": "task-90",
@@ -1633,7 +2083,12 @@
       "finishedAt": "2026-07-13T19:09:16Z",
       "durationSeconds": 1590,
       "mergedAt": "2026-07-13T19:09:24Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-90.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-90.md",
+      "costUSD": 1.3267,
+      "inputTokens": 85,
+      "outputTokens": 17524,
+      "cacheReadTokens": 931418,
+      "costEstimated": true
     },
     {
       "id": "task-91",
@@ -1651,7 +2106,12 @@
       "finishedAt": "2026-07-13T20:08:59Z",
       "durationSeconds": 3573,
       "mergedAt": "2026-07-13T20:09:31Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-91.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-91.md",
+      "costUSD": 2.9813,
+      "inputTokens": 191,
+      "outputTokens": 39379,
+      "cacheReadTokens": 2093054,
+      "costEstimated": true
     },
     {
       "id": "task-92",
@@ -1666,7 +2126,12 @@
       "finishedAt": "2026-07-13T20:39:26Z",
       "durationSeconds": 1771,
       "mergedAt": "2026-07-13T20:39:33Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-92.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-92.md",
+      "costUSD": 1.4777,
+      "inputTokens": 94,
+      "outputTokens": 19518,
+      "cacheReadTokens": 1037447,
+      "costEstimated": true
     },
     {
       "id": "task-93",
@@ -1684,7 +2149,12 @@
       "finishedAt": "2026-07-13T21:22:21Z",
       "durationSeconds": 2565,
       "mergedAt": "2026-07-13T21:22:27Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-93.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-93.md",
+      "costUSD": 2.1402,
+      "inputTokens": 137,
+      "outputTokens": 28270,
+      "cacheReadTokens": 1502570,
+      "costEstimated": true
     },
     {
       "id": "task-94",
@@ -1701,7 +2171,12 @@
       "finishedAt": "2026-07-13T22:27:05Z",
       "durationSeconds": 3876,
       "mergedAt": "2026-07-13T22:27:13Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-94.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-94.md",
+      "costUSD": 3.2341,
+      "inputTokens": 207,
+      "outputTokens": 42719,
+      "cacheReadTokens": 2270551,
+      "costEstimated": true
     },
     {
       "id": "task-95",
@@ -1718,7 +2193,12 @@
       "finishedAt": "2026-07-13T22:53:05Z",
       "durationSeconds": 1550,
       "mergedAt": "2026-07-13T22:53:12Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-95.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-95.md",
+      "costUSD": 1.2933,
+      "inputTokens": 83,
+      "outputTokens": 17083,
+      "cacheReadTokens": 907986,
+      "costEstimated": true
     },
     {
       "id": "task-96",
@@ -1733,7 +2213,12 @@
       "finishedAt": "2026-07-13T23:09:25Z",
       "durationSeconds": 971,
       "mergedAt": "2026-07-13T23:09:33Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-96.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-96.md",
+      "costUSD": 0.8102,
+      "inputTokens": 52,
+      "outputTokens": 10701,
+      "cacheReadTokens": 568809,
+      "costEstimated": true
     },
     {
       "id": "task-97",
@@ -1751,7 +2236,12 @@
       "finishedAt": "2026-07-13T23:27:11Z",
       "durationSeconds": 1056,
       "mergedAt": "2026-07-13T23:27:19Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-97.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-97.md",
+      "costUSD": 0.8811,
+      "inputTokens": 56,
+      "outputTokens": 11638,
+      "cacheReadTokens": 618602,
+      "costEstimated": true
     },
     {
       "id": "task-98",
@@ -1769,7 +2259,12 @@
       "finishedAt": "2026-07-13T23:43:04Z",
       "durationSeconds": 943,
       "mergedAt": "2026-07-13T23:43:39Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-98.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-98.md",
+      "costUSD": 0.7868,
+      "inputTokens": 50,
+      "outputTokens": 10393,
+      "cacheReadTokens": 552407,
+      "costEstimated": true
     },
     {
       "id": "task-99",
@@ -1784,7 +2279,12 @@
       "finishedAt": "2026-07-14T00:21:44Z",
       "durationSeconds": 1823,
       "mergedAt": "2026-07-14T00:21:52Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-99.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-99.md",
+      "costUSD": 1.5211,
+      "inputTokens": 97,
+      "outputTokens": 20092,
+      "cacheReadTokens": 1067909,
+      "costEstimated": true
     },
     {
       "id": "task-100",
@@ -1801,7 +2301,12 @@
       "finishedAt": "2026-07-14T00:46:55Z",
       "durationSeconds": 1499,
       "mergedAt": "2026-07-14T00:47:04Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-100.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-100.md",
+      "costUSD": 1.2508,
+      "inputTokens": 80,
+      "outputTokens": 16521,
+      "cacheReadTokens": 878110,
+      "costEstimated": true
     },
     {
       "id": "task-101",
@@ -1818,7 +2323,12 @@
       "finishedAt": "2026-07-14T01:17:15Z",
       "durationSeconds": 1811,
       "mergedAt": "2026-07-14T01:17:22Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-101.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-101.md",
+      "costUSD": 1.5111,
+      "inputTokens": 97,
+      "outputTokens": 19959,
+      "cacheReadTokens": 1060879,
+      "costEstimated": true
     },
     {
       "id": "task-102",
@@ -1835,7 +2345,12 @@
       "finishedAt": "2026-07-14T01:34:08Z",
       "durationSeconds": 1007,
       "mergedAt": "2026-07-14T01:34:15Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-102.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-102.md",
+      "costUSD": 0.8402,
+      "inputTokens": 53,
+      "outputTokens": 11098,
+      "cacheReadTokens": 589898,
+      "costEstimated": true
     },
     {
       "id": "task-103",
@@ -1853,7 +2368,12 @@
       "finishedAt": "2026-07-14T02:00:36Z",
       "durationSeconds": 1579,
       "mergedAt": "2026-07-14T02:00:44Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-103.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-103.md",
+      "costUSD": 1.3175,
+      "inputTokens": 84,
+      "outputTokens": 17402,
+      "cacheReadTokens": 924974,
+      "costEstimated": true
     },
     {
       "id": "task-104",
@@ -1870,7 +2390,12 @@
       "finishedAt": "2026-07-14T02:07:09Z",
       "durationSeconds": 383,
       "mergedAt": "2026-07-14T02:07:14Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-104.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-104.md",
+      "costUSD": 0.3196,
+      "inputTokens": 20,
+      "outputTokens": 4221,
+      "cacheReadTokens": 224360,
+      "costEstimated": true
     },
     {
       "id": "task-105",
@@ -1891,7 +2416,12 @@
       "finishedAt": "2026-07-14T02:33:12Z",
       "durationSeconds": 1556,
       "mergedAt": "2026-07-14T02:33:48Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-105.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-105.md",
+      "costUSD": 1.2983,
+      "inputTokens": 83,
+      "outputTokens": 17149,
+      "cacheReadTokens": 911501,
+      "costEstimated": true
     },
     {
       "id": "task-106",
@@ -1907,7 +2437,12 @@
       "landed": true,
       "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 203,
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-106.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-106.md",
+      "costUSD": 0.1694,
+      "inputTokens": 10,
+      "outputTokens": 2237,
+      "cacheReadTokens": 118916,
+      "costEstimated": true
     },
     {
       "id": "task-107",
@@ -1924,7 +2459,12 @@
       "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 671,
       "mergedAt": "2026-07-14T18:47:52Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-107.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-107.md",
+      "costUSD": 0.5599,
+      "inputTokens": 35,
+      "outputTokens": 7395,
+      "cacheReadTokens": 393070,
+      "costEstimated": true
     },
     {
       "id": "task-108",
@@ -1942,7 +2482,12 @@
       "finishedAt": "2026-07-14T19:20:51Z",
       "durationSeconds": 1575,
       "mergedAt": "2026-07-14T19:15:01Z",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-108.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-108.md",
+      "costUSD": 1.3142,
+      "inputTokens": 84,
+      "outputTokens": 17358,
+      "cacheReadTokens": 922631,
+      "costEstimated": true
     },
     {
       "id": "task-109",
@@ -1956,7 +2501,12 @@
       "durationSeconds": 1406,
       "mergedAt": "2026-07-14T20:11:48Z",
       "description": "**task-109 \u2014 PG visual verification LAYER 2.5: DOM/panel-state assertions (RND-137)**\n\n**Objective**\n\nThe harness today verifies Vera *emitted* the right HUD command (`commands[]`) and *spoke* a\nreply (`speaks[]`). It does NOT verify the HUD actually mounted the expected view/state. This\ntask closes layer 2.5: assert against the real per-panel render state, deterministically, no pixels.\n\n**Acceptance criteria**\n\n- `cd bridge && npx vitest run` fully green incl. new tests.\n- `tsc` clean across bridge + hud.\n- No behavior change for items lacking `expectPanel`.\n- Real PTT/voice path untouched (RND-82/86); mutations still dry-run by default (C6).\n\nImplement fully. Branch `task-109`, commit clearly, push, ensure `npm run build` passes, open a PR against main.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-109.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-109.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-109.md",
+      "costUSD": 1.1732,
+      "inputTokens": 75,
+      "outputTokens": 15496,
+      "cacheReadTokens": 823631,
+      "costEstimated": true
     },
     {
       "id": "task-110",
@@ -1970,7 +2520,12 @@
       "durationSeconds": 2554,
       "mergedAt": "2026-07-14T20:54:29Z",
       "description": "**task-110 \u2014 PG visual verification LAYER 3: screenshot capture + vision grading (RND-138)**\n\n**Objective**\n\nLayer 2.5 (task-109) proves the HUD mounted the expected view/state. Layer 3 proves it actually\nDREW correctly from an end-user perspective \u2014 legible, in the right panel, no overlap/CSS breakage.\nThis is the true \"what renders on screen\" check. Scoped to a small visual-smoke subset (task-111\ntags the items) because it is slower and non-deterministic.\n\n**Acceptance criteria**\n\n- `npx vitest run` green (bridge + hud) incl. new tests, all vision/capture mocked.\n- `tsc` + `npm run build` clean.\n- Capture only fires for tagged items; real PTT/voice untouched; mutations dry-run by default.\n\nImplement fully. Branch `task-110`, commit clearly, push, ensure `npm run build` passes, open a PR against main.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-110.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-110.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-110.md",
+      "costUSD": 2.131,
+      "inputTokens": 136,
+      "outputTokens": 28148,
+      "cacheReadTokens": 1496127,
+      "costEstimated": true
     },
     {
       "id": "task-111",
@@ -1984,7 +2539,12 @@
       "durationSeconds": 1413,
       "mergedAt": "2026-07-14T21:18:42Z",
       "description": "**task-111 \u2014 PG catalog: tag visual-smoke subset + wire verdicts into TEST tab (RND-139)**\n\n**Objective**\n\ntask-109 added `expectPanel` (DOM/state) and task-110 added `visualSmoke` capture + vision grading,\nbut no catalog items use them yet, and the results are not shown in the HUD. This task populates the\nsubset and surfaces the outcome so a human can review it in the TEST tab.\n\n**Acceptance criteria**\n\n- `npx vitest run` green (catalog + hud) incl. new tests.\n- `tsc` + `npm run build` clean.\n- Catalog item count/ids unchanged except added optional fields; `catalogVersion` bumped.\n- No change to how untagged items score or render.\n\nImplement fully. Branch `task-111`, commit clearly, push, ensure `npm run build` passes, open a PR against main.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-111.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-111.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-111.md",
+      "costUSD": 1.179,
+      "inputTokens": 75,
+      "outputTokens": 15573,
+      "cacheReadTokens": 827731,
+      "costEstimated": true
     },
     {
       "id": "task-112",
@@ -1998,7 +2558,12 @@
       "durationSeconds": 757,
       "mergedAt": "2026-07-15T01:25:20Z",
       "description": "**Task 112 \u2014 PG-n: Per-item completion gating in the harness (RND-140)**\n\n_Phase 30 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nReplace the runId-only wait gate with a **per-item completion contract**: the harness awaits\nWHICHEVER signal the item type declares, and never advances to the next item until that signal lands\nor its ceiling fires.\n\n**Acceptance criteria**\n\n- A panel-assign item does NOT advance until its render + `panel.state` confirmation is observed\n  (verified by timing: no more ~0.5s command-only items with empty capture).\n- Voice items still wait for speak.done/quiet-settle (RND-134 preserved).\n- Mutation items still wait for the C6 gate.\n- No regression in the existing harness test suite; build (tsc) passes.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-112.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-112.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-112.md",
+      "costUSD": 0.6316,
+      "inputTokens": 40,
+      "outputTokens": 8343,
+      "cacheReadTokens": 443448,
+      "costEstimated": true
     },
     {
       "id": "task-113",
@@ -2012,7 +2577,12 @@
       "durationSeconds": 754,
       "mergedAt": "2026-07-15T01:38:02Z",
       "description": "**Task 113 \u2014 PG-o: Capture the render endpoint so command-only items are never empty (RND-141)**\n\n_Phase 30 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nRecord the render trail + resulting panel-state as the item's observed evidence, and score a\nconfirmed matching render as `met` for command-only items \u2014 parity with how a captured spoken reply\nscores a voice item.\n\n**Acceptance criteria**\n\n- A successful panel-assign item records a non-empty `observed` describing the render (view@panel)\n  and scores `met`.\n- A panel-assign item whose view failed to mount (loading stuck / error / wrong panel) scores\n  `partial` or `unmet` with the panel-state captured as the reason.\n- Voice / mutation / fallthrough scoring unchanged.\n- Build (tsc) passes; existing harness tests still pass.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-113.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-113.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-113.md",
+      "costUSD": 0.6291,
+      "inputTokens": 40,
+      "outputTokens": 8310,
+      "cacheReadTokens": 441691,
+      "costEstimated": true
     },
     {
       "id": "task-114",
@@ -2023,7 +2593,13 @@
       "startedAt": "2026-07-15T01:38:55Z",
       "landed": true,
       "description": "**Task 114 \u2014 PG-p: Regression tests for per-item completion gating (RND-142)**\n\n_Phase 30 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nLock in the task-112/113 fix with regression tests so the \"advance-before-completion / empty-capture\"\nrace can never be reintroduced by the AFDT, for BOTH voice and command-only (panel-assign) items.\n\n**Acceptance criteria**\n\n- New tests fail against the pre-task-112 behavior and pass against the fixed harness.\n- Full bridge test suite green (tsc + all test files).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-114.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-114.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-114.md",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-115",
@@ -2037,7 +2613,12 @@
       "durationSeconds": 247,
       "mergedAt": "2026-07-15T03:29:38Z",
       "description": "**task-115 / RND-143 \u2014 Narration completion gating (briefing + range)**\n\n**Objective**\n\nAdd a completion branch so **`briefing` and `range` replies wait on the SAME\nspeak.done / quiet-settle debounce as the `runId` voice branch**, capped by\n`replyTimeoutMs`. They must NOT fall to `settleMs`.\n\nImplementation guidance:\n- Factor the existing runId-branch wait (the `new Promise` with `onSpeakDone`\n  `finish` + `onActivity` `armQuiet` + `replyTimeoutMs` hardTimer) into a private\n  helper, e.g. `awaitSpokenCompletion(capture)`, and call it from BOTH the runId\n  branch and the new narration branch \u2014 no duplicated logic.\n- Detect narration by: `typeof response.reply.briefing !== 'undefined' ||\n  typeof response.reply.range !== 'undefined'`.\n- Order the branches: runId \u2192 narration \u2192 render/panelAssign \u2192 settle.\n- Do not change `main.ts`. Harness-side only.\n\n**Acceptance criteria**\n\n- `npm run build` clean, existing bridge tests still green.\n- A `briefing` or `range` reply now waits for speak.done/quiet-settle (verified\n  by task-117 tests): it does not resolve in `< quietMs`.\n- No regression to voice (`runId`) or panel-assign gating.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-115.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-115.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-115.md",
+      "costUSD": 0.2061,
+      "inputTokens": 13,
+      "outputTokens": 2722,
+      "cacheReadTokens": 144692,
+      "costEstimated": true
     },
     {
       "id": "task-116",
@@ -2051,7 +2632,12 @@
       "durationSeconds": 508,
       "mergedAt": "2026-07-15T03:38:16Z",
       "description": "**task-116 / RND-144 \u2014 Unknown reply-shape guard (durable safety net)**\n\n**Objective**\n\nAdd an **unknown-reply-shape guard** in the completion gate, evaluated BEFORE the\n`settleMs` fallthrough:\n\n1. Define the known-classified reply-key set (a module const), containing:\n   - completion-bearing keys: `runId`, `panelAssign`, `gate`, `briefing`, `range`\n   - instant/data keys: `items`, `thinkingMode`, `ok`, `error`\n   - the 7 spoken-intent ids: `calendar`, `assist`, `glossary`, `kb`, `search`,\n     `meeting`, `wrapup`\n2. When a reply has NO `runId` and NONE of the async keys (briefing/range/\n   panelAssign) and is about to hit `settleMs`: inspect the reply's own keys. If\n   ALL its keys are in the known set \u2192 proceed with the normal brief settle\n   (legitimately instant). If ANY key is NOT in the known set \u2192 do NOT race:\n   mark this item's attempt/verdict as **FAIL** with a clear note,\n   `unclassified reply shape: <unknownKey> \u2014 harness has no completion signal for\n   it; classify it before trusting this item`, and skip the \u2026\n\n**Acceptance criteria**\n\n- `npm run build` clean; existing tests green.\n- A synthetic reply `{ ok:true, frobnicate:1 }` \u2192 item verdict FAIL with the\n  unclassified note; the harness does NOT advance in ~0.5s silently.\n- All 7 known intent ids + known keys still classified as instant/handled (no\n  false FAIL on legitimate shapes). Covered by task-117.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-116.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-116.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-116.md",
+      "costUSD": 0.4239,
+      "inputTokens": 27,
+      "outputTokens": 5598,
+      "cacheReadTokens": 297585,
+      "costEstimated": true
     },
     {
       "id": "task-117",
@@ -2065,7 +2651,12 @@
       "durationSeconds": 441,
       "mergedAt": "2026-07-15T03:46:14Z",
       "description": "**task-117 / RND-145 \u2014 Regression tests: narration gating + shape guard**\n\n**Objective**\n\nAdd regression tests (follow the existing harness-test fixtures/harness-driver\npattern in the file \u2014 reuse the same fake bridge/HUD capture used by the RND-142\ntests):\n\n1. **Briefing waits:** inject a turn whose reply is `{ ok:true, briefing:\"started\" }`.\n   Assert the harness does NOT resolve the item in `< quietMs` \u2014 it waits for a\n   `speak.done` (or quiet-settle). Simulate a delayed speak.done and assert the\n   item then completes and capture is non-empty.\n2. **Range waits:** same as (1) for a reply `{ ok:true, range:\u2026 }`.\n3. **Unknown shape FAILs (not races):** inject a reply with an unclassified key\n   (e.g. `{ ok:true, frobnicate:1 }`). Assert the item verdict is **FAIL** and\n   the observation/note contains the `unclassified reply shape` message, and that\n   it did NOT resolve via the tiny settle in ~0.5s as a silent pass.\n4. **No false-positive on known shapes:** a consumed-intent reply\n   (e.g. `{ ok:true, calendar:\"open\" }`) \u2026\n\n**Acceptance criteria**\n\n- `npm test` (bridge) green including the new cases.\n- Tests fail if narration turns race (< quietMs), if the guard misses an unknown\n  key, or if the guard false-FAILs a known shape.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-117.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-117.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-117.md",
+      "costUSD": 0.368,
+      "inputTokens": 23,
+      "outputTokens": 4860,
+      "cacheReadTokens": 258336,
+      "costEstimated": true
     },
     {
       "id": "task-118",
@@ -2079,7 +2670,12 @@
       "durationSeconds": 653,
       "mergedAt": "2026-07-15T12:49:15Z",
       "description": "**task-118 / RND-146 \u2014 Proving Ground harness: manual STEP mode**\n\n**Objective**\n\n1. Add a run option `advance: 'auto' | 'manual'` (default `'auto'`). Thread it from\n   the `POST /proving-ground/run` request body (health.ts handler) \u2192 harness run\n   config. Auto path must be byte-for-byte behavior-identical to today.\n2. In `run()`, when `advance === 'manual'`, after each `runItem` resolves (and before\n   the next item injects) enter a **step-gate**: block until an explicit\n   `stepNext()` call or `stopRequested`. Implement with a dedicated `stepWaiters[]`\n   (separate from `pauseWaiters` so Test-Mode pause and step compose \u2014 a paused run\n   stays paused even if `stepNext()` fires; step only releases when not paused).\n3. New public methods:\n   - `stepNext(): void` \u2014 release exactly ONE item boundary (idempotent if not\n     awaiting; never releases more than one item).\n   - status additions in `getStatus()`: `advance: 'auto'|'manual'`,\n     `awaitingStep: boolean`, `nextItemId: string | null`.\n4. Emit a run-state event \u2026\n\n**Acceptance criteria**\n\n- Manual mode: run halts after item N with `awaitingStep=true`, injects item N+1\n  ONLY after `stepNext()` (or the `/proving-ground/step` POST). A second item never\n  advances on a single step.\n- Auto mode: unchanged (regression \u2014 existing tests green).\n- Test-Mode pause still works and overrides step (paused + stepNext \u2192 stays parked\n  until resumed).\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-118.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-118.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-118.md",
+      "costUSD": 0.5449,
+      "inputTokens": 35,
+      "outputTokens": 7197,
+      "cacheReadTokens": 382525,
+      "costEstimated": true
     },
     {
       "id": "task-119",
@@ -2093,7 +2689,12 @@
       "durationSeconds": 1349,
       "mergedAt": "2026-07-15T13:11:54Z",
       "description": "**task-119 / RND-147 \u2014 TEST tab: Auto/Step toggle + \"Next item \u25b8\" control**\n\n**Objective**\n\n1. **Run-mode toggle** in the TEST tab run controls: **Auto** / **Step** (default\n   Auto). The selected mode is sent as `advance` in the `POST /proving-ground/run`\n   body when a run starts.\n2. **Between-item panel (Step mode only):** when the run enters `awaiting-step`\n   (from the run-state event or status poll), show:\n   - the just-scored item's id + verdict (PASS/PARTIAL/FAIL/BLOCKED),\n   - the UPCOMING item's `nextItemId`, title, and command text (so the operator\n     knows what wall state to stage before advancing),\n   - a prominent **\"Next item \u25b8\"** button and a **\"Stop\"** button.\n3. **\"Next item \u25b8\"** \u2192 `POST /proving-ground/step`; on ok, clear the panel and let\n   the run proceed. Disable the button while the request is in flight (no double-step).\n4. **PG-c banner** mirrors the `awaiting-step` state (e.g. \"\u23f8 Awaiting step \u2014 next:\n   PG-0NN\") so it is visible even if the TEST tab is not focused.\n5. Auto mode UI is unchanged \u2014 no \u2026\n\n**Acceptance criteria**\n\n- Operator can run a 10-item pilot fully by hand in Step mode: one click per item,\n  verdict visible before advancing, upcoming command shown so preconditions can be\n  staged manually in between.\n- Auto mode behaves exactly as before (no step panel, no extra clicks).\n- Banner reflects awaiting-step.\n- `npm run build` (HUD) clean; existing TEST-tab tests (if any) still pass.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-119.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-119.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-119.md",
+      "costUSD": 1.1256,
+      "inputTokens": 72,
+      "outputTokens": 14867,
+      "cacheReadTokens": 790240,
+      "costEstimated": true
     },
     {
       "id": "task-120",
@@ -2107,7 +2708,12 @@
       "durationSeconds": 1079,
       "mergedAt": "2026-07-15T13:30:02Z",
       "description": "**task-120 / RND-148 \u2014 Context precondition seeding for context-dependent items**\n\n**Objective**\n\n1. Catalog schema (`catalog.schema.json` + `catalog.json`): add optional per-item\n   field `precondition: string[]` \u2014 an ordered list of setup turns/commands injected\n   into the item's fresh session BEFORE the scored command.\n2. Harness (`runItem`): if `item.precondition` is non-empty, inject each entry\n   through the SAME session key as the scored turn, awaiting each with the normal\n   completion gate, BEFORE the first scored attempt. Preconditions are NOT scored\n   and never counted as attempts/exchanges toward the item verdict.\n3. Record preconditions in the run result (a `preconditions: string[]` field on the\n   item result + a line in the MD report) for auditability. Never let a precondition\n   failure silently pass the item \u2014 if a precondition errors, mark the item BLOCKED\n   with a note naming the failed precondition.\n4. Populate preconditions for the clearly-scriptable context-dependent items\n   (start with PG-040 save-to-KB an \u2026\n\n**Acceptance criteria**\n\n- PG-040 and PG-051 reach a real verdict based on their actual behavior (not a\n  blank-context \"I see nothing\").\n- Preconditions appear in the run JSON + MD and do not inflate attempt/exchange\n  counts.\n- A failing precondition \u2192 item BLOCKED with a clear note, never a false PASS.\n- Existing items with no `precondition` behave exactly as before.\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-120.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-120.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-120.md",
+      "costUSD": 0.9003,
+      "inputTokens": 57,
+      "outputTokens": 11892,
+      "cacheReadTokens": 632075,
+      "costEstimated": true
     },
     {
       "id": "task-121",
@@ -2121,7 +2727,12 @@
       "durationSeconds": 1077,
       "mergedAt": "2026-07-15T13:48:39Z",
       "description": "**task-121 / RND-149 \u2014 Ephemeral PG session teardown: least-privilege reaper (option B)**\n\n**Objective**\n\n1. Do NOT change the bridge's requested scopes. No `operator.admin`.\n2. Reaper: at run END (auto or manual), attempt a best-effort batch cleanup of the\n   ephemeral `\u2026:pg:*` sessions created during that run, using whatever scope the\n   bridge actually holds. If `sessions.delete` is admin-gated and unavailable, the\n   reaper must NOT crash the run \u2014 instead:\n   - collect the leaked session keys created this run,\n   - emit a single consolidated WARNING (run-record + log) listing the count and a\n     copy-paste `openclaw sessions` cleanup hint,\n   - surface the leaked-session count in the run JSON/MD summary.\n3. Fix the current silent behavior: a single `missing scope` failure must NOT\n   silently disable teardown for the whole run without surfacing it in the run\n   record. One clear consolidated warning per run (not one per item spamming the log).\n4. Document the manual cleanup path in `TEST-MODE.md` / the PG runbook: how an admin\n   reap \u2026\n\n**Acceptance criteria**\n\n- Bridge scopes unchanged (still read+write only).\n- After a full auto run, orphaned `\u2026:pg:*` sessions are either reaped (if scope\n  allows) OR reported once with a count + cleanup hint in the run record \u2014 never\n  silently leaked with no trace.\n- No per-item log spam for the delete-scope failure.\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-121.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-121.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-121.md",
+      "costUSD": 0.8986,
+      "inputTokens": 57,
+      "outputTokens": 11870,
+      "cacheReadTokens": 630904,
+      "costEstimated": true
     },
     {
       "id": "task-122",
@@ -2135,7 +2746,12 @@
       "durationSeconds": 681,
       "mergedAt": "2026-07-15T20:11:31Z",
       "description": "**task-122 / RND-150 \u2014 Run on the wall: minimize TEST tab on START so the live HUD is visible**\n\n**Objective**\n\n1. On **START PILOT RUN** (and on any run start), collapse/minimize the TEST modal so the live\n   HUD wall is fully visible while each item executes. Do NOT tear down the run \u2014 the harness\n   already parks between items (Round 26, /proving-ground/step); this changes ONLY the renderer\n   surface behavior.\n2. Keep a small always-visible affordance to reopen the full TEST tab on demand mid-run\n   (e.g. the TEST nav button remains, or a compact re-expand handle).\n3. On **STOP** or run-end, restore the TEST tab to its prior state.\n4. Preserve Auto mode exactly: in Auto, minimizing is fine but the run still streams through;\n   in Step, the operator watches the wall then uses the bottom block (task-123) to advance.\n\n**Acceptance criteria**\n\n- Starting a run leaves the operator looking at the live wall, not the catalog modal.\n- Run/step/stop semantics unchanged; Auto default unchanged.\n- TEST tab can be reopened mid-run and restores on stop/end.\n- `npm run build` clean; existing PG renderer tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-122.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-122.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-122.md",
+      "costUSD": 0.5682,
+      "inputTokens": 36,
+      "outputTokens": 7505,
+      "cacheReadTokens": 398928,
+      "costEstimated": true
     },
     {
       "id": "task-123",
@@ -2149,7 +2765,12 @@
       "durationSeconds": 2452,
       "mergedAt": "2026-07-15T20:52:33Z",
       "description": "**task-123 / RND-151 \u2014 Bottom-docked result block (yellow) with inline controls**\n\n**Objective**\n\n1. Render a compact result block docked at the **bottom** of the HUD (low, non-fullscreen\n   overlay) whenever a run is parked at an item boundary in Step mode.\n   **SHOW ONLY THE CURRENT ITEM.** The result block MUST replace/clear on each step \u2014 exactly\n   one item's info visible at a time. Do NOT stack or accumulate boxes from prior items.\n   (Jon confirmed 2026-07-15: today boxes accumulate \u2014 PG-001/PG-018/PG-019 all persisted on\n   screen at once and overlapped the Intake Pace wall panel. That is the confusion to fix.)\n2. Contents: verdict (PASS / PARTIAL / FAIL, color-coded \u2014 yellow for PARTIAL/info), item id,\n   command, expected, preconditions[].\n3. Inline controls in the block:\n   - **Next item \u25b8** \u2014 advance one item via /proving-ground/step; STAY on the wall; block\n     REPLACES its content in place for the next item (do NOT reopen the full modal, do NOT\n     leave the prior item's box behind).\n   - **Stop** \u2014 stop the run (exi \u2026\n\n**Acceptance criteria**\n\n- In Step mode, after each item the bottom block shows the verdict + item info and the\n  controls, without covering the wall.\n- ONLY the current item's box is visible at any time \u2014 no accumulation/stacking of prior items.\n- Next item \u25b8 advances one item, stays on the wall, REPLACES the block content in place.\n- Run again re-runs the current item in place and re-scores without leaving the wall.\n- Screenshot + note + Save persist to the item record and appear in the TEST tab afterward,\n  all triggered from the on-wall bottom block.\n- Bottom block does not obstruct wall panels (no overlap of Intake Pace etc.).\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-123.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-123.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-123.md",
+      "costUSD": 2.0459,
+      "inputTokens": 131,
+      "outputTokens": 27024,
+      "cacheReadTokens": 1436375,
+      "costEstimated": true
     },
     {
       "id": "task-124",
@@ -2163,7 +2784,12 @@
       "durationSeconds": 337,
       "mergedAt": "2026-07-15T20:58:16Z",
       "description": "**task-124 / RND-152 \u2014 RUN MODE toggle: visual latch for the selected mode**\n\n**Objective**\n\n1. Make the selected mode button unmistakably latched: distinct fill + border + text weight,\n   matching other HUD toggle affordances (e.g. TODAY/MTD/YTD active state).\n2. Ensure the `--on` style wins over `hud-headerbtn` (specificity or a dedicated class); keep\n   `aria-pressed` correct for a11y.\n3. Purely cosmetic/markup \u2014 do NOT change the mode value flow or run start behavior.\n\n**Acceptance criteria**\n\n- Clicking AUTO or STEP leaves that button clearly, persistently highlighted until changed.\n- `aria-pressed` reflects selection; no functional change to startProvingRun(advance).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-124.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-124.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-124.md",
+      "costUSD": 0.2812,
+      "inputTokens": 18,
+      "outputTokens": 3714,
+      "cacheReadTokens": 197413,
+      "costEstimated": true
     },
     {
       "id": "task-125",
@@ -2177,7 +2803,12 @@
       "durationSeconds": 976,
       "mergedAt": "2026-07-15T21:14:42Z",
       "description": "**task-125 / RND-153 \u2014 Item multi-select + run the selected set**\n\n**Objective**\n\n1. Add a per-row selection checkbox to each catalog item in the TEST tab list.\n2. Add Select-all and Clear controls (respecting the current area/search filter).\n3. START (in the selected-run mode) runs EXACTLY the selected items, in listed order, under the\n   chosen pacing (Auto or Step). Wire selection through to the run start payload\n   (extend the /proving-ground/run contract or the existing start path with an explicit item-id list).\n4. Preserve the existing **random-10 pilot** as its own separate button (do not remove it).\n5. Empty selection: EITHER disable the selected-run START OR fall back to random-10 \u2014 pick one,\n   document the choice, keep it obvious to the operator.\n\n**Acceptance criteria**\n\n- Operator can tick N items and run precisely those N, in order, in Auto or Step.\n- Random-10 pilot still available and unchanged.\n- Selection respects the active filter; Select-all/Clear work.\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-125.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-125.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-125.md",
+      "costUSD": 0.8144,
+      "inputTokens": 52,
+      "outputTokens": 10756,
+      "cacheReadTokens": 571738,
+      "costEstimated": true
     },
     {
       "id": "task-126",
@@ -2191,7 +2822,12 @@
       "durationSeconds": 1052,
       "mergedAt": "2026-07-15T21:32:25Z",
       "description": "**task-126 / RND-154 \u2014 In-UI add / edit / delete test items (catalog authoring)**\n\n**Objective**\n\n1. Add an in-tab editor to CREATE a new catalog item and EDIT an existing one. Fields:\n   id, command, expected, preconditions[] (ordered list), tags[], area (from TESTING_AREAS).\n2. Add DELETE with a confirm step.\n3. Persist through a GUARDED server-side write path (extend proving-store / bridge) that:\n   - validates the item against `catalog.schema.json` BEFORE writing,\n   - rejects invalid/duplicate ids with a clear error surfaced in the UI,\n   - writes atomically (temp + rename), catalog.json remains the single source of truth.\n4. After a write, the TEST tab list refreshes to reflect the change (RELOAD path already exists).\n5. Do NOT expose catalog mutation unless Test Mode is armed (same gate as the rest of the tab).\n\n**Acceptance criteria**\n\n- Operator can add, edit, and delete catalog items entirely from the TEST tab.\n- Schema-invalid or duplicate-id writes are rejected with a visible reason; catalog.json never\n  left in a broken state.\n- Changes appear in the list without a manual file edit or full app restart.\n- `npm run build` clean; tests green (add coverage for the validate-before-write path).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-126.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-126.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-126.md",
+      "costUSD": 0.8778,
+      "inputTokens": 56,
+      "outputTokens": 11594,
+      "cacheReadTokens": 616259,
+      "costEstimated": true
     },
     {
       "id": "task-127",
@@ -2205,7 +2841,12 @@
       "durationSeconds": 1335,
       "mergedAt": "2026-07-15T21:54:49Z",
       "description": "**task-127 / RND-155 \u2014 TEST tab always visible + arm/disarm Test Mode from within it**\n\n**Objective**\n\n1. Make the TEST nav entry ALWAYS visible in the HUD header (no arming required to SEE it).\n2. Add an arm/disarm control INSIDE the TEST tab. Arming uses the SAME provisioned Jon-only\n   token at `~/.openclaw/secrets/warroom/proving-ground.json` (or WARROOM_PROVING_GROUND_TOKEN):\n   - server-side reads the secrets file and POSTs the existing /proving-ground/test-mode with\n     the token, OR prompts the operator for the token in-UI \u2014 do NOT hardcode or echo the token.\n   - constant-time compare (existing); 403 + untouched state on missing/wrong token.\n3. SECURITY RECONCILIATION (preserve D-1 intent):\n   - Tab is VISIBLE but INERT until armed: no run controls active, no catalog mutation, no\n     endpoints hittable that could leave a footprint. Visibility != authorization.\n   - Zero run-footprint when never armed (no runs, no sessions, no writes).\n   - Retire the SSH-only path as the ONLY way to arm \u2014 do NOT retire the token requirement.\n4 \u2026\n\n**Acceptance criteria**\n\n- TEST nav entry shows on a normal HUD without any SSH command.\n- Operator can arm and disarm Test Mode from inside the tab using the provisioned token; wrong/\n  missing token is refused (403) and leaves state untouched.\n- Unarmed: tab is inert, zero footprint. Armed: full Round-26/27 behavior.\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-127.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-127.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-127.md",
+      "costUSD": 1.1139,
+      "inputTokens": 71,
+      "outputTokens": 14713,
+      "cacheReadTokens": 782039,
+      "costEstimated": true
     },
     {
       "id": "task-128",
@@ -2218,7 +2859,12 @@
       "finishedAt": "2026-07-15T22:32:23Z",
       "durationSeconds": 2252,
       "description": "**task-128 / RND-156 \u2014 Halt Vera mid-item (abort the in-flight turn without ending the run)**\n\n**Objective**\n\n1. Add a **Halt** control to the on-wall bottom result block (task-123) \u2014 distinct from Stop:\n   - **Halt** = abort/cancel the CURRENT item's in-flight Vera turn (stop generation / cancel\n     the pending PG turn) and mark the item as HALTED, run stays alive and parked.\n   - **Stop** = ends the entire run (unchanged).\n2. Harness/bridge: implement turn cancellation for the active PG item \u2014 cancel the pending\n   gateway turn for that item's ephemeral session (best-effort; if the gateway cannot cancel an\n   in-flight turn, stop waiting on it, tear down/reap that item's session, and record HALTED so\n   the run does not hang on a runaway turn).\n3. Record the item verdict as **HALTED** (or PARTIAL w/ halted flag) in the run JSON/MD, with an\n   optional operator note, so it is distinguishable from PASS/PARTIAL/FAIL and from a clean Skip.\n4. After Halt, the run remains parked at that item boundary \u2014 Jon can then Next item \u25b8,\n   Run again, or St \u2026\n\n**Acceptance criteria**\n\n- During an item, clicking Halt cancels Vera's in-flight turn promptly and the run stays alive,\n  parked at that item.\n- Halted item is recorded distinctly (HALTED) in the run record; not a false PASS/FAIL.\n- No leaked ephemeral session from a halted item (reuse the RND-149 least-privilege reaper path).\n- Stop still ends the whole run; Next/Run again still work after a Halt.\n- `npm run build` clean; tests green (add coverage for the halt/cancel path).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-128.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-128.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-128.md",
+      "costUSD": 1.8791,
+      "inputTokens": 120,
+      "outputTokens": 24820,
+      "cacheReadTokens": 1319216,
+      "costEstimated": true
     },
     {
       "id": "task-129",
@@ -2232,7 +2878,12 @@
       "mergedAt": "2026-07-16T01:07:57Z",
       "name": "RND-157: verdict must honor rendered error state (kill the false PASS)",
       "description": "**task-129 / RND-157 \u2014 Verdict must honor rendered error state (kill the false PASS)**\n\n**Objective**\n\n1. Extend the render-item scoring path so a mounted panel that is in an **error state** does NOT\n   score `met`. Detect the error from the exchange's panel/render state \u2014 e.g. a non-null\n   `panel.state.error`, a `search.error` render, or the research provider surfacing an error\n   payload (see `bridge/src/perplexity.ts` throw paths and the render kinds in the protocol).\n2. An expected panel that mounts but renders an error \u2192 score **FAIL** (hard product failure) when\n   the error means the feature did not work; use **PARTIAL** only if some expected content still\n   rendered alongside a non-fatal warning. Document the rule in the code comment.\n3. Capture the observed error text into the item's `Observation` in the run JSON/MD so the report\n   reads e.g. `Observation: expected RESEARCH view mounted but rendered error: no research\n   provider key configured \u2026` instead of a bare \"Searching for \u2026\".\n4. Keep the existing DOWNGRADE logic (met \u2026\n\n**Acceptance criteria**\n\n- Re-running a Search item while the provider key is absent/invalid scores **FAIL** (not PASS),\n  and the run record shows the rendered error text in Observation.\n- With a valid key and real results, the same item still scores **PASS** (no false negatives).\n- Non-search render items (panel-assign, etc.) that mount cleanly are unaffected.\n- `npm run build` clean; add a unit test that feeds an error-bearing panel-state and asserts the\n  verdict is FAIL/PARTIAL, plus one asserting a clean render still scores met.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-129.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-129.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-129.md",
+      "costUSD": 0.8619,
+      "inputTokens": 55,
+      "outputTokens": 11385,
+      "cacheReadTokens": 605128,
+      "costEstimated": true
     },
     {
       "id": "task-130",
@@ -2246,7 +2897,12 @@
       "mergedAt": "2026-07-16T01:35:47Z",
       "name": "RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)",
       "description": "**task-130 / RND-158 \u2014 HUD run-banner reconciliation (no phantom RUN LIVE)**\n\n**Objective**\n\n1. On bridge **disconnect** (HUD channel drops / BRIDGE OFFLINE), visually mark the run banner as\n   stale and disable run-mutating controls (STOP/HALT/Next/Run-again) so the operator cannot click\n   into a dead run.\n2. On bridge **reconnect** and on any authoritative status showing the run is idle/`not-running`\n   (no active run id), **clear** the `RUN LIVE` / `ITEM IN FLIGHT` / awaiting-step banner and\n   restore the idle TEST state \u2014 no phantom run may persist.\n3. Ensure the HUD fetches / receives the real run-state on reconnect (poll `/proving-ground/status`\n   or equivalent, or subscribe to the bridge run-state event) and drives the banner from that\n   single source of truth rather than from stale local state.\n4. Guarantee STOP/HALT/Next always reflect the backend: if the backend says not-running, STOP is a\n   no-op that clears the banner rather than sitting inert; if an item is genuinely in flight, HALT\n   works as designed (RND-1 \u2026\n\n**Acceptance criteria**\n\n- Restarting the bridge (or dropping the HUD channel) while the HUD shows a run \u2192 after reconnect\n  the banner clears to idle within one status cycle; no phantom \"RUN LIVE\".\n- STOP/HALT never leave the operator stranded: controls match the bridge's real run-state.\n- A genuinely live run still shows RUN LIVE / ITEM IN FLIGHT and Halt still aborts the in-flight\n  turn (no regression to RND-156).\n- `npm run build` clean; add coverage for the disconnect\u2192reconnect\u2192idle banner-clear path.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-130.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-130.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-130.md",
+      "costUSD": 1.3843,
+      "inputTokens": 88,
+      "outputTokens": 18284,
+      "cacheReadTokens": 971838,
+      "costEstimated": true
     },
     {
       "id": "task-131",
@@ -2260,7 +2916,12 @@
       "durationSeconds": 1316,
       "mergedAt": "2026-07-16T01:57:50Z",
       "description": "**task-131 / RND-159 \u2014 Session reaper actually reaps (repair the RND-149 regression)**\n\n**Objective**\n\n1. Make the run-end teardown actually remove the run's `\u2026:pg:*` ephemeral sessions. Choose the\n   least-privilege viable path:\n   - **Option A:** provision the bridge a narrowly-scoped capability/token that permits deleting\n     ONLY the sessions it created (its own `pg:` prefix), without granting broad `operator.admin`.\n   - **Option B:** a bridge-side teardown that ends/reaps the session through an API the\n     `operator.write` scope already permits (if the gateway exposes a self-scoped end/close for\n     sessions the caller owns).\n   Pick whichever the current gateway actually supports; document the choice and why in the code.\n2. The reaper stays **best-effort and fail-safe**: a reap failure logs a warning and NEVER breaks\n   or hangs the run (preserve the RND-149 contract).\n3. Update the run summary so a clean run reports `N created, N reaped, 0 leaked` and the leak\n   WARNING + manual-cleanup block only appears when a reap genuinel \u2026\n\n**Acceptance criteria**\n\n- A normal multi-item PG run ends with `0 leaked` in the run JSON/MD; the ephemeral sessions are\n  gone from the gateway (verify with `openclaw sessions --json | grep ':pg:'`).\n- No broad `operator.admin` grant to the bridge beyond what is strictly needed to delete its own\n  `pg:` sessions.\n- Reap failure still lets the run settle normally.\n- `npm run build` clean; add/adjust coverage for the reap path.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-131.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-131.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-131.md",
+      "costUSD": 1.0981,
+      "inputTokens": 70,
+      "outputTokens": 14504,
+      "cacheReadTokens": 770909,
+      "costEstimated": true
     },
     {
       "id": "task-132",
@@ -2274,7 +2935,12 @@
       "durationSeconds": 1028,
       "mergedAt": "2026-07-16T02:15:08Z",
       "description": "**task-132 / RND-160 \u2014 \"Summary\" reference resolution for research read-aloud**\n\n**Objective**\n\n1. Improve how Vera resolves an unqualified \"read me the summary\" / \"the summary\" / \"read it back\"\n   when a **research/search view is the active or most-recent surface**: bind \"the summary\" to the\n   current research synthesis FIRST, before falling back to daily-note / report / other\n   interpretations.\n2. This is a Vera-behavior / war-room-skill change (see the war-room skill's speak-vs-render and\n   context-resolution guidance), not a harness change. Prefer wiring the active research view into\n   the turn context so the reference is unambiguous when a research view is live.\n3. Keep the fallback: if NO research view is active, the prior daily-note/other disambiguation\n   behavior is fine.\n\n**Acceptance criteria**\n\n- With a research view live (after a search/research command), `Vera, read me the summary.` reads\n  the research synthesis on the FIRST attempt, no disambiguation ramble.\n- With no research view active, the existing \"which summary did you mean?\" behavior is unchanged.\n- PG-039 scores PASS on attempt 1 in a fresh run.\n- `npm run build` clean; add coverage if the resolution logic is unit-testable, otherwise document\n  the manual PG-039 verification.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-132.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-132.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-132.md",
+      "costUSD": 0.8578,
+      "inputTokens": 55,
+      "outputTokens": 11330,
+      "cacheReadTokens": 602199,
+      "costEstimated": true
     },
     {
       "id": "task-133",
@@ -2288,7 +2954,12 @@
       "durationSeconds": 510,
       "mergedAt": "2026-07-16T02:24:14Z",
       "description": "**task-133 / RND-161 \u2014 RUN MODE visual latch verification + fix**\n\n**Objective**\n\n1. Verify that clicking AUTO or STEP in the RUN MODE toggle makes the selected button visually\n   latch (the `wr-pgtab__modebtn--on` class / active style stays applied until the other mode is\n   chosen), on the currently-deployed build.\n2. If it still does not latch, fix the class/state binding so the selected mode is unmistakably\n   highlighted in both the full TEST tab and any minimized/on-wall control surface that shows mode.\n3. Cosmetic only \u2014 the functional `advance: 'auto' | 'manual'` wiring from RND-146/152 must be\n   untouched.\n\n**Acceptance criteria**\n\n- Selecting STEP keeps STEP highlighted; selecting AUTO keeps AUTO highlighted; state persists\n  across the run-start until changed.\n- The functional pacing (auto runs straight through; step parks per item) is unchanged.\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-133.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-133.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-133.md",
+      "costUSD": 0.4255,
+      "inputTokens": 27,
+      "outputTokens": 5620,
+      "cacheReadTokens": 298756,
+      "costEstimated": true
     },
     {
       "id": "task-134",
@@ -2302,7 +2973,12 @@
       "durationSeconds": 576,
       "mergedAt": "2026-07-16T03:03:24Z",
       "description": "**task-134 / RND-162 \u2014 TEST tab must stay minimized across manual STEP boundaries (no forced re-arm)**\n\n**Objective**\n\n1. Make the TEST tab collapse/expand key off the **whole-run** lifecycle, not per-item transitions.\n   While a run is **parked awaiting a step** (`awaitingStep === true` OR `nextItemId !== null`), the\n   tab MUST stay minimized \u2014 the wall stays visible and no re-arm is required to press Next \u25b8.\n2. Only a real **STOP** or a **natural whole-run end** may `expandTestTab()` back to the full surface.\n   A single item finishing (with more items to come, or parked for manual advance) must NOT expand.\n3. Do not require re-arming to advance: Test Mode armed state and the run must persist across every\n   step boundary; pressing **Next \u25b8** from the minimized/on-wall dock advances without ever showing\n   the full modal or the arm panel.\n4. Confirm AUTO mode behavior is unchanged (auto runs straight through, minimized throughout, expands\n   only at true run-end/STOP).\n\n**Acceptance criteria**\n\n- In manual STEP mode, stepping item\u2192item keeps the tab **minimized** on the wall for the entire run;\n  Jon never has to re-ARM to press Next \u25b8.\n- STOP or whole-run completion expands the tab back to its full pre-run surface exactly once.\n- AUTO mode is visually and functionally unchanged.\n- Add/extend a store-level unit test asserting: parked-between-items (`awaitingStep`) does NOT expand;\n  whole-run end DOES expand.\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-134.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-134.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-134.md",
+      "costUSD": 0.4806,
+      "inputTokens": 30,
+      "outputTokens": 6348,
+      "cacheReadTokens": 337419,
+      "costEstimated": true
     },
     {
       "id": "task-135",
@@ -2319,7 +2995,12 @@
       "durationSeconds": 704,
       "mergedAt": "2026-07-16T03:15:18Z",
       "description": "**task-135 / RND-163 \u2014 Move the Halt button clear of the voice captions**\n\n**Objective**\n\nRelocate the Halt affordance (the slim mid-item HALT/STOP bar, `HaltBar` in `StepDock.tsx`, styled by\n`.wr-pgdock`/`.wr-pgdock__halt`) so it is **never occluded by the caption bar**. Acceptable approaches\n(pick the cleanest; keep it a layout/CSS change):\n1. Raise the HaltBar's bottom offset so it sits clearly **above** the caption band, OR\n2. Move HaltBar to a corner/edge clear of the bottom-center caption column, OR\n3. When a caption is visible AND a HaltBar is mounted, shift one of them so both remain fully clickable\n   (no overlap, no caption covering the HALT hit-area).\nThe HALT button must remain large enough and fully within the clickable area whenever Vera is speaking\nmid-item. Preserve the existing amber HALT styling and the STOP control beside it.\n\n**Acceptance criteria**\n\n- With a manual STEP run parked/in-flight AND Vera actively speaking (caption streaming), the HALT\n  button is fully visible and clickable \u2014 the caption never overlaps its hit-area.\n- The full step-result dock (`.wr-pgdock` block) and the AUTO-mode surfaces are unaffected except for\n  the intended reposition.\n- No change to halt/stop *behavior* \u2014 this is purely position/layering (D-1: harness semantics\n  untouched).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-135.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-135.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-135.md",
+      "costUSD": 0.5874,
+      "inputTokens": 37,
+      "outputTokens": 7759,
+      "cacheReadTokens": 412401,
+      "costEstimated": true
     },
     {
       "id": "task-136",
@@ -2335,7 +3016,12 @@
       "finishedAt": "2026-07-16T03:24:31Z",
       "durationSeconds": 551,
       "description": "**task-136 / RND-164 \u2014 Sync the voice/orb speaking animation to actual speech end**\n\n**Objective**\n\nDrive the orb's \"speaking\" animation lifecycle from the **same speech-end signal the captions use**, so\nthe orb stays in its speaking state until Vera's audio for the current utterance actually completes:\n1. Keep the orb in the speaking/active animation while an utterance is playing; only settle it when the\n   correlated **`speak.done`** for that utterance fires (or the utterance is `interrupted`).\n2. If multiple utterances chain (multi-sentence reply), the orb stays speaking across the whole chain\n   and settles only when the final `speak.done` lands (mirror the caption engine's handling \u2014 do not\n   settle at each inter-utterance gap).\n3. Preserve the existing safety fallback so a lost `speak.done` can never stick the orb in \"speaking\"\n   forever \u2014 reuse/extend the caption engine's timeout bound rather than inventing a second unrelated\n   timer.\n4. On barge-in / interrupt, the orb settles promptly (interrupted === true).\n\n**Acceptance criteria**\n\n- The orb remains in its speaking animation for the full duration Vera is audibly speaking (single- and\n  multi-utterance replies); it no longer settles early.\n- On a genuine end (`speak.done`) or interrupt, the orb settles within the existing readability/timeout\n  window \u2014 never stuck.\n- Caption behavior is unchanged (captions already correct; do not regress their timing).\n- Add/extend a unit test asserting the orb speaking-state tracks `speak.done` (stays active until the\n  final utterance's `speak.done`; settles on interrupt).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-136.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-136.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-136.md",
+      "costUSD": 0.4598,
+      "inputTokens": 29,
+      "outputTokens": 6072,
+      "cacheReadTokens": 322774,
+      "costEstimated": true
     },
     {
       "id": "task-137",
@@ -2352,7 +3038,12 @@
       "durationSeconds": 1926,
       "mergedAt": "2026-07-16T03:56:59Z",
       "description": "**task-137 / RND-165 \u2014 Briefing HUD button (close D-3 gap A1)**\n\n**Objective**\n\nAdd a **Briefing trigger button** to the HUD header tray, mirroring the existing command-button pattern:\n1. Follow `hud/src/renderer/src/layout/calendarCommand.ts` (~lines 28-34) `registerCommand` shape to add\n   a `briefingCommand.ts` (label e.g. `BRIEFING`), rendered by `HeaderTray`.\n2. Wire the button to start a synced briefing \u2014 emit the same trigger the voice path uses. Prefer a\n   `briefing.start` HUD command / `POST /briefing` call that reaches `briefingRunner.start()` bridge-side\n   (do NOT duplicate briefing logic in the renderer \u2014 reliability must stay bridge-driven per the\n   task-71 rule). Confirm the exact command/route the bridge accepts and use it.\n3. Reflect run state: while a briefing is running (the `brief.start`\u2192`brief.beat` sequence\n   `useBriefing.ts` already listens to), the button shows an active/disabled state so it is not\n   double-fired; it returns to idle at briefing end.\n\n**Acceptance criteria**\n\n- A `BRIEFING` button appears in the HUD header tray and, when clicked, starts the same synced briefing\n  as the voice \"run the morning briefing\" trigger (verified: `brief.start` fires, beats stream).\n- The button reflects active/idle state and cannot double-trigger a briefing already in progress.\n- Voice and HTTP briefing paths remain unchanged and still work (button is additive parity, not a\n  replacement).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-137.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-137.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-137.md",
+      "costUSD": 1.607,
+      "inputTokens": 103,
+      "outputTokens": 21227,
+      "cacheReadTokens": 1128246,
+      "costEstimated": true
     },
     {
       "id": "task-138",
@@ -2369,7 +3060,12 @@
       "durationSeconds": 1247,
       "mergedAt": "2026-07-16T04:17:57Z",
       "description": "**task-138 / RND-166 \u2014 Meeting DELIVER button (close D-3 gap A2)**\n\n**Objective**\n\nIn `hud/src/renderer/src/views/builtin/MeetingSummaryView.tsx`, the **post-finalize phase** footer\n(the `else` branch, ~lines 205-219) currently renders only a DISMISS button plus the stale hint\n\"Summary finalized \u2014 delivery to email/KB arrives with task-95\".\n1. Add a **DELIVER** button in that post-finalize footer that emits the `meeting.deliver` command \u2014\n   the same action the voice \"deliver the summary\" trigger fires \u2014 so it flows through the existing C6\n   confirm-gate and the live `meeting-delivery.ts` executor (email + dated KB page). Do NOT duplicate\n   delivery logic in the renderer; emit the command and let the bridge run both legs.\n2. **Remove the stale placeholder hint** (\"arrives with task-95\") and replace it with accurate copy\n   (e.g. \"deliver emails the summary to the owner and writes a dated KB page \u2014 confirms first\").\n3. Reflect the C6 confirmation flow: after clicking DELIVER, the action is HELD on the C6 gate awaitin \u2026\n\n**Acceptance criteria**\n\n- The finalized summary card shows a **DELIVER** button that triggers the live `meeting.deliver` C6\n  action (verified: emits `meeting.deliver`, gate holds, release runs email + KB page).\n- The stale \"task-95\" placeholder text is gone.\n- The button cannot double-fire while a deliver is held/pending; DISMISS still works.\n- Voice deliver path unchanged and still works (button is additive parity).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-138.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-138.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-138.md",
+      "costUSD": 1.0405,
+      "inputTokens": 66,
+      "outputTokens": 13743,
+      "cacheReadTokens": 730489,
+      "costEstimated": true
     },
     {
       "id": "task-139",
@@ -2386,7 +3082,12 @@
       "durationSeconds": 1603,
       "mergedAt": "2026-07-16T04:44:51Z",
       "description": "**task-139 / RND-167 \u2014 Widen deterministic intent regexes for common fall-through phrasings (gap B)**\n\n**Objective**\n\nCoverage-gap audit (`build/proving-ground/COVERAGE-GAP-REPORT.md`, Section B + \u00a75.2) identified common,\nnatural utterances that currently fall through to Vera (LLM) when they should be caught by a\ndeterministic classifier for latency/reliability. This task widens the specific regexes named in \u00a75.2.\nAll classifiers live in `bridge/src/` and anchor on the WHOLE stripped utterance (first-match-wins).\n\n**Acceptance criteria**\n\n- Each widened classifier matches the new phrasings above and returns the correct action; the guarded\n  cases (bare \"today\", verb-only wrapup) do NOT mis-fire outside their guard condition.\n- The ambiguity contract is preserved: genuinely novel/extra-word phrasings still fall through to Vera\n  (do not make matches greedy \u2014 anchoring on the whole stripped utterance stays intact).\n- First-match-wins order is unchanged; no classifier now shadows another (e.g. range still beats\n  panel-assign; registry still beats panel-assign).\n- Add/extend unit tests per touched classifier: assert each new phrasing matches, and assert at least\n  one near-miss still falls through (guards hold).\n- `npm run build` clean; existing intent tests still pass.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-139.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-139.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-139.md",
+      "costUSD": 1.3375,
+      "inputTokens": 85,
+      "outputTokens": 17667,
+      "cacheReadTokens": 939033,
+      "costEstimated": true
     },
     {
       "id": "task-140",
@@ -2403,7 +3104,12 @@
       "durationSeconds": 630,
       "mergedAt": "2026-07-16T04:55:59Z",
       "description": "**task-140 / RND-168 \u2014 Add negative/boundary Proving Ground catalog items (gap B, make the fast-path\u2194LLM boundary testable)**\n\n**Objective**\n\nAdd these items to `build/proving-ground/catalog.json` (validate against\n`build/proving-ground/catalog.schema.json`; keep the existing 67 intact \u2014 this brings the catalog to\n76 items). Use the existing item schema keys: `id, title, testingArea, command, expected, mutation,\npreconditions, tags`.\n\n- **PG-068** (Voice, `intent:range`): \"Vera, today.\" \u2192 after task-139 this is now a POSITIVE range flip\n  to TODAY **when no Vera question is pending**. EXPECT: range flips to TODAY. tag `boundary`.\n- **PG-069** (Voice, `intent:search`): \"Vera, find tampa jury verdicts.\" \u2192 after task-139 \"find\" is a\n  search verb. EXPECT: web search runs for \"tampa jury verdicts\". tag `boundary`.\n- **PG-070** (Voice, `intent:meeting`): \"Vera, start recording.\" \u2192 after task-139 this opens meeting/\n  capture. EXPECT: meeting mode / capture starts. tag `boundary`.\n- **PG-071** (Voice, `intent:panel-assign`): \"Vera, move case status to panel 2.\" \u2192 after task-139\n  \" \u2026\n\n**Acceptance criteria**\n\n- `catalog.json` parses as valid JSON and validates against `catalog.schema.json`; total = 76 items;\n  the original 67 are byte-unchanged.\n- Each new item has all required schema keys and an `expected` consistent with post-task-139 behavior.\n- New items are tagged (`boundary` / `button` / `fallthrough`) so they are filterable.\n- `npm run build` clean (if any schema/type checks cover the catalog, they pass).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md)",
-      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md"
+      "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md",
+      "costUSD": 0.5257,
+      "inputTokens": 33,
+      "outputTokens": 6943,
+      "cacheReadTokens": 369052,
+      "costEstimated": true
     },
     {
       "id": "task-141",
@@ -2416,7 +3122,13 @@
       "lastActivity": "2026-07-19T16:10:02Z",
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
-      "description": "Glow pass: mid-intensity JARVIS glow across all chart primitives\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+      "description": "Glow pass: mid-intensity JARVIS glow across all chart primitives\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-142",
@@ -2429,7 +3141,13 @@
       "lastActivity": "2026-07-19T16:10:02Z",
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
-      "description": "New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year)\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+      "description": "New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year)\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-143",
@@ -2442,7 +3160,13 @@
       "lastActivity": "2026-07-19T16:10:02Z",
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
-      "description": "Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines, callout pills, rounded caps, round-tick axes, bezier smoothing\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+      "description": "Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines, callout pills, rounded caps, round-tick axes, bezier smoothing\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-144",
@@ -2455,7 +3179,13 @@
       "lastActivity": "2026-07-19T16:10:02Z",
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
-      "description": "Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+      "description": "Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-145",
@@ -2468,7 +3198,13 @@
       "lastActivity": "2026-07-19T16:10:02Z",
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
-      "description": "Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+      "description": "Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-146",
@@ -2483,7 +3219,12 @@
       "startedAt": "2026-07-19T18:57:35Z",
       "landed": false,
       "finishedAt": "2026-07-19T19:19:04Z",
-      "durationSeconds": 1289
+      "durationSeconds": 1289,
+      "costUSD": 1.0755,
+      "inputTokens": 69,
+      "outputTokens": 14206,
+      "cacheReadTokens": 755093,
+      "costEstimated": true
     },
     {
       "id": "task-147",
@@ -2514,7 +3255,13 @@
       "name": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)",
       "lastActivity": "2026-07-19T19:32:01Z",
       "description": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-148.md. Linear: RND-201..204. Awaiting Jon build-start order.",
-      "startedAt": "2026-07-19T19:32:01Z"
+      "startedAt": "2026-07-19T19:32:01Z",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     },
     {
       "id": "task-149",
@@ -2525,7 +3272,13 @@
       ],
       "name": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)",
       "lastActivity": "2026-07-19T18:52:39Z",
-      "description": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-149.md. Linear: RND-201..204. Awaiting Jon build-start order."
+      "description": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-149.md. Linear: RND-201..204. Awaiting Jon build-start order.",
+      "costUSD": 0.952,
+      "inputTokens": 61,
+      "outputTokens": 12575,
+      "cacheReadTokens": 668395,
+      "costEstimated": true,
+      "costEstimatedNoDuration": true
     }
   ]
 }
