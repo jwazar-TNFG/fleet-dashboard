@@ -1323,8 +1323,11 @@ function renderProject(project) {
       badgeText = 'Not started';
     }
 
-    // Auto-collapse completed phases
-    const collapsed = phaseCompleted === phaseTotal && phaseFailed === 0 ? ' collapsed' : '';
+    // Phases render EXPANDED by default so every task row (including completed
+    // phases) stays visible and clickable for its detail modal. Previously we
+    // auto-collapsed fully-completed phases, which hid all prior tasks and made
+    // them unclickable — the phase header remains a manual collapse toggle.
+    const collapsed = '';
 
     // Format phase header: "Phase 1 — Foundation" style
     const phaseLabel = phaseNames[phaseName]
