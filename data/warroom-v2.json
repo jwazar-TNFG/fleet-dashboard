@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T19:32:01Z",
+  "updated_at": "2026-07-19T19:49:21Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3401,7 +3401,7 @@
         "task-147"
       ],
       "name": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)",
-      "lastActivity": "2026-07-19T19:32:01Z",
+      "lastActivity": "2026-07-19T19:49:21Z",
       "description": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-148.md. Linear: RND-201..204. Awaiting Jon build-start order.",
       "startedAt": "2026-07-19T19:32:01Z",
       "costUSD": 0.952,
