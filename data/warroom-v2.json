@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T18:48:01Z",
+  "updated_at": "2026-07-19T18:52:39Z",
   "phases": [
     {
       "id": "phase-0",
@@ -166,7 +166,7 @@
     },
     {
       "id": "phase-38",
-      "name": "Round 31 — Proving Ground TEST-tab UX + control stability (no forced re-arm at run end, kill 30s signed-counter-hero bridge stalls, smooth tab engage/disengage + persist manual-item notes) — Jon live-test 2026-07-19",
+      "name": "Round 31 — Proving Ground: context navigation (auto-stage relevant display), verdict fidelity (no false PASS on wrong stage), TEST-tab stability + no forced re-arm + recoverable annotated results, sample meeting-audio fixture — Jon live-test 2026-07-19",
       "status": "pending"
     }
   ],
@@ -2477,9 +2477,9 @@
       "depends_on": [
         "task-140"
       ],
-      "name": "RND-169: TEST tab must NOT force re-arm at run end (BLOCKER) — stays usable post-run, re-assert RND-162 STEP-boundary invariant",
-      "lastActivity": "2026-07-19T18:48:01Z",
-      "description": "RND-169: TEST tab must NOT force re-arm at run end (BLOCKER) — stays usable post-run, re-assert RND-162 STEP-boundary invariant\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-146.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
+      "name": "RND-169: context navigation — auto-stage the contextually relevant display (Jon PG-071/072: HUD stayed on prior test view; must move to relevant display)",
+      "lastActivity": "2026-07-19T18:52:39Z",
+      "description": "RND-169: context navigation — auto-stage the contextually relevant display (Jon PG-071/072: HUD stayed on prior test view; must move to relevant display)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) — driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-146.md. Linear: RND-201..204. Awaiting Jon build-start order."
     },
     {
       "id": "task-147",
@@ -2488,9 +2488,9 @@
       "depends_on": [
         "task-146"
       ],
-      "name": "RND-170: kill 30s signed-counter-hero analyst timeouts (20x) that stall the bridge and freeze TEST controls — non-blocking fetch + shorter timeout + endpoint optimize/cache + backoff",
-      "lastActivity": "2026-07-19T18:48:01Z",
-      "description": "RND-170: kill 30s signed-counter-hero analyst timeouts (20x) that stall the bridge and freeze TEST controls — non-blocking fetch + shorter timeout + endpoint optimize/cache + backoff\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-147.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
+      "name": "RND-170: verdict fidelity — no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)",
+      "lastActivity": "2026-07-19T18:52:39Z",
+      "description": "RND-170: verdict fidelity — no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) — driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-147.md. Linear: RND-201..204. Awaiting Jon build-start order."
     },
     {
       "id": "task-148",
@@ -2499,9 +2499,20 @@
       "depends_on": [
         "task-147"
       ],
-      "name": "RND-171: smooth tab engage/disengage + make manual-item scoring first-class and persist verdict/notes into run JSON/MD",
-      "lastActivity": "2026-07-19T18:48:01Z",
-      "description": "RND-171: smooth tab engage/disengage + make manual-item scoring first-class and persist verdict/notes into run JSON/MD\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-148.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
+      "name": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results — run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)",
+      "lastActivity": "2026-07-19T18:52:39Z",
+      "description": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results — run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) — driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-148.md. Linear: RND-201..204. Awaiting Jon build-start order."
+    },
+    {
+      "id": "task-149",
+      "phase": "phase-38",
+      "status": "pending",
+      "depends_on": [
+        "task-148"
+      ],
+      "name": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)",
+      "lastActivity": "2026-07-19T18:52:39Z",
+      "description": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) — driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-149.md. Linear: RND-201..204. Awaiting Jon build-start order."
     }
   ]
 }
