@@ -2233,6 +2233,17 @@ function showTaskDetail(slug, taskId) {
     ? `<div class="td-section"><div class="td-label">Build Prompt</div><div class="td-value"><a href="${esc(task.promptUrl)}" target="_blank" rel="noopener" style="color:var(--blue);">📄 View full prompt fed to the build agent →</a></div></div>`
     : '';
 
+  // Summarized build instructions — a plain-language distillation of the actual
+  // prompt fed to the AFDT build agent, so a viewer gets the gist without opening
+  // the raw prompt file. Rendered as markdown (supports the ## Problem / ## Build
+  // / ## Acceptance structure the extractor produces).
+  const promptSummaryHtml = task.promptSummary
+    ? `<div class="td-section">
+        <div class="td-label">🧭 Build Instructions <span style="color:var(--text-muted);font-weight:400">(summary of what the agent was told)</span></div>
+        <div class="td-value td-description">${renderMarkdown(task.promptSummary)}</div>
+      </div>`
+    : '';
+
   // Description section
   let descHtml = '';
   if (fullDesc) {
@@ -2282,6 +2293,7 @@ function showTaskDetail(slug, taskId) {
           <div class="td-value">${esc(timeAgo)}${timeAbs ? ' · <span style="color:var(--text-muted)">' + esc(timeAbs) + '</span>' : ''}</div>
         </div>
         ${costHtml}
+        ${promptSummaryHtml}
         ${descHtml}
         ${promptLinkHtml}
       </div>

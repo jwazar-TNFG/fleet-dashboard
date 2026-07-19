@@ -188,7 +188,8 @@
       "inputTokens": 11,
       "outputTokens": 2446,
       "cacheReadTokens": 130047,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**CI Workflow + Auto-Merge Gate**\n\n**Done when:**\n- A trivial PR against main is BLOCKED until CI passes, then auto-merges when green.\n- CI runs lint + typecheck + build for the HUD, and a bridge job; the voice job no-ops gracefully when there is no Python code yet.\n- Branch protection verified active on main."
     },
     {
       "id": "task-01",
@@ -209,7 +210,8 @@
       "inputTokens": 19,
       "outputTokens": 4000,
       "cacheReadTokens": 212644,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Project Scaffold (Electron + Vite + TS)**\n\n**Done when:**\n- `npm run build`, `lint`, `typecheck` pass and CI is green.\n- `npm run dev` launches an Electron window rendering a placeholder HUD root.\n- Structure documented in README-DEV.md."
     },
     {
       "id": "task-02",
@@ -230,7 +232,8 @@
       "inputTokens": 83,
       "outputTokens": 17193,
       "cacheReadTokens": 913844,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Design System & TNFG Theme Tokens**\n\n**Done when:**\n- Tokens centralized; no hardcoded colors elsewhere.\n- A /dev route renders the primitives for visual QA.\n- Crisp at 4K."
     },
     {
       "id": "task-03",
@@ -251,7 +254,8 @@
       "inputTokens": 59,
       "outputTokens": 12200,
       "cacheReadTokens": 648477,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)**\n\n**Done when:**\n- Orb renders >=50fps at 4K; six states visually distinct.\n- Overlay composable behind panels.\n- Screenshot captured."
     },
     {
       "id": "task-04",
@@ -272,7 +276,8 @@
       "inputTokens": 24,
       "outputTokens": 5003,
       "cacheReadTokens": 265952,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Fullscreen Kiosk Window + Crash Auto-Recover**\n\n**Done when:**\n- Launches fullscreen, no chrome/cursor.\n- Killing the renderer auto-recovers in seconds.\n- Admin hotkey reveals exit; normal keys do not quit."
     },
     {
       "id": "task-05",
@@ -293,7 +298,8 @@
       "inputTokens": 60,
       "outputTokens": 12476,
       "cacheReadTokens": 663122,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**App State Store + Config Persistence Layer**\n\n**Done when:**\n- State survives reload; config round-trips to disk.\n- Corrupt/missing config falls back to defaults safely."
     },
     {
       "id": "task-06",
@@ -315,7 +321,8 @@
       "inputTokens": 47,
       "outputTokens": 9864,
       "cacheReadTokens": 524288,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Panel Component + Title Bar + Content Container**\n\n**Done when:**\n- Renders any registered view by id with a title.\n- Empty/loading/error states styled.\n- Matches design system."
     },
     {
       "id": "task-07",
@@ -337,7 +344,8 @@
       "inputTokens": 27,
       "outputTokens": 5609,
       "cacheReadTokens": 298170,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**3x3 Grid Layout Manager (unified virtual canvas)**\n\n**Done when:**\n- 9 panels render in a clean 3x3; center = Orb.\n- Layout data-driven from state.\n- Crisp 4K screenshot."
     },
     {
       "id": "task-08",
@@ -358,7 +366,8 @@
       "inputTokens": 34,
       "outputTokens": 7185,
       "cacheReadTokens": 381940,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Edit-Layout Mode (drag/resize + snap guides)**\n\n**Done when:**\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible.\n- Cancel restores prior layout."
     },
     {
       "id": "task-09",
@@ -380,7 +389,8 @@
       "inputTokens": 38,
       "outputTokens": 7990,
       "cacheReadTokens": 424703,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Layout Persistence + Named Presets**\n\n**Done when:**\n- >=2 presets save/recall.\n- Layout persists across restart.\n- layout.apply switches presets."
     },
     {
       "id": "task-10",
@@ -401,7 +411,8 @@
       "inputTokens": 46,
       "outputTokens": 9533,
       "cacheReadTokens": 506714,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Multi-Monitor Topology Awareness + Panel Focus/Fullscreen**\n\n**Done when:**\n- Canvas ready to span >=2 monitors from topology.\n- Any panel can fullscreen and restore.\n- Orb can take center stage and return."
     },
     {
       "id": "task-11",
@@ -422,7 +433,8 @@
       "inputTokens": 24,
       "outputTokens": 4948,
       "cacheReadTokens": 263023,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**HUD Protocol Types + Validator (versioned vocabulary)**\n\n**Done when:**\n- Every v1 command typed.\n- Invalid commands rejected with structured hud.error.\n- Unit tests for edge cases."
     },
     {
       "id": "task-12",
@@ -443,7 +455,8 @@
       "inputTokens": 24,
       "outputTokens": 5069,
       "cacheReadTokens": 269466,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Bridge Service Skeleton + Gateway WS Client**\n\n**Done when:**\n- Bridge connects to the gateway; survives gateway restarts (reconnect).\n- Health check reports state.\n- Bridge crash does not affect Vera or HUD."
     },
     {
       "id": "task-13",
@@ -465,7 +478,8 @@
       "inputTokens": 65,
       "outputTokens": 13391,
       "cacheReadTokens": 711744,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**HUD<->Bridge WebSocket Channel + Command Router**\n\n**Done when:**\n- Bridge pushes a command the HUD renders.\n- HUD emits events the bridge receives.\n- Invalid command -> nack + hud.error."
     },
     {
       "id": "task-14",
@@ -488,7 +502,8 @@
       "inputTokens": 51,
       "outputTokens": 10646,
       "cacheReadTokens": 565880,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Command Handlers (orb/panel/layout/speak) + Mock Data Feed**\n\n**Done when:**\n- Every v1 command visibly affects the HUD with mock data.\n- brief.start plays a mock briefing.\n- Screenshots."
     },
     {
       "id": "task-15",
@@ -509,7 +524,8 @@
       "inputTokens": 16,
       "outputTokens": 3317,
       "cacheReadTokens": 176325,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Vera \"War Room\" Skill (war-room) Authoring**\n\n**Done when:**\n- Skill consistent with HUD-PROTOCOL vocabulary.\n- Explicitly additive + reversible; no core edits.\n- Includes locked ops->email->calendar->flags->handoff order."
     },
     {
       "id": "task-16",
@@ -531,7 +547,8 @@
       "inputTokens": 56,
       "outputTokens": 11594,
       "cacheReadTokens": 616259,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**warroom_emit Tool (bridge-gated) + Registration**\n\n**Done when:**\n- Vera drives the HUD via warroom_emit.\n- Bad commands return hud.error.\n- Tool inert with no bridge; Vera normal."
     },
     {
       "id": "task-17",
@@ -553,7 +570,8 @@
       "inputTokens": 68,
       "outputTokens": 14085,
       "cacheReadTokens": 748649,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**End-to-End Vera-Drives-HUD Integration + Resilience**\n\n**Done when:**\n- Live Vera turn manipulates the HUD end to end.\n- Each process crashes/restarts without taking down the others.\n- Vera's other duties unaffected."
     },
     {
       "id": "task-35",
@@ -574,7 +592,8 @@
       "inputTokens": 62,
       "outputTokens": 12873,
       "cacheReadTokens": 684211,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Vera Core-Integrity Gate (additive/reversible proof)**\n\n**Done when:**\n- Before->after diff shows ONLY the additive skill + tool; nothing else changed.\n- After->reverted returns byte-for-byte to the before state.\n- Integrity report committed; this gate blocks Phase 4 completion."
     },
     {
       "id": "task-18",
@@ -595,7 +614,8 @@
       "inputTokens": 93,
       "outputTokens": 19254,
       "cacheReadTokens": 1023388,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Telegram Activity Subscription + Command Fan-Out (Jon-only)**\n\n**Done when:**\n- 'brief me' on Telegram plays the briefing + returns a summary to Jon.\n- 'put intake on the screen' updates the correct panel + confirmation.\n- Only Jon's chat triggers the room."
     },
     {
       "id": "task-19",
@@ -617,7 +637,8 @@
       "inputTokens": 58,
       "outputTokens": 12046,
       "cacheReadTokens": 640276,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Briefing Choreography (brief.start beats) E2E**\n\n**Done when:**\n- 'brief me' runs the full sequence.\n- Order matches the locked spec.\n- Barge-in interrupts cleanly."
     },
     {
       "id": "task-20",
@@ -638,7 +659,8 @@
       "inputTokens": 48,
       "outputTokens": 9941,
       "cacheReadTokens": 528389,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**analyst-01 API Client + Bridge Service-Token Auth (break-proof)**\n\n**Done when:**\n- Bridge reads analyst-01 with the service token.\n- REGRESSION TESTS pass: existing Google user still authenticates; bad/absent token still 401s; bridge token reads but cannot mutate; deletin\u2026\n- No change to existing dashboard auth."
     },
     {
       "id": "task-21",
@@ -659,7 +681,8 @@
       "inputTokens": 69,
       "outputTokens": 14261,
       "cacheReadTokens": 758022,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Data View Registry + Supabase Fallback Adapter**\n\n**Done when:**\n- Each of the 9 views resolves to a source.\n- Fallback works when primary absent.\n- Exclusions honored."
     },
     {
       "id": "task-22",
@@ -681,7 +704,8 @@
       "inputTokens": 61,
       "outputTokens": 12553,
       "cacheReadTokens": 667223,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**9 Default Ops Pulse Views (render + bind)**\n\n**Done when:**\n- All 9 views render correct data.\n- Re-taskable via panel.set.\n- cor-by-location filters by region."
     },
     {
       "id": "task-23",
@@ -702,7 +726,8 @@
       "inputTokens": 75,
       "outputTokens": 15463,
       "cacheReadTokens": 821874,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Hybrid Refresh + Single-Source-of-Truth Guard**\n\n**Done when:**\n- Polling works per panel; 'update intake' forces refresh.\n- Spoken == panel figure (spot-checked).\n- Errors degrade gracefully."
     },
     {
       "id": "task-24",
@@ -724,7 +749,8 @@
       "inputTokens": 61,
       "outputTokens": 12608,
       "cacheReadTokens": 670152,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Live Data Integration Test (exclusions, spoken==panel)**\n\n**Done when:**\n- Briefing shows real correct numbers.\n- Exclusions honored.\n- Spoken numbers match panels."
     },
     {
       "id": "task-25",
@@ -745,7 +771,8 @@
       "inputTokens": 101,
       "outputTokens": 20918,
       "cacheReadTokens": 1111843,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Pipecat Orchestration Skeleton + Audio I/O**\n\n**Done when:**\n- Audio in/out works on the Mac mini.\n- A spoken turn routes to Vera and plays a spoken reply.\n- Device selection configurable."
     },
     {
       "id": "task-26",
@@ -766,7 +793,8 @@
       "inputTokens": 60,
       "outputTokens": 12443,
       "cacheReadTokens": 661365,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**AssemblyAI STT Integration (streaming)**\n\n**Done when:**\n- Live speech transcribes accurately incl. entities/numbers.\n- Latency acceptable.\n- Key from secret, not hardcoded."
     },
     {
       "id": "task-27",
@@ -787,7 +815,8 @@
       "inputTokens": 41,
       "outputTokens": 8629,
       "cacheReadTokens": 458679,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**ElevenLabs TTS (Vera voice) + Cartesia Fallback**\n\n**Done when:**\n- Vera speaks in her branded voice.\n- Fallback switchable.\n- Keys from secrets."
     },
     {
       "id": "task-28",
@@ -809,7 +838,8 @@
       "inputTokens": 168,
       "outputTokens": 34640,
       "cacheReadTokens": 1841161,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Turn-Taking, Barge-In, EOT + Push-to-Talk (on-HUD PTT button)**\n\n**Done when:**\n- Visible HUD PTT button starts/stops listening (hold and toggle); active state matches orb listening.\n- Keyboard PTT works too.\n- Barge-in works; latency conversational."
     },
     {
       "id": "task-29",
@@ -830,7 +860,8 @@
       "inputTokens": 81,
       "outputTokens": 16653,
       "cacheReadTokens": 885140,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Wake Word (additive; Porcupine/openWakeWord) + C6 Spoken Confirmation**\n\n**Done when:**\n- C6 enforced.\n- With an engine: 'Vera' wakes listening, low false-trigger, PTT still works.\n- With NO engine: runs fine on PTT alone, reports wake-word 'not configured' (no failure)."
     },
     {
       "id": "task-30",
@@ -852,7 +883,8 @@
       "inputTokens": 47,
       "outputTokens": 9809,
       "cacheReadTokens": 521359,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Services Configuration Admin Screen (key manager + file spec)**\n\n**Done when:**\n- Admin can paste/rotate each key without editing shell files; files land at `~/.openclaw/secrets/warroom/<svc>.json` mode 600.\n- Saved keys never re-shown in plaintext; validate button live-probes each.\n- Secrets dir gitignored; hidden from normal operation."
     },
     {
       "id": "task-31",
@@ -873,7 +905,8 @@
       "inputTokens": 56,
       "outputTokens": 11561,
       "cacheReadTokens": 614501,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Auto-Launch at Login + Locked-Down Kiosk Hardening**\n\n**Done when:**\n- Boots into the War Room automatically; survives reboot.\n- Locked down for daily use.\n- Admin exit reachable."
     },
     {
       "id": "task-36",
@@ -894,7 +927,8 @@
       "inputTokens": 80,
       "outputTokens": 16466,
       "cacheReadTokens": 875181,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Early macOS Smoke Test on Vera's Mac mini**\n\n**Done when:**\n- Phase-1 shell launches fullscreen on Vera's actual Mac mini via the `vera` alias.\n- screen topology API + arm64 + audio device enumeration verified on real hardware.\n- Smoke-test report committed; blocks progression if the shell fails on macOS."
     },
     {
       "id": "task-32",
@@ -916,7 +950,8 @@
       "inputTokens": 59,
       "outputTokens": 12233,
       "cacheReadTokens": 650235,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Multi-Monitor Deploy Validation (>=2 displays)**\n\n**Done when:**\n- Panels spread/snap across >=2 displays.\n- Spanning presets work.\n- Crisp on each display."
     },
     {
       "id": "task-33",
@@ -939,7 +974,8 @@
       "inputTokens": 111,
       "outputTokens": 22968,
       "cacheReadTokens": 1220802,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Packaging, Signing & Vera.app Build**\n\n**Done when:**\n- Signed Vera.app builds and runs on the Mac mini.\n- Companion processes start reliably.\n- Install documented."
     },
     {
       "id": "task-37",
@@ -961,7 +997,8 @@
       "inputTokens": 103,
       "outputTokens": 21205,
       "cacheReadTokens": 1127074,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Rollback Runbook \u2014 cleanly remove the War Room & restore Vera**\n\n**Done when:**\n- RUNBOOK.md fully removes the War Room and restores Vera; verified against the task-35 before-snapshot.\n- Includes a one-command 'demo-safe abort' that stops the room without touching Vera.\n- Dry-run evidence committed."
     },
     {
       "id": "task-34",
@@ -986,7 +1023,8 @@
       "inputTokens": 41,
       "outputTokens": 8552,
       "cacheReadTokens": 454578,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**Production Cutover (Telegram Jon->Zeri) + Handoff Docs**\n\n**Done when:**\n- Zeri's Telegram is the production target; Jon test-target disabled.\n- Documented in KB + Linear.\n- Handed to Zeri."
     },
     {
       "id": "task-38",
@@ -1005,7 +1043,8 @@
       "inputTokens": 69,
       "outputTokens": 14382,
       "cacheReadTokens": 764465,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-62: Bridge\u2194gateway protocol mismatch vs live OpenClaw 2026.5.2 (RND-62)**\n\n**Done when:**\n- Bridge holds a stable session against a real OpenClaw 2026.5.2 gateway (health shows `gateway.state: connected`); no reconnect loop.\n- Protocol mismatch vs connection-refused are logged distinctly.\n- Auth-token path documented and honored when required."
     },
     {
       "id": "task-39",
@@ -1024,7 +1063,8 @@
       "inputTokens": 58,
       "outputTokens": 12057,
       "cacheReadTokens": 640862,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-60: Bridge default HUD port 18791 collides with Vera's live gateway (RND-60)**\n\n**Done when:**\n- With Vera's gateway occupying 18789 (+ its neighbors), the bridge starts cleanly with no manual port overrides, and the HUD connects.\n- Env overrides (`WARROOM_HUD_WS_PORT`, `WARROOM_BRIDGE_HEALTH_PORT`) still work and are documented with correct names.\n- No regressions to Layer-2 command routing."
     },
     {
       "id": "task-40",
@@ -1046,7 +1086,8 @@
       "inputTokens": 127,
       "outputTokens": 26220,
       "cacheReadTokens": 1393612,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-61: Install/register warroom_emit plugin in Vera's agent (RND-61)**\n\n**Done when:**\n- With the bridge up, Vera's toolset gains exactly `warroom_emit`; with the bridge down, her toolset is byte-for-byte unchanged (task-35 mani\u2026\n- A Vera turn can emit a HUD-PROTOCOL batch that reaches the bridge.\n- Install and rollback are documented and verified reversible."
     },
     {
       "id": "task-41",
@@ -1065,7 +1106,8 @@
       "inputTokens": 70,
       "outputTokens": 14405,
       "cacheReadTokens": 765637,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-57: \"Change View\" panel-menu item to re-assign panel content (RND-57)**\n\n**Done when:**\n- In edit mode, each panel exposes \"Change View\"; selecting a view swaps the panel's content live.\n- The change persists via the existing preset/layout persistence across a full relaunch.\n- No regression to Focus/Exit-Focus or drag/snap/resize."
     },
     {
       "id": "task-42",
@@ -1084,7 +1126,8 @@
       "inputTokens": 47,
       "outputTokens": 9720,
       "cacheReadTokens": 516673,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-56: Split-cell / half-size panel layout (RND-56)**\n\n**Done when:**\n- An operator can split a grid section and place two distinct data panels within it.\n- Split layouts persist across relaunch via presets.\n- The default clean 3\u00d73 look is unchanged when no split is applied; no regression to existing layout behaviors."
     },
     {
       "id": "task-43",
@@ -1103,7 +1146,8 @@
       "inputTokens": 32,
       "outputTokens": 6645,
       "cacheReadTokens": 353235,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-58: Fix duplicate React key in LiveOpsFeedView (RND-58)**\n\n**Done when:**\n- No React duplicate-key warning in the console for the live-ops feed, including same-minute identical mock entries.\n- No visual/behavioral regression to the feed."
     },
     {
       "id": "task-44",
@@ -1122,7 +1166,8 @@
       "inputTokens": 44,
       "outputTokens": 9147,
       "cacheReadTokens": 486211,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-59: HUD WS client backoff + log-once (RND-59)**\n\n**Done when:**\n- With the bridge down, the console shows a small number of clear messages, not a per-attempt flood.\n- When the bridge returns, the HUD reconnects promptly and automatically (no HUD restart), matching Layer-2 Check 5."
     },
     {
       "id": "task-45",
@@ -1142,7 +1187,8 @@
       "inputTokens": 68,
       "outputTokens": 14030,
       "cacheReadTokens": 745720,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-65: Re-target the warroom-emit installer to the OpenClaw 2026.5.x plugin registry (RND-65)**"
     },
     {
       "id": "task-46",
@@ -1164,7 +1210,8 @@
       "inputTokens": 51,
       "outputTokens": 10646,
       "cacheReadTokens": 565880,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-64: Rework the task-35 core-integrity gate for the registry install + fix volatile-state scoping (RND-64)**"
     },
     {
       "id": "task-47",
@@ -1187,7 +1234,8 @@
       "inputTokens": 66,
       "outputTokens": 13765,
       "cacheReadTokens": 731661,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-65: Layer-3 live-readiness harness + updated runbook & dry-run checklist (RND-65 close-out)**"
     },
     {
       "id": "task-48",
@@ -1207,7 +1255,8 @@
       "inputTokens": 22,
       "outputTokens": 4629,
       "cacheReadTokens": 246034,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-66: Bridge gateway handshake must declare operator role + operator.write scope (RND-66 part B)**"
     },
     {
       "id": "task-49",
@@ -1229,7 +1278,8 @@
       "inputTokens": 36,
       "outputTokens": 7417,
       "cacheReadTokens": 394241,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-66: Make the warroom_emit tool reliably enter the agent toolset when the bridge is reachable (RND-66 part A)**"
     },
     {
       "id": "task-50",
@@ -1251,7 +1301,8 @@
       "inputTokens": 43,
       "outputTokens": 8872,
       "cacheReadTokens": 471567,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-67: Uninstall drift-guard must ignore volatile meta/state (RND-67), shared with the RND-64 gate comparator**"
     },
     {
       "id": "task-51",
@@ -1270,7 +1321,8 @@
       "inputTokens": 10,
       "outputTokens": 2182,
       "cacheReadTokens": 115987,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-68: warroom_emit must be a NON-OPTIONAL tool so it enters Vera's toolset (RND-68)**"
     },
     {
       "id": "task-52",
@@ -1289,7 +1341,8 @@
       "inputTokens": 39,
       "outputTokens": 8144,
       "cacheReadTokens": 432904,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-69: Purge the install RECORD on recovery; CLI uninstall must tolerate a missing dist (RND-69)**"
     },
     {
       "id": "task-53",
@@ -1308,7 +1361,8 @@
       "inputTokens": 11,
       "outputTokens": 2270,
       "cacheReadTokens": 120674,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-70: Uninstall drift-guard must compare `plugins.allow` order-independently (RND-70, extends RND-67)**\n\n**Done when:**\n- After tasks 51\u201353, a live Layer-3 dry-run should: preflight GO, registry install, `warroom_emit`"
     },
     {
       "id": "task-54",
@@ -1328,7 +1382,8 @@
       "inputTokens": 201,
       "outputTokens": 41440,
       "cacheReadTokens": 2202598,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-72: Briefing choreography (Option B): commit + tests (RND-72)**"
     },
     {
       "id": "task-55",
@@ -1350,7 +1405,8 @@
       "inputTokens": 193,
       "outputTokens": 39765,
       "cacheReadTokens": 2113557,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-73: `layout.apply` view-reset (B-3 proper fix) (RND-73)**"
     },
     {
       "id": "task-56",
@@ -1370,7 +1426,8 @@
       "inputTokens": 14,
       "outputTokens": 2931,
       "cacheReadTokens": 155822,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-74: Preflight version assertion fix: false NO-GO on 2026.6.x (RND-74)**"
     },
     {
       "id": "task-57",
@@ -1390,7 +1447,8 @@
       "inputTokens": 20,
       "outputTokens": 4144,
       "cacheReadTokens": 220259,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-75: verify-loaded harness: always send a valid session selector (RND-75)**"
     },
     {
       "id": "task-58",
@@ -1410,7 +1468,8 @@
       "inputTokens": 23,
       "outputTokens": 4827,
       "cacheReadTokens": 256579,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-76: Integrity `VOLATILE_PATTERNS` must exclude the live agent sqlite store (RND-76)**"
     },
     {
       "id": "task-59",
@@ -1430,7 +1489,8 @@
       "inputTokens": 84,
       "outputTokens": 17358,
       "cacheReadTokens": 922631,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-79: Bridge single-instance guard + self-aware health (RND-79)**"
     },
     {
       "id": "task-60",
@@ -1452,7 +1512,8 @@
       "inputTokens": 55,
       "outputTokens": 11473,
       "cacheReadTokens": 609815,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-80: Voice pipeline probes the HUD-WS ladder so HUD + voice share one bridge (RND-80)**"
     },
     {
       "id": "task-61",
@@ -1474,7 +1535,8 @@
       "inputTokens": 62,
       "outputTokens": 12751,
       "cacheReadTokens": 677767,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-81: Bridge routes Vera's voice-turn reply back as a `speak` command (RND-81)**"
     },
     {
       "id": "task-62",
@@ -1494,7 +1556,8 @@
       "inputTokens": 80,
       "outputTokens": 16609,
       "cacheReadTokens": 882796,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-82: Voice turns always carry a session target (durable session-key default) (RND-82)**"
     },
     {
       "id": "task-63",
@@ -1514,7 +1577,8 @@
       "inputTokens": 43,
       "outputTokens": 8927,
       "cacheReadTokens": 474496,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-83: Streaming TTS: speak Vera's reply sentence-by-sentence as she generates it (RND-83)**"
     },
     {
       "id": "task-64",
@@ -1534,7 +1598,8 @@
       "inputTokens": 105,
       "outputTokens": 21591,
       "cacheReadTokens": 1147577,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-84: C6 spoken-confirmation enforcement: fail-closed gate for voice-originated mutating actions (RND-84)**"
     },
     {
       "id": "task-65",
@@ -1554,7 +1619,8 @@
       "inputTokens": 282,
       "outputTokens": 58083,
       "cacheReadTokens": 3087153,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-85: Orb shows the \"speaking\" animation during Vera's TTS playback (RND-85)**"
     },
     {
       "id": "task-66",
@@ -1574,7 +1640,8 @@
       "inputTokens": 670,
       "outputTokens": 137889,
       "cacheReadTokens": 7328913,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-86: Route voice turns to a fast model (Sonnet), keep Opus for everything else (RND-86)**"
     },
     {
       "id": "task-67",
@@ -1594,7 +1661,8 @@
       "inputTokens": 101,
       "outputTokens": 20863,
       "cacheReadTokens": 1108914,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-87: Briefing audio-visual sync: advance beats on TTS completion (RND-87)**\n\n**Why:** The Opening Briefing choreography (`vera/tools/warroom-emit/src/briefing.ts`, Option-B, task-54) drives panels **beat-by-beat** and is *supposed* to stay in sync with Vera's spoken narration. In practice the **screen finishes well before t\u2026\n\n**Done when:**\n- **Unit/integration:** a fake pipeline that emits `speak.done` after N ms per\n- **Bridge suite** green (233/233 baseline preserved), plus new `speak.done`\n- **Live (Vera's Mac mini):** run the full briefing. Panels/orb/highlights"
     },
     {
       "id": "task-68",
@@ -1614,7 +1682,8 @@
       "inputTokens": 30,
       "outputTokens": 6326,
       "cacheReadTokens": 336247,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-88: Voice-session emit is denied by A5 (webchat origin leak) (RND-88)**\n\n**Why:** Running the morning briefing from the **room mic (PTT)** fails: the bridge rejects every emitted command with `ERR_ORIGIN_NOT_ALLOWED`. This is also why Vera \"cannot\" run the briefing by voice. ### Live evidence (Vera's Mac mini, 2026-07-1\u2026\n\n**Done when:**\n- **Unit:** `decideOrigin` allows the room-voice origin (originless or the\n- **Bridge suite** green (baseline preserved) + new origin tests. lint /\n- **Live (Vera's Mac mini):** press PTT, say \"Vera, run the war room briefing\""
     },
     {
       "id": "task-69",
@@ -1634,7 +1703,8 @@
       "inputTokens": 75,
       "outputTokens": 15463,
       "cacheReadTokens": 821874,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-89: Per-turn thinking control for voice + HUD (fast by default, deep on demand) (RND-89)**\n\n**Why:** Response latency is still high on voice turns even after Task 66's Sonnet routing. Root cause (confirmed): **Anthropic Claude 4.6 models default to `adaptive` thinking** when no explicit thinking level is set (OpenClaw docs, config-agents.\u2026\n\n**Done when:**\n- **Unit:** the voice pin/turn carries the configured `thinking` level;\n- **Bridge suite** green (baseline preserved) + new tests. lint/typecheck/build\n- **Live (Vera's Mac mini):**"
     },
     {
       "id": "task-70",
@@ -1654,7 +1724,8 @@
       "inputTokens": 39,
       "outputTokens": 8155,
       "cacheReadTokens": 433490,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-90: Voice replies take the \"briefing\" stage, then restore the prior layout (RND-90)**\n\n**Done when:**\n- **Unit:** on a voice reply run, the first speaking transition triggers exactly\n- **Bridge suite** green (baseline preserved) + new voice-reply layout tests.\n- **Live (Vera's Mac mini):** with the HUD on ops-focus, press PTT and ask Vera"
     },
     {
       "id": "task-71",
@@ -1673,7 +1744,8 @@
       "inputTokens": 159,
       "outputTokens": 32722,
       "cacheReadTokens": 1739233,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-91: Reliable voice-triggered synced briefing (RND-91)**\n\n**Why:** Round 10 landed the voice-briefing infrastructure (Task 66 Sonnet pin, Task 67 audio-visual sync via `speak.done`, Task 68 A5 origin fix). But during the live acceptance pass **the briefing could not be demonstrated end-to-end by voice**:\u2026\n\n**Done when:**\n- **Live (Vera's Mac mini):** hold PTT, say \"Vera, run the morning briefing\" \u2192 the\n- The trigger is **deterministic** \u2014 it does not depend on the LLM emitting a tool\n- **Unit/integration:** intent detection; `runBriefing` wired with a `speakDone`"
     },
     {
       "id": "task-72",
@@ -1692,7 +1764,8 @@
       "inputTokens": 102,
       "outputTokens": 21084,
       "cacheReadTokens": 1120630,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-92: Canonical briefing entry point; kill the desynced fallback (RND-92)**\n\n**Why:** There are currently **two divergent ways** to run the briefing, with different pacing models: 1. **Vera-invoked / voice intent (task-71):** runs `runBriefing` and (after task-71) advances beats on `speak.done` \u2014 correctly synced to narrati\u2026\n\n**Done when:**\n- The operator/standalone trigger produces the **same synced choreography** as the\n- **No code path** advances briefing beats on a hardcoded `paced(3200)`-style timer\n- A single canonical briefing runner is referenced by all triggers; duplication"
     },
     {
       "id": "task-73",
@@ -1713,7 +1786,8 @@
       "inputTokens": 51,
       "outputTokens": 10558,
       "cacheReadTokens": 561194,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-93: Deep-thinking HUD affordances (RND-93)**\n\n**Done when:**\n- The Fast/Deep toggle is **clearly visible and operable** in the running windowed\n- When a turn runs in **deep** mode, the HUD shows a **distinct \"thinking hard\"\n- No regression to Task 65 / Task 69 / Task 70 / PTT layout."
     },
     {
       "id": "task-74",
@@ -1734,7 +1808,8 @@
       "inputTokens": 66,
       "outputTokens": 13699,
       "cacheReadTokens": 728146,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-98: Fix briefing choreography: voice pipeline must emit per-beat `speak.done` so visuals hold on narration (RND-98)**\n\n**Done when:**\n- Live PTT \"run the morning briefing\": **each panel/beat holds until Vera finishes narrating that beat**; total runtime tracks narration (cle\u2026\n- Bridge log shows **one `speak.done observed` per beat** with a `cmdId` that matches the beat's emitted `speak` command.\n- Barge-in mid-briefing cuts narration and the current beat resolves as **interrupted** (no hang-to-timeout)."
     },
     {
       "id": "task-75",
@@ -1755,7 +1830,8 @@
       "inputTokens": 64,
       "outputTokens": 13291,
       "cacheReadTokens": 706471,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-99: Orb \"speaking\" state (and speak.done) must hold until PLAYBACK ends, not synthesis (RND-99)**\n\n**Done when:**\n- Live PTT reply: the orb **\"speaking\" waveform stays active until Vera's audio fully stops** \u2014 no early cutoff.\n- `speak.done` fires on **playback** completion (observable: bridge `speak.done observed` timing lines up with audio end, not a beat early).\n- Barge-in mid-speech still cuts instantly (orb drops speaking + waiters resolve interrupted immediately)."
     },
     {
       "id": "task-76",
@@ -1777,7 +1853,8 @@
       "inputTokens": 223,
       "outputTokens": 46014,
       "cacheReadTokens": 2445704,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-100: Voice captions: hold for the full utterance + flow words in as Vera speaks (RND-100)**\n\n**Done when:**\n- A caption **stays on screen for the entire time Vera is speaking that segment** \u2014 no early disappearance.\n- Words **flow in with the audio** (progressive reveal), or at minimum the full line holds until playback-end.\n- Multi-segment replies + briefing beats read smoothly, each synced to its own narration."
     },
     {
       "id": "task-77",
@@ -1799,7 +1876,8 @@
       "inputTokens": 157,
       "outputTokens": 32436,
       "cacheReadTokens": 1724002,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-101: JARVIS visual system: shared design tokens + reusable chart primitives + motion (RND-101)**\n\n**Done when:**\n- Token module + CSS custom properties exist for the full catalog \u00a76 palette, typography stacks (Orbitron/Rajdhani\n- All 8 chart primitives exist, are typed, apply target/threshold-based status coloring, and render in the demo harness.\n- Motion utilities implemented (digit-roll, tween-on-refresh, idle glow/scanline, alert pulse, overnight-dim) and honor"
     },
     {
       "id": "task-78",
@@ -1821,7 +1899,8 @@
       "inputTokens": 66,
       "outputTokens": 13655,
       "cacheReadTokens": 725803,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-102: New read-only analyst-01 endpoints + bridge wiring + overnight fallback (RND-102)**\n\n**Done when:**\n- Bridge exposes data sources for `intake-case-inventory`, `ops-referral-out`, `retention-drop-reasons`, and dated\n- Graceful degradation proven: with the endpoint **absent/404 or returning empty \"today\"**, the bridge serves a\n- Standard exclusions applied on all new endpoint queries (server-side), except the documented cor-report exception."
     },
     {
       "id": "task-79",
@@ -1843,7 +1922,8 @@
       "inputTokens": 187,
       "outputTokens": 38630,
       "cacheReadTokens": 2053220,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-103: Global TIME-RANGE control: TODAY | MTD | YTD (RND-103)**\n\n**Done when:**\n- Top-bar TODAY|MTD|YTD control changes the wall's range and all range-aware panels re-query + re-render.\n- `range.set` is a valid additive protocol command; round-trips HUD \u2194 bridge.\n- Voice \"year to date\" / \"month to date\" / \"today\" trigger `range.set` with brief confirmation."
     },
     {
       "id": "task-80",
@@ -1865,7 +1945,8 @@
       "inputTokens": 151,
       "outputTokens": 31091,
       "cacheReadTokens": 1652534,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-104: Per-panel view-picker UI (RND-104)**\n\n**Done when:**\n- Clicking a panel's title opens a dropdown of all registered views; selecting one swaps that panel's view and its\n- Voice \"put <view> on panel N\" (and a position variant) reassigns the correct panel.\n- Per-panel view assignment is saved in the preset and restored on load."
     },
     {
       "id": "task-81",
@@ -1888,7 +1969,8 @@
       "inputTokens": 140,
       "outputTokens": 28777,
       "cacheReadTokens": 1529517,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-105: Starter view library part 1: Intake + Ops (RND-105)**\n\n**Done when:**\n- All 8 views registered, render from live analyst-01 data via the bridge, and apply target-aware status coloring.\n- Overnight fallback verified for `intake-pace` and `ops-lead-rating-distribution` (simulate empty today \u2192 shows\n- `intake-case-inventory` renders as LIVE (ignores global range, LIVE/NOW tag)."
     },
     {
       "id": "task-82",
@@ -1911,7 +1993,8 @@
       "inputTokens": 77,
       "outputTokens": 15914,
       "cacheReadTokens": 845891,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-106: Starter view library part 2: Retention / COR / System (RND-106)**\n\n**Done when:**\n- `retention-request-queue`, `cor-by-attorney`, `kpi-scoreboard` registered, render from live analyst-01 data via the\n- `retention-request-queue` renders as LIVE (ignores global range, LIVE/NOW tag).\n- `cor-by-attorney` correctly includes KB/xSTAFF (the documented exception) \u2014 verify the exclusion is NOT applied here."
     },
     {
       "id": "task-83",
@@ -1934,7 +2017,8 @@
       "inputTokens": 104,
       "outputTokens": 21381,
       "cacheReadTokens": 1136447,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-107: Slack team-presence panel + 30-min scan cadence + default CEO preset (RND-107)**\n\n**Done when:**\n- `team-presence` renders live IN/BREAK/OUT rosters + activity ticker from `/api/retention/pulse/current`, with team\n- Presence refreshes on a ~30-min bridge poll interval (verified), NOT a cron job; resilient to restart.\n- `team-presence` ignores the global range (LIVE/NOW tag)."
     },
     {
       "id": "task-84",
@@ -1957,7 +2041,8 @@
       "inputTokens": 187,
       "outputTokens": 38619,
       "cacheReadTokens": 2052634,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-108: \"View my calendar\" voice command + Calendar button \u2192 full-screen calendar view (RND-108)**\n\n**Done when:**\n- Clicking **Calendar** in the top bar opens a **full-screen day calendar** with\n- Saying **\"view my calendar\"** (and the listed variants) opens it with a spoken\n- A Vera `warroom_emit` / gateway `calendar.open` / `calendar.close` drives the"
     },
     {
       "id": "task-85",
@@ -1979,7 +2064,8 @@
       "inputTokens": 446,
       "outputTokens": 91742,
       "cacheReadTokens": 4876179,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-114: Point Calendar at Zeri's calendar (PM-1 Q2 fix / RND-114)**\n\n**Done when:**\n- Calendar stage renders **Zeri's** events when the credential/sharing is present.\n- Calendar source is config-driven (env/constructor), documented in the PR.\n- Still read-only; offline fallback + all task-84 behavior unchanged (D-1)."
     },
     {
       "id": "task-86",
@@ -2001,7 +2087,8 @@
       "inputTokens": 419,
       "outputTokens": 86220,
       "cacheReadTokens": 4582694,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-115: Substrate B: generalize the command/button + voice-intent registry (RND-115)**\n\n**Done when:**\n- Calendar button + \"view my calendar\" voice + `calendar.open/close` all still work\n- A new control can be added by ONE registry entry and gets button+voice+state.\n- Registry is enumerable (id, label, phrases, description) for PM-6."
     },
     {
       "id": "task-87",
@@ -2023,7 +2110,8 @@
       "inputTokens": 141,
       "outputTokens": 28997,
       "cacheReadTokens": 1541233,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-109: PM-6: Command Glossary / Voice+Button Index view (RND-109)**\n\n**Done when:**\n- Button + \"show commands\" voice open a full-screen glossary; Escape/voice/timeout\n- Entries are auto-derived from the registries (adding a new command makes it appear\n- Searchable/filterable; grouped by area."
     },
     {
       "id": "task-88",
@@ -2043,7 +2131,8 @@
       "inputTokens": 43,
       "outputTokens": 8839,
       "cacheReadTokens": 469809,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-116: PM-5a / Substrate E: read-only KB graph + content service (RND-116)**\n\n**Done when:**\n- `GET /api/kb/graph` returns nodes+edges derived from real vault pages (fixture in test).\n- `GET /api/kb/page?id=` returns sanitized rendered content; excluded folders/pages 404.\n- No secrets/paths leaked; endpoints read-only."
     },
     {
       "id": "task-89",
@@ -2066,7 +2155,8 @@
       "inputTokens": 120,
       "outputTokens": 24776,
       "cacheReadTokens": 1316872,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-108: PM-5b: KB Explorer full-screen graph UI + reader + index rail (RND-108)**\n\n**Done when:**\n- Button + voice open the full-screen graph populated from the live service; dismiss\n- Clicking a node renders its page read-only; wikilinks traverse + re-center; back-stack works.\n- Index rail lists/searches pages and navigates; in-graph fuzzy search highlights nodes."
     },
     {
       "id": "task-90",
@@ -2088,7 +2178,8 @@
       "inputTokens": 85,
       "outputTokens": 17524,
       "cacheReadTokens": 931418,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-117: PM-4a / Substrate C: turn-context \u2192 source \u2192 panel streaming pipeline (RND-117)**\n\n**Done when:**\n- The pipeline streams partial results + citations to a target view progressively,\n- Debounce/rate-limit + a hard rule that it never overrides briefing/stage/fullscreen.\n- Explicit entry runs a real query end-to-end (mocked provider in test)."
     },
     {
       "id": "task-91",
@@ -2111,7 +2202,8 @@
       "inputTokens": 191,
       "outputTokens": 39379,
       "cacheReadTokens": 2093054,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-97: PM-4b: Search full-screen streaming research view (RND-97)**\n\n**Done when:**\n- Button + \"search for X\" voice open the full-screen panel and stream results+sources\n- Read-aloud reads the synthesis; \"save to KB\" prompts the C6 confirmation before writing.\n- Provider/network failure \u2192 clean error state; no crash/stuck stage."
     },
     {
       "id": "task-92",
@@ -2131,7 +2223,8 @@
       "inputTokens": 94,
       "outputTokens": 19518,
       "cacheReadTokens": 1037447,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-118: PM-2a / Substrate D: continuous (non-PTT) open-mic capture mode (RND-118)**\n\n**Done when:**\n- Continuous mode streams a live running transcript from real mic audio (mocked STT in test).\n- PTT + wake/listen + briefing are unaffected when Meeting mode is off, and cleanly\n- No stuck mic on stop/failure; recording state is observable."
     },
     {
       "id": "task-93",
@@ -2154,7 +2247,8 @@
       "inputTokens": 137,
       "outputTokens": 28270,
       "cacheReadTokens": 1502570,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-119: PM-2b: Meeting mode live transcript view + recording indicator (RND-119)**\n\n**Done when:**\n- Meeting button + \"start a meeting\" voice engage continuous capture; live transcript\n- \"end meeting\" (button/voice) stops capture and restores the prior wall.\n- Transcript buffer is retained/handed to the summary stage (task-94) on end."
     },
     {
       "id": "task-94",
@@ -2176,7 +2270,8 @@
       "inputTokens": 207,
       "outputTokens": 42719,
       "cacheReadTokens": 2270551,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-120: PM-2c: end-of-meeting summary + participant wrap-up panel (RND-120)**\n\n**Done when:**\n- Ending a meeting yields a summary with takeaways + deliverables/dates grouped by\n- Wrap-up panel shows detected participants (calendar + transcript heuristic) and lets\n- Finalized summary is a structured object ready for delivery (task-95)."
     },
     {
       "id": "task-95",
@@ -2198,7 +2293,8 @@
       "inputTokens": 83,
       "outputTokens": 17083,
       "cacheReadTokens": 907986,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-121: PM-2d: meeting summary delivery \u2014 email to Zeri + dated KB page (RND-121)**\n\n**Done when:**\n- On finalize, the summary is emailed to the owner (Zeri) **after C6 confirmation**;\n- A dated searchable KB page is created/updated in the vault **after C6 confirmation**,\n- Both destinations honored (Q3); nothing sent/written silently."
     },
     {
       "id": "task-96",
@@ -2218,7 +2314,8 @@
       "inputTokens": 52,
       "outputTokens": 10701,
       "cacheReadTokens": 568809,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-122: PM-3 infra pre-req: analyst-01 + Supabase reachable from the bridge on the Mini (RND-122)**\n\n**Done when:**\n- Bridge on the Mini can fetch a known analyst-01 endpoint and run a trivial Supabase\n- Health endpoint reports analyst-01 + Supabase reachable (or honest degraded state).\n- No secret values leaked in logs/source."
     },
     {
       "id": "task-97",
@@ -2241,7 +2338,8 @@
       "inputTokens": 56,
       "outputTokens": 11638,
       "cacheReadTokens": 618602,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-123: PM-3a: proactive relevance classifier (whitelist, threshold, opt-in) (RND-123)**\n\n**Done when:**\n- With assist mode ON, an on-topic whitelisted phrase (e.g. \"how's intake this week\")\n- Off-whitelist / below-threshold input produces NO decision (quiet).\n- Assist mode OFF \u2192 classifier inert."
     },
     {
       "id": "task-98",
@@ -2264,7 +2362,8 @@
       "inputTokens": 50,
       "outputTokens": 10393,
       "cacheReadTokens": 552407,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-124: PM-3b: proactive side-panel emit + guardrails + mute (RND-124)**\n\n**Done when:**\n- An above-threshold decision surfaces the right panel into a free slot without a command.\n- It NEVER overrides briefing/stage/fullscreen/active panel (hard test).\n- Debounce/cooldown prevents thrash; mute (\"stop showing me stuff\") silences it instantly."
     },
     {
       "id": "task-99",
@@ -2284,7 +2383,8 @@
       "inputTokens": 97,
       "outputTokens": 20092,
       "cacheReadTokens": 1067909,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-126: PG-a: Proving Ground catalog schema + full A\u2013Z catalog generator (RND-126)**\n\n**Done when:**\n- `build/proving-ground/catalog.json` validates against the schema.\n- Catalog includes items across all testingArea enums present in the app.\n- A test asserts schema validity + non-empty coverage per implemented area (D-2)."
     },
     {
       "id": "task-100",
@@ -2306,7 +2406,8 @@
       "inputTokens": 80,
       "outputTokens": 16521,
       "cacheReadTokens": 878110,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-127: PG-b: Test Mode arming + harness core (RND-127)**\n\n**Done when:**\n- Test Mode cannot arm except on Jon's authenticated command (hard test).\n- Harness injects a catalog item through the real pipeline and records a verdict.\n- 3-attempt/6-exchange loop enforced per item; FAIL after 3 failed attempts."
     },
     {
       "id": "task-101",
@@ -2328,7 +2429,8 @@
       "inputTokens": 97,
       "outputTokens": 19959,
       "cacheReadTokens": 1060879,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-128: PG-c: Yellow live-input banner north of the Orb (RND-128)**\n\n**Done when:**\n- With Test Mode armed, an injected input appears in the yellow banner north of the Orb.\n- With Test Mode off, the banner never renders (hard test) \u2014 no regression to normal HUD (D-1).\n- Banner is transient and does not fight briefing/stage/fullscreen."
     },
     {
       "id": "task-102",
@@ -2350,7 +2452,8 @@
       "inputTokens": 53,
       "outputTokens": 11098,
       "cacheReadTokens": 589898,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-129: PG-d: Run logging + summary \u2192 next-round packager (RND-129)**\n\n**Done when:**\n- A completed run writes a valid `run-<ISO>.json` + `.md` with all required per-item fields.\n- The packager produces a summary + draft next-round instructions derived from the inventory.\n- Machine-parseable verdicts so the summary auto-compiles."
     },
     {
       "id": "task-103",
@@ -2373,7 +2476,8 @@
       "inputTokens": 84,
       "outputTokens": 17402,
       "cacheReadTokens": 924974,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-130: PG-e: TEST Tab UI (RND-130)**\n\n**Done when:**\n- TEST Tab lists the catalog with correct per-record status indicators.\n- Expanding a record shows full detail.\n- Ellipsis menu saves free-text recommendations AND a pasted-from-clipboard image (primary),"
     },
     {
       "id": "task-104",
@@ -2395,7 +2499,8 @@
       "inputTokens": 20,
       "outputTokens": 4221,
       "cacheReadTokens": 224360,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-131: PG-f: TEST Tab filter + search (RND-131)**\n\n**Done when:**\n- Selecting a Testing Area narrows the list to that area.\n- Keyword search matches across the indexed fields.\n- Filter and search combine correctly."
     },
     {
       "id": "task-105",
@@ -2421,7 +2526,8 @@
       "inputTokens": 83,
       "outputTokens": 17149,
       "cacheReadTokens": 911501,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-132: PG-g: Random-10 pilot runner + first pilot run (RND-132)**\n\n**Done when:**\n- Exactly 10 randomly-selected items are scored; the selection seed is logged.\n- Each scored item flows inject\u2192loop\u2192verdict\u2192log\u2192TEST Tab.\n- The run produces a valid result file + draft next-round instructions."
     },
     {
       "id": "task-106",
@@ -2442,7 +2548,8 @@
       "inputTokens": 10,
       "outputTokens": 2237,
       "cacheReadTokens": 118916,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-134: Re-land Proving Ground harness turn-completion pacing fix (RND-134)**\n\n**Done when:**\n- `cd bridge && npx vitest run` fully green (incl. the 2 new tests).\n- `tsc -p bridge/tsconfig.json` clean.\n- No behavior change for consumed turns."
     },
     {
       "id": "task-107",
@@ -2464,7 +2571,8 @@
       "inputTokens": 35,
       "outputTokens": 7395,
       "cacheReadTokens": 393070,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-135: Show TEST tab + yellow banner during autopilot runs (RND-135)**\n\n**Done when:**\n- With a pilot run active and NO manual arming: the yellow banner streams live inject/result entries; the header TEST link is clickable and o\u2026\n- Idle + disarmed + no run: no TEST surfaces render, no pg.* commands sent (renderer test + bridge broadcast test).\n- HUD typecheck clean; existing proving tests green."
     },
     {
       "id": "task-108",
@@ -2487,7 +2595,8 @@
       "inputTokens": 84,
       "outputTokens": 17358,
       "cacheReadTokens": 922631,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-136: Per-item context isolation for catalog items (RND-136)**\n\n**Done when:**\n- A pilot run where PG-040 (KB-save), PG-051 (meeting-dismiss), PG-066 (confirm-gate) appear consecutively scores each on ITS OWN intent \u2014 no\u2026\n- Add a harness/integration test proving item N+1 does not observe item N's pending clarification (distinct session keys per item; shared wit\u2026\n- No leaked gateway sessions after a run. Full bridge suite green; tsc clean."
     },
     {
       "id": "task-109",
@@ -2506,7 +2615,8 @@
       "inputTokens": 75,
       "outputTokens": 15496,
       "cacheReadTokens": 823631,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-137: PG visual verification LAYER 2.5: DOM/panel-state assertions (RND-137)**\n\n**Done when:**\n- `cd bridge && npx vitest run` fully green incl. new tests.\n- `tsc` clean across bridge + hud.\n- No behavior change for items lacking `expectPanel`."
     },
     {
       "id": "task-110",
@@ -2525,7 +2635,8 @@
       "inputTokens": 136,
       "outputTokens": 28148,
       "cacheReadTokens": 1496127,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-138: PG visual verification LAYER 3: screenshot capture + vision grading (RND-138)**\n\n**Done when:**\n- `npx vitest run` green (bridge + hud) incl. new tests, all vision/capture mocked.\n- `tsc` + `npm run build` clean.\n- Capture only fires for tagged items; real PTT/voice untouched; mutations dry-run by default."
     },
     {
       "id": "task-111",
@@ -2544,7 +2655,8 @@
       "inputTokens": 75,
       "outputTokens": 15573,
       "cacheReadTokens": 827731,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-139: PG catalog: tag visual-smoke subset + wire verdicts into TEST tab (RND-139)**\n\n**Done when:**\n- `npx vitest run` green (catalog + hud) incl. new tests.\n- `tsc` + `npm run build` clean.\n- Catalog item count/ids unchanged except added optional fields; `catalogVersion` bumped."
     },
     {
       "id": "task-112",
@@ -2563,7 +2675,8 @@
       "inputTokens": 40,
       "outputTokens": 8343,
       "cacheReadTokens": 443448,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-140: PG-n: Per-item completion gating in the harness (RND-140)**\n\n**Why:** The Proving Ground pilot advances between items almost instantly for command-only turns. `bridge/src/test-harness.ts` `exchange()` gates its \"wait for the turn to finish\" logic on `typeof response.reply.runId === 'string'`. Voice turns ret\u2026\n\n**Done when:**\n- A panel-assign item does NOT advance until its render + `panel.state` confirmation is observed\n- Voice items still wait for speak.done/quiet-settle (RND-134 preserved).\n- Mutation items still wait for the C6 gate."
     },
     {
       "id": "task-113",
@@ -2582,7 +2695,8 @@
       "inputTokens": 40,
       "outputTokens": 8310,
       "cacheReadTokens": 441691,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-141: PG-o: Capture the render endpoint so command-only items are never empty (RND-141)**\n\n**Why:** Even once the harness WAITS for a render (task-112), the recorded `observed` evidence for a command-only item (panel-assign, tab open, panel expand) must be the RENDER OUTCOME, not a voice reply. Today `observed` is blank for these items,\u2026\n\n**Done when:**\n- A successful panel-assign item records a non-empty `observed` describing the render (view@panel)\n- A panel-assign item whose view failed to mount (loading stuck / error / wrong panel) scores\n- Voice / mutation / fallthrough scoring unchanged."
     },
     {
       "id": "task-114",
@@ -2599,7 +2713,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**RND-142: PG-p: Regression tests for per-item completion gating (RND-142)**\n\n**Done when:**\n- New tests fail against the pre-task-112 behavior and pass against the fixed harness.\n- Full bridge test suite green (tsc + all test files)."
     },
     {
       "id": "task-115",
@@ -2618,7 +2733,8 @@
       "inputTokens": 13,
       "outputTokens": 2722,
       "cacheReadTokens": 144692,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-143: Narration completion gating (briefing + range)**\n\n**Done when:**\n- `npm run build` clean, existing bridge tests still green.\n- A `briefing` or `range` reply now waits for speak.done/quiet-settle (verified\n- No regression to voice (`runId`) or panel-assign gating."
     },
     {
       "id": "task-116",
@@ -2637,7 +2753,8 @@
       "inputTokens": 27,
       "outputTokens": 5598,
       "cacheReadTokens": 297585,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-144: Unknown reply-shape guard (durable safety net)**\n\n**Done when:**\n- `npm run build` clean; existing tests green.\n- A synthetic reply `{ ok:true, frobnicate:1 }` \u2192 item verdict FAIL with the\n- All 7 known intent ids + known keys still classified as instant/handled (no"
     },
     {
       "id": "task-117",
@@ -2656,7 +2773,8 @@
       "inputTokens": 23,
       "outputTokens": 4860,
       "cacheReadTokens": 258336,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-145: Regression tests: narration gating + shape guard**\n\n**Done when:**\n- `npm test` (bridge) green including the new cases.\n- Tests fail if narration turns race (< quietMs), if the guard misses an unknown"
     },
     {
       "id": "task-118",
@@ -2675,7 +2793,8 @@
       "inputTokens": 35,
       "outputTokens": 7197,
       "cacheReadTokens": 382525,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-146: Proving Ground harness: manual STEP mode**\n\n**Done when:**\n- Manual mode: run halts after item N with `awaitingStep=true`, injects item N+1\n- Auto mode: unchanged (regression \u2014 existing tests green).\n- Test-Mode pause still works and overrides step (paused + stepNext \u2192 stays parked"
     },
     {
       "id": "task-119",
@@ -2694,7 +2813,8 @@
       "inputTokens": 72,
       "outputTokens": 14867,
       "cacheReadTokens": 790240,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-147: TEST tab: Auto/Step toggle + \"Next item \u25b8\" control**\n\n**Done when:**\n- Operator can run a 10-item pilot fully by hand in Step mode: one click per item,\n- Auto mode behaves exactly as before (no step panel, no extra clicks).\n- Banner reflects awaiting-step."
     },
     {
       "id": "task-120",
@@ -2713,7 +2833,8 @@
       "inputTokens": 57,
       "outputTokens": 11892,
       "cacheReadTokens": 632075,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-148: Context precondition seeding for context-dependent items**\n\n**Done when:**\n- PG-040 and PG-051 reach a real verdict based on their actual behavior (not a\n- Preconditions appear in the run JSON + MD and do not inflate attempt/exchange\n- A failing precondition \u2192 item BLOCKED with a clear note, never a false PASS."
     },
     {
       "id": "task-121",
@@ -2732,7 +2853,8 @@
       "inputTokens": 57,
       "outputTokens": 11870,
       "cacheReadTokens": 630904,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-149: Ephemeral PG session teardown: least-privilege reaper (option B)**\n\n**Done when:**\n- Bridge scopes unchanged (still read+write only).\n- After a full auto run, orphaned `\u2026:pg:*` sessions are either reaped (if scope\n- No per-item log spam for the delete-scope failure."
     },
     {
       "id": "task-122",
@@ -2751,7 +2873,8 @@
       "inputTokens": 36,
       "outputTokens": 7505,
       "cacheReadTokens": 398928,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-150: Run on the wall: minimize TEST tab on START so the live HUD is visible**\n\n**Done when:**\n- Starting a run leaves the operator looking at the live wall, not the catalog modal.\n- Run/step/stop semantics unchanged; Auto default unchanged.\n- TEST tab can be reopened mid-run and restores on stop/end."
     },
     {
       "id": "task-123",
@@ -2770,7 +2893,8 @@
       "inputTokens": 131,
       "outputTokens": 27024,
       "cacheReadTokens": 1436375,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-151: Bottom-docked result block (yellow) with inline controls**\n\n**Done when:**\n- In Step mode, after each item the bottom block shows the verdict + item info and the\n- ONLY the current item's box is visible at any time \u2014 no accumulation/stacking of prior items.\n- Next item \u25b8 advances one item, stays on the wall, REPLACES the block content in place."
     },
     {
       "id": "task-124",
@@ -2789,7 +2913,8 @@
       "inputTokens": 18,
       "outputTokens": 3714,
       "cacheReadTokens": 197413,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-152: RUN MODE toggle: visual latch for the selected mode**\n\n**Done when:**\n- Clicking AUTO or STEP leaves that button clearly, persistently highlighted until changed.\n- `aria-pressed` reflects selection; no functional change to startProvingRun(advance).\n- `npm run build` clean."
     },
     {
       "id": "task-125",
@@ -2808,7 +2933,8 @@
       "inputTokens": 52,
       "outputTokens": 10756,
       "cacheReadTokens": 571738,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-153: Item multi-select + run the selected set**\n\n**Done when:**\n- Operator can tick N items and run precisely those N, in order, in Auto or Step.\n- Random-10 pilot still available and unchanged.\n- Selection respects the active filter; Select-all/Clear work."
     },
     {
       "id": "task-126",
@@ -2827,7 +2953,8 @@
       "inputTokens": 56,
       "outputTokens": 11594,
       "cacheReadTokens": 616259,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-154: In-UI add / edit / delete test items (catalog authoring)**\n\n**Done when:**\n- Operator can add, edit, and delete catalog items entirely from the TEST tab.\n- Schema-invalid or duplicate-id writes are rejected with a visible reason; catalog.json never\n- Changes appear in the list without a manual file edit or full app restart."
     },
     {
       "id": "task-127",
@@ -2846,7 +2973,8 @@
       "inputTokens": 71,
       "outputTokens": 14713,
       "cacheReadTokens": 782039,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-155: TEST tab always visible + arm/disarm Test Mode from within it**\n\n**Done when:**\n- TEST nav entry shows on a normal HUD without any SSH command.\n- Operator can arm and disarm Test Mode from inside the tab using the provisioned token; wrong/\n- Unarmed: tab is inert, zero footprint. Armed: full Round-26/27 behavior."
     },
     {
       "id": "task-128",
@@ -2864,7 +2992,8 @@
       "inputTokens": 120,
       "outputTokens": 24820,
       "cacheReadTokens": 1319216,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-156: Halt Vera mid-item (abort the in-flight turn without ending the run)**\n\n**Done when:**\n- During an item, clicking Halt cancels Vera's in-flight turn promptly and the run stays alive,\n- Halted item is recorded distinctly (HALTED) in the run record; not a false PASS/FAIL.\n- No leaked ephemeral session from a halted item (reuse the RND-149 least-privilege reaper path)."
     },
     {
       "id": "task-129",
@@ -2883,7 +3012,8 @@
       "inputTokens": 55,
       "outputTokens": 11385,
       "cacheReadTokens": 605128,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-157: Verdict must honor rendered error state (kill the false PASS)**\n\n**Done when:**\n- Re-running a Search item while the provider key is absent/invalid scores **FAIL** (not PASS),\n- With a valid key and real results, the same item still scores **PASS** (no false negatives).\n- Non-search render items (panel-assign, etc.) that mount cleanly are unaffected."
     },
     {
       "id": "task-130",
@@ -2902,7 +3032,8 @@
       "inputTokens": 88,
       "outputTokens": 18284,
       "cacheReadTokens": 971838,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)**\n\n**Done when:**\n- Restarting the bridge (or dropping the HUD channel) while the HUD shows a run \u2192 after reconnect\n- STOP/HALT never leave the operator stranded: controls match the bridge's real run-state.\n- A genuinely live run still shows RUN LIVE / ITEM IN FLIGHT and Halt still aborts the in-flight"
     },
     {
       "id": "task-131",
@@ -2921,7 +3052,8 @@
       "inputTokens": 70,
       "outputTokens": 14504,
       "cacheReadTokens": 770909,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-159: Session reaper actually reaps (repair the RND-149 regression)**\n\n**Done when:**\n- A normal multi-item PG run ends with `0 leaked` in the run JSON/MD; the ephemeral sessions are\n- No broad `operator.admin` grant to the bridge beyond what is strictly needed to delete its own\n- Reap failure still lets the run settle normally."
     },
     {
       "id": "task-132",
@@ -2940,7 +3072,8 @@
       "inputTokens": 55,
       "outputTokens": 11330,
       "cacheReadTokens": 602199,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-160: \"Summary\" reference resolution for research read-aloud**\n\n**Done when:**\n- With a research view live (after a search/research command), `Vera, read me the summary.` reads\n- With no research view active, the existing \"which summary did you mean?\" behavior is unchanged.\n- PG-039 scores PASS on attempt 1 in a fresh run."
     },
     {
       "id": "task-133",
@@ -2959,7 +3092,8 @@
       "inputTokens": 27,
       "outputTokens": 5620,
       "cacheReadTokens": 298756,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-161: RUN MODE visual latch verification + fix**\n\n**Done when:**\n- Selecting STEP keeps STEP highlighted; selecting AUTO keeps AUTO highlighted; state persists\n- The functional pacing (auto runs straight through; step parks per item) is unchanged.\n- `npm run build` clean."
     },
     {
       "id": "task-134",
@@ -2978,7 +3112,8 @@
       "inputTokens": 30,
       "outputTokens": 6348,
       "cacheReadTokens": 337419,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-162: TEST tab must stay minimized across manual STEP boundaries (no forced re-arm)**\n\n**Done when:**\n- In manual STEP mode, stepping item\u2192item keeps the tab **minimized** on the wall for the entire run;\n- STOP or whole-run completion expands the tab back to its full pre-run surface exactly once.\n- AUTO mode is visually and functionally unchanged."
     },
     {
       "id": "task-135",
@@ -3000,7 +3135,8 @@
       "inputTokens": 37,
       "outputTokens": 7759,
       "cacheReadTokens": 412401,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-163: Move the Halt button clear of the voice captions**\n\n**Done when:**\n- With a manual STEP run parked/in-flight AND Vera actively speaking (caption streaming), the HALT\n- The full step-result dock (`.wr-pgdock` block) and the AUTO-mode surfaces are unaffected except for\n- No change to halt/stop *behavior* \u2014 this is purely position/layering (D-1: harness semantics"
     },
     {
       "id": "task-136",
@@ -3021,7 +3157,8 @@
       "inputTokens": 29,
       "outputTokens": 6072,
       "cacheReadTokens": 322774,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-164: Sync the voice/orb speaking animation to actual speech end**\n\n**Done when:**\n- The orb remains in its speaking animation for the full duration Vera is audibly speaking (single- and\n- On a genuine end (`speak.done`) or interrupt, the orb settles within the existing readability/timeout\n- Caption behavior is unchanged (captions already correct; do not regress their timing)."
     },
     {
       "id": "task-137",
@@ -3043,7 +3180,8 @@
       "inputTokens": 103,
       "outputTokens": 21227,
       "cacheReadTokens": 1128246,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-165: Briefing HUD button (close D-3 gap A1)**\n\n**Done when:**\n- A `BRIEFING` button appears in the HUD header tray and, when clicked, starts the same synced briefing\n- The button reflects active/idle state and cannot double-trigger a briefing already in progress.\n- Voice and HTTP briefing paths remain unchanged and still work (button is additive parity, not a"
     },
     {
       "id": "task-138",
@@ -3065,7 +3203,8 @@
       "inputTokens": 66,
       "outputTokens": 13743,
       "cacheReadTokens": 730489,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-166: Meeting DELIVER button (close D-3 gap A2)**\n\n**Done when:**\n- The finalized summary card shows a **DELIVER** button that triggers the live `meeting.deliver` C6\n- The stale \"task-95\" placeholder text is gone.\n- The button cannot double-fire while a deliver is held/pending; DISMISS still works."
     },
     {
       "id": "task-139",
@@ -3087,7 +3226,8 @@
       "inputTokens": 85,
       "outputTokens": 17667,
       "cacheReadTokens": 939033,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-167: Widen deterministic intent regexes for common fall-through phrasings (gap B)**\n\n**Done when:**\n- Each widened classifier matches the new phrasings above and returns the correct action; the guarded\n- The ambiguity contract is preserved: genuinely novel/extra-word phrasings still fall through to Vera\n- First-match-wins order is unchanged; no classifier now shadows another (e.g. range still beats"
     },
     {
       "id": "task-140",
@@ -3109,7 +3249,8 @@
       "inputTokens": 33,
       "outputTokens": 6943,
       "cacheReadTokens": 369052,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-168: Add negative/boundary Proving Ground catalog items (gap B, make the fast-path\u2194LLM boundary testable)**\n\n**Done when:**\n- `catalog.json` parses as valid JSON and validates against `catalog.schema.json`; total = 76 items;\n- Each new item has all required schema keys and an `expected` consistent with post-task-139 behavior.\n- New items are tagged (`boundary` / `button` / `fallthrough`) so they are filterable."
     },
     {
       "id": "task-141",
@@ -3128,7 +3269,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**Glow pass: mid-intensity JARVIS glow across all chart primitives**\n\n**What:** Glow pass: mid-intensity JARVIS glow across all chart primitives Delivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order).\n\n*Built directly with Jon (chart/HUD polish track) \u2014 not via the AFDT prompt pipeline, so no raw prompt file.*"
     },
     {
       "id": "task-142",
@@ -3147,7 +3289,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year)**\n\n**What:** New time-series primitives: TimeSeriesChart / ColumnBar / AreaChart (multi-series; hour/day/week/month/year) Delivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deploye\u2026\n\n*Built directly with Jon (chart/HUD polish track) \u2014 not via the AFDT prompt pipeline, so no raw prompt file.*"
     },
     {
       "id": "task-143",
@@ -3166,7 +3309,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines,**\n\n**What:** Story-layer redesign: ChartCard (eyebrow+hero+delta+subcaption+insight), direct end-labels, target/reference pill lines, callout pills, rounded caps, round-tick axes, bezier smoothing Delivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 4\u2026\n\n*Built directly with Jon (chart/HUD polish track) \u2014 not via the AFDT prompt pipeline, so no raw prompt file.*"
     },
     {
       "id": "task-144",
@@ -3185,7 +3329,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props**\n\n**What:** Cascade story-layer across the kit (Donut, Gauge, StackedBar, LeaderboardBar) via optional props Delivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (h\u2026\n\n*Built directly with Jon (chart/HUD polish track) \u2014 not via the AFDT prompt pipeline, so no raw prompt file.*"
     },
     {
       "id": "task-145",
@@ -3204,7 +3349,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view**\n\n**What:** Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view Delivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet de\u2026\n\n*Built directly with Jon (chart/HUD polish track) \u2014 not via the AFDT prompt pipeline, so no raw prompt file.*"
     },
     {
       "id": "task-146",
@@ -3224,7 +3370,8 @@
       "inputTokens": 69,
       "outputTokens": 14206,
       "cacheReadTokens": 755093,
-      "costEstimated": true
+      "costEstimated": true,
+      "promptSummary": "**RND-169: Context navigation: auto-stage the contextually relevant display**\n\n**Why:** \"The navigation does not automatically move the viewer to the most contextually relevant display. It should! ... seems to be an issue for ALL tests moving forward. This must be fixed.\" On PG-071 the recording command fired while the PRIOR\u2026\n\n**Do:**\n- When a command/test result targets a display (meeting capture, panel re-task, search/research, briefing), the HUD must dismiss the prior stage and pr\u2026\n- A live Search/Research stage must be dismissed when a new staging command arrives.\n\n**Done when:**\n- With Search/Research up, issuing `start recording` (or any staging command) dismisses Search and stages the target display \u2014 no manual clos\u2026\n- Test reproduces \"prior stage up \u2192 new command \u2192 correct display staged.\"\n- Gates green."
     },
     {
       "id": "task-147",
@@ -3243,7 +3390,8 @@
       "outputTokens": 8222,
       "cacheReadTokens": 437005,
       "finishedAt": "2026-07-19T19:31:45Z",
-      "durationSeconds": 746
+      "durationSeconds": 746,
+      "promptSummary": "**RND-170: Verdict fidelity: no PASS when the on-wall stage is wrong**\n\n**Why:** PG-071 scored PASS while on the wall NOTHING happened (Search never dismissed \u2192 meeting capture never started). The harness judged the emit/speak, not the actual staged output. Jon's screenshots prove the false PASS.\n\n**Do:**\n- A verdict cannot PASS unless the expected stage/render actually took effect on the wall (extend the RND-157 error-banner guard to stage state). Score\u2026\n\n**Done when:**\n- A command that emits but leaves the wrong stage up scores FAIL/PARTIAL, not PASS.\n- Test covers the PG-071 stale-Search scenario.\n- Gates green."
     },
     {
       "id": "task-148",
@@ -3261,7 +3409,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**RND-171: TEST-tab stability, no forced re-arm, + recoverable/annotated results (BLOCKER)**\n\n**Why:** (1) TEST tab reverts to inert at run end \u2192 forced re-ARM (RND-162/task-134/PR#148 fix FAILED in live use; PG-075 burst-fired 3 reruns in 8s = frozen button). (2) signed-counter-hero analyst timeouts (20x @ 30000ms) stalled the bridge and f\u2026\n\n**Do:**\n- TEST tab stays usable post-run without re-arm; re-assert RND-162 STEP-boundary invariant with a real run-start->STEP xN->run-end test.\n- Analyst per-request timeout ~6-8s + non-blocking fetch so control IPC isn't starved; optimize/cache signed-counter-hero (analyst-01) to <2s; backoff/\u2026\n- The run JSON/MD must cross-reference each item's assets/<PG-ID>/ annotation + screenshots; manual PASS/PARTIAL/FAIL + note reachable while minimized-\u2026\n\n**Done when:**\n- STEP >=3 then finish: tab stays usable, NO forced re-arm.\n- Under induced analyst stall, STEP controls stay responsive (no burst-fire) \u2014 test-proven.\n- Run MD lists each item's notes + screenshot filenames; manual verdict+note round-trips into saved run JSON/MD."
     },
     {
       "id": "task-149",
@@ -3278,7 +3427,8 @@
       "outputTokens": 12575,
       "cacheReadTokens": 668395,
       "costEstimated": true,
-      "costEstimatedNoDuration": true
+      "costEstimatedNoDuration": true,
+      "promptSummary": "**RND-172: Sample meeting-audio fixture for realistic meeting/recording tests**\n\n**Why:** \"For this test I think we need to feed Vera some sample recording of a brief meeting so the test can be more realistic as I'm viewing/conducting test from Google Remote Desktop so no audio/mic access.\" Meeting/recording items (PG-071, PG-0\u2026\n\n**Do:**\n- Provide a short sample meeting recording (or synthetic transcript feed) the Proving Ground can inject; wire a test-mode \"play sample meeting\" afforda\u2026\n\n**Done when:**\n- With no mic, a meeting/recording test drives end-to-end from the sample fixture and scores on real staged output.\n- Gates green."
     }
   ]
 }
