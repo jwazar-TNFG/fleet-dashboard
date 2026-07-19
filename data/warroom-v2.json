@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T20:07:59Z",
+  "updated_at": "2026-07-19T20:37:09Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3419,21 +3419,24 @@
     {
       "id": "task-149",
       "phase": "phase-38",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-148"
       ],
       "name": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)",
-      "lastActivity": "2026-07-19T20:07:59Z",
+      "lastActivity": "2026-07-19T20:37:09Z",
       "description": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-149.md. Linear: RND-201..204. Awaiting Jon build-start order.",
-      "costUSD": 0.952,
-      "inputTokens": 61,
-      "outputTokens": 12575,
-      "cacheReadTokens": 668395,
+      "costUSD": 13.742774,
+      "inputTokens": 361,
+      "outputTokens": 92797,
+      "cacheReadTokens": 13180506,
       "costEstimated": true,
       "costEstimatedNoDuration": true,
       "promptSummary": "**RND-172: Sample meeting-audio fixture for realistic meeting/recording tests**\n\n**Why:** \"For this test I think we need to feed Vera some sample recording of a brief meeting so the test can be more realistic as I'm viewing/conducting test from Google Remote Desktop so no audio/mic access.\" Meeting/recording items (PG-071, PG-0\u2026\n\n**Do:**\n- Provide a short sample meeting recording (or synthetic transcript feed) the Proving Ground can inject; wire a test-mode \"play sample meeting\" afforda\u2026\n\n**Done when:**\n- With no mic, a meeting/recording test drives end-to-end from the sample fixture and scores on real staged output.\n- Gates green.",
-      "startedAt": "2026-07-19T20:07:59Z"
+      "startedAt": "2026-07-19T20:07:59Z",
+      "landed": false,
+      "finishedAt": "2026-07-19T20:37:09Z",
+      "durationSeconds": 1750
     }
   ]
 }
