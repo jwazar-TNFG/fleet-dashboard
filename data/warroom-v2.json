@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T19:49:21Z",
+  "updated_at": "2026-07-19T20:07:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3396,12 +3396,12 @@
     {
       "id": "task-148",
       "phase": "phase-38",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-147"
       ],
       "name": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)",
-      "lastActivity": "2026-07-19T19:49:21Z",
+      "lastActivity": "2026-07-19T20:07:41Z",
       "description": "RND-171: TEST-tab stability, no forced re-arm at run end, + recoverable annotated results \u2014 run JSON/MD must cross-reference notes/screenshots; kill 30s signed-counter-hero stalls (BLOCKER)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-148.md. Linear: RND-201..204. Awaiting Jon build-start order.",
       "startedAt": "2026-07-19T19:32:01Z",
       "costUSD": 0.952,
@@ -3410,7 +3410,10 @@
       "cacheReadTokens": 668395,
       "costEstimated": true,
       "costEstimatedNoDuration": true,
-      "promptSummary": "**RND-171: TEST-tab stability, no forced re-arm, + recoverable/annotated results (BLOCKER)**\n\n**Why:** (1) TEST tab reverts to inert at run end \u2192 forced re-ARM (RND-162/task-134/PR#148 fix FAILED in live use; PG-075 burst-fired 3 reruns in 8s = frozen button). (2) signed-counter-hero analyst timeouts (20x @ 30000ms) stalled the bridge and f\u2026\n\n**Do:**\n- TEST tab stays usable post-run without re-arm; re-assert RND-162 STEP-boundary invariant with a real run-start->STEP xN->run-end test.\n- Analyst per-request timeout ~6-8s + non-blocking fetch so control IPC isn't starved; optimize/cache signed-counter-hero (analyst-01) to <2s; backoff/\u2026\n- The run JSON/MD must cross-reference each item's assets/<PG-ID>/ annotation + screenshots; manual PASS/PARTIAL/FAIL + note reachable while minimized-\u2026\n\n**Done when:**\n- STEP >=3 then finish: tab stays usable, NO forced re-arm.\n- Under induced analyst stall, STEP controls stay responsive (no burst-fire) \u2014 test-proven.\n- Run MD lists each item's notes + screenshot filenames; manual verdict+note round-trips into saved run JSON/MD."
+      "promptSummary": "**RND-171: TEST-tab stability, no forced re-arm, + recoverable/annotated results (BLOCKER)**\n\n**Why:** (1) TEST tab reverts to inert at run end \u2192 forced re-ARM (RND-162/task-134/PR#148 fix FAILED in live use; PG-075 burst-fired 3 reruns in 8s = frozen button). (2) signed-counter-hero analyst timeouts (20x @ 30000ms) stalled the bridge and f\u2026\n\n**Do:**\n- TEST tab stays usable post-run without re-arm; re-assert RND-162 STEP-boundary invariant with a real run-start->STEP xN->run-end test.\n- Analyst per-request timeout ~6-8s + non-blocking fetch so control IPC isn't starved; optimize/cache signed-counter-hero (analyst-01) to <2s; backoff/\u2026\n- The run JSON/MD must cross-reference each item's assets/<PG-ID>/ annotation + screenshots; manual PASS/PARTIAL/FAIL + note reachable while minimized-\u2026\n\n**Done when:**\n- STEP >=3 then finish: tab stays usable, NO forced re-arm.\n- Under induced analyst stall, STEP controls stay responsive (no burst-fire) \u2014 test-proven.\n- Run MD lists each item's notes + screenshot filenames; manual verdict+note round-trips into saved run JSON/MD.",
+      "landed": false,
+      "finishedAt": "2026-07-19T20:07:41Z",
+      "durationSeconds": 2140
     },
     {
       "id": "task-149",
