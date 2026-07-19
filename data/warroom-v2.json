@@ -3363,7 +3363,7 @@
       "lastActivity": "2026-07-19T19:19:04Z",
       "description": "RND-169: context navigation \u2014 auto-stage the contextually relevant display (Jon PG-071/072: HUD stayed on prior test view; must move to relevant display)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-146.md. Linear: RND-201..204. Awaiting Jon build-start order.",
       "startedAt": "2026-07-19T18:57:35Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-19T19:19:04Z",
       "durationSeconds": 1289,
       "costUSD": 1.0755,
