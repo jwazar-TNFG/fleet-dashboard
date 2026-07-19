@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T16:10:02Z",
+  "updated_at": "2026-07-19T18:48:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -163,6 +163,11 @@
       "id": "phase-37",
       "name": "Round 30 — State-of-the-art chart kit + Signed-by-Office real feed (glow pass, TimeSeriesChart/ColumnBar/AreaChart, ChartCard story-layer, kit-wide cascade, analyst-01 signed-by-office feed + HUD view)",
       "status": "completed"
+    },
+    {
+      "id": "phase-38",
+      "name": "Round 31 — Proving Ground TEST-tab UX + control stability (no forced re-arm at run end, kill 30s signed-counter-hero bridge stalls, smooth tab engage/disengage + persist manual-item notes) — Jon live-test 2026-07-19",
+      "status": "pending"
     }
   ],
   "tasks": [
@@ -2464,6 +2469,39 @@
       "landed": true,
       "finishedAt": "2026-07-19T16:10:02Z",
       "description": "Flagship real feed: analyst-01 GET /api/hud/signed-by-office + protocol/bridge wiring + HUD signed-by-office view\n\nDelivered on branch `polish/charts-glow` (warroom-v2). Verified: protocol 91, bridge 1205, HUD 461 tests; typecheck/lint/build clean. Vision review 8.5/10. Not yet deployed to Vera (holding for Jon's deploy order)."
+    },
+    {
+      "id": "task-146",
+      "phase": "phase-38",
+      "status": "pending",
+      "depends_on": [
+        "task-140"
+      ],
+      "name": "RND-169: TEST tab must NOT force re-arm at run end (BLOCKER) — stays usable post-run, re-assert RND-162 STEP-boundary invariant",
+      "lastActivity": "2026-07-19T18:48:01Z",
+      "description": "RND-169: TEST tab must NOT force re-arm at run end (BLOCKER) — stays usable post-run, re-assert RND-162 STEP-boundary invariant\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-146.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
+    },
+    {
+      "id": "task-147",
+      "phase": "phase-38",
+      "status": "pending",
+      "depends_on": [
+        "task-146"
+      ],
+      "name": "RND-170: kill 30s signed-counter-hero analyst timeouts (20x) that stall the bridge and freeze TEST controls — non-blocking fetch + shorter timeout + endpoint optimize/cache + backoff",
+      "lastActivity": "2026-07-19T18:48:01Z",
+      "description": "RND-170: kill 30s signed-counter-hero analyst timeouts (20x) that stall the bridge and freeze TEST controls — non-blocking fetch + shorter timeout + endpoint optimize/cache + backoff\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-147.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
+    },
+    {
+      "id": "task-148",
+      "phase": "phase-38",
+      "status": "pending",
+      "depends_on": [
+        "task-147"
+      ],
+      "name": "RND-171: smooth tab engage/disengage + make manual-item scoring first-class and persist verdict/notes into run JSON/MD",
+      "lastActivity": "2026-07-19T18:48:01Z",
+      "description": "RND-171: smooth tab engage/disengage + make manual-item scoring first-class and persist verdict/notes into run JSON/MD\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; prompt: build/prompts/task-148.md. Linear: RND-201/202/203. Awaiting Jon build-start order."
     }
   ]
 }
