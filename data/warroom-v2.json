@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T16:23:12Z",
+  "updated_at": "2026-07-20T17:03:52Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3502,15 +3502,22 @@
     {
       "id": "task-153",
       "phase": "phase-39",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-150"
       ],
       "name": "RND-176: run legibility \u2014 Select All (77) + 'item K of 77' + live verdict tally + resume position across tab reopen",
       "description": "RND-176: run legibility \u2014 Select All (77) + 'item K of 77' + live verdict tally + resume position across tab reopen",
-      "lastActivity": "2026-07-20T16:23:12Z",
+      "lastActivity": "2026-07-20T17:03:52Z",
       "promptSummary": "**RND-176: Run legibility: Select All (77) + \"item K of 77\" + live verdict tally + resume position**\n\n**Why:** For a human-paced all-77 STEP run the operator needs to always know where they are and never lose place. The bridge accepts all 77 ids (Virgil-proven 2026-07-20), but the HUD needs: a real Select All that populates all 77 in catalog order;\u2026\n\n**Do:**\n- Ensure a **Select All (77)** control exists in the TEST tab and sends all catalog ids in catalog order.\n- On the parked dock show: **\"K / 77 \u00b7 PG-0NN \u00b7 <title>\"** and a running verdict tally (\u2705 \ud83d\udfe1 \u274c \u26d4 \u26aa \u270b).\n- Persist run position so a re-expanded/re-opened tab returns to the current parked boundary with no data loss.\n\n**Done when:**\n- Start all-77 STEP: dock always shows correct K/77 + id/title + live tally.\n- Closing and reopening the tab mid-run returns to the same parked boundary; no lost annotations or position.\n- Select All sends exactly 77 ids in catalog order. Gates green.",
-      "startedAt": "2026-07-20T16:23:12Z"
+      "startedAt": "2026-07-20T16:23:12Z",
+      "landed": false,
+      "costUSD": 10.22426,
+      "inputTokens": 264,
+      "outputTokens": 75655,
+      "cacheReadTokens": 11050405,
+      "finishedAt": "2026-07-20T17:03:52Z",
+      "durationSeconds": 2440
     },
     {
       "id": "task-154",
