@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T16:01:42Z",
+  "updated_at": "2026-07-20T16:03:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3460,13 +3460,15 @@
     {
       "id": "task-151",
       "phase": "phase-39",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-150"
       ],
       "name": "RND-174: quiesce the panel poller while a proving run is live \u2014 freeze root cause (task-148 only softened the symptom)",
       "description": "RND-174: quiesce the panel poller while a proving run is live \u2014 freeze root cause (task-148 only softened the symptom)",
-      "landed": false
+      "lastActivity": "2026-07-20T16:03:24Z",
+      "promptSummary": "**RND-174: Quiesce the panel poller while a proving run is live (freeze ROOT CAUSE)**\n\n**Why:** The mid-run control freeze Jon hit is caused by the shared bridge's `PanelPoller` refreshing 9 dashboard panels on the same event loop as the operator's STEP/HALT/Next control traffic during a proving run. Over a long all-77 STEP run this\u2026\n\n**Do:**\n- When `provingGround.run.state` transitions to `running`, PAUSE `PanelPoller` (stop panel refresh ticks).\n- Resume the poller on run end (`done` / `stopped`). Idempotent + restart-safe (mirror registry reschedule-on-attach semantics).\n- Keep the task-148 analyst timeout + circuit breaker as defense-in-depth.\n\n**Done when:**\n- During a live all-77 STEP run: ZERO panel-refresh traffic on the bridge; STEP/HALT/Next respond <500ms at every boundary across the full ru\u2026\n- Unit test: poller paused on run-state=running, resumed on done/stopped; safe if run never starts.\n- Gates green.",
+      "startedAt": "2026-07-20T16:03:24Z"
     },
     {
       "id": "task-152",
