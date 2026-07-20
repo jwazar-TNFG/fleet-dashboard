@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:12:28Z",
+  "updated_at": "2026-07-20T20:12:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3643,15 +3643,16 @@
       "doneWhen": "Email-OK/KB-fail speaks an accurate per-leg message (not 'didn't go through'); a retry does not re-send the email.",
       "promptSummary": "## Problem\nPartial delivery reported as total failure; retry re-sends the email.\n## Build\nReturn a structured per-leg result {email,kb}; speak per-leg outcome; make the email leg idempotent (dedupe key = date+title); retry skips already-sent legs.\n## Acceptance\nAccurate per-leg speech; no duplicate email on retry; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-159.md",
-      "lastActivity": "2026-07-20T20:12:28Z",
+      "lastActivity": "2026-07-20T20:12:36Z",
       "startedAt": "2026-07-20T20:03:55Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.305233,
       "inputTokens": 88,
       "outputTokens": 26051,
       "cacheReadTokens": 2362369,
       "finishedAt": "2026-07-20T20:12:28Z",
-      "durationSeconds": 513
+      "durationSeconds": 513,
+      "mergedAt": "2026-07-20T20:12:36Z"
     },
     {
       "id": "task-160",
