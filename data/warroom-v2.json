@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:52:56Z",
+  "updated_at": "2026-07-20T19:52:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3611,7 +3611,7 @@
     {
       "id": "task-158",
       "name": "RND-D: async KB rebuild off the HTTP request path",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3619,7 +3619,9 @@
       "description": "**Audit D-4 / KB-1 (High).** The KB service rebuilds the ENTIRE vault synchronously on the HTTP thread on every write (`server.ts:72,219,256` \u2192 sync fs in `builder.ts`). Blocks the loop; GETs stall \u2014 a latency spike exactly when a summary lands on the wall.",
       "doneWhen": "save-meeting returns promptly; a concurrent graph GET during a rebuild is not blocked (served from prior snapshot); rapid saves coalesce.",
       "promptSummary": "## Problem\nSync whole-vault rebuild on the HTTP thread on every save blocks the loop; GETs stall.\n## Build\nRespond first, rebuild async (worker/deferred); serve prior snapshot during rebuild; debounce rapid saves; keep last-good snapshot on failure.\n## Acceptance\nsave-meeting fast; concurrent GET not blocked; saves coalesce; gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-158.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-158.md",
+      "lastActivity": "2026-07-20T19:52:58Z",
+      "startedAt": "2026-07-20T19:52:58Z"
     },
     {
       "id": "task-159",
