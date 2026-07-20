@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T21:37:51Z",
+  "updated_at": "2026-07-20T21:37:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3754,15 +3754,16 @@
       "description": "**Operator-requested (High).** While conducting the current step, Jon needs to see WHAT the next test item is so he can get into the right screen/process before advancing. Today the parked dock (`StepDockBlock`, `StepDock.tsx`) only shows a tiny `NEXT: PG-0NN` id chip (~:355). It already receives `nextItemId` (:78/:97) and the full catalog is in `tab.records`, so the next item's title + expected can be looked up like the current item's record (:70).",
       "promptSummary": "## Problem\nParked STEP dock shows only a tiny `NEXT: <id>` chip \u2014 not enough to prepare for the next item.\n## Build\nAdd a new section at the BOTTOM of `StepDockBlock`: look up the next item via `tab.records.find(r=>r.item.id===nextItemId)`; render a PURPLE, clearly-labeled 'NEXT TEST ITEM:' block with the next item's id, title, and `expected` (pass-criteria = the 'description'). Handle `nextItemId===null` (last item) with a clear 'no next' state. Use a `--wr` purple/accent token, not a random hex. Subsume the old tiny chip.\n## Acceptance\nPurple 'NEXT TEST ITEM:' block at bottom shows next id+title+expected; visibly purple + distinct; last-item state clean; updates in place each step; render test; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-164.md",
-      "lastActivity": "2026-07-20T21:37:51Z",
+      "lastActivity": "2026-07-20T21:37:59Z",
       "startedAt": "2026-07-20T21:16:11Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.482214,
       "inputTokens": 2,
       "outputTokens": 80,
       "cacheReadTokens": 63398,
       "finishedAt": "2026-07-20T21:37:51Z",
-      "durationSeconds": 1300
+      "durationSeconds": 1300,
+      "mergedAt": "2026-07-20T21:37:59Z"
     },
     {
       "id": "task-165",
