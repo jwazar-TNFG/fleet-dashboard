@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:35:49.789466Z",
+  "updated_at": "2026-07-20T20:40:13Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3680,7 +3680,7 @@
     {
       "id": "task-161",
       "name": "RND-G: voice-turn deadline + spoken fallback",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3689,8 +3689,15 @@
       "doneWhen": "An injected gateway stall produces a spoken fallback within the deadline; the pipeline accepts the next utterance afterward.",
       "promptSummary": "## Problem\nNo per-turn timeout on the live voice path; a hung gateway = silent forever-hang.\n## Build\nWrap sendAgentTurn in a deadline; on breach speak a graceful fallback and unwind the turn (race-safe, no double-speak); mirror the task-152 watchdog.\n## Acceptance\nInjected stall \u2192 spoken fallback + clean unwind; normal turn unaffected; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-161.md",
-      "lastActivity": "2026-07-20T20:31:08Z",
-      "startedAt": "2026-07-20T20:31:08Z"
+      "lastActivity": "2026-07-20T20:40:13Z",
+      "startedAt": "2026-07-20T20:31:08Z",
+      "landed": false,
+      "costUSD": 1.72658,
+      "inputTokens": 82,
+      "outputTokens": 22888,
+      "cacheReadTokens": 1602140,
+      "finishedAt": "2026-07-20T20:40:13Z",
+      "durationSeconds": 545
     },
     {
       "id": "task-162",
