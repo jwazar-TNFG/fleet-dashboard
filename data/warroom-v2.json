@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:47:58Z",
+  "updated_at": "2026-07-20T21:06:24.591058Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3744,6 +3744,69 @@
       "description": "**Operator-requested (High).** While conducting the current step, Jon needs to see WHAT the next test item is so he can get into the right screen/process before advancing. Today the parked dock (`StepDockBlock`, `StepDock.tsx`) only shows a tiny `NEXT: PG-0NN` id chip (~:355). It already receives `nextItemId` (:78/:97) and the full catalog is in `tab.records`, so the next item's title + expected can be looked up like the current item's record (:70).",
       "promptSummary": "## Problem\nParked STEP dock shows only a tiny `NEXT: <id>` chip \u2014 not enough to prepare for the next item.\n## Build\nAdd a new section at the BOTTOM of `StepDockBlock`: look up the next item via `tab.records.find(r=>r.item.id===nextItemId)`; render a PURPLE, clearly-labeled 'NEXT TEST ITEM:' block with the next item's id, title, and `expected` (pass-criteria = the 'description'). Handle `nextItemId===null` (last item) with a clear 'no next' state. Use a `--wr` purple/accent token, not a random hex. Subsume the old tiny chip.\n## Acceptance\nPurple 'NEXT TEST ITEM:' block at bottom shows next id+title+expected; visibly purple + distinct; last-item state clean; updates in place each step; render test; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-164.md"
+    },
+    {
+      "id": "task-165",
+      "name": "RND-J1: Tier-2 nearest-command matcher (fast PTT path, no think)",
+      "status": "pending",
+      "phase": "phase-41",
+      "depends_on": [],
+      "doneWhen": "A near-miss phrase for a registered command fires the correct HUD action with NO agent turn; ambiguous turns still fall through to Vera.",
+      "description": "**Demo (High).** The `/voice/turn` sink (`bridge/src/main.ts` ~1140-1256) routes deterministically: briefing -> thinking -> range -> intents (`intents.dispatch` ~1180) -> panel-assign (`classifySpokenPanelAssign` ~1197) -> else fall through to slow `session.sendAgentTurn` (~1242). A near-miss phrase drops straight to the slow think today. Add a Tier-2 fuzzy matcher before the fallthrough.",
+      "promptSummary": "## Problem\nNear-miss command phrasing falls through to the slow agent turn instead of snapping to the known command.\n## Build\nNew `bridge/src/command-match.ts`: deterministic offline fuzzy/alias scorer over `intents.listInfo()` phrases + panel-assign `VIEW_ALIASES`. In `voiceTurn` before `sendAgentTurn` (~1240): if best match >= tuned threshold, dispatch that canonical action (same rebroadcast+speak parity as Tier-1), no think; below threshold -> fall through. Tag result `tier2`.\n## Acceptance\nNear-miss snaps fast (no agent turn); ambiguous falls through (no false snaps); parity preserved; matcher precision/recall unit tests; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-165.md"
+    },
+    {
+      "id": "task-166",
+      "name": "RND-J2: fast-first bias + per-turn latency instrumentation",
+      "status": "pending",
+      "phase": "phase-41",
+      "depends_on": [
+        "task-165"
+      ],
+      "doneWhen": "Tier-1/Tier-2 turns log thinkMs=0; a plain fallthrough turn runs the FAST thinking level (never adaptive) unless deep is explicitly active; deep turn labeled think-deep.",
+      "description": "**Demo (High).** `thinking.ts` (RND-89) already sets fast-default/deep-on-demand (wired main.ts ~758, applied ~1243). Missing: proof that Tier-1/2 commands paid ~0 think, and a guarantee the fallthrough never silently runs adaptive. Add fast-first assertion + per-turn latency stamp.",
+      "promptSummary": "## Problem\nNo measurement proving fast commands are instant; fallthrough could run adaptive thinking.\n## Build\nGuarantee fallthrough carries explicit fast level unless deep active (audit `thinking.ts`+`main.ts` ~754-836,~1243). Add classifyMs/thinkMs + tier label (tier1-intent|tier1-panel|tier2-match|think-fast|think-deep) to `/voice/turn` result + one structured bridge log line/turn; Tier-1/2 must show thinkMs=0.\n## Acceptance\nTier-1/2 thinkMs=0; plain turn = FAST level (test-asserted, never adaptive); deep labeled think-deep; thinking-level matrix unit test; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-166.md"
+    },
+    {
+      "id": "task-167",
+      "name": "RND-J3: deep-think hero report in Briefing center column (panels 3/6/9)",
+      "status": "pending",
+      "phase": "phase-41",
+      "depends_on": [
+        "task-166"
+      ],
+      "doneWhen": "A deep-think answer renders as one tall report across panels 3/6/9 inside Briefing while other panels keep their numbers; fast/Tier-1/Tier-2 never stage it; restores on dismiss.",
+      "description": "**Demo (High).** Grid is 3x3 1..9 (`protocol/src/commands.ts:7-9`); right column = panels 3,6,9. Glossary (`glossary.ts`) and search (`search.ts:48 SEARCH_STAGE_PANEL=9`) already show the snapshot->layout.apply preset->panel.set->restore stage pattern. Model a 3/6/9 tall hero report on it for deep-think answers; surrounding panels keep contextual numbers.",
+      "promptSummary": "## Problem\nDeep answers have no focused surface; Jon wants a tall 3/6/9 hero report in Briefing, numbers elsewhere.\n## Build\nAdd a HUD preset making panels 3+6+9 one tall region; new `DeepAnswerView` (title+body, scrollable) registered in the view registry; bridge stages it on the DEEP path (task-166 think-deep) via snapshot/apply/panel.set/speak with glossary/search restore discipline. Fast/Tier-1/Tier-2 never trigger it. Don't regress briefing beat flow.\n## Acceptance\nDeep answer = tall 3/6/9 report in Briefing, others keep numbers; fast/T1/T2 don't stage; restores on dismiss/supersede; render+stage tests; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-167.md"
+    },
+    {
+      "id": "task-168",
+      "name": "RND-J4: perdigones command glossary polish for the demo",
+      "status": "pending",
+      "phase": "phase-41",
+      "depends_on": [
+        "task-165"
+      ],
+      "doneWhen": "The glossary renders grouped-by-area with canonical phrase + what-it-fires, legible at wall distance, indicating Tier-2 paraphrase coverage; open/close contract unchanged.",
+      "description": "**Demo (Med).** The command glossary stage exists (`bridge/src/glossary.ts`, 'show commands', HUD `command-glossary` view) merging `intents.listInfo()` with HUD registries. It's functional but not tuned as a demo-facing quick-command reference and doesn't surface Tier-2 alias hints. Zeri reads this to understand the perdigones vocabulary.",
+      "promptSummary": "## Problem\nGlossary isn't demo-legible and omits Tier-2 alias hints.\n## Build\nGroup fast-fire commands by `IntentInfo.area` (Calendar/Panels/Range/Briefing/Meeting/Research-KB/System); each entry = canonical phrase + one-line what-it-fires; surface Tier-2 alias/paraphrase hints (panel-assign VIEW_ALIASES); demo styling legible at wall distance. Keep the three-surface open/close contract.\n## Acceptance\nGrouped-by-area, phrase+fires per entry, paraphrase coverage shown, contract unchanged, grouped-glossary render test, gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-168.md"
+    },
+    {
+      "id": "task-169",
+      "name": "RND-J5: demo warm-path preflight (no cold-start stall)",
+      "status": "pending",
+      "phase": "phase-41",
+      "depends_on": [
+        "task-166"
+      ],
+      "doneWhen": "Running the preflight against live bridge+voice prints green PASS with latencies and leaves the session warm so the first real PTT command is not slower than steady-state; never arms test mode or touches the gateway.",
+      "description": "**Demo (Med).** A fresh bridge/voice session is slow on the first turn (cold gateway session, poller, TTS, caches). The first PTT command in front of Zeri matters most. There is `/health` (18796) + a voice status preflight but no single demo warm-up command.",
+      "promptSummary": "## Problem\nFirst command after cold start stalls; need a one-command warm-up + green confirm.\n## Build\nNew `build/scripts/demo-preflight.sh`: pre-warm voice/gateway with a harmless fast loopback `/voice/turn` turn; confirm green (health, gateway, analyst+Supabase latency, TTS ready, catalog, session key); optionally fire one Tier-1 + one Tier-2 near-miss and print classifyMs/thinkMs (task-166); idempotent; never arms test mode / never touches gateway. Document in CLEAN-TEST-RUNBOOK.\n## Acceptance\nGreen PASS w/ latencies, session warm, first command not slower than steady-state, never arms test / never touches gateway, gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-169.md"
     }
   ]
 }
