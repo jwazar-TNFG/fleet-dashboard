@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T23:07:58Z",
+  "updated_at": "2026-07-20T23:08:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3856,7 +3856,7 @@
     {
       "id": "task-169",
       "name": "RND-J5: demo warm-path preflight (no cold-start stall)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-41",
       "depends_on": [
         "task-166"
@@ -3864,7 +3864,9 @@
       "doneWhen": "Running the preflight against live bridge+voice prints green PASS with latencies and leaves the session warm so the first real PTT command is not slower than steady-state; never arms test mode or touches the gateway.",
       "description": "**Demo (Med).** A fresh bridge/voice session is slow on the first turn (cold gateway session, poller, TTS, caches). The first PTT command in front of Zeri matters most. There is `/health` (18796) + a voice status preflight but no single demo warm-up command.",
       "promptSummary": "## Problem\nFirst command after cold start stalls; need a one-command warm-up + green confirm.\n## Build\nNew `build/scripts/demo-preflight.sh`: pre-warm voice/gateway with a harmless fast loopback `/voice/turn` turn; confirm green (health, gateway, analyst+Supabase latency, TTS ready, catalog, session key); optionally fire one Tier-1 + one Tier-2 near-miss and print classifyMs/thinkMs (task-166); idempotent; never arms test mode / never touches gateway. Document in CLEAN-TEST-RUNBOOK.\n## Acceptance\nGreen PASS w/ latencies, session warm, first command not slower than steady-state, never arms test / never touches gateway, gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-169.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-169.md",
+      "lastActivity": "2026-07-20T23:08:11Z",
+      "startedAt": "2026-07-20T23:08:11Z"
     }
   ]
 }
