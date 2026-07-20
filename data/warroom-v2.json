@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:12:38Z",
+  "updated_at": "2026-07-20T20:30:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3657,7 +3657,7 @@
     {
       "id": "task-160",
       "name": "RND-F: poller resume jitter + generalized wall-busy quiesce",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3666,8 +3666,15 @@
       "doneWhen": "Panels don't all refresh in the same tick on resume; a long live briefing pauses the poller like a proving run does.",
       "promptSummary": "## Problem\nResume fires a synchronized 9-panel burst; freeze quiesce only covers proving runs.\n## Build\nAdd first-tick jitter on schedule; introduce a shared `wallBusy` gate (refcount) held by proving-run/briefing/meeting; poller yields while any hold is active.\n## Acceptance\nNo synchronized burst; long briefing pauses poller; task-151 behavior intact; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-160.md",
-      "lastActivity": "2026-07-20T20:12:38Z",
-      "startedAt": "2026-07-20T20:12:38Z"
+      "lastActivity": "2026-07-20T20:30:58Z",
+      "startedAt": "2026-07-20T20:12:38Z",
+      "landed": false,
+      "costUSD": 3.276219,
+      "inputTokens": 142,
+      "outputTokens": 39509,
+      "cacheReadTokens": 3547263,
+      "finishedAt": "2026-07-20T20:30:58Z",
+      "durationSeconds": 1100
     },
     {
       "id": "task-161",
