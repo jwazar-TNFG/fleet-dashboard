@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T17:36:48Z",
+  "updated_at": "2026-07-20T19:01:25.282663Z",
   "phases": [
     {
       "id": "phase-0",
@@ -173,6 +173,10 @@
       "id": "phase-39",
       "name": "Round 32 \u2014 Proving Ground: flawless all-77 STEP-through (clean Round-31 redeploy + clear test info gate, quiesce panel poller during a run, per-item settle watchdog, Select-All + K/77 legibility + live tally, annotation confirmed-persist) \u2014 Jon 2026-07-20",
       "status": "pending"
+    },
+    {
+      "id": "phase-40",
+      "name": "Round 33 \u2014 Audit Hardening"
     }
   ],
   "tasks": [
@@ -3540,6 +3544,54 @@
       "finishedAt": "2026-07-20T17:36:11Z",
       "durationSeconds": 1928,
       "mergedAt": "2026-07-20T17:36:48Z"
+    },
+    {
+      "id": "task-155",
+      "name": "RND-A: stage rehydration on HUD reconnect + consent invariant",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-156",
+      "name": "RND-B: fold visual verdict into proving-ground verdict (kills false PASS)",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-157",
+      "name": "RND-C: authoritative DELIVER hold resolution (button/voice parity)",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-158",
+      "name": "RND-D: async KB rebuild off the HTTP request path",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-159",
+      "name": "RND-E: per-leg delivery reporting + email idempotency",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-160",
+      "name": "RND-F: poller resume jitter + generalized wall-busy quiesce",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-161",
+      "name": "RND-G: voice-turn deadline + spoken fallback",
+      "status": "pending",
+      "phase": "phase-40"
+    },
+    {
+      "id": "task-162",
+      "name": "RND-H: SSE idle timeout for research/search",
+      "status": "pending",
+      "phase": "phase-40"
     }
   ]
 }
