@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T15:52:51Z",
+  "updated_at": "2026-07-20T16:01:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3447,13 +3447,15 @@
     {
       "id": "task-150",
       "phase": "phase-39",
-      "status": "pending",
+      "status": "completed",
       "depends_on": [
         "task-149"
       ],
       "name": "RND-173: GATE \u2014 clean Round-31 redeploy to mini (drop hand-patch, pull fe80964, fresh bridge) + CLEAR all test info + re-test all-77 STEP (no new feature code)",
-      "description": "RND-173: GATE \u2014 clean Round-31 redeploy to mini (drop hand-patch, pull fe80964, fresh bridge) + CLEAR all test info + re-test all-77 STEP (no new feature code)",
-      "landed": false
+      "description": "RND-173: GATE \u2014 clean Round-31 redeploy to mini (drop hand-patch, pull fe80964, fresh bridge) + CLEAR all test info + re-test all-77 STEP (no new feature code) \u2014 DONE (Virgil, ops gate): mini redeployed to 213e72d incl fe80964, hand-patch dropped, npm ci+build, ALL TEST INFO CLEARED, fresh bridge pid 84793 healthy (armed:false, run idle, catalog 77 repo-root).",
+      "landed": true,
+      "lastActivity": "2026-07-20T16:01:42Z",
+      "finishedAt": "2026-07-20T16:01:42Z"
     },
     {
       "id": "task-151",
