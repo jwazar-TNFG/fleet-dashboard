@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:06:02.714502Z",
+  "updated_at": "2026-07-20T19:08:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3548,13 +3548,15 @@
     {
       "id": "task-155",
       "name": "RND-A: stage rehydration on HUD reconnect + consent invariant",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-40",
       "depends_on": [],
       "description": "**Audit D-1 / XC-1 (High).** On HUD reconnect the bridge re-hydrates only the DEFAULT layout (`binder.ts:83`); KB/Search/Meeting/wrap-up directors keep `staged` in memory but never re-assert, so a refresh blanks the wall. In a live meeting the mic keeps recording against a blank wall \u2014 a consent-invariant break.",
       "doneWhen": "HUD reload mid-KB/Search/Meeting returns to the exact staged view within one reconnect; mid-meeting reload restores the recording indicator (consent invariant holds).",
       "promptSummary": "## Problem\nHUD reconnect restores only the default layout; open stages vanish. Live meeting reload = mic records against blank wall (consent break).\n## Build\nAdd a bridge-side `rehydrate(client)` hook on `client-connected`: every director with `staged !== null` re-asserts `layout.apply`+`panel.set`+last `panel.update`; meeting re-asserts the recording indicator; search re-pushes `lastResult`.\n## Acceptance\nReload mid-KB/Search/Meeting returns exact view; recording indicator restored; no double-stage; gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-155.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-155.md",
+      "lastActivity": "2026-07-20T19:08:48Z",
+      "startedAt": "2026-07-20T19:08:48Z"
     },
     {
       "id": "task-156",
