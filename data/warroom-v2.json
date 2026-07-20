@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:38:09Z",
+  "updated_at": "2026-07-20T19:52:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3592,7 +3592,7 @@
     {
       "id": "task-157",
       "name": "RND-C: authoritative DELIVER hold resolution (button/voice parity)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3601,8 +3601,11 @@
       "doneWhen": "DELIVER button un-holds the instant the confirm-gate resolves; spoken hold disables the button; no click is silently gate-refused.",
       "promptSummary": "## Problem\nDELIVER button lies up to 120s; spoken vs button deliver diverge on the HUD flag.\n## Build\nEmit `meeting.deliver.resolved` on gate release/cancel/expire; `deliverHoldStore` subscribes and re-arms immediately; spoken deliver also sets `deliverHeld`. TTL becomes fallback only.\n## Acceptance\nButton un-holds instantly on resolve; spoken hold disables button; no gate-refused click; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-157.md",
-      "lastActivity": "2026-07-20T19:38:09Z",
-      "startedAt": "2026-07-20T19:38:09Z"
+      "lastActivity": "2026-07-20T19:52:48Z",
+      "startedAt": "2026-07-20T19:38:09Z",
+      "landed": false,
+      "finishedAt": "2026-07-20T19:52:48Z",
+      "durationSeconds": 879
     },
     {
       "id": "task-158",
