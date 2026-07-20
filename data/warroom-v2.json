@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T16:09:59Z",
+  "updated_at": "2026-07-20T16:10:02Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3481,13 +3481,15 @@
     {
       "id": "task-152",
       "phase": "phase-39",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-150"
       ],
       "name": "RND-175: per-item settle watchdog \u2014 a hung Vera turn can never freeze the run again",
       "description": "RND-175: per-item settle watchdog \u2014 a hung Vera turn can never freeze the run again",
-      "landed": false
+      "lastActivity": "2026-07-20T16:10:02Z",
+      "promptSummary": "**RND-175: Per-item settle watchdog (a hung Vera turn can never freeze the run)**\n\n**Why:** The STEP loop (test-harness.ts run() ~L1115, stepGate ~L1099) waits on exchange boundaries with NO item-level watchdog. If Vera hangs mid-item (gateway stall, model timeout), the item never settles and the run never parks \u2014 the operator is\u2026\n\n**Do:**\n- Give each item a settle watchdog (configurable, default ~90s from item injection).\n- If an item does not settle before the watchdog: force-settle it with verdict `HALTED` (or `FAIL` per spec \u00a7D) and note `watchdog: no settle in Ns`, t\u2026\n- A slow-but-completing item must NOT be falsely halted (reset watchdog on observed progress/exchange).\n\n**Done when:**\n- Simulate a non-settling item \u2192 run auto-settles it (HALTED/FAIL w/ watchdog note), parks, operator continues via Next.\n- Watchdog is per-item; a slow-but-completing item still passes normally.\n- Run never hangs with frozen controls. Gates green.",
+      "startedAt": "2026-07-20T16:10:02Z"
     },
     {
       "id": "task-153",
