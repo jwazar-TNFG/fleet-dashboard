@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:40:21Z",
+  "updated_at": "2026-07-20T20:40:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3703,7 +3703,7 @@
     {
       "id": "task-162",
       "name": "RND-H: SSE idle timeout for research/search",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3711,7 +3711,9 @@
       "description": "**Audit D-10 / SR-1 (Med).** The Perplexity SSE read loop has no per-chunk idle timeout (`perplexity.ts:126`); a provider that opens then stalls keeps the run alive to the 120s hard cap \u2014 a 2-minute demo spinner.",
       "doneWhen": "A stalled SSE stream fails as ERROR well under 120s; a normal streaming response is unaffected.",
       "promptSummary": "## Problem\nNo idle timeout on the research SSE loop; a stalled stream spins to the 120s cap.\n## Build\nAdd a per-chunk idle timeout (~12-20s, configurable) + optional first-byte timeout; end the run as `error` (view already renders it); preserve malformed-line skipping.\n## Acceptance\nStalled stream fails fast as ERROR; steady stream completes; gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-162.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-162.md",
+      "lastActivity": "2026-07-20T20:40:23Z",
+      "startedAt": "2026-07-20T20:40:23Z"
     },
     {
       "id": "task-163",
