@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-19T20:37:49Z",
+  "updated_at": "2026-07-20T15:52:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -167,6 +167,11 @@
     {
       "id": "phase-38",
       "name": "Round 31 \u2014 Proving Ground: context navigation (auto-stage relevant display), verdict fidelity (no false PASS on wrong stage), TEST-tab stability + no forced re-arm + recoverable annotated results, sample meeting-audio fixture \u2014 Jon live-test 2026-07-19",
+      "status": "pending"
+    },
+    {
+      "id": "phase-39",
+      "name": "Round 32 \u2014 Proving Ground: flawless all-77 STEP-through (clean Round-31 redeploy + clear test info gate, quiesce panel poller during a run, per-item settle watchdog, Select-All + K/77 legibility + live tally, annotation confirmed-persist) \u2014 Jon 2026-07-20",
       "status": "pending"
     }
   ],
@@ -3438,6 +3443,61 @@
       "landed": true,
       "finishedAt": "2026-07-19T20:37:09Z",
       "durationSeconds": 1750
+    },
+    {
+      "id": "task-150",
+      "phase": "phase-39",
+      "status": "pending",
+      "depends_on": [
+        "task-149"
+      ],
+      "name": "RND-173: GATE \u2014 clean Round-31 redeploy to mini (drop hand-patch, pull fe80964, fresh bridge) + CLEAR all test info + re-test all-77 STEP (no new feature code)",
+      "description": "RND-173: GATE \u2014 clean Round-31 redeploy to mini (drop hand-patch, pull fe80964, fresh bridge) + CLEAR all test info + re-test all-77 STEP (no new feature code)",
+      "landed": false
+    },
+    {
+      "id": "task-151",
+      "phase": "phase-39",
+      "status": "pending",
+      "depends_on": [
+        "task-150"
+      ],
+      "name": "RND-174: quiesce the panel poller while a proving run is live \u2014 freeze root cause (task-148 only softened the symptom)",
+      "description": "RND-174: quiesce the panel poller while a proving run is live \u2014 freeze root cause (task-148 only softened the symptom)",
+      "landed": false
+    },
+    {
+      "id": "task-152",
+      "phase": "phase-39",
+      "status": "pending",
+      "depends_on": [
+        "task-150"
+      ],
+      "name": "RND-175: per-item settle watchdog \u2014 a hung Vera turn can never freeze the run again",
+      "description": "RND-175: per-item settle watchdog \u2014 a hung Vera turn can never freeze the run again",
+      "landed": false
+    },
+    {
+      "id": "task-153",
+      "phase": "phase-39",
+      "status": "pending",
+      "depends_on": [
+        "task-150"
+      ],
+      "name": "RND-176: run legibility \u2014 Select All (77) + 'item K of 77' + live verdict tally + resume position across tab reopen",
+      "description": "RND-176: run legibility \u2014 Select All (77) + 'item K of 77' + live verdict tally + resume position across tab reopen",
+      "landed": false
+    },
+    {
+      "id": "task-154",
+      "phase": "phase-39",
+      "status": "pending",
+      "depends_on": [
+        "task-150"
+      ],
+      "name": "RND-177: annotation confirmed-persist per step ('saved \u2713'), reflected on disk + run cross-ref, no silent/false saves",
+      "description": "RND-177: annotation confirmed-persist per step ('saved \u2713'), reflected on disk + run cross-ref, no silent/false saves",
+      "landed": false
     }
   ]
 }
