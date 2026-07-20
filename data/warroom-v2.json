@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T21:37:59Z",
+  "updated_at": "2026-07-20T21:38:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3768,13 +3768,15 @@
     {
       "id": "task-165",
       "name": "RND-J1: Tier-2 nearest-command matcher (fast PTT path, no think)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-41",
       "depends_on": [],
       "doneWhen": "A near-miss phrase for a registered command fires the correct HUD action with NO agent turn; ambiguous turns still fall through to Vera.",
       "description": "**Demo (High).** The `/voice/turn` sink (`bridge/src/main.ts` ~1140-1256) routes deterministically: briefing -> thinking -> range -> intents (`intents.dispatch` ~1180) -> panel-assign (`classifySpokenPanelAssign` ~1197) -> else fall through to slow `session.sendAgentTurn` (~1242). A near-miss phrase drops straight to the slow think today. Add a Tier-2 fuzzy matcher before the fallthrough.",
       "promptSummary": "## Problem\nNear-miss command phrasing falls through to the slow agent turn instead of snapping to the known command.\n## Build\nNew `bridge/src/command-match.ts`: deterministic offline fuzzy/alias scorer over `intents.listInfo()` phrases + panel-assign `VIEW_ALIASES`. In `voiceTurn` before `sendAgentTurn` (~1240): if best match >= tuned threshold, dispatch that canonical action (same rebroadcast+speak parity as Tier-1), no think; below threshold -> fall through. Tag result `tier2`.\n## Acceptance\nNear-miss snaps fast (no agent turn); ambiguous falls through (no false snaps); parity preserved; matcher precision/recall unit tests; gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-165.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-165.md",
+      "lastActivity": "2026-07-20T21:38:01Z",
+      "startedAt": "2026-07-20T21:38:01Z"
     },
     {
       "id": "task-166",
