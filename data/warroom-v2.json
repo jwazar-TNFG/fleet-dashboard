@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T20:47:23Z",
+  "updated_at": "2026-07-20T20:47:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3712,15 +3712,16 @@
       "doneWhen": "A stalled SSE stream fails as ERROR well under 120s; a normal streaming response is unaffected.",
       "promptSummary": "## Problem\nNo idle timeout on the research SSE loop; a stalled stream spins to the 120s cap.\n## Build\nAdd a per-chunk idle timeout (~12-20s, configurable) + optional first-byte timeout; end the run as `error` (view already renders it); preserve malformed-line skipping.\n## Acceptance\nStalled stream fails fast as ERROR; steady stream completes; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-162.md",
-      "lastActivity": "2026-07-20T20:47:23Z",
+      "lastActivity": "2026-07-20T20:47:58Z",
       "startedAt": "2026-07-20T20:40:23Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 1.246489,
       "inputTokens": 56,
       "outputTokens": 19763,
       "cacheReadTokens": 923151,
       "finishedAt": "2026-07-20T20:47:23Z",
-      "durationSeconds": 420
+      "durationSeconds": 420,
+      "mergedAt": "2026-07-20T20:47:58Z"
     },
     {
       "id": "task-163",
