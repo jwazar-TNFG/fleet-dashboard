@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:01:25.282663Z",
+  "updated_at": "2026-07-20T19:06:02.714502Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3549,49 +3549,103 @@
       "id": "task-155",
       "name": "RND-A: stage rehydration on HUD reconnect + consent invariant",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [],
+      "description": "**Audit D-1 / XC-1 (High).** On HUD reconnect the bridge re-hydrates only the DEFAULT layout (`binder.ts:83`); KB/Search/Meeting/wrap-up directors keep `staged` in memory but never re-assert, so a refresh blanks the wall. In a live meeting the mic keeps recording against a blank wall \u2014 a consent-invariant break.",
+      "doneWhen": "HUD reload mid-KB/Search/Meeting returns to the exact staged view within one reconnect; mid-meeting reload restores the recording indicator (consent invariant holds).",
+      "promptSummary": "## Problem\nHUD reconnect restores only the default layout; open stages vanish. Live meeting reload = mic records against blank wall (consent break).\n## Build\nAdd a bridge-side `rehydrate(client)` hook on `client-connected`: every director with `staged !== null` re-asserts `layout.apply`+`panel.set`+last `panel.update`; meeting re-asserts the recording indicator; search re-pushes `lastResult`.\n## Acceptance\nReload mid-KB/Search/Meeting returns exact view; recording indicator restored; no double-stage; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-155.md"
     },
     {
       "id": "task-156",
       "name": "RND-B: fold visual verdict into proving-ground verdict (kills false PASS)",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-2 (High).** Proving-ground PASS/FAIL comes purely from the text turn (`test-harness.ts:1504`); the vision grade is attached (`:1512`) but never folds in \u2014 a visually-broken wall still reports MET. This is the root of the 'false PASS' class.",
+      "doneWhen": "A text-passing visualSmoke item with a broken/blank screenshot no longer reports MET \u2014 it reports FAIL (or partial) with a visual-downgrade reason.",
+      "promptSummary": "## Problem\nVisual verdict is advisory only; a fail-graded (overlap/blank) screen still reports MET.\n## Build\nFor visualSmoke items, fold `visualVerdict==='fail'` into a met\u2192FAIL (or partial) downgrade; skipped/partial stay advisory; surface the downgrade reason in run JSON/MD.\n## Acceptance\nText-pass + broken screenshot = FAIL with reason; clean screenshot unchanged; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-156.md"
     },
     {
       "id": "task-157",
       "name": "RND-C: authoritative DELIVER hold resolution (button/voice parity)",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-3 / MTG-1,2 (High).** The meeting DELIVER button re-arms only via a 120s local TTL (`deliverHoldStore.ts:14`); the voice confirm-gate resolves with no HUD signal (`confirm-gate.ts:85`). Spoken deliver never sets the flag, so the button stays enabled and the next click is refused.",
+      "doneWhen": "DELIVER button un-holds the instant the confirm-gate resolves; spoken hold disables the button; no click is silently gate-refused.",
+      "promptSummary": "## Problem\nDELIVER button lies up to 120s; spoken vs button deliver diverge on the HUD flag.\n## Build\nEmit `meeting.deliver.resolved` on gate release/cancel/expire; `deliverHoldStore` subscribes and re-arms immediately; spoken deliver also sets `deliverHeld`. TTL becomes fallback only.\n## Acceptance\nButton un-holds instantly on resolve; spoken hold disables button; no gate-refused click; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-157.md"
     },
     {
       "id": "task-158",
       "name": "RND-D: async KB rebuild off the HTTP request path",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-4 / KB-1 (High).** The KB service rebuilds the ENTIRE vault synchronously on the HTTP thread on every write (`server.ts:72,219,256` \u2192 sync fs in `builder.ts`). Blocks the loop; GETs stall \u2014 a latency spike exactly when a summary lands on the wall.",
+      "doneWhen": "save-meeting returns promptly; a concurrent graph GET during a rebuild is not blocked (served from prior snapshot); rapid saves coalesce.",
+      "promptSummary": "## Problem\nSync whole-vault rebuild on the HTTP thread on every save blocks the loop; GETs stall.\n## Build\nRespond first, rebuild async (worker/deferred); serve prior snapshot during rebuild; debounce rapid saves; keep last-good snapshot on failure.\n## Acceptance\nsave-meeting fast; concurrent GET not blocked; saves coalesce; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-158.md"
     },
     {
       "id": "task-159",
       "name": "RND-E: per-leg delivery reporting + email idempotency",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-5 / MTG-6 (Med).** `deliverMeetingSummary` runs email + KB independently but returns true only if both succeed; on email-OK/KB-fail it speaks 'didn't go through' though the email WAS sent, and a retry re-sends the email (no idempotency).",
+      "doneWhen": "Email-OK/KB-fail speaks an accurate per-leg message (not 'didn't go through'); a retry does not re-send the email.",
+      "promptSummary": "## Problem\nPartial delivery reported as total failure; retry re-sends the email.\n## Build\nReturn a structured per-leg result {email,kb}; speak per-leg outcome; make the email leg idempotent (dedupe key = date+title); retry skips already-sent legs.\n## Acceptance\nAccurate per-leg speech; no duplicate email on retry; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-159.md"
     },
     {
       "id": "task-160",
       "name": "RND-F: poller resume jitter + generalized wall-busy quiesce",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-6/D-7, XC-2/3 (Med).** `poller.resume()` reschedules all 9 panels with no jitter \u2192 a synchronized burst (`poller.ts:150`). And task-151's freeze quiesce is proving-run-scoped only (`main.ts:921`); live briefings have the same contention with no pause.",
+      "doneWhen": "Panels don't all refresh in the same tick on resume; a long live briefing pauses the poller like a proving run does.",
+      "promptSummary": "## Problem\nResume fires a synchronized 9-panel burst; freeze quiesce only covers proving runs.\n## Build\nAdd first-tick jitter on schedule; introduce a shared `wallBusy` gate (refcount) held by proving-run/briefing/meeting; poller yields while any hold is active.\n## Acceptance\nNo synchronized burst; long briefing pauses poller; task-151 behavior intact; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-160.md"
     },
     {
       "id": "task-161",
       "name": "RND-G: voice-turn deadline + spoken fallback",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-8 / XC-4 (Med).** The live `/voice/turn` sink awaits `sendAgentTurn` with no per-turn timeout (`main.ts:1160`). A hung gateway leaves the turn pending forever with no spoken feedback. task-152 protected only the proving-ground path.",
+      "doneWhen": "An injected gateway stall produces a spoken fallback within the deadline; the pipeline accepts the next utterance afterward.",
+      "promptSummary": "## Problem\nNo per-turn timeout on the live voice path; a hung gateway = silent forever-hang.\n## Build\nWrap sendAgentTurn in a deadline; on breach speak a graceful fallback and unwind the turn (race-safe, no double-speak); mirror the task-152 watchdog.\n## Acceptance\nInjected stall \u2192 spoken fallback + clean unwind; normal turn unaffected; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-161.md"
     },
     {
       "id": "task-162",
       "name": "RND-H: SSE idle timeout for research/search",
       "status": "pending",
-      "phase": "phase-40"
+      "phase": "phase-40",
+      "depends_on": [
+        "task-155"
+      ],
+      "description": "**Audit D-10 / SR-1 (Med).** The Perplexity SSE read loop has no per-chunk idle timeout (`perplexity.ts:126`); a provider that opens then stalls keeps the run alive to the 120s hard cap \u2014 a 2-minute demo spinner.",
+      "doneWhen": "A stalled SSE stream fails as ERROR well under 120s; a normal streaming response is unaffected.",
+      "promptSummary": "## Problem\nNo idle timeout on the research SSE loop; a stalled stream spins to the 120s cap.\n## Build\nAdd a per-chunk idle timeout (~12-20s, configurable) + optional first-byte timeout; end the run as `error` (view already renders it); preserve malformed-line skipping.\n## Acceptance\nStalled stream fails fast as ERROR; steady stream completes; gates green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-162.md"
     }
   ]
 }
