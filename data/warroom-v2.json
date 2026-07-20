@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T21:16:08Z",
+  "updated_at": "2026-07-20T21:16:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3747,13 +3747,15 @@
     {
       "id": "task-164",
       "name": "RND-J: NEXT TEST ITEM preview block in the STEP dock (operator-requested)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-40",
       "depends_on": [],
       "doneWhen": "While parked on the current item, the dock shows a purple, clearly-labeled 'NEXT TEST ITEM:' block at the bottom with the next item's id, title, and expected prose; correct on every step; clear 'no next' state on the last item.",
       "description": "**Operator-requested (High).** While conducting the current step, Jon needs to see WHAT the next test item is so he can get into the right screen/process before advancing. Today the parked dock (`StepDockBlock`, `StepDock.tsx`) only shows a tiny `NEXT: PG-0NN` id chip (~:355). It already receives `nextItemId` (:78/:97) and the full catalog is in `tab.records`, so the next item's title + expected can be looked up like the current item's record (:70).",
       "promptSummary": "## Problem\nParked STEP dock shows only a tiny `NEXT: <id>` chip \u2014 not enough to prepare for the next item.\n## Build\nAdd a new section at the BOTTOM of `StepDockBlock`: look up the next item via `tab.records.find(r=>r.item.id===nextItemId)`; render a PURPLE, clearly-labeled 'NEXT TEST ITEM:' block with the next item's id, title, and `expected` (pass-criteria = the 'description'). Handle `nextItemId===null` (last item) with a clear 'no next' state. Use a `--wr` purple/accent token, not a random hex. Subsume the old tiny chip.\n## Acceptance\nPurple 'NEXT TEST ITEM:' block at bottom shows next id+title+expected; visibly purple + distinct; last-item state clean; updates in place each step; render test; gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-164.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-164.md",
+      "lastActivity": "2026-07-20T21:16:11Z",
+      "startedAt": "2026-07-20T21:16:11Z"
     },
     {
       "id": "task-165",
