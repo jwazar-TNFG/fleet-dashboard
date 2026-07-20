@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:24:50Z",
+  "updated_at": "2026-07-20T19:37:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3569,7 +3569,7 @@
     {
       "id": "task-156",
       "name": "RND-B: fold visual verdict into proving-ground verdict (kills false PASS)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3578,8 +3578,15 @@
       "doneWhen": "A text-passing visualSmoke item with a broken/blank screenshot no longer reports MET \u2014 it reports FAIL (or partial) with a visual-downgrade reason.",
       "promptSummary": "## Problem\nVisual verdict is advisory only; a fail-graded (overlap/blank) screen still reports MET.\n## Build\nFor visualSmoke items, fold `visualVerdict==='fail'` into a met\u2192FAIL (or partial) downgrade; skipped/partial stay advisory; surface the downgrade reason in run JSON/MD.\n## Acceptance\nText-pass + broken screenshot = FAIL with reason; clean screenshot unchanged; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-156.md",
-      "lastActivity": "2026-07-20T19:24:50Z",
-      "startedAt": "2026-07-20T19:24:50Z"
+      "lastActivity": "2026-07-20T19:37:59Z",
+      "startedAt": "2026-07-20T19:24:50Z",
+      "landed": false,
+      "costUSD": 3.389727,
+      "inputTokens": 144,
+      "outputTokens": 35846,
+      "cacheReadTokens": 3915818,
+      "finishedAt": "2026-07-20T19:37:59Z",
+      "durationSeconds": 789
     },
     {
       "id": "task-157",
