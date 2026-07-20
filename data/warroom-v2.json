@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:24:39Z",
+  "updated_at": "2026-07-20T19:24:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3555,15 +3555,16 @@
       "doneWhen": "HUD reload mid-KB/Search/Meeting returns to the exact staged view within one reconnect; mid-meeting reload restores the recording indicator (consent invariant holds).",
       "promptSummary": "## Problem\nHUD reconnect restores only the default layout; open stages vanish. Live meeting reload = mic records against blank wall (consent break).\n## Build\nAdd a bridge-side `rehydrate(client)` hook on `client-connected`: every director with `staged !== null` re-asserts `layout.apply`+`panel.set`+last `panel.update`; meeting re-asserts the recording indicator; search re-pushes `lastResult`.\n## Acceptance\nReload mid-KB/Search/Meeting returns exact view; recording indicator restored; no double-stage; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-155.md",
-      "lastActivity": "2026-07-20T19:24:39Z",
+      "lastActivity": "2026-07-20T19:24:48Z",
       "startedAt": "2026-07-20T19:08:48Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.991632,
       "inputTokens": 140,
       "outputTokens": 52104,
       "cacheReadTokens": 7434737,
       "finishedAt": "2026-07-20T19:24:39Z",
-      "durationSeconds": 951
+      "durationSeconds": 951,
+      "mergedAt": "2026-07-20T19:24:48Z"
     },
     {
       "id": "task-156",
