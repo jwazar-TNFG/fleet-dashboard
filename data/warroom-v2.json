@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T22:48:09Z",
+  "updated_at": "2026-07-20T22:48:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3834,7 +3834,7 @@
     {
       "id": "task-168",
       "name": "RND-J4: perdigones command glossary polish for the demo",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-41",
       "depends_on": [
         "task-165"
@@ -3842,7 +3842,9 @@
       "doneWhen": "The glossary renders grouped-by-area with canonical phrase + what-it-fires, legible at wall distance, indicating Tier-2 paraphrase coverage; open/close contract unchanged.",
       "description": "**Demo (Med).** The command glossary stage exists (`bridge/src/glossary.ts`, 'show commands', HUD `command-glossary` view) merging `intents.listInfo()` with HUD registries. It's functional but not tuned as a demo-facing quick-command reference and doesn't surface Tier-2 alias hints. Zeri reads this to understand the perdigones vocabulary.",
       "promptSummary": "## Problem\nGlossary isn't demo-legible and omits Tier-2 alias hints.\n## Build\nGroup fast-fire commands by `IntentInfo.area` (Calendar/Panels/Range/Briefing/Meeting/Research-KB/System); each entry = canonical phrase + one-line what-it-fires; surface Tier-2 alias/paraphrase hints (panel-assign VIEW_ALIASES); demo styling legible at wall distance. Keep the three-surface open/close contract.\n## Acceptance\nGrouped-by-area, phrase+fires per entry, paraphrase coverage shown, contract unchanged, grouped-glossary render test, gates green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-168.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-168.md",
+      "lastActivity": "2026-07-20T22:48:24Z",
+      "startedAt": "2026-07-20T22:48:24Z"
     },
     {
       "id": "task-169",
