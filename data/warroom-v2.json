@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T17:05:03Z",
+  "updated_at": "2026-07-20T17:36:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3523,15 +3523,22 @@
     {
       "id": "task-154",
       "phase": "phase-39",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-150"
       ],
       "name": "RND-177: annotation confirmed-persist per step ('saved \u2713'), reflected on disk + run cross-ref, no silent/false saves",
       "description": "RND-177: annotation confirmed-persist per step ('saved \u2713'), reflected on disk + run cross-ref, no silent/false saves",
-      "lastActivity": "2026-07-20T17:04:03Z",
+      "lastActivity": "2026-07-20T17:36:11Z",
       "promptSummary": "**RND-177: Annotation confirmed-persist per step (\"saved \u2713\"), no silent/false saves**\n\n**Why:** task-148 wired operator annotations (note + screenshot + manual PASS/PARTIAL/FAIL) into `build/proving-ground/assets/<PG-ID>/annotation.json` and cross-referenced them into the run JSON/MD. For a 77-item run the operator must never wonder\u2026\n\n**Do:**\n- Per parked item, saving note/screenshot/manual verdict shows an explicit **\"saved \u2713\"** indicator.\n- The save is immediately reflected in `assets/<PG-ID>/annotation.json` and cross-referenced in the run JSON/MD (task-148 path via protocol/src/proving\u2026\n- A save failure surfaces a clear error in the dock \u2014 never a false success.\n\n**Done when:**\n- Annotate a parked item \u2192 \"saved \u2713\" shown \u2192 `annotation.json` on disk contains it \u2192 run record cross-references it.\n- Kill the save mid-flight \u2192 explicit error surfaced, NO phantom success.\n- Gates green.",
-      "startedAt": "2026-07-20T17:04:03Z"
+      "startedAt": "2026-07-20T17:04:03Z",
+      "landed": false,
+      "costUSD": 7.792846,
+      "inputTokens": 146,
+      "outputTokens": 60480,
+      "cacheReadTokens": 8098176,
+      "finishedAt": "2026-07-20T17:36:11Z",
+      "durationSeconds": 1928
     }
   ]
 }
