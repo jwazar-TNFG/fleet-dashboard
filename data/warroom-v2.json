@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-20T19:52:58Z",
+  "updated_at": "2026-07-20T20:03:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3611,7 +3611,7 @@
     {
       "id": "task-158",
       "name": "RND-D: async KB rebuild off the HTTP request path",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-40",
       "depends_on": [
         "task-155"
@@ -3620,8 +3620,15 @@
       "doneWhen": "save-meeting returns promptly; a concurrent graph GET during a rebuild is not blocked (served from prior snapshot); rapid saves coalesce.",
       "promptSummary": "## Problem\nSync whole-vault rebuild on the HTTP thread on every save blocks the loop; GETs stall.\n## Build\nRespond first, rebuild async (worker/deferred); serve prior snapshot during rebuild; debounce rapid saves; keep last-good snapshot on failure.\n## Acceptance\nsave-meeting fast; concurrent GET not blocked; saves coalesce; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-158.md",
-      "lastActivity": "2026-07-20T19:52:58Z",
-      "startedAt": "2026-07-20T19:52:58Z"
+      "lastActivity": "2026-07-20T20:03:47Z",
+      "startedAt": "2026-07-20T19:52:58Z",
+      "landed": false,
+      "costUSD": 2.349461,
+      "inputTokens": 96,
+      "outputTokens": 32677,
+      "cacheReadTokens": 2228152,
+      "finishedAt": "2026-07-20T20:03:47Z",
+      "durationSeconds": 649
     },
     {
       "id": "task-159",
