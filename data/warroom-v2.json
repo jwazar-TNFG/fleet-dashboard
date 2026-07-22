@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:52Z",
+  "updated_at": "2026-07-22T17:02:54Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3042,12 +3042,12 @@
       "id": "task-130",
       "phase": "phase-35",
       "status": "completed",
-      "lastActivity": "2026-07-16T01:35:47Z",
+      "lastActivity": "2026-07-22T17:02:54Z",
       "startedAt": "2026-07-16T01:08:00Z",
       "landed": true,
       "finishedAt": "2026-07-16T01:35:39Z",
       "durationSeconds": 1659,
-      "mergedAt": "2026-07-16T01:35:47Z",
+      "mergedAt": "2026-07-22T17:02:54Z",
       "name": "RND-158: HUD run-banner reconciliation (no phantom RUN LIVE)",
       "description": "**task-130 / RND-158 \u2014 HUD run-banner reconciliation (no phantom RUN LIVE)**\n\n**Objective**\n\n1. On bridge **disconnect** (HUD channel drops / BRIDGE OFFLINE), visually mark the run banner as\n   stale and disable run-mutating controls (STOP/HALT/Next/Run-again) so the operator cannot click\n   into a dead run.\n2. On bridge **reconnect** and on any authoritative status showing the run is idle/`not-running`\n   (no active run id), **clear** the `RUN LIVE` / `ITEM IN FLIGHT` / awaiting-step banner and\n   restore the idle TEST state \u2014 no phantom run may persist.\n3. Ensure the HUD fetches / receives the real run-state on reconnect (poll `/proving-ground/status`\n   or equivalent, or subscribe to the bridge run-state event) and drives the banner from that\n   single source of truth rather than from stale local state.\n4. Guarantee STOP/HALT/Next always reflect the backend: if the backend says not-running, STOP is a\n   no-op that clears the banner rather than sitting inert; if an item is genuinely in flight, HALT\n   works as designed (RND-1 \u2026\n\n**Acceptance criteria**\n\n- Restarting the bridge (or dropping the HUD channel) while the HUD shows a run \u2192 after reconnect\n  the banner clears to idle within one status cycle; no phantom \"RUN LIVE\".\n- STOP/HALT never leave the operator stranded: controls match the bridge's real run-state.\n- A genuinely live run still shows RUN LIVE / ITEM IN FLIGHT and Halt still aborts the in-flight\n  turn (no regression to RND-156).\n- `npm run build` clean; add coverage for the disconnect\u2192reconnect\u2192idle banner-clear path.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-130.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-130.md",
