@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T18:01:29Z",
+  "updated_at": "2026-07-22T18:16:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3983,14 +3983,21 @@
       "id": "task-174",
       "name": "Measure schema + Dimension registry + Exclusion sets",
       "phase": "phase-43",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "Code-side object model for the KPI rebuild: canonical Measure record schema (id/name/dept/lineage/calculation/supportedDimensions/ranges/refresh/unit/direction/target/verified/provenance/expansion), a Dimension registry (office\u2192officelabel, rep\u2192repname, pod\u2192TODO field, month\u2192date_trunc), and named Exclusion sets (rep_logs_standard = Katiria by name+kbonilla@ email + xSTAFF). Schema + validator + 2-3 fixtures only; no live queries. Foundational \u2014 everything else builds on this.",
       "doneWhen": "Schema+JSON-schema validator implemented; fixtures (cv_total, signed_305, signed_1800) validate; unit tests reject missing-required & illegal-dimension; CI green.",
       "promptSummary": "## Problem\nThe old 159-KPI catalog has no data model (KPI conflated with panel, dimensions baked into measures, 'signed' defined 3 ways). \n## Build\nCanonical Measure schema + Dimension registry + centrally-defined Exclusion sets + validator + fixtures.\n## Acceptance\nFixtures validate; validator rejects bad records; no live queries.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-174.md",
-      "lastActivity": "2026-07-22T18:01:29Z",
-      "startedAt": "2026-07-22T18:01:29Z"
+      "lastActivity": "2026-07-22T18:16:45Z",
+      "startedAt": "2026-07-22T18:01:29Z",
+      "landed": false,
+      "costUSD": 3.48084,
+      "inputTokens": 2,
+      "outputTokens": 270,
+      "cacheReadTokens": 90155,
+      "finishedAt": "2026-07-22T18:16:45Z",
+      "durationSeconds": 916
     },
     {
       "id": "task-175",
