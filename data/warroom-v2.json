@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:23Z",
+  "updated_at": "2026-07-22T17:03:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3406,7 +3406,7 @@
         "task-146"
       ],
       "name": "RND-170: verdict fidelity \u2014 no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)",
-      "lastActivity": "2026-07-19T20:07:57Z",
+      "lastActivity": "2026-07-22T17:03:25Z",
       "description": "RND-170: verdict fidelity \u2014 no PASS when the on-wall stage is wrong (PG-071 false PASS: scored green but meeting capture never staged)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-147.md. Linear: RND-201..204. Awaiting Jon build-start order.",
       "startedAt": "2026-07-19T19:19:19Z",
       "landed": true,
@@ -3417,7 +3417,7 @@
       "finishedAt": "2026-07-19T19:31:45Z",
       "durationSeconds": 746,
       "promptSummary": "**RND-170: Verdict fidelity: no PASS when the on-wall stage is wrong**\n\n**Why:** PG-071 scored PASS while on the wall NOTHING happened (Search never dismissed \u2192 meeting capture never started). The harness judged the emit/speak, not the actual staged output. Jon's screenshots prove the false PASS.\n\n**Do:**\n- A verdict cannot PASS unless the expected stage/render actually took effect on the wall (extend the RND-157 error-banner guard to stage state). Score\u2026\n\n**Done when:**\n- A command that emits but leaves the wrong stage up scores FAIL/PARTIAL, not PASS.\n- Test covers the PG-071 stale-Search scenario.\n- Gates green.",
-      "mergedAt": "2026-07-19T20:07:57Z"
+      "mergedAt": "2026-07-22T17:03:25Z"
     },
     {
       "id": "task-148",
