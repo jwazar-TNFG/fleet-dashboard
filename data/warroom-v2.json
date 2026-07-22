@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:44Z",
+  "updated_at": "2026-07-22T17:02:46Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2963,12 +2963,12 @@
       "name": "RND-154: in-UI add/edit/delete test items (catalog authoring)",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T21:32:25Z",
+      "lastActivity": "2026-07-22T17:02:46Z",
       "startedAt": "2026-07-15T21:14:45Z",
       "landed": true,
       "finishedAt": "2026-07-15T21:32:17Z",
       "durationSeconds": 1052,
-      "mergedAt": "2026-07-15T21:32:25Z",
+      "mergedAt": "2026-07-22T17:02:46Z",
       "description": "**task-126 / RND-154 \u2014 In-UI add / edit / delete test items (catalog authoring)**\n\n**Objective**\n\n1. Add an in-tab editor to CREATE a new catalog item and EDIT an existing one. Fields:\n   id, command, expected, preconditions[] (ordered list), tags[], area (from TESTING_AREAS).\n2. Add DELETE with a confirm step.\n3. Persist through a GUARDED server-side write path (extend proving-store / bridge) that:\n   - validates the item against `catalog.schema.json` BEFORE writing,\n   - rejects invalid/duplicate ids with a clear error surfaced in the UI,\n   - writes atomically (temp + rename), catalog.json remains the single source of truth.\n4. After a write, the TEST tab list refreshes to reflect the change (RELOAD path already exists).\n5. Do NOT expose catalog mutation unless Test Mode is armed (same gate as the rest of the tab).\n\n**Acceptance criteria**\n\n- Operator can add, edit, and delete catalog items entirely from the TEST tab.\n- Schema-invalid or duplicate-id writes are rejected with a visible reason; catalog.json never\n  left in a broken state.\n- Changes appear in the list without a manual file edit or full app restart.\n- `npm run build` clean; tests green (add coverage for the validate-before-write path).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-126.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-126.md",
       "costUSD": 0.8778,
