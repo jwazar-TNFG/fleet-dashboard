@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:39Z",
+  "updated_at": "2026-07-22T17:02:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2923,12 +2923,12 @@
       "name": "RND-152: RUN MODE toggle visual latch (cosmetic)",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T20:58:16Z",
+      "lastActivity": "2026-07-22T17:02:41Z",
       "startedAt": "2026-07-15T20:52:35Z",
       "landed": true,
       "finishedAt": "2026-07-15T20:58:12Z",
       "durationSeconds": 337,
-      "mergedAt": "2026-07-15T20:58:16Z",
+      "mergedAt": "2026-07-22T17:02:41Z",
       "description": "**task-124 / RND-152 \u2014 RUN MODE toggle: visual latch for the selected mode**\n\n**Objective**\n\n1. Make the selected mode button unmistakably latched: distinct fill + border + text weight,\n   matching other HUD toggle affordances (e.g. TODAY/MTD/YTD active state).\n2. Ensure the `--on` style wins over `hud-headerbtn` (specificity or a dedicated class); keep\n   `aria-pressed` correct for a11y.\n3. Purely cosmetic/markup \u2014 do NOT change the mode value flow or run start behavior.\n\n**Acceptance criteria**\n\n- Clicking AUTO or STEP leaves that button clearly, persistently highlighted until changed.\n- `aria-pressed` reflects selection; no functional change to startProvingRun(advance).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-124.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-124.md",
       "costUSD": 0.2812,
