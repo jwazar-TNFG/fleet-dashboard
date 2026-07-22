@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:14Z",
+  "updated_at": "2026-07-22T17:03:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3238,12 +3238,12 @@
         "task-138"
       ],
       "name": "RND-167: widen deterministic intent regexes for common fall-through phrasings (gap B)",
-      "lastActivity": "2026-07-16T04:44:51Z",
+      "lastActivity": "2026-07-22T17:03:17Z",
       "startedAt": "2026-07-16T04:17:59Z",
       "landed": true,
       "finishedAt": "2026-07-16T04:44:42Z",
       "durationSeconds": 1603,
-      "mergedAt": "2026-07-16T04:44:51Z",
+      "mergedAt": "2026-07-22T17:03:17Z",
       "description": "**task-139 / RND-167 \u2014 Widen deterministic intent regexes for common fall-through phrasings (gap B)**\n\n**Objective**\n\nCoverage-gap audit (`build/proving-ground/COVERAGE-GAP-REPORT.md`, Section B + \u00a75.2) identified common,\nnatural utterances that currently fall through to Vera (LLM) when they should be caught by a\ndeterministic classifier for latency/reliability. This task widens the specific regexes named in \u00a75.2.\nAll classifiers live in `bridge/src/` and anchor on the WHOLE stripped utterance (first-match-wins).\n\n**Acceptance criteria**\n\n- Each widened classifier matches the new phrasings above and returns the correct action; the guarded\n  cases (bare \"today\", verb-only wrapup) do NOT mis-fire outside their guard condition.\n- The ambiguity contract is preserved: genuinely novel/extra-word phrasings still fall through to Vera\n  (do not make matches greedy \u2014 anchoring on the whole stripped utterance stays intact).\n- First-match-wins order is unchanged; no classifier now shadows another (e.g. range still beats\n  panel-assign; registry still beats panel-assign).\n- Add/extend unit tests per touched classifier: assert each new phrasing matches, and assert at least\n  one near-miss still falls through (guards hold).\n- `npm run build` clean; existing intent tests still pass.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-139.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-139.md",
       "costUSD": 1.3375,
