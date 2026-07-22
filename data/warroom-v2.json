@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T18:51:30Z",
+  "updated_at": "2026-07-22T18:51:32Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4050,14 +4050,16 @@
       "id": "task-177",
       "name": "Composite View resolver (many measures \u00d7 one dimension \u2192 joined table)",
       "phase": "phase-43",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-175"
       ],
       "description": "Assemble compound visuals: run each component measure grouped by a SHARED dimension at the active range, join on the dimension key into one ranked, numbered table (default presentation; %-to-goal col when target set; dual-axis chart is a declared exception). Compiler REJECTS a composite whose component lacks the shared dimension. Verification inheritance: composite verified only when ALL components verified.",
       "doneWhen": "office_scorecard (green_cases+rep_count+cv_total by office) returns one joined ranked table; illegal composite rejected with clear msg; verification-inheritance unit test; CI green.",
       "promptSummary": "## Problem\n'Office Performance' style visuals need multiple measures per grouping \u2014 this is Zeri's dominant pattern (Office|Reps|Cases|CV).\n## Build\nComposite View object: many measures \u00d7 one dimension \u00d7 range \u2192 joined ranked table.\n## Acceptance\noffice_scorecard renders; illegal dim rejected; verified only when all components verified.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-177.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-177.md",
+      "lastActivity": "2026-07-22T18:51:32Z",
+      "startedAt": "2026-07-22T18:51:32Z"
     },
     {
       "id": "task-178",
