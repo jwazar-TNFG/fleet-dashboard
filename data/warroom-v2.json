@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:30Z",
+  "updated_at": "2026-07-22T17:02:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2863,12 +2863,12 @@
       "name": "RND-149: least-privilege ephemeral PG session reaper",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T13:48:39Z",
+      "lastActivity": "2026-07-22T17:02:33Z",
       "startedAt": "2026-07-15T13:30:04Z",
       "landed": true,
       "finishedAt": "2026-07-15T13:48:01Z",
       "durationSeconds": 1077,
-      "mergedAt": "2026-07-15T13:48:39Z",
+      "mergedAt": "2026-07-22T17:02:33Z",
       "description": "**task-121 / RND-149 \u2014 Ephemeral PG session teardown: least-privilege reaper (option B)**\n\n**Objective**\n\n1. Do NOT change the bridge's requested scopes. No `operator.admin`.\n2. Reaper: at run END (auto or manual), attempt a best-effort batch cleanup of the\n   ephemeral `\u2026:pg:*` sessions created during that run, using whatever scope the\n   bridge actually holds. If `sessions.delete` is admin-gated and unavailable, the\n   reaper must NOT crash the run \u2014 instead:\n   - collect the leaked session keys created this run,\n   - emit a single consolidated WARNING (run-record + log) listing the count and a\n     copy-paste `openclaw sessions` cleanup hint,\n   - surface the leaked-session count in the run JSON/MD summary.\n3. Fix the current silent behavior: a single `missing scope` failure must NOT\n   silently disable teardown for the whole run without surfacing it in the run\n   record. One clear consolidated warning per run (not one per item spamming the log).\n4. Document the manual cleanup path in `TEST-MODE.md` / the PG runbook: how an admin\n   reap \u2026\n\n**Acceptance criteria**\n\n- Bridge scopes unchanged (still read+write only).\n- After a full auto run, orphaned `\u2026:pg:*` sessions are either reaped (if scope\n  allows) OR reported once with a count + cleanup hint in the run record \u2014 never\n  silently leaked with no trace.\n- No per-item log spam for the delete-scope failure.\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-121.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-121.md",
       "costUSD": 0.8986,
