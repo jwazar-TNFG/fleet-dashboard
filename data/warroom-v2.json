@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T18:16:54Z",
+  "updated_at": "2026-07-22T18:16:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4004,14 +4004,16 @@
       "id": "task-175",
       "name": "Measure query engine (Measure \u00d7 Dimension \u00d7 Range \u2192 value)",
       "phase": "phase-43",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-174"
       ],
       "description": "Core runner: given measure id + optional dimension + range (Today/MTD/YTD), compose canonical SQL from the calculation spec, apply the named exclusion set, group by the resolved physical column when sliced, execute against Supabase, return value(s) + freshness timestamp. Illegal dimension \u2192 4xx. Pagination-safe (no 1000-row cap on aggregates). New /api/kpi2 namespace, OFF the live HUD path.",
       "doneWhen": "Computes cv_total total + by-office at today/mtd/ytd with computedAt; exclusions provably applied; illegal dimension 4xx; no truncation on aggregates; CI green.",
       "promptSummary": "## Problem\nMetric logic is smeared across 3 disagreeing layers; slices were pre-stored/drifted.\n## Build\nOne engine that generates any slice at query time from a single Measure definition.\n## Acceptance\ncv_total total+by-office at all ranges; exclusions applied; illegal dim rejected.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-175.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-175.md",
+      "lastActivity": "2026-07-22T18:16:56Z",
+      "startedAt": "2026-07-22T18:16:56Z"
     },
     {
       "id": "task-176",
