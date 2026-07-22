@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:09Z",
+  "updated_at": "2026-07-22T17:03:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3192,12 +3192,12 @@
         "task-136"
       ],
       "name": "RND-165: Briefing HUD button (close D-3 parity gap A1)",
-      "lastActivity": "2026-07-16T03:56:59Z",
+      "lastActivity": "2026-07-22T17:03:11Z",
       "startedAt": "2026-07-16T03:24:45Z",
       "landed": true,
       "finishedAt": "2026-07-16T03:56:51Z",
       "durationSeconds": 1926,
-      "mergedAt": "2026-07-16T03:56:59Z",
+      "mergedAt": "2026-07-22T17:03:11Z",
       "description": "**task-137 / RND-165 \u2014 Briefing HUD button (close D-3 gap A1)**\n\n**Objective**\n\nAdd a **Briefing trigger button** to the HUD header tray, mirroring the existing command-button pattern:\n1. Follow `hud/src/renderer/src/layout/calendarCommand.ts` (~lines 28-34) `registerCommand` shape to add\n   a `briefingCommand.ts` (label e.g. `BRIEFING`), rendered by `HeaderTray`.\n2. Wire the button to start a synced briefing \u2014 emit the same trigger the voice path uses. Prefer a\n   `briefing.start` HUD command / `POST /briefing` call that reaches `briefingRunner.start()` bridge-side\n   (do NOT duplicate briefing logic in the renderer \u2014 reliability must stay bridge-driven per the\n   task-71 rule). Confirm the exact command/route the bridge accepts and use it.\n3. Reflect run state: while a briefing is running (the `brief.start`\u2192`brief.beat` sequence\n   `useBriefing.ts` already listens to), the button shows an active/disabled state so it is not\n   double-fired; it returns to idle at briefing end.\n\n**Acceptance criteria**\n\n- A `BRIEFING` button appears in the HUD header tray and, when clicked, starts the same synced briefing\n  as the voice \"run the morning briefing\" trigger (verified: `brief.start` fires, beats stream).\n- The button reflects active/idle state and cannot double-trigger a briefing already in progress.\n- Voice and HTTP briefing paths remain unchanged and still work (button is additive parity, not a\n  replacement).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-137.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-137.md",
       "costUSD": 1.607,
