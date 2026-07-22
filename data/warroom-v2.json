@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:03Z",
+  "updated_at": "2026-07-22T17:03:06Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3146,12 +3146,12 @@
         "task-134"
       ],
       "name": "RND-163: move the Halt button clear of the voice captions",
-      "lastActivity": "2026-07-16T03:15:18Z",
+      "lastActivity": "2026-07-22T17:03:06Z",
       "startedAt": "2026-07-16T03:03:26Z",
       "landed": true,
       "finishedAt": "2026-07-16T03:15:10Z",
       "durationSeconds": 704,
-      "mergedAt": "2026-07-16T03:15:18Z",
+      "mergedAt": "2026-07-22T17:03:06Z",
       "description": "**task-135 / RND-163 \u2014 Move the Halt button clear of the voice captions**\n\n**Objective**\n\nRelocate the Halt affordance (the slim mid-item HALT/STOP bar, `HaltBar` in `StepDock.tsx`, styled by\n`.wr-pgdock`/`.wr-pgdock__halt`) so it is **never occluded by the caption bar**. Acceptable approaches\n(pick the cleanest; keep it a layout/CSS change):\n1. Raise the HaltBar's bottom offset so it sits clearly **above** the caption band, OR\n2. Move HaltBar to a corner/edge clear of the bottom-center caption column, OR\n3. When a caption is visible AND a HaltBar is mounted, shift one of them so both remain fully clickable\n   (no overlap, no caption covering the HALT hit-area).\nThe HALT button must remain large enough and fully within the clickable area whenever Vera is speaking\nmid-item. Preserve the existing amber HALT styling and the STOP control beside it.\n\n**Acceptance criteria**\n\n- With a manual STEP run parked/in-flight AND Vera actively speaking (caption streaming), the HALT\n  button is fully visible and clickable \u2014 the caption never overlaps its hit-area.\n- The full step-result dock (`.wr-pgdock` block) and the AUTO-mode surfaces are unaffected except for\n  the intended reposition.\n- No change to halt/stop *behavior* \u2014 this is purely position/layering (D-1: harness semantics\n  untouched).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-135.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-135.md",
       "costUSD": 0.5874,
