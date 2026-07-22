@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:46Z",
+  "updated_at": "2026-07-22T17:02:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2983,12 +2983,12 @@
       "name": "RND-155: TEST tab always visible + arm/disarm Test Mode from within it",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T21:54:49Z",
+      "lastActivity": "2026-07-22T17:02:49Z",
       "startedAt": "2026-07-15T21:32:27Z",
       "landed": true,
       "finishedAt": "2026-07-15T21:54:42Z",
       "durationSeconds": 1335,
-      "mergedAt": "2026-07-15T21:54:49Z",
+      "mergedAt": "2026-07-22T17:02:49Z",
       "description": "**task-127 / RND-155 \u2014 TEST tab always visible + arm/disarm Test Mode from within it**\n\n**Objective**\n\n1. Make the TEST nav entry ALWAYS visible in the HUD header (no arming required to SEE it).\n2. Add an arm/disarm control INSIDE the TEST tab. Arming uses the SAME provisioned Jon-only\n   token at `~/.openclaw/secrets/warroom/proving-ground.json` (or WARROOM_PROVING_GROUND_TOKEN):\n   - server-side reads the secrets file and POSTs the existing /proving-ground/test-mode with\n     the token, OR prompts the operator for the token in-UI \u2014 do NOT hardcode or echo the token.\n   - constant-time compare (existing); 403 + untouched state on missing/wrong token.\n3. SECURITY RECONCILIATION (preserve D-1 intent):\n   - Tab is VISIBLE but INERT until armed: no run controls active, no catalog mutation, no\n     endpoints hittable that could leave a footprint. Visibility != authorization.\n   - Zero run-footprint when never armed (no runs, no sessions, no writes).\n   - Retire the SSH-only path as the ONLY way to arm \u2014 do NOT retire the token requirement.\n4 \u2026\n\n**Acceptance criteria**\n\n- TEST nav entry shows on a normal HUD without any SSH command.\n- Operator can arm and disarm Test Mode from inside the tab using the provisioned token; wrong/\n  missing token is refused (403) and leaves state untouched.\n- Unarmed: tab is inert, zero footprint. Armed: full Round-26/27 behavior.\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-127.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-127.md",
       "costUSD": 1.1139,
