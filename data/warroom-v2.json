@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:33Z",
+  "updated_at": "2026-07-22T17:02:35Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2883,12 +2883,12 @@
       "name": "RND-150: run-on-wall \u2014 minimize TEST tab on START so live HUD is visible",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T20:11:31Z",
+      "lastActivity": "2026-07-22T17:02:35Z",
       "startedAt": "2026-07-15T20:00:02Z",
       "landed": true,
       "finishedAt": "2026-07-15T20:11:23Z",
       "durationSeconds": 681,
-      "mergedAt": "2026-07-15T20:11:31Z",
+      "mergedAt": "2026-07-22T17:02:35Z",
       "description": "**task-122 / RND-150 \u2014 Run on the wall: minimize TEST tab on START so the live HUD is visible**\n\n**Objective**\n\n1. On **START PILOT RUN** (and on any run start), collapse/minimize the TEST modal so the live\n   HUD wall is fully visible while each item executes. Do NOT tear down the run \u2014 the harness\n   already parks between items (Round 26, /proving-ground/step); this changes ONLY the renderer\n   surface behavior.\n2. Keep a small always-visible affordance to reopen the full TEST tab on demand mid-run\n   (e.g. the TEST nav button remains, or a compact re-expand handle).\n3. On **STOP** or run-end, restore the TEST tab to its prior state.\n4. Preserve Auto mode exactly: in Auto, minimizing is fine but the run still streams through;\n   in Step, the operator watches the wall then uses the bottom block (task-123) to advance.\n\n**Acceptance criteria**\n\n- Starting a run leaves the operator looking at the live wall, not the catalog modal.\n- Run/step/stop semantics unchanged; Auto default unchanged.\n- TEST tab can be reopened mid-run and restores on stop/end.\n- `npm run build` clean; existing PG renderer tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-122.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-122.md",
       "costUSD": 0.5682,
