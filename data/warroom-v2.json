@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T19:21:50Z",
+  "updated_at": "2026-07-22T20:39:54Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4103,7 +4103,7 @@
       "doneWhen": "Tile renders fixtures grouped by targetType; pace shows basis+band; threshold/custom flagged deferred; read-only; brand-consistent; CI green.",
       "promptSummary": "## Problem\nThreshold/custom targets are deferred but must not be silently forgotten.\n## Build\nA Targets Admin tile that surfaces every measure's target status as a visible backlog.\n## Acceptance\nGrouped by targetType; pace auto; threshold/custom marked deferred; read-only.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-179.md",
-      "lastActivity": "2026-07-22T19:21:50Z",
+      "lastActivity": "2026-07-22T20:39:54Z",
       "startedAt": "2026-07-22T19:21:50Z"
     }
   ]
