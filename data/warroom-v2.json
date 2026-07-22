@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T18:16:56Z",
+  "updated_at": "2026-07-22T18:39:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4004,7 +4004,7 @@
       "id": "task-175",
       "name": "Measure query engine (Measure \u00d7 Dimension \u00d7 Range \u2192 value)",
       "phase": "phase-43",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-174"
       ],
@@ -4012,8 +4012,15 @@
       "doneWhen": "Computes cv_total total + by-office at today/mtd/ytd with computedAt; exclusions provably applied; illegal dimension 4xx; no truncation on aggregates; CI green.",
       "promptSummary": "## Problem\nMetric logic is smeared across 3 disagreeing layers; slices were pre-stored/drifted.\n## Build\nOne engine that generates any slice at query time from a single Measure definition.\n## Acceptance\ncv_total total+by-office at all ranges; exclusions applied; illegal dim rejected.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-175.md",
-      "lastActivity": "2026-07-22T18:16:56Z",
-      "startedAt": "2026-07-22T18:16:56Z"
+      "lastActivity": "2026-07-22T18:39:48Z",
+      "startedAt": "2026-07-22T18:16:56Z",
+      "landed": false,
+      "costUSD": 5.901948,
+      "inputTokens": 146,
+      "outputTokens": 85633,
+      "cacheReadTokens": 5880100,
+      "finishedAt": "2026-07-22T18:39:48Z",
+      "durationSeconds": 1372
     },
     {
       "id": "task-176",
