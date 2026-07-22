@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:31Z",
+  "updated_at": "2026-07-22T17:03:32Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3838,7 +3838,7 @@
       "description": "**Demo (High).** Grid is 3x3 1..9 (`protocol/src/commands.ts:7-9`); right column = panels 3,6,9. Glossary (`glossary.ts`) and search (`search.ts:48 SEARCH_STAGE_PANEL=9`) already show the snapshot->layout.apply preset->panel.set->restore stage pattern. Model a 3/6/9 tall hero report on it for deep-think answers; surrounding panels keep contextual numbers.",
       "promptSummary": "## Problem\nDeep answers have no focused surface; Jon wants a tall 3/6/9 hero report in Briefing, numbers elsewhere.\n## Build\nAdd a HUD preset making panels 3+6+9 one tall region; new `DeepAnswerView` (title+body, scrollable) registered in the view registry; bridge stages it on the DEEP path (task-166 think-deep) via snapshot/apply/panel.set/speak with glossary/search restore discipline. Fast/Tier-1/Tier-2 never trigger it. Don't regress briefing beat flow.\n## Acceptance\nDeep answer = tall 3/6/9 report in Briefing, others keep numbers; fast/T1/T2 don't stage; restores on dismiss/supersede; render+stage tests; gates green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-167.md",
-      "lastActivity": "2026-07-22T16:51:46Z",
+      "lastActivity": "2026-07-22T17:03:32Z",
       "startedAt": "2026-07-20T22:17:26Z",
       "landed": true,
       "costUSD": 9.623484,
@@ -3847,7 +3847,7 @@
       "cacheReadTokens": 10515373,
       "finishedAt": "2026-07-20T22:48:09Z",
       "durationSeconds": 1843,
-      "mergedAt": "2026-07-22T16:51:46Z"
+      "mergedAt": "2026-07-22T17:03:32Z"
     },
     {
       "id": "task-168",
