@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:49Z",
+  "updated_at": "2026-07-22T17:02:52Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3003,7 +3003,7 @@
       "name": "RND-156: halt Vera mid-item (abort in-flight turn without ending the run)",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T22:32:23Z",
+      "lastActivity": "2026-07-22T17:02:52Z",
       "startedAt": "2026-07-15T21:54:51Z",
       "landed": true,
       "finishedAt": "2026-07-15T22:32:23Z",
@@ -3015,7 +3015,8 @@
       "outputTokens": 24820,
       "cacheReadTokens": 1319216,
       "costEstimated": true,
-      "promptSummary": "**RND-156: Halt Vera mid-item (abort the in-flight turn without ending the run)**\n\n**Done when:**\n- During an item, clicking Halt cancels Vera's in-flight turn promptly and the run stays alive,\n- Halted item is recorded distinctly (HALTED) in the run record; not a false PASS/FAIL.\n- No leaked ephemeral session from a halted item (reuse the RND-149 least-privilege reaper path)."
+      "promptSummary": "**RND-156: Halt Vera mid-item (abort the in-flight turn without ending the run)**\n\n**Done when:**\n- During an item, clicking Halt cancels Vera's in-flight turn promptly and the run stays alive,\n- Halted item is recorded distinctly (HALTED) in the run record; not a false PASS/FAIL.\n- No leaked ephemeral session from a halted item (reuse the RND-149 least-privilege reaper path).",
+      "mergedAt": "2026-07-22T17:02:52Z"
     },
     {
       "id": "task-129",
