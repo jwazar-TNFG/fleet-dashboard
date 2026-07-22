@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T16:51:49Z",
+  "updated_at": "2026-07-22T16:54:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2744,18 +2744,21 @@
       "id": "task-115",
       "name": "RND-143: narration completion gating (briefing + range)",
       "phase": "phase-32",
-      "status": "in_progress",
-      "lastActivity": "2026-07-22T16:51:49Z",
+      "status": "completed",
+      "lastActivity": "2026-07-22T16:54:57Z",
       "startedAt": "2026-07-15T03:24:51Z",
       "mergedAt": "2026-07-15T03:29:38Z",
       "description": "**task-115 / RND-143 \u2014 Narration completion gating (briefing + range)**\n\n**Objective**\n\nAdd a completion branch so **`briefing` and `range` replies wait on the SAME\nspeak.done / quiet-settle debounce as the `runId` voice branch**, capped by\n`replyTimeoutMs`. They must NOT fall to `settleMs`.\n\nImplementation guidance:\n- Factor the existing runId-branch wait (the `new Promise` with `onSpeakDone`\n  `finish` + `onActivity` `armQuiet` + `replyTimeoutMs` hardTimer) into a private\n  helper, e.g. `awaitSpokenCompletion(capture)`, and call it from BOTH the runId\n  branch and the new narration branch \u2014 no duplicated logic.\n- Detect narration by: `typeof response.reply.briefing !== 'undefined' ||\n  typeof response.reply.range !== 'undefined'`.\n- Order the branches: runId \u2192 narration \u2192 render/panelAssign \u2192 settle.\n- Do not change `main.ts`. Harness-side only.\n\n**Acceptance criteria**\n\n- `npm run build` clean, existing bridge tests still green.\n- A `briefing` or `range` reply now waits for speak.done/quiet-settle (verified\n  by task-117 tests): it does not resolve in `< quietMs`.\n- No regression to voice (`runId`) or panel-assign gating.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-115.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-115.md",
-      "costUSD": 0.2061,
-      "inputTokens": 13,
-      "outputTokens": 2722,
-      "cacheReadTokens": 144692,
+      "costUSD": 0.719847,
+      "inputTokens": 51,
+      "outputTokens": 10950,
+      "cacheReadTokens": 449202,
       "costEstimated": true,
-      "promptSummary": "**RND-143: Narration completion gating (briefing + range)**\n\n**Done when:**\n- `npm run build` clean, existing bridge tests still green.\n- A `briefing` or `range` reply now waits for speak.done/quiet-settle (verified\n- No regression to voice (`runId`) or panel-assign gating."
+      "promptSummary": "**RND-143: Narration completion gating (briefing + range)**\n\n**Done when:**\n- `npm run build` clean, existing bridge tests still green.\n- A `briefing` or `range` reply now waits for speak.done/quiet-settle (verified\n- No regression to voice (`runId`) or panel-assign gating.",
+      "landed": false,
+      "finishedAt": "2026-07-22T16:54:57Z",
+      "durationSeconds": 653406
     },
     {
       "id": "task-116",
