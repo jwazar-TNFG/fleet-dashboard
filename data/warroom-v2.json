@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:35Z",
+  "updated_at": "2026-07-22T17:02:39Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2903,12 +2903,12 @@
       "name": "RND-151: bottom-docked result block with inline Next/Stop/Note/Screenshot/Save",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T20:52:33Z",
+      "lastActivity": "2026-07-22T17:02:39Z",
       "startedAt": "2026-07-15T20:11:33Z",
       "landed": true,
       "finishedAt": "2026-07-15T20:52:25Z",
       "durationSeconds": 2452,
-      "mergedAt": "2026-07-15T20:52:33Z",
+      "mergedAt": "2026-07-22T17:02:39Z",
       "description": "**task-123 / RND-151 \u2014 Bottom-docked result block (yellow) with inline controls**\n\n**Objective**\n\n1. Render a compact result block docked at the **bottom** of the HUD (low, non-fullscreen\n   overlay) whenever a run is parked at an item boundary in Step mode.\n   **SHOW ONLY THE CURRENT ITEM.** The result block MUST replace/clear on each step \u2014 exactly\n   one item's info visible at a time. Do NOT stack or accumulate boxes from prior items.\n   (Jon confirmed 2026-07-15: today boxes accumulate \u2014 PG-001/PG-018/PG-019 all persisted on\n   screen at once and overlapped the Intake Pace wall panel. That is the confusion to fix.)\n2. Contents: verdict (PASS / PARTIAL / FAIL, color-coded \u2014 yellow for PARTIAL/info), item id,\n   command, expected, preconditions[].\n3. Inline controls in the block:\n   - **Next item \u25b8** \u2014 advance one item via /proving-ground/step; STAY on the wall; block\n     REPLACES its content in place for the next item (do NOT reopen the full modal, do NOT\n     leave the prior item's box behind).\n   - **Stop** \u2014 stop the run (exi \u2026\n\n**Acceptance criteria**\n\n- In Step mode, after each item the bottom block shows the verdict + item info and the\n  controls, without covering the wall.\n- ONLY the current item's box is visible at any time \u2014 no accumulation/stacking of prior items.\n- Next item \u25b8 advances one item, stays on the wall, REPLACES the block content in place.\n- Run again re-runs the current item in place and re-scores without leaving the wall.\n- Screenshot + note + Save persist to the item record and appear in the TEST tab afterward,\n  all triggered from the on-wall bottom block.\n- Bottom block does not obstruct wall panels (no overlap of Intake Pace etc.).\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-123.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-123.md",
       "costUSD": 2.0459,
