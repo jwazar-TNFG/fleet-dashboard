@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:41Z",
+  "updated_at": "2026-07-22T17:02:44Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2943,12 +2943,12 @@
       "name": "RND-153: item multi-select + run the selected set",
       "phase": "phase-34",
       "status": "completed",
-      "lastActivity": "2026-07-15T21:14:42Z",
+      "lastActivity": "2026-07-22T17:02:44Z",
       "startedAt": "2026-07-15T20:58:19Z",
       "landed": true,
       "finishedAt": "2026-07-15T21:14:35Z",
       "durationSeconds": 976,
-      "mergedAt": "2026-07-15T21:14:42Z",
+      "mergedAt": "2026-07-22T17:02:44Z",
       "description": "**task-125 / RND-153 \u2014 Item multi-select + run the selected set**\n\n**Objective**\n\n1. Add a per-row selection checkbox to each catalog item in the TEST tab list.\n2. Add Select-all and Clear controls (respecting the current area/search filter).\n3. START (in the selected-run mode) runs EXACTLY the selected items, in listed order, under the\n   chosen pacing (Auto or Step). Wire selection through to the run start payload\n   (extend the /proving-ground/run contract or the existing start path with an explicit item-id list).\n4. Preserve the existing **random-10 pilot** as its own separate button (do not remove it).\n5. Empty selection: EITHER disable the selected-run START OR fall back to random-10 \u2014 pick one,\n   document the choice, keep it obvious to the operator.\n\n**Acceptance criteria**\n\n- Operator can tick N items and run precisely those N, in order, in Auto or Step.\n- Random-10 pilot still available and unchanged.\n- Selection respects the active filter; Select-all/Clear work.\n- `npm run build` clean; tests green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-125.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-125.md",
       "costUSD": 0.8144,
