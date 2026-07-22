@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:21Z",
+  "updated_at": "2026-07-22T17:02:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2783,12 +2783,12 @@
       "name": "RND-145: regression tests \u2014 narration + shape guard",
       "phase": "phase-32",
       "status": "completed",
-      "lastActivity": "2026-07-15T03:46:14Z",
+      "lastActivity": "2026-07-22T17:02:24Z",
       "startedAt": "2026-07-15T03:38:18Z",
       "landed": true,
       "finishedAt": "2026-07-15T03:45:39Z",
       "durationSeconds": 441,
-      "mergedAt": "2026-07-15T03:46:14Z",
+      "mergedAt": "2026-07-22T17:02:24Z",
       "description": "**task-117 / RND-145 \u2014 Regression tests: narration gating + shape guard**\n\n**Objective**\n\nAdd regression tests (follow the existing harness-test fixtures/harness-driver\npattern in the file \u2014 reuse the same fake bridge/HUD capture used by the RND-142\ntests):\n\n1. **Briefing waits:** inject a turn whose reply is `{ ok:true, briefing:\"started\" }`.\n   Assert the harness does NOT resolve the item in `< quietMs` \u2014 it waits for a\n   `speak.done` (or quiet-settle). Simulate a delayed speak.done and assert the\n   item then completes and capture is non-empty.\n2. **Range waits:** same as (1) for a reply `{ ok:true, range:\u2026 }`.\n3. **Unknown shape FAILs (not races):** inject a reply with an unclassified key\n   (e.g. `{ ok:true, frobnicate:1 }`). Assert the item verdict is **FAIL** and\n   the observation/note contains the `unclassified reply shape` message, and that\n   it did NOT resolve via the tiny settle in ~0.5s as a silent pass.\n4. **No false-positive on known shapes:** a consumed-intent reply\n   (e.g. `{ ok:true, calendar:\"open\" }`) \u2026\n\n**Acceptance criteria**\n\n- `npm test` (bridge) green including the new cases.\n- Tests fail if narration turns race (< quietMs), if the guard misses an unknown\n  key, or if the guard false-FAILs a known shape.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-117.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-117.md",
       "costUSD": 0.368,
