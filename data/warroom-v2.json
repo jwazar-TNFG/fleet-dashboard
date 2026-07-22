@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:17:49Z",
+  "updated_at": "2026-07-22T17:17:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3905,15 +3905,16 @@
       "description": "**Voice/Demo (High).** 'give me the tour' must deterministically walk 5 data panels then navigate Calendar \u2192 Search \u2192 Brain. Prompt-driven Option B FAILED across 4 live tests 2026-07-21: Vera's agent reflexively invokes `runBriefing` instead of hand-emitting the 8 tour beats, even after an explicit 'do NOT call briefing' gate. Log signature: agent turn \u2192 ~3-4s \u2192 `scripted briefing started` \u2192 `briefing finished beats:[ops,email,calendar,flags,handoff]`. Trigger verified collision-free \u2014 execution path is the problem. Tour needs the SAME deterministic bridge mechanism as the briefing.",
       "promptSummary": "## Problem\n'give me the tour' falls into the briefing runner; prompt gate can't stop the model reflex. Needs a bridge-side deterministic tour intent.\n## Build\nNew `bridge/src/tour.ts` (isTourIntent + runTour/tourBeats) modeled on voice-briefing.ts. 8 beats: Phase 1 panels live-ops-feed p1, intake-kpis p4, signed-by-office p7, case-status-donut p3, flags-alerts p8; Phase 2 tabs Calendar \u2192 Search (live query) \u2192 Brain, narrated. Wire into /voice/turn at briefing-tier precedence. Distinct from briefing. Unit-test isTourIntent.\n## Acceptance\nAll 8 beats fire live; log shows tour runner not briefing; no echo; tests pass; briefing still works; CI green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-170.md",
-      "lastActivity": "2026-07-22T17:17:49Z",
+      "lastActivity": "2026-07-22T17:17:57Z",
       "startedAt": "2026-07-22T17:03:34Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 4.550414,
       "inputTokens": 106,
       "outputTokens": 46767,
       "cacheReadTokens": 4963479,
       "finishedAt": "2026-07-22T17:17:49Z",
-      "durationSeconds": 855
+      "durationSeconds": 855,
+      "mergedAt": "2026-07-22T17:17:57Z"
     },
     {
       "id": "task-171",
