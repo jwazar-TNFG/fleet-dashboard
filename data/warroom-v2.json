@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:52:54Z",
+  "updated_at": "2026-07-22T18:01:20Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3961,15 +3961,22 @@
     {
       "id": "task-173",
       "name": "Bake KB base-URL into repo (Brain tab works on clean deploy)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-42",
       "depends_on": [],
       "doneWhen": "Clean deploy + start-bridge.sh \u2192 kbBaseUrl=http://100.121.73.96:3102 tokenPresent:true, no manual edit; Brain tab loads KB graph first open; no rig IP in shipped source; runbook updated; CI green.",
       "description": "**Infra/Deploy (Med).** Brain tab hung on 'connecting to\u2026' because WARROOM_KB_BASE_URL was unset \u2192 kbBaseUrl defaulted to 127.0.0.1:3102 (nothing on the Mini; KB service on Virgil rig 100.121.73.96:3102) \u2192 ERR_NETWORK. Fix on the Mini was a hand-added export to start-bridge.sh (backup .bak2) \u2014 un-versioned, lost on next clean deploy.",
       "promptSummary": "## Problem\nBrain tab offline; WARROOM_KB_BASE_URL unset \u2192 default 127.0.0.1:3102. Hand-patched on the Mini (un-versioned).\n## Build\nBake into version control / deploy config (start-bridge.sh or deploy env; prefer config over literal; optional default guard in kb-client, no rig IP in shipped source). Update CLEAN-TEST-RUNBOOK.\n## Acceptance\nClean deploy \u2192 kbBaseUrl=100.121.73.96:3102 tokenPresent:true no manual edit; Brain loads first open; no hardcoded IP in TS; runbook updated; CI green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-173.md",
-      "lastActivity": "2026-07-22T17:52:54Z",
-      "startedAt": "2026-07-22T17:52:54Z"
+      "lastActivity": "2026-07-22T18:01:20Z",
+      "startedAt": "2026-07-22T17:52:54Z",
+      "landed": false,
+      "costUSD": 1.348549,
+      "inputTokens": 98,
+      "outputTokens": 17956,
+      "cacheReadTokens": 1288376,
+      "finishedAt": "2026-07-22T18:01:20Z",
+      "durationSeconds": 506
     },
     {
       "id": "task-174",
