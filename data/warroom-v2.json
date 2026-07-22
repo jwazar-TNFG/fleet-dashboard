@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:17Z",
+  "updated_at": "2026-07-22T17:03:20Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3261,12 +3261,12 @@
         "task-139"
       ],
       "name": "RND-168: add negative/boundary Proving Ground catalog items PG-068..076 (gap B)",
-      "lastActivity": "2026-07-16T04:55:59Z",
+      "lastActivity": "2026-07-22T17:03:20Z",
       "startedAt": "2026-07-16T04:44:53Z",
       "landed": true,
       "finishedAt": "2026-07-16T04:55:23Z",
       "durationSeconds": 630,
-      "mergedAt": "2026-07-16T04:55:59Z",
+      "mergedAt": "2026-07-22T17:03:20Z",
       "description": "**task-140 / RND-168 \u2014 Add negative/boundary Proving Ground catalog items (gap B, make the fast-path\u2194LLM boundary testable)**\n\n**Objective**\n\nAdd these items to `build/proving-ground/catalog.json` (validate against\n`build/proving-ground/catalog.schema.json`; keep the existing 67 intact \u2014 this brings the catalog to\n76 items). Use the existing item schema keys: `id, title, testingArea, command, expected, mutation,\npreconditions, tags`.\n\n- **PG-068** (Voice, `intent:range`): \"Vera, today.\" \u2192 after task-139 this is now a POSITIVE range flip\n  to TODAY **when no Vera question is pending**. EXPECT: range flips to TODAY. tag `boundary`.\n- **PG-069** (Voice, `intent:search`): \"Vera, find tampa jury verdicts.\" \u2192 after task-139 \"find\" is a\n  search verb. EXPECT: web search runs for \"tampa jury verdicts\". tag `boundary`.\n- **PG-070** (Voice, `intent:meeting`): \"Vera, start recording.\" \u2192 after task-139 this opens meeting/\n  capture. EXPECT: meeting mode / capture starts. tag `boundary`.\n- **PG-071** (Voice, `intent:panel-assign`): \"Vera, move case status to panel 2.\" \u2192 after task-139\n  \" \u2026\n\n**Acceptance criteria**\n\n- `catalog.json` parses as valid JSON and validates against `catalog.schema.json`; total = 76 items;\n  the original 67 are byte-unchanged.\n- Each new item has all required schema keys and an `expected` consistent with post-task-139 behavior.\n- New items are tagged (`boundary` / `button` / `fallthrough`) so they are filterable.\n- `npm run build` clean (if any schema/type checks cover the catalog, they pass).\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-140.md",
       "costUSD": 0.5257,
