@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T19:07:51Z",
+  "updated_at": "2026-07-22T19:21:37Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4073,7 +4073,7 @@
       "id": "task-178",
       "name": "xlsx\u2192catalog compiler (Stage A)",
       "phase": "phase-43",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-174"
       ],
@@ -4081,8 +4081,15 @@
       "doneWhen": "Sample .xlsx \u2192 schema-valid measures.json + human-readable exception report; deterministic round-trip; does NOT touch live kpi-definitions.json; guardrail+signed tests; CI green.",
       "promptSummary": "## Problem\nThe verified spreadsheet is the human source of truth but not the runtime format.\n## Build\nDeterministic xlsx\u2192measures.json compiler + Gate-1 validation/exception report.\n## Acceptance\nSample sheet compiles valid; exception report catches guardrail violations; live catalog untouched.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-178.md",
-      "lastActivity": "2026-07-22T19:07:51Z",
-      "startedAt": "2026-07-22T19:07:51Z"
+      "lastActivity": "2026-07-22T19:21:37Z",
+      "startedAt": "2026-07-22T19:07:51Z",
+      "landed": false,
+      "costUSD": 3.526692,
+      "inputTokens": 234,
+      "outputTokens": 62690,
+      "cacheReadTokens": 2687587,
+      "finishedAt": "2026-07-22T19:21:37Z",
+      "durationSeconds": 826
     },
     {
       "id": "task-179",
