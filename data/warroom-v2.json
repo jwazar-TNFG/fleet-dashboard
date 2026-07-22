@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:24Z",
+  "updated_at": "2026-07-22T17:02:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2803,12 +2803,12 @@
       "name": "RND-146: harness manual STEP mode (click-to-advance)",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T12:49:15Z",
+      "lastActivity": "2026-07-22T17:02:26Z",
       "startedAt": "2026-07-15T12:38:15Z",
       "landed": true,
       "finishedAt": "2026-07-15T12:49:08Z",
       "durationSeconds": 653,
-      "mergedAt": "2026-07-15T12:49:15Z",
+      "mergedAt": "2026-07-22T17:02:26Z",
       "description": "**task-118 / RND-146 \u2014 Proving Ground harness: manual STEP mode**\n\n**Objective**\n\n1. Add a run option `advance: 'auto' | 'manual'` (default `'auto'`). Thread it from\n   the `POST /proving-ground/run` request body (health.ts handler) \u2192 harness run\n   config. Auto path must be byte-for-byte behavior-identical to today.\n2. In `run()`, when `advance === 'manual'`, after each `runItem` resolves (and before\n   the next item injects) enter a **step-gate**: block until an explicit\n   `stepNext()` call or `stopRequested`. Implement with a dedicated `stepWaiters[]`\n   (separate from `pauseWaiters` so Test-Mode pause and step compose \u2014 a paused run\n   stays paused even if `stepNext()` fires; step only releases when not paused).\n3. New public methods:\n   - `stepNext(): void` \u2014 release exactly ONE item boundary (idempotent if not\n     awaiting; never releases more than one item).\n   - status additions in `getStatus()`: `advance: 'auto'|'manual'`,\n     `awaitingStep: boolean`, `nextItemId: string | null`.\n4. Emit a run-state event \u2026\n\n**Acceptance criteria**\n\n- Manual mode: run halts after item N with `awaitingStep=true`, injects item N+1\n  ONLY after `stepNext()` (or the `/proving-ground/step` POST). A second item never\n  advances on a single step.\n- Auto mode: unchanged (regression \u2014 existing tests green).\n- Test-Mode pause still works and overrides step (paused + stepNext \u2192 stays parked\n  until resumed).\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-118.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-118.md",
       "costUSD": 0.5449,
