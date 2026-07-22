@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T19:21:37Z",
+  "updated_at": "2026-07-22T19:21:50Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4095,14 +4095,16 @@
       "id": "task-179",
       "name": "Targets Admin tile (analyst-01) \u2014 deferred-target backlog",
       "phase": "phase-43",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-176"
       ],
       "description": "Read-only analyst-01 tile listing every measure + target status, brand-skinned (black/teal, Cinzel/Inter). pace rows = auto-configured (show basis a/b/d + current band); threshold rows = 'Needs setup'; custom rows = 'Method TBD'. Serves as the worklist for post-demo target configuration. No editing this round.",
       "doneWhen": "Tile renders fixtures grouped by targetType; pace shows basis+band; threshold/custom flagged deferred; read-only; brand-consistent; CI green.",
       "promptSummary": "## Problem\nThreshold/custom targets are deferred but must not be silently forgotten.\n## Build\nA Targets Admin tile that surfaces every measure's target status as a visible backlog.\n## Acceptance\nGrouped by targetType; pace auto; threshold/custom marked deferred; read-only.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-179.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-179.md",
+      "lastActivity": "2026-07-22T19:21:50Z",
+      "startedAt": "2026-07-22T19:21:50Z"
     }
   ]
 }
