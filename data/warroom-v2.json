@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T18:51:21Z",
+  "updated_at": "2026-07-22T18:51:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4035,15 +4035,16 @@
       "doneWhen": "Each basis a/b/d returns target/actual/pct/band at MTD & YTD; unit tests cover boundaries (69/70/90/91/110/111) + direction inversion; non-pace yields no band; CI green.",
       "promptSummary": "## Problem\nGoal-pace bands (Zeri's signature lens) need targets, but most KPIs have no human goal yet.\n## Build\nCompute pace targets from history (a/b/d) so bands light up with no human input.\n## Acceptance\nAll three bases + band boundaries + direction handled; non-pace measures unbanded.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-176.md",
-      "lastActivity": "2026-07-22T18:51:21Z",
+      "lastActivity": "2026-07-22T18:51:30Z",
       "startedAt": "2026-07-22T18:39:57Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.544242,
       "inputTokens": 74,
       "outputTokens": 41345,
       "cacheReadTokens": 1944123,
       "finishedAt": "2026-07-22T18:51:21Z",
-      "durationSeconds": 684
+      "durationSeconds": 684,
+      "mergedAt": "2026-07-22T18:51:30Z"
     },
     {
       "id": "task-177",
