@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:26Z",
+  "updated_at": "2026-07-22T17:02:29Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2823,12 +2823,12 @@
       "name": "RND-147: TEST tab Auto/Step toggle + Next-item control",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T13:11:54Z",
+      "lastActivity": "2026-07-22T17:02:29Z",
       "startedAt": "2026-07-15T12:49:18Z",
       "landed": true,
       "finishedAt": "2026-07-15T13:11:47Z",
       "durationSeconds": 1349,
-      "mergedAt": "2026-07-15T13:11:54Z",
+      "mergedAt": "2026-07-22T17:02:29Z",
       "description": "**task-119 / RND-147 \u2014 TEST tab: Auto/Step toggle + \"Next item \u25b8\" control**\n\n**Objective**\n\n1. **Run-mode toggle** in the TEST tab run controls: **Auto** / **Step** (default\n   Auto). The selected mode is sent as `advance` in the `POST /proving-ground/run`\n   body when a run starts.\n2. **Between-item panel (Step mode only):** when the run enters `awaiting-step`\n   (from the run-state event or status poll), show:\n   - the just-scored item's id + verdict (PASS/PARTIAL/FAIL/BLOCKED),\n   - the UPCOMING item's `nextItemId`, title, and command text (so the operator\n     knows what wall state to stage before advancing),\n   - a prominent **\"Next item \u25b8\"** button and a **\"Stop\"** button.\n3. **\"Next item \u25b8\"** \u2192 `POST /proving-ground/step`; on ok, clear the panel and let\n   the run proceed. Disable the button while the request is in flight (no double-step).\n4. **PG-c banner** mirrors the `awaiting-step` state (e.g. \"\u23f8 Awaiting step \u2014 next:\n   PG-0NN\") so it is visible even if the TEST tab is not focused.\n5. Auto mode UI is unchanged \u2014 no \u2026\n\n**Acceptance criteria**\n\n- Operator can run a 10-item pilot fully by hand in Step mode: one click per item,\n  verdict visible before advancing, upcoming command shown so preconditions can be\n  staged manually in between.\n- Auto mode behaves exactly as before (no step panel, no extra clicks).\n- Banner reflects awaiting-step.\n- `npm run build` (HUD) clean; existing TEST-tab tests (if any) still pass.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-119.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-119.md",
       "costUSD": 1.1256,
