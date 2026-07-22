@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:38:51Z",
+  "updated_at": "2026-07-22T17:38:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3926,15 +3926,16 @@
       "description": "**Data/Perf (Med-High).** /api/history/daily ~5.3s over HTTP trips the bridge analyst circuit (8000ms, 3 consecutive \u2192 open); signed-counter-hero ERR_TIMEOUT\u2192OPEN, falls back to Supabase. SQL ~12.8ms with existing indexes \u2014 DB NOT the bottleneck. Cause = PostgREST REST overhead + serial upstream round-trips (paginated leads, intake_daily, intake_specialists, shift maps).",
       "promptSummary": "## Problem\nhistory-daily ~5.3s trips the 8s analyst circuit; SQL already ~12.8ms.\n## Build\nprojects/analyst-01/api/src/routes/history.js: parallelize independent fetches (Promise.all) + short-TTL cache (30-60s) keyed by date window; identical response shape; warm < 1.5s. No index change.\n## Acceptance\nWarm < 1.5s, cold << 5.3s, byte-compatible, no circuit trips, exclusions applied, numbers unchanged, tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-171.md",
-      "lastActivity": "2026-07-22T17:38:51Z",
+      "lastActivity": "2026-07-22T17:38:57Z",
       "startedAt": "2026-07-22T17:18:00Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 3.395574,
       "inputTokens": 114,
       "outputTokens": 56476,
       "cacheReadTokens": 2890495,
       "finishedAt": "2026-07-22T17:38:51Z",
-      "durationSeconds": 1251
+      "durationSeconds": 1251,
+      "mergedAt": "2026-07-22T17:38:57Z"
     },
     {
       "id": "task-172",
