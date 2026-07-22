@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:02:29Z",
+  "updated_at": "2026-07-22T17:02:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2843,12 +2843,12 @@
       "name": "RND-148: context precondition seeding for context-dependent items",
       "phase": "phase-33",
       "status": "completed",
-      "lastActivity": "2026-07-15T13:30:02Z",
+      "lastActivity": "2026-07-22T17:02:30Z",
       "startedAt": "2026-07-15T13:11:56Z",
       "landed": true,
       "finishedAt": "2026-07-15T13:29:55Z",
       "durationSeconds": 1079,
-      "mergedAt": "2026-07-15T13:30:02Z",
+      "mergedAt": "2026-07-22T17:02:30Z",
       "description": "**task-120 / RND-148 \u2014 Context precondition seeding for context-dependent items**\n\n**Objective**\n\n1. Catalog schema (`catalog.schema.json` + `catalog.json`): add optional per-item\n   field `precondition: string[]` \u2014 an ordered list of setup turns/commands injected\n   into the item's fresh session BEFORE the scored command.\n2. Harness (`runItem`): if `item.precondition` is non-empty, inject each entry\n   through the SAME session key as the scored turn, awaiting each with the normal\n   completion gate, BEFORE the first scored attempt. Preconditions are NOT scored\n   and never counted as attempts/exchanges toward the item verdict.\n3. Record preconditions in the run result (a `preconditions: string[]` field on the\n   item result + a line in the MD report) for auditability. Never let a precondition\n   failure silently pass the item \u2014 if a precondition errors, mark the item BLOCKED\n   with a note naming the failed precondition.\n4. Populate preconditions for the clearly-scriptable context-dependent items\n   (start with PG-040 save-to-KB an \u2026\n\n**Acceptance criteria**\n\n- PG-040 and PG-051 reach a real verdict based on their actual behavior (not a\n  blank-context \"I see nothing\").\n- Preconditions appear in the run JSON + MD and do not inflate attempt/exchange\n  counts.\n- A failing precondition \u2192 item BLOCKED with a clear note, never a false PASS.\n- Existing items with no `precondition` behave exactly as before.\n- `npm run build` (bridge) clean; `npm test` green.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-120.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-120.md",
       "costUSD": 0.9003,
