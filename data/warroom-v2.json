@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:11Z",
+  "updated_at": "2026-07-22T17:03:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3215,12 +3215,12 @@
         "task-137"
       ],
       "name": "RND-166: Meeting DELIVER button emitting meeting.deliver (close D-3 gap A2)",
-      "lastActivity": "2026-07-16T04:17:57Z",
+      "lastActivity": "2026-07-22T17:03:14Z",
       "startedAt": "2026-07-16T03:57:01Z",
       "landed": true,
       "finishedAt": "2026-07-16T04:17:48Z",
       "durationSeconds": 1247,
-      "mergedAt": "2026-07-16T04:17:57Z",
+      "mergedAt": "2026-07-22T17:03:14Z",
       "description": "**task-138 / RND-166 \u2014 Meeting DELIVER button (close D-3 gap A2)**\n\n**Objective**\n\nIn `hud/src/renderer/src/views/builtin/MeetingSummaryView.tsx`, the **post-finalize phase** footer\n(the `else` branch, ~lines 205-219) currently renders only a DISMISS button plus the stale hint\n\"Summary finalized \u2014 delivery to email/KB arrives with task-95\".\n1. Add a **DELIVER** button in that post-finalize footer that emits the `meeting.deliver` command \u2014\n   the same action the voice \"deliver the summary\" trigger fires \u2014 so it flows through the existing C6\n   confirm-gate and the live `meeting-delivery.ts` executor (email + dated KB page). Do NOT duplicate\n   delivery logic in the renderer; emit the command and let the bridge run both legs.\n2. **Remove the stale placeholder hint** (\"arrives with task-95\") and replace it with accurate copy\n   (e.g. \"deliver emails the summary to the owner and writes a dated KB page \u2014 confirms first\").\n3. Reflect the C6 confirmation flow: after clicking DELIVER, the action is HELD on the C6 gate awaitin \u2026\n\n**Acceptance criteria**\n\n- The finalized summary card shows a **DELIVER** button that triggers the live `meeting.deliver` C6\n  action (verified: emits `meeting.deliver`, gate holds, release runs email + KB page).\n- The stale \"task-95\" placeholder text is gone.\n- The button cannot double-fire while a deliver is held/pending; DISMISS still works.\n- Voice deliver path unchanged and still works (button is additive parity).\n- `npm run build` clean.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-138.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-138.md",
       "costUSD": 1.0405,
