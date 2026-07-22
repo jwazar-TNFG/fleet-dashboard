@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:28Z",
+  "updated_at": "2026-07-22T17:03:31Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3450,7 +3450,7 @@
         "task-148"
       ],
       "name": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)",
-      "lastActivity": "2026-07-19T20:37:09Z",
+      "lastActivity": "2026-07-22T17:03:31Z",
       "description": "RND-172: sample meeting-audio fixture so meeting/recording tests run end-to-end with no mic (Jon PG-071 ask, Google Remote Desktop)\n\nFrom Jon live-test 2026-07-19 (run run-2026-07-19T18-18-05-413Z) \u2014 driven by his captured notes+screenshots (recovered from build/proving-ground/assets/). Full brief: build/rounds/ROUND-31-TEST-UX-STABILITY.md; evidence: build/rounds/round-31-evidence/; prompt: build/prompts/task-149.md. Linear: RND-201..204. Awaiting Jon build-start order.",
       "costUSD": 13.742774,
       "inputTokens": 361,
@@ -3462,7 +3462,8 @@
       "startedAt": "2026-07-19T20:07:59Z",
       "landed": true,
       "finishedAt": "2026-07-19T20:37:09Z",
-      "durationSeconds": 1750
+      "durationSeconds": 1750,
+      "mergedAt": "2026-07-22T17:03:31Z"
     },
     {
       "id": "task-150",
