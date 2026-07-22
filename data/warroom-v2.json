@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T16:54:57Z",
+  "updated_at": "2026-07-22T16:55:12Z",
   "phases": [
     {
       "id": "phase-0",
@@ -2764,12 +2764,9 @@
       "id": "task-116",
       "name": "RND-144: unknown reply-shape guard (fail-loud)",
       "phase": "phase-32",
-      "status": "completed",
-      "lastActivity": "2026-07-15T03:38:16Z",
+      "status": "in_progress",
+      "lastActivity": "2026-07-22T16:55:12Z",
       "startedAt": "2026-07-15T03:29:40Z",
-      "landed": true,
-      "finishedAt": "2026-07-15T03:38:08Z",
-      "durationSeconds": 508,
       "mergedAt": "2026-07-15T03:38:16Z",
       "description": "**task-116 / RND-144 \u2014 Unknown reply-shape guard (durable safety net)**\n\n**Objective**\n\nAdd an **unknown-reply-shape guard** in the completion gate, evaluated BEFORE the\n`settleMs` fallthrough:\n\n1. Define the known-classified reply-key set (a module const), containing:\n   - completion-bearing keys: `runId`, `panelAssign`, `gate`, `briefing`, `range`\n   - instant/data keys: `items`, `thinkingMode`, `ok`, `error`\n   - the 7 spoken-intent ids: `calendar`, `assist`, `glossary`, `kb`, `search`,\n     `meeting`, `wrapup`\n2. When a reply has NO `runId` and NONE of the async keys (briefing/range/\n   panelAssign) and is about to hit `settleMs`: inspect the reply's own keys. If\n   ALL its keys are in the known set \u2192 proceed with the normal brief settle\n   (legitimately instant). If ANY key is NOT in the known set \u2192 do NOT race:\n   mark this item's attempt/verdict as **FAIL** with a clear note,\n   `unclassified reply shape: <unknownKey> \u2014 harness has no completion signal for\n   it; classify it before trusting this item`, and skip the \u2026\n\n**Acceptance criteria**\n\n- `npm run build` clean; existing tests green.\n- A synthetic reply `{ ok:true, frobnicate:1 }` \u2192 item verdict FAIL with the\n  unclassified note; the harness does NOT advance in ~0.5s silently.\n- All 7 known intent ids + known keys still classified as instant/handled (no\n  false FAIL on legitimate shapes). Covered by task-117.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-116.md)",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-116.md",
