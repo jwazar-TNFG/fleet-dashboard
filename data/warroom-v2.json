@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:03:06Z",
+  "updated_at": "2026-07-22T17:03:09Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3169,7 +3169,7 @@
         "task-135"
       ],
       "name": "RND-164: sync voice/orb speaking animation to actual speech end",
-      "lastActivity": "2026-07-16T03:24:31Z",
+      "lastActivity": "2026-07-22T17:03:09Z",
       "startedAt": "2026-07-16T03:15:20Z",
       "landed": true,
       "finishedAt": "2026-07-16T03:24:31Z",
@@ -3181,7 +3181,8 @@
       "outputTokens": 6072,
       "cacheReadTokens": 322774,
       "costEstimated": true,
-      "promptSummary": "**RND-164: Sync the voice/orb speaking animation to actual speech end**\n\n**Done when:**\n- The orb remains in its speaking animation for the full duration Vera is audibly speaking (single- and\n- On a genuine end (`speak.done`) or interrupt, the orb settles within the existing readability/timeout\n- Caption behavior is unchanged (captions already correct; do not regress their timing)."
+      "promptSummary": "**RND-164: Sync the voice/orb speaking animation to actual speech end**\n\n**Done when:**\n- The orb remains in its speaking animation for the full duration Vera is audibly speaking (single- and\n- On a genuine end (`speak.done`) or interrupt, the orb settles within the existing readability/timeout\n- Caption behavior is unchanged (captions already correct; do not regress their timing).",
+      "mergedAt": "2026-07-22T17:03:09Z"
     },
     {
       "id": "task-137",
