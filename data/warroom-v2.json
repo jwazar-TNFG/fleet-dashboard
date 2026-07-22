@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-22T17:52:43Z",
+  "updated_at": "2026-07-22T17:52:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -3947,15 +3947,16 @@
       "description": "**Data/Auth (Med).** retention-request-queue via the bridge analyst path returns 403 FORBIDDEN, falls back to Supabase. Auth/route-shape mismatch on this endpoint (distinct from latency).",
       "promptSummary": "## Problem\nretention-request-queue \u2192 403 \u2192 Supabase fallback. Auth header / route-shape, not a timeout.\n## Build\nReproduce via bridge analyst client (token \u2192 temp env var; inline reads masked). Diagnose auth vs route guard/shape (compare to a 200 endpoint). Fix to 200 through the bridge path. analyst-01 route and/or bridge descriptor.\n## Acceptance\n200 through bridge path, no 403, renders from analyst, data correct, tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-172.md",
-      "lastActivity": "2026-07-22T17:52:43Z",
+      "lastActivity": "2026-07-22T17:52:51Z",
       "startedAt": "2026-07-22T17:38:59Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.958438,
       "inputTokens": 138,
       "outputTokens": 34913,
       "cacheReadTokens": 3221571,
       "finishedAt": "2026-07-22T17:52:43Z",
-      "durationSeconds": 824
+      "durationSeconds": 824,
+      "mergedAt": "2026-07-22T17:52:51Z"
     },
     {
       "id": "task-173",
