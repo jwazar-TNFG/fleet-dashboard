@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T04:05:59Z",
+  "updated_at": "2026-07-23T04:37:29Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4254,7 +4254,7 @@
       "id": "task-186",
       "name": "KPI: HUD \u2014 15 KPI-prefixed selectable views (collapsed + expanded contextual layouts)",
       "phase": "phase-44",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-183",
         "task-184",
@@ -4264,8 +4264,15 @@
       "doneWhen": "15 KPI-prefixed views selectable+assignable to any slot; collapsed hero + expanded contextual layout render; protocol/HUD tests green.",
       "promptSummary": "## Problem\nRegister 15 views (one per KPI), display name prefixed 'KPI: ', all assignable to any of the 8 panel slots via edit-layout. Collapsed=hero stat; Expanded=contextual story (hero cards \u2192 monthly trend \u2192 ranked table \u2192 goal-pace bands + KPI-relevant charts) per signed-by-office chart-kit pattern. No guessed numbers.\n\n## Acceptance\n15 KPI-prefixed views selectable+assignable to any slot; collapsed hero + expanded contextual layout render; protocol/HUD tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-186.md",
-      "lastActivity": "2026-07-23T04:05:59Z",
-      "startedAt": "2026-07-23T04:05:59Z"
+      "lastActivity": "2026-07-23T04:37:29Z",
+      "startedAt": "2026-07-23T04:05:59Z",
+      "landed": false,
+      "costUSD": 11.411029,
+      "inputTokens": 922,
+      "outputTokens": 88815,
+      "cacheReadTokens": 11745746,
+      "finishedAt": "2026-07-23T04:37:29Z",
+      "durationSeconds": 1890
     },
     {
       "id": "task-187",
