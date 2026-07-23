@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T20:28:38Z",
+  "updated_at": "2026-07-23T20:32:09Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4663,13 +4663,11 @@
       "description": "On every wall load / range change the bridge fans out ~8+ concurrent GET /api/kpi2/hud/<measure> calls. A thin in-process HUD response cache was break-fixed live 2026-07-23 in kpi2/analyst01/kpi2-router.cjs (per-measure ttl keyed measure|range; backup .bak-hudcache-20260723). Fold that break-fix in properly and add a startup + scheduled pre-warm so the FIRST wall load is already hot (the break-fix only helps 2nd+ hit within ttl).",
       "doneWhen": "HUD cache formalized in the codebase; pre-warm on startup + schedule; first wall load hot.",
       "promptSummary": "## Problem\nBreak-fix cache only helps 2nd+ hit; first load cold.\n## Build\nFold in the HUD cache properly + startup/scheduled pre-warm.\n## Acceptance\nFirst wall load hot, cache formalized.",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-47",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-204.md",
-      "lastActivity": "2026-07-23T20:02:21Z",
-      "startedAt": "2026-07-23T19:04:30Z",
-      "finishedAt": "2026-07-23T19:15:59Z",
-      "durationSeconds": 689
+      "lastActivity": "2026-07-23T20:32:09Z",
+      "startedAt": "2026-07-23T19:04:30Z"
     },
     {
       "id": "task-205",
