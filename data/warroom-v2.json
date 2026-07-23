@@ -206,6 +206,10 @@
     {
       "id": "phase-46",
       "name": "Round 39 \u2014 KPI Presentation System (spec-driven per-KPI visuals, all 22 measures, range HARD LAW + freshness, Zeri-language Focus panel)"
+    },
+    {
+      "id": "phase-47",
+      "name": "Round 40 \u2014 KPI Query Performance (server-side aggregate RPCs for leads + lead_ratings, materialized-view freshness, HUD cache + pre-warm \u2014 all 22 measures fast & always-available)"
     }
   ],
   "tasks": [
@@ -4556,6 +4560,85 @@
       "finishedAt": "2026-07-23T16:57:20Z",
       "durationSeconds": 482,
       "mergedAt": "2026-07-23T17:09:28Z"
+    },
+    {
+      "id": "task-200",
+      "name": "kpi2_leads_standard_agg RPC \u2014 SQL + grants",
+      "depends_on": [],
+      "description": "The 7 leads-lineage measures (lead_count, lockdown_count, referral_out_count, referral_out_rate, case_cycle_time, + cpa/cpl denominator) compute via client-side row-pull of ~100K+ leads rows (5-8s live). Author a server-side aggregate RPC kpi2_leads_standard_agg mirroring the proven kpi2_rep_logs_standard_agg pattern: read-only/STABLE/SECURITY INVOKER, half-open date window, leads_standard exclusions IN-SQL (same-table Katiria name+email, xSTAFF officeLabel, Attorney sourceType), GROUP BY dimension, ratio numerator+denominator in one pass. GRANT EXECUTE to anon/authenticated/service_role. SQL only; engine wiring is task-201.",
+      "doneWhen": "kpi2_leads_standard_agg deployed, returns correct aggregates for all 7 leads measures incl. group-by; grants applied; no base-table changes.",
+      "promptSummary": "## Problem\n7 leads measures client-pull 100K+ rows (5-8s).\n## Build\nkpi2_leads_standard_agg RPC mirroring rep_logs RPC; leads_standard exclusions in-SQL; GROUP BY; grants.\n## Acceptance\nRPC returns correct numbers for all 7, read-only/reversible.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-200.md"
+    },
+    {
+      "id": "task-201",
+      "name": "Wire leads RPC into engine + regression vs client-pull",
+      "depends_on": [
+        "task-200"
+      ],
+      "description": "kpi2_leads_standard_agg exists but nothing calls it. Wire it into kpi2/src/engine.ts (tryLeadsRpc, mirroring tryRepLogsRpc ~L503) + a datasource method in postgrest.ts (mirroring callRepLogsStandardAggregate ~L262). MUST prove the RPC returns the SAME number as the current client-pull path for every leads measure before it takes over (regression test).",
+      "doneWhen": "7 leads measures served via RPC; regression test confirms identical numbers to client-pull; latency drops to sub-second.",
+      "promptSummary": "## Problem\nRPC unused; leads still client-pull.\n## Build\ntryLeadsRpc in engine.ts + postgrest datasource method; regression vs client-pull.\n## Acceptance\nSame numbers, faster, test green.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-201.md"
+    },
+    {
+      "id": "task-202",
+      "name": "kpi2_lead_ratings_distribution RPC (in-DB join) \u2014 the >60s killer [PRIORITY]",
+      "depends_on": [],
+      "description": "lead_rating_distribution is the ONLY measure that never completes (>60s). Grouped COUNT of lead_ratings by leadRatingStars, joined to leads (idLead), with lead_ratings_standard applied as 4 cross-table subquery drops \u2014 resolved client-side row-by-row over ~200K rows. Fix: one grouped in-DB join RPC (join + exclusions + GROUP BY all in Postgres; only bucket rows cross the wire). Wire into engine + regression. Build/land FIRST for fastest demo relief.",
+      "doneWhen": "lead_rating_distribution returns in <200ms with numbers matching the (eventually-completing) client-pull baseline; wired + regression green.",
+      "promptSummary": "## Problem\nlead_rating_distribution never completes (>60s) \u2014 client-side join over 200K rows.\n## Build\nkpi2_lead_ratings_distribution grouped in-DB join RPC + exclusions in-SQL; wire + regression.\n## Acceptance\n<200ms, correct buckets, land first.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-202.md"
+    },
+    {
+      "id": "task-203",
+      "name": "Materialized views + scheduled refresh + refresh.mode:mv + indexes",
+      "depends_on": [
+        "task-200",
+        "task-202"
+      ],
+      "description": "Even with TIER-1 RPCs, the heaviest work (200K-row lead_ratings join, wide-window leads aggregates) still runs live per cold request. Back them with materialized views refreshed on a schedule (pg_cron or analyst-01 scheduler), point the RPCs at the MV, flip catalog refresh.mode:'mv' for those measures (Round 39 shipped the dial; mv path unused today), and add supporting indexes on date fields + exclusion columns. Read-only/additive/reversible; no base-table changes.",
+      "doneWhen": "Heaviest measures read an MV => always sub-100ms even cold; refresh schedule live; catalog mv mode set; indexes added.",
+      "promptSummary": "## Problem\nHeavy measures still recompute live cold.\n## Build\nMVs + scheduled refresh; RPCs read MV; catalog refresh.mode:mv; indexes.\n## Acceptance\nAlways sub-100ms cold, never times out.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-203.md"
+    },
+    {
+      "id": "task-204",
+      "name": "Formalize HUD in-process cache + startup/scheduled pre-warm",
+      "depends_on": [
+        "task-201",
+        "task-202"
+      ],
+      "description": "On every wall load / range change the bridge fans out ~8+ concurrent GET /api/kpi2/hud/<measure> calls. A thin in-process HUD response cache was break-fixed live 2026-07-23 in kpi2/analyst01/kpi2-router.cjs (per-measure ttl keyed measure|range; backup .bak-hudcache-20260723). Fold that break-fix in properly and add a startup + scheduled pre-warm so the FIRST wall load is already hot (the break-fix only helps 2nd+ hit within ttl).",
+      "doneWhen": "HUD cache formalized in the codebase; pre-warm on startup + schedule; first wall load hot.",
+      "promptSummary": "## Problem\nBreak-fix cache only helps 2nd+ hit; first load cold.\n## Build\nFold in the HUD cache properly + startup/scheduled pre-warm.\n## Acceptance\nFirst wall load hot, cache formalized.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-204.md"
+    },
+    {
+      "id": "task-205",
+      "name": "E2E verification \u2014 all 22 fast + correct, no circuit trips",
+      "depends_on": [
+        "task-201",
+        "task-202",
+        "task-203",
+        "task-204"
+      ],
+      "description": "Prove the round's promise: ALL 22 kpi2 measures load <200ms warm / <2s cold, always available, numbers IDENTICAL to before the change, across today/mtd/ytd. Only once proven, revert the emergency Mini-bridge timeout (8s->20s / trips 3->6) back toward original. Verification gate.",
+      "doneWhen": "All 22 measures verified <200ms warm across ranges, numbers match pre-change baseline, zero circuit trips; emergency bridge timeout reverted.",
+      "promptSummary": "## Problem\nMust prove the whole round end-to-end.\n## Build\nBenchmark all 22 x 3 ranges vs baseline; confirm no circuit trips; revert emergency timeout.\n## Acceptance\nAll fast+correct, gate passed.",
+      "status": "pending",
+      "phase": "phase-47",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-205.md"
     }
   ]
 }
