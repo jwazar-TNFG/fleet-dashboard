@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T12:48:07Z",
+  "updated_at": "2026-07-23T12:48:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4401,14 +4401,16 @@
       "id": "task-193",
       "name": "analyst-01 Targets tile (editable)",
       "phase": "phase-45",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-191"
       ],
       "description": "Separate Targets tile (targets.html + protected route + nav entry), brand-consistent. Reads /api/kpi2/targets, lists every measure grouped by target type with current target+band. Per-measure editable target (pace basis a/b/d, threshold, value) saved via PUT measures/:id/target; supports clearing. Shows live pace band/pct-to-pace where set.",
       "doneWhen": "Targets tile lists 22 measures; setting a pace target persists, shows in /admin/targets, HUD pace band populates next poll; clear works; reachable from nav; evidence recorded.",
       "promptSummary": "## Problem\nNo dedicated tile to view/manage KPI targets.\n## Build\ntargets.html + route + nav; read targets model; editable per-measure target via PUT target endpoint.\n## Acceptance\nSet/clear pace target reflects in targets view + HUD band; page in nav; evidence recorded.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-193.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-193.md",
+      "lastActivity": "2026-07-23T12:48:22Z",
+      "startedAt": "2026-07-23T12:48:22Z"
     }
   ]
 }
