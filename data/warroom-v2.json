@@ -204,8 +204,8 @@
       "status": "pending"
     },
     {
-      "id": "41",
-      "name": "KPI Presentation System (Round 39)"
+      "id": "phase-46",
+      "name": "Round 39 \u2014 KPI Presentation System (spec-driven per-KPI visuals, all 22 measures, range HARD LAW + freshness, Zeri-language Focus panel)"
     }
   ],
   "tasks": [
@@ -4435,7 +4435,7 @@
     {
       "id": "task-194",
       "name": "KPI expansion presentation-spec schema + protocol types + validation",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-193"
       ],
@@ -4450,7 +4450,7 @@
     {
       "id": "task-195",
       "name": "Derive all 22 KPI views from catalog (drift-proof, fixes 15->22)",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-194"
       ],
@@ -4463,7 +4463,7 @@
     {
       "id": "task-196",
       "name": "Range HARD LAW + per-KPI freshness dial (live|cache|mv)",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-194"
       ],
@@ -4476,7 +4476,7 @@
     {
       "id": "task-197",
       "name": "Generic COLLAPSED renderer per expansion.primaryVisual + delta badge",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-194",
         "task-195"
@@ -4490,7 +4490,7 @@
     {
       "id": "task-198",
       "name": "Generic EXPANDED/Focus renderer per expandedLayout (Zeri language)",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-194",
         "task-195"
@@ -4504,7 +4504,7 @@
     {
       "id": "task-199",
       "name": "Populate all 22 catalog expansion specs (proving-set application)",
-      "phase": "41",
+      "phase": "phase-46",
       "depends_on": [
         "task-197",
         "task-198"
