@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T18:11:17Z",
+  "updated_at": "2026-07-23T18:28:06Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4590,11 +4590,18 @@
       "description": "kpi2_leads_standard_agg exists but nothing calls it. Wire it into kpi2/src/engine.ts (tryLeadsRpc, mirroring tryRepLogsRpc ~L503) + a datasource method in postgrest.ts (mirroring callRepLogsStandardAggregate ~L262). MUST prove the RPC returns the SAME number as the current client-pull path for every leads measure before it takes over (regression test).",
       "doneWhen": "7 leads measures served via RPC; regression test confirms identical numbers to client-pull; latency drops to sub-second.",
       "promptSummary": "## Problem\nRPC unused; leads still client-pull.\n## Build\ntryLeadsRpc in engine.ts + postgrest datasource method; regression vs client-pull.\n## Acceptance\nSame numbers, faster, test green.",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-47",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-201.md",
-      "lastActivity": "2026-07-23T18:11:17Z",
-      "startedAt": "2026-07-23T18:11:17Z"
+      "lastActivity": "2026-07-23T18:28:06Z",
+      "startedAt": "2026-07-23T18:11:17Z",
+      "landed": false,
+      "costUSD": 4.879848,
+      "inputTokens": 90,
+      "outputTokens": 67198,
+      "cacheReadTokens": 4536279,
+      "finishedAt": "2026-07-23T18:28:06Z",
+      "durationSeconds": 1009
     },
     {
       "id": "task-202",
