@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T22:19:44Z",
+  "updated_at": "2026-07-23T22:48:28Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4723,9 +4723,12 @@
       "description": "Implement Jon's target-fallback (no explicit target => best historical calendar-month \u00d7 1.10 higher-better / \u00d7 0.90 lower-better, range-scaled, labeled derived; explicit targets override; no direction re-inversion). Compute per-row goal/delivered/owed/pctToPace/band/tag via the task-176 pace engine. Author data-driven narrative (top/bottom office, biggest mover \u2014 never fabricated). SINGLE-ROUND-TRIP CONTRACT: one GET /api/kpi2/hud/:measure returns hero+paceBand+trend+table-rows+narrative together (no per-section fetches); cached as a unit + pre-warmed. Read-only/additive; no inline secrets; reuse Round 40 fast paths.",
       "doneWhen": "target:null measures carry pace.derived + labeled target; per-row pace matches task-176 arithmetic; narrative reconstructable from payload; one fetch yields full Focus payload; kill-switch reverts; Round-40 latency not regressed.",
       "promptSummary": "## Problem\nNo pace for target:null; rows lack pace; risk of multi-call Focus.\n## Build\nTarget-fallback (best-month \u00b110%), per-row pace, narrative, single-payload Focus contract, cache+prewarm.\n## Acceptance\nDerived+labeled target, per-row pace correct, one round-trip, backward-compat.",
-      "status": "pending",
+      "status": "completed",
       "phase": "phase-48",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-207.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-207.md",
+      "lastActivity": "2026-07-23T22:48:28Z",
+      "landed": false,
+      "finishedAt": "2026-07-23T22:48:28Z"
     },
     {
       "id": "task-208",
