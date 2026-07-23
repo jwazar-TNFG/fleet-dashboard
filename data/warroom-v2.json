@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T03:46:10Z",
+  "updated_at": "2026-07-23T03:46:12Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4229,7 +4229,7 @@
       "id": "task-185",
       "name": "KPI: Catalog \u2014 duration metrics (cycle, recovery, aging)",
       "phase": "phase-44",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-180",
         "task-181",
@@ -4238,7 +4238,9 @@
       "description": "Author case_cycle_time (AVG stop\u2212start), case_recovery_time (AVG case_saved_at\u2212dateDropped, green+saved gate), case_aging_active (AVG as_of\u2212dateLockedDown, open=ColorTag not Green/Red, as_of range, age bands). All use average aggregation.",
       "doneWhen": "3 catalog files valid; verified with real queryHash; exact fields/gates/range in defs; kpi2 tests green.",
       "promptSummary": "## Problem\nAuthor case_cycle_time (AVG stop\u2212start), case_recovery_time (AVG case_saved_at\u2212dateDropped, green+saved gate), case_aging_active (AVG as_of\u2212dateLockedDown, open=ColorTag not Green/Red, as_of range, age bands). All use average aggregation.\n\n## Acceptance\n3 catalog files valid; verified with real queryHash; exact fields/gates/range in defs; kpi2 tests green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-185.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-185.md",
+      "lastActivity": "2026-07-23T03:46:12Z",
+      "startedAt": "2026-07-23T03:46:12Z"
     },
     {
       "id": "task-186",
