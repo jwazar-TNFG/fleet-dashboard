@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T02:38:40Z",
+  "updated_at": "2026-07-23T02:38:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4144,15 +4144,16 @@
       "doneWhen": "as_of resolves to today; measure with ranges:[as_of] plans; existing range tests pass.",
       "promptSummary": "## Problem\nAdd `as_of` snapshot range (defaults today ET) distinct from today/mtd/ytd, for Case Aging's current open-backlog snapshot. Planner handles it without breaking existing ranges.\n\n## Acceptance\nas_of resolves to today; measure with ranges:[as_of] plans; existing range tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-181.md",
-      "lastActivity": "2026-07-23T02:38:40Z",
+      "lastActivity": "2026-07-23T02:38:48Z",
       "startedAt": "2026-07-23T02:29:32Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 3.099909,
       "inputTokens": 124,
       "outputTokens": 31907,
       "cacheReadTokens": 3561877,
       "finishedAt": "2026-07-23T02:38:40Z",
-      "durationSeconds": 548
+      "durationSeconds": 548,
+      "mergedAt": "2026-07-23T02:38:48Z"
     },
     {
       "id": "task-182",
