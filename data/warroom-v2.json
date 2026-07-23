@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T22:59:51Z",
+  "updated_at": "2026-07-23T23:10:29Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4763,11 +4763,18 @@
       "description": "Add SectionPaceHero (Goal/Delivered/Owed/Progress% hero framed as a pace story) + PaceProgressBar (full-width bar with a should-be-here tick) + NarrativeTrio (Key Wins / Areas for Improvement / Recommendations callout cards). Wire case 'paceHero' and case 'narrative' into ExpandedKpi. Use grouped multi-series ColumnBar as the primary trend chart (already multi-series \u2014 reused, no new primitive). Render only.",
       "doneWhen": "paceHero + full-width pace bar + narrative trio render; grouped ColumnBar primary chart; existing sections intact; build green.",
       "promptSummary": "## Problem\nNo pace hero/bar/narrative; single-series chart.\n## Build\nSectionPaceHero + PaceProgressBar + NarrativeTrio; grouped ColumnBar; wire sections.\n## Acceptance\nZeri hero+bar+narrative render, grouped bars.",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-48",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-209.md",
-      "lastActivity": "2026-07-23T22:59:51Z",
-      "startedAt": "2026-07-23T22:59:51Z"
+      "lastActivity": "2026-07-23T23:10:29Z",
+      "startedAt": "2026-07-23T22:59:51Z",
+      "landed": false,
+      "costUSD": 3.305508,
+      "inputTokens": 106,
+      "outputTokens": 34724,
+      "cacheReadTokens": 3625206,
+      "finishedAt": "2026-07-23T23:10:29Z",
+      "durationSeconds": 638
     },
     {
       "id": "task-210",
