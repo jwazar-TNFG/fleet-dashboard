@@ -202,6 +202,10 @@
       "id": "phase-45",
       "name": "Round 38 \u2014 KPI2 Write Layer (editable definitions full-logic + compute-preview-before-save, Targets management, reflected on HUD)",
       "status": "pending"
+    },
+    {
+      "id": "41",
+      "name": "KPI Presentation System (Round 39)"
     }
   ],
   "tasks": [
@@ -4426,6 +4430,87 @@
       "finishedAt": "2026-07-23T14:09:55Z",
       "durationSeconds": 4893,
       "mergedAt": "2026-07-23T14:10:17Z"
+    },
+    {
+      "id": "task-194",
+      "name": "KPI expansion presentation-spec schema + protocol types + validation",
+      "phase": "41",
+      "depends_on": [
+        "task-193"
+      ],
+      "description": "Foundation of the KPI Presentation System. Each measure's catalog `expansion` block is free-form `{}`; formalize it into a validated schema shared by kpi2 (JSON + synced TS) and the protocol package so the renderer can be a generic spec-driven engine. Adds `KpiExpansionSpec` type/zod + `resolveKpiExpansion()` guard helper. Validator rejects breakdownDimension not in supportedDimensions, and deltaBasis:target / showPace:true when target is null.",
+      "doneWhen": "expansion schema defined (kpi2 JSON+TS byte-synced), protocol type + resolveKpiExpansion() guard added, validator semantic checks pass, empty {} still valid; npm run build + tests green.",
+      "promptSummary": "## Problem\nFree-form expansion {} cannot drive a generic renderer safely.\n## Build\nTyped expansion sub-schema (primaryVisual/breakdownDimension/expandedLayout/showPace/deltaBasis), protocol KpiExpansionSpec + resolveKpiExpansion() downgrade guard, kpi2 validator semantic checks.\n## Acceptance\nSchema synced, guard + validator enforce target/dimension rules, {} backward-compatible.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-194.md"
+    },
+    {
+      "id": "task-195",
+      "name": "Derive all 22 KPI views from catalog (drift-proof, fixes 15->22)",
+      "phase": "41",
+      "depends_on": [
+        "task-194"
+      ],
+      "description": "KPI_VIEW_DEFS hand-codes only 15 of 22 measures; 7 are invisible (boost_ad_spend, confirmed_count, decided_count, labor_cost, lead_count, lockdown_count, referral_out_count). Derive the def list FROM the catalog so it can never drift again; register the 7 new ids in protocol VIEW_IDS / ViewDataMap / HUD registry / bridge. Keep existing 15 ids unchanged.",
+      "doneWhen": "All 22 measures selectable as KPI: views; ids derived from catalog with a test asserting parity; 7 new ids wired through protocol + HUD + bridge; build green.",
+      "promptSummary": "## Problem\nHand-maintained 15-of-22 view list drifted.\n## Build\nDerive KPI_VIEW_DEFS from kpi2/catalog; add 7 ids to VIEW_IDS/ViewDataMap/HUD registry; parity test.\n## Acceptance\n22 selectable views, drift-proof, existing ids preserved.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-195.md"
+    },
+    {
+      "id": "task-196",
+      "name": "Range HARD LAW + per-KPI freshness dial (live|cache|mv)",
+      "phase": "41",
+      "depends_on": [
+        "task-194"
+      ],
+      "description": "Panels can show a number under a mismatched range label (truthfulness violation) and ignore each measure's refresh.mode/ttlSeconds. Add requestedRange/effectiveRange/rangeExact + freshness metadata to the payload; analyst-01 computes for requested range or returns nearest-valid (never relabels) and honors live/cache/mv + ttl; HUD threads wall TimeRange and badges non-exact ranges.",
+      "doneWhen": "Every panel respects Today/MTD/YTD or shows nearest-valid + badge; freshness (mode/ttl/asOf/stale) plumbed; laggy/inconsistent updates resolved; build green.",
+      "promptSummary": "## Problem\nMismatched range labels + ignored freshness dial cause wrong/laggy numbers.\n## Build\nPayload range-consistency + freshness fields; analyst-01 nearest-valid + live|cache|mv; HUD range threading + badge.\n## Acceptance\nNo mismatched-range number ever shown; freshness respected.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-196.md"
+    },
+    {
+      "id": "task-197",
+      "name": "Generic COLLAPSED renderer per expansion.primaryVisual + delta badge",
+      "phase": "41",
+      "depends_on": [
+        "task-194",
+        "task-195"
+      ],
+      "description": "CollapsedKpi is a single bare hero for every measure. Make it switch on expansion.primaryVisual (hero/sparkline/donut/bar/gauge) with graceful fallback, plus a delta badge on every card per deltaBasis (prevPeriod/yoy/target). Deltas come from the payload only, colored good/bad by measure direction. No two panels look identical.",
+      "doneWhen": "Collapsed cards vary by primaryVisual with delta badges; degrade gracefully at small sizes / missing sub-data; build green.",
+      "promptSummary": "## Problem\nEvery collapsed panel is an identical hero.\n## Build\nSwitch CollapsedKpi on primaryVisual (hero/sparkline/donut/bar/gauge) + delta badge from payload; small primitives (Sparkline/Donut/Gauge) as needed.\n## Acceptance\nVisual variety, delta on every card, graceful fallback.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-197.md"
+    },
+    {
+      "id": "task-198",
+      "name": "Generic EXPANDED/Focus renderer per expandedLayout (Zeri language)",
+      "phase": "41",
+      "depends_on": [
+        "task-194",
+        "task-195"
+      ],
+      "description": "ExpandedKpi is one hard-coded layout for all measures and renders a pace band even with no target. Make it emit sections in the order expansion.expandedLayout declares, in Zeri's visual language: stat-card cluster WITH deltas -> metric-appropriate main chart -> ranked table with % columns + qualitative tags (Crushing It>=140/On Track/Behind Pace) + goal-pace bands (only when target set) -> insight callout (payload-derived only). No target => no fake pace band.",
+      "doneWhen": "Focus panel renders per-KPI Zeri-language layout from expandedLayout; % + tags + pace bands (target-gated); insight only when supported; build green.",
+      "promptSummary": "## Problem\nFocus panel is one plain template for all KPIs.\n## Build\nSection-driven ExpandedKpi over expandedLayout: statCards+deltas, metric chart, ranked table (% + Crushing It/On Track/Behind Pace + pace bands), insight.\n## Acceptance\nZeri-grade per-KPI layout; no fabricated pace/insight.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-198.md"
+    },
+    {
+      "id": "task-199",
+      "name": "Populate all 22 catalog expansion specs (proving-set application)",
+      "phase": "41",
+      "depends_on": [
+        "task-197",
+        "task-198"
+      ],
+      "description": "All 22 expansion blocks are still {}. Author each per the schema by metric family: counts->sparkline, rates->gauge, distribution(lead_rating)->donut, cost->bar, durations->trend/sparkline; breakdownDimension in supportedDimensions; targets null today so showPace:false / deltaBasis:prevPeriod (auto-upgrades when Jon sets a target). This is the proving-set application and the copy pattern for Humberto's next batch.",
+      "doneWhen": "All 22 expansion blocks populated + validate cleanly; HUD shows varied collapsed + Zeri expanded across the set; KB reference note added; build green.",
+      "promptSummary": "## Problem\nEmpty expansion blocks mean everything falls back to defaults; variety unexercised.\n## Build\nAuthor 22 expansion specs by metric family; validator-clean; KB note.\n## Acceptance\nAll 22 render varied visuals; pattern documented for next batch.",
+      "status": "pending",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-199.md"
     }
   ]
 }
