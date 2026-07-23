@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T18:08:23Z",
+  "updated_at": "2026-07-23T18:11:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4568,11 +4568,18 @@
       "description": "The 7 leads-lineage measures (lead_count, lockdown_count, referral_out_count, referral_out_rate, case_cycle_time, + cpa/cpl denominator) compute via client-side row-pull of ~100K+ leads rows (5-8s live). Author a server-side aggregate RPC kpi2_leads_standard_agg mirroring the proven kpi2_rep_logs_standard_agg pattern: read-only/STABLE/SECURITY INVOKER, half-open date window, leads_standard exclusions IN-SQL (same-table Katiria name+email, xSTAFF officeLabel, Attorney sourceType), GROUP BY dimension, ratio numerator+denominator in one pass. GRANT EXECUTE to anon/authenticated/service_role. SQL only; engine wiring is task-201.",
       "doneWhen": "kpi2_leads_standard_agg deployed, returns correct aggregates for all 7 leads measures incl. group-by; grants applied; no base-table changes.",
       "promptSummary": "## Problem\n7 leads measures client-pull 100K+ rows (5-8s).\n## Build\nkpi2_leads_standard_agg RPC mirroring rep_logs RPC; leads_standard exclusions in-SQL; GROUP BY; grants.\n## Acceptance\nRPC returns correct numbers for all 7, read-only/reversible.",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-47",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-200.md",
-      "lastActivity": "2026-07-23T18:08:23Z",
-      "startedAt": "2026-07-23T18:08:23Z"
+      "lastActivity": "2026-07-23T18:11:04Z",
+      "startedAt": "2026-07-23T18:08:23Z",
+      "landed": false,
+      "costUSD": 0.544289,
+      "inputTokens": 24,
+      "outputTokens": 10999,
+      "cacheReadTokens": 194379,
+      "finishedAt": "2026-07-23T18:11:04Z",
+      "durationSeconds": 161
     },
     {
       "id": "task-201",
