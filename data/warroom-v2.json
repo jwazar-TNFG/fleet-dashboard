@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T20:38:19Z",
+  "updated_at": "2026-07-23T20:38:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4684,10 +4684,10 @@
       "description": "Prove the round's promise: ALL 22 kpi2 measures load <200ms warm / <2s cold, always available, numbers IDENTICAL to before the change, across today/mtd/ytd. Only once proven, revert the emergency Mini-bridge timeout (8s->20s / trips 3->6) back toward original. Verification gate.",
       "doneWhen": "All 22 measures verified <200ms warm across ranges, numbers match pre-change baseline, zero circuit trips; emergency bridge timeout reverted.",
       "promptSummary": "## Problem\nMust prove the whole round end-to-end.\n## Build\nBenchmark all 22 x 3 ranges vs baseline; confirm no circuit trips; revert emergency timeout.\n## Acceptance\nAll fast+correct, gate passed.",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-47",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-205.md",
-      "lastActivity": "2026-07-23T20:02:24Z",
+      "lastActivity": "2026-07-23T20:38:36Z",
       "startedAt": "2026-07-23T19:16:18Z"
     },
     {
