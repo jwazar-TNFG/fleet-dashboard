@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T15:27:20Z",
+  "updated_at": "2026-07-23T15:34:06Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4442,10 +4442,17 @@
       "description": "Foundation of the KPI Presentation System. Each measure's catalog `expansion` block is free-form `{}`; formalize it into a validated schema shared by kpi2 (JSON + synced TS) and the protocol package so the renderer can be a generic spec-driven engine. Adds `KpiExpansionSpec` type/zod + `resolveKpiExpansion()` guard helper. Validator rejects breakdownDimension not in supportedDimensions, and deltaBasis:target / showPace:true when target is null.",
       "doneWhen": "expansion schema defined (kpi2 JSON+TS byte-synced), protocol type + resolveKpiExpansion() guard added, validator semantic checks pass, empty {} still valid; npm run build + tests green.",
       "promptSummary": "## Problem\nFree-form expansion {} cannot drive a generic renderer safely.\n## Build\nTyped expansion sub-schema (primaryVisual/breakdownDimension/expandedLayout/showPace/deltaBasis), protocol KpiExpansionSpec + resolveKpiExpansion() downgrade guard, kpi2 validator semantic checks.\n## Acceptance\nSchema synced, guard + validator enforce target/dimension rules, {} backward-compatible.",
-      "status": "in_progress",
+      "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-194.md",
-      "lastActivity": "2026-07-23T15:27:20Z",
-      "startedAt": "2026-07-23T15:27:20Z"
+      "lastActivity": "2026-07-23T15:34:06Z",
+      "startedAt": "2026-07-23T15:27:20Z",
+      "landed": false,
+      "costUSD": 1.85785,
+      "inputTokens": 70,
+      "outputTokens": 26548,
+      "cacheReadTokens": 1563171,
+      "finishedAt": "2026-07-23T15:34:06Z",
+      "durationSeconds": 406
     },
     {
       "id": "task-195",
