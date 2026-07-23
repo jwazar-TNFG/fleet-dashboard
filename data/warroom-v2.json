@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T02:23:26Z",
+  "updated_at": "2026-07-23T02:29:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4115,14 +4115,21 @@
       "id": "task-180",
       "name": "KPI: Engine \u2014 average aggregation over computed date-diff",
       "phase": "phase-44",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "Add `average` aggregation to the kpi2 engine: AVG(stop_date \u2212 start_date) in days, bucketed by stop date. Reuse preserved Phase-1 WIP (git stash). Regenerate JSON schema surgically. Needed by all duration KPIs (Jon chose average, not median).",
       "doneWhen": "average aggregation valid + plans + executes; schema-sync test passes; kpi2 tests green.",
       "promptSummary": "## Problem\nAdd `average` aggregation to the kpi2 engine: AVG(stop_date \u2212 start_date) in days, bucketed by stop date. Reuse preserved Phase-1 WIP (git stash). Regenerate JSON schema surgically. Needed by all duration KPIs (Jon chose average, not median).\n\n## Acceptance\naverage aggregation valid + plans + executes; schema-sync test passes; kpi2 tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-180.md",
-      "lastActivity": "2026-07-23T02:23:26Z",
-      "startedAt": "2026-07-23T02:23:26Z"
+      "lastActivity": "2026-07-23T02:29:22Z",
+      "startedAt": "2026-07-23T02:23:26Z",
+      "landed": false,
+      "costUSD": 1.294545,
+      "inputTokens": 84,
+      "outputTokens": 17330,
+      "cacheReadTokens": 1153673,
+      "finishedAt": "2026-07-23T02:29:22Z",
+      "durationSeconds": 356
     },
     {
       "id": "task-181",
