@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:00:11Z",
+  "updated_at": "2026-07-23T16:00:14Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4483,8 +4483,10 @@
       "description": "Panels can show a number under a mismatched range label (truthfulness violation) and ignore each measure's refresh.mode/ttlSeconds. Add requestedRange/effectiveRange/rangeExact + freshness metadata to the payload; analyst-01 computes for requested range or returns nearest-valid (never relabels) and honors live/cache/mv + ttl; HUD threads wall TimeRange and badges non-exact ranges.",
       "doneWhen": "Every panel respects Today/MTD/YTD or shows nearest-valid + badge; freshness (mode/ttl/asOf/stale) plumbed; laggy/inconsistent updates resolved; build green.",
       "promptSummary": "## Problem\nMismatched range labels + ignored freshness dial cause wrong/laggy numbers.\n## Build\nPayload range-consistency + freshness fields; analyst-01 nearest-valid + live|cache|mv; HUD range threading + badge.\n## Acceptance\nNo mismatched-range number ever shown; freshness respected.",
-      "status": "pending",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-196.md"
+      "status": "in_progress",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-196.md",
+      "lastActivity": "2026-07-23T16:00:14Z",
+      "startedAt": "2026-07-23T16:00:14Z"
     },
     {
       "id": "task-197",
