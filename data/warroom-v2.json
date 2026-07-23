@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:49:16Z",
+  "updated_at": "2026-07-23T16:49:18Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4547,8 +4547,10 @@
       "description": "All 22 expansion blocks are still {}. Author each per the schema by metric family: counts->sparkline, rates->gauge, distribution(lead_rating)->donut, cost->bar, durations->trend/sparkline; breakdownDimension in supportedDimensions; targets null today so showPace:false / deltaBasis:prevPeriod (auto-upgrades when Jon sets a target). This is the proving-set application and the copy pattern for Humberto's next batch.",
       "doneWhen": "All 22 expansion blocks populated + validate cleanly; HUD shows varied collapsed + Zeri expanded across the set; KB reference note added; build green.",
       "promptSummary": "## Problem\nEmpty expansion blocks mean everything falls back to defaults; variety unexercised.\n## Build\nAuthor 22 expansion specs by metric family; validator-clean; KB note.\n## Acceptance\nAll 22 render varied visuals; pattern documented for next batch.",
-      "status": "pending",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-199.md"
+      "status": "in_progress",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-199.md",
+      "lastActivity": "2026-07-23T16:49:18Z",
+      "startedAt": "2026-07-23T16:49:18Z"
     }
   ]
 }
