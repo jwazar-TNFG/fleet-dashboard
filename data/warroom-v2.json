@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:57:20Z",
+  "updated_at": "2026-07-23T16:58:02Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4530,11 +4530,12 @@
       "promptSummary": "## Problem\nFocus panel is one plain template for all KPIs.\n## Build\nSection-driven ExpandedKpi over expandedLayout: statCards+deltas, metric chart, ranked table (% + Crushing It/On Track/Behind Pace + pace bands), insight.\n## Acceptance\nZeri-grade per-KPI layout; no fabricated pace/insight.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-198.md",
-      "lastActivity": "2026-07-23T16:48:41Z",
+      "lastActivity": "2026-07-23T16:58:02Z",
       "startedAt": "2026-07-23T16:33:30Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-23T16:48:41Z",
-      "durationSeconds": 911
+      "durationSeconds": 911,
+      "mergedAt": "2026-07-23T16:58:02Z"
     },
     {
       "id": "task-199",
