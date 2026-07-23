@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T22:48:43Z",
+  "updated_at": "2026-07-23T22:59:37Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4740,11 +4740,18 @@
       "description": "Add RowProgressBar (inline per-row % bar) so the ranked table renders Goal|Delivered|Owed|% with a mini progress bar + color + qualitative tag per row (Zeri's signature table). Add PaceTileBand primitive for the paceBand section (row of per-segment tiles, banded Critical/Behind/On-Track/Ahead with actual/goal + %vs pace). Wire case 'paceBand' into ExpandedKpi's section switch. Render only.",
       "doneWhen": "Ranked table rows show inline progress bar + tag; paceBand tile band renders per-segment; graceful when fields absent; build green.",
       "promptSummary": "## Problem\nTables are flat; no pace-tile band.\n## Build\nRowProgressBar + PaceTileBand primitives; wire paceBand section.\n## Acceptance\nInline-progress table + tile band render, degrade gracefully.",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-48",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-208.md",
-      "lastActivity": "2026-07-23T22:48:43Z",
-      "startedAt": "2026-07-23T22:48:43Z"
+      "lastActivity": "2026-07-23T22:59:37Z",
+      "startedAt": "2026-07-23T22:48:43Z",
+      "landed": false,
+      "costUSD": 3.607448,
+      "inputTokens": 108,
+      "outputTokens": 45188,
+      "cacheReadTokens": 3643845,
+      "finishedAt": "2026-07-23T22:59:37Z",
+      "durationSeconds": 654
     },
     {
       "id": "task-209",
