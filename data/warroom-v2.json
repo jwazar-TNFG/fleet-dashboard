@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T04:37:38Z",
+  "updated_at": "2026-07-23T04:37:40Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4279,7 +4279,7 @@
       "id": "task-187",
       "name": "KPI: Archive old 159-KPI catalog (safety gate) + tile swap to kpi2",
       "phase": "phase-44",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-183",
         "task-184",
@@ -4289,7 +4289,9 @@
       "description": "HARD SAFETY GATE. Archive kpi-definitions.json (218KB, departments[14]) to timestamped archive, sha256-verify byte-identical + valid JSON BEFORE retiring. Then point departmental KPIs tile at kpi2 catalog (reversible; original not deleted). STOP+report if swap not cleanly reversible.",
       "doneWhen": "old catalog archived + sha256-verified + valid JSON (both hashes printed); tile sources kpi2 rendering 15 KPIs OR clear STOP report; reversible.",
       "promptSummary": "## Problem\nHARD SAFETY GATE. Archive kpi-definitions.json (218KB, departments[14]) to timestamped archive, sha256-verify byte-identical + valid JSON BEFORE retiring. Then point departmental KPIs tile at kpi2 catalog (reversible; original not deleted). STOP+report if swap not cleanly reversible.\n\n## Acceptance\nold catalog archived + sha256-verified + valid JSON (both hashes printed); tile sources kpi2 rendering 15 KPIs OR clear STOP report; reversible.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-187.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-187.md",
+      "lastActivity": "2026-07-23T04:37:40Z",
+      "startedAt": "2026-07-23T04:37:40Z"
     }
   ]
 }
