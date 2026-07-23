@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:33:16Z",
+  "updated_at": "2026-07-23T16:33:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4527,8 +4527,10 @@
       "description": "ExpandedKpi is one hard-coded layout for all measures and renders a pace band even with no target. Make it emit sections in the order expansion.expandedLayout declares, in Zeri's visual language: stat-card cluster WITH deltas -> metric-appropriate main chart -> ranked table with % columns + qualitative tags (Crushing It>=140/On Track/Behind Pace) + goal-pace bands (only when target set) -> insight callout (payload-derived only). No target => no fake pace band.",
       "doneWhen": "Focus panel renders per-KPI Zeri-language layout from expandedLayout; % + tags + pace bands (target-gated); insight only when supported; build green.",
       "promptSummary": "## Problem\nFocus panel is one plain template for all KPIs.\n## Build\nSection-driven ExpandedKpi over expandedLayout: statCards+deltas, metric chart, ranked table (% + Crushing It/On Track/Behind Pace + pace bands), insight.\n## Acceptance\nZeri-grade per-KPI layout; no fabricated pace/insight.",
-      "status": "pending",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-198.md"
+      "status": "in_progress",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-198.md",
+      "lastActivity": "2026-07-23T16:33:30Z",
+      "startedAt": "2026-07-23T16:33:30Z"
     },
     {
       "id": "task-199",
