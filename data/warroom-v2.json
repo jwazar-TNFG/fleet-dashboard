@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:48:41Z",
+  "updated_at": "2026-07-23T16:49:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4506,15 +4506,16 @@
       "promptSummary": "## Problem\nEvery collapsed panel is an identical hero.\n## Build\nSwitch CollapsedKpi on primaryVisual (hero/sparkline/donut/bar/gauge) + delta badge from payload; small primitives (Sparkline/Donut/Gauge) as needed.\n## Acceptance\nVisual variety, delta on every card, graceful fallback.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-197.md",
-      "lastActivity": "2026-07-23T16:33:16Z",
+      "lastActivity": "2026-07-23T16:49:16Z",
       "startedAt": "2026-07-23T16:21:07Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 3.615853,
       "inputTokens": 102,
       "outputTokens": 42151,
       "cacheReadTokens": 3759243,
       "finishedAt": "2026-07-23T16:33:16Z",
-      "durationSeconds": 729
+      "durationSeconds": 729,
+      "mergedAt": "2026-07-23T16:49:16Z"
     },
     {
       "id": "task-198",
