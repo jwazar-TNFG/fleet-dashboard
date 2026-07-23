@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:21:03Z",
+  "updated_at": "2026-07-23T16:21:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4486,11 +4486,12 @@
       "promptSummary": "## Problem\nMismatched range labels + ignored freshness dial cause wrong/laggy numbers.\n## Build\nPayload range-consistency + freshness fields; analyst-01 nearest-valid + live|cache|mv; HUD range threading + badge.\n## Acceptance\nNo mismatched-range number ever shown; freshness respected.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-196.md",
-      "lastActivity": "2026-07-23T16:20:56Z",
+      "lastActivity": "2026-07-23T16:21:05Z",
       "startedAt": "2026-07-23T16:00:14Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-23T16:20:56Z",
-      "durationSeconds": 1242
+      "durationSeconds": 1242,
+      "mergedAt": "2026-07-23T16:21:05Z"
     },
     {
       "id": "task-197",
