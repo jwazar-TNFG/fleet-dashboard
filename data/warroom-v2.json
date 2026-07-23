@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:20:56Z",
+  "updated_at": "2026-07-23T16:21:03Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4467,11 +4467,12 @@
       "promptSummary": "## Problem\nHand-maintained 15-of-22 view list drifted.\n## Build\nDerive KPI_VIEW_DEFS from kpi2/catalog; add 7 ids to VIEW_IDS/ViewDataMap/HUD registry; parity test.\n## Acceptance\n22 selectable views, drift-proof, existing ids preserved.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-195.md",
-      "lastActivity": "2026-07-23T15:59:57Z",
+      "lastActivity": "2026-07-23T16:21:03Z",
       "startedAt": "2026-07-23T15:34:22Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-23T15:59:57Z",
-      "durationSeconds": 1535
+      "durationSeconds": 1535,
+      "mergedAt": "2026-07-23T16:21:03Z"
     },
     {
       "id": "task-196",
