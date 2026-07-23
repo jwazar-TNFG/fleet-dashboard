@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T03:33:17Z",
+  "updated_at": "2026-07-23T03:33:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4206,14 +4206,16 @@
       "id": "task-184",
       "name": "KPI: Catalog \u2014 cost metrics (cpa, cpl, cpr)",
       "phase": "phase-44",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-183"
       ],
       "description": "Author CPA/CPL/CPR. Ad spend = payroll DESCRIPTION='BOOST' AND include=true (boolean). Office/team/pod grain only (no per-case key) \u2014 written into each definition. Intentional BOOST double-count (Jon confirmed).",
       "doneWhen": "3 catalog files valid; verified with real queryHash; grain limit in each definition; kpi2 tests green.",
       "promptSummary": "## Problem\nAuthor CPA/CPL/CPR. Ad spend = payroll DESCRIPTION='BOOST' AND include=true (boolean). Office/team/pod grain only (no per-case key) \u2014 written into each definition. Intentional BOOST double-count (Jon confirmed).\n\n## Acceptance\n3 catalog files valid; verified with real queryHash; grain limit in each definition; kpi2 tests green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-184.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-184.md",
+      "lastActivity": "2026-07-23T03:33:19Z",
+      "startedAt": "2026-07-23T03:33:19Z"
     },
     {
       "id": "task-185",
