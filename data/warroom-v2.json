@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:58:02Z",
+  "updated_at": "2026-07-23T17:09:28Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4550,11 +4550,12 @@
       "promptSummary": "## Problem\nEmpty expansion blocks mean everything falls back to defaults; variety unexercised.\n## Build\nAuthor 22 expansion specs by metric family; validator-clean; KB note.\n## Acceptance\nAll 22 render varied visuals; pattern documented for next batch.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-199.md",
-      "lastActivity": "2026-07-23T16:57:20Z",
+      "lastActivity": "2026-07-23T17:09:28Z",
       "startedAt": "2026-07-23T16:49:18Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-23T16:57:20Z",
-      "durationSeconds": 482
+      "durationSeconds": 482,
+      "mergedAt": "2026-07-23T17:09:28Z"
     }
   ]
 }
