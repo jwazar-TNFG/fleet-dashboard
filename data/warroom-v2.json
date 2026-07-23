@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T02:38:50Z",
+  "updated_at": "2026-07-23T02:54:08Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4159,7 +4159,7 @@
       "id": "task-182",
       "name": "KPI: Engine \u2014 cross-table joins (recovery + lead_ratings)",
       "phase": "phase-44",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-180"
       ],
@@ -4167,8 +4167,15 @@
       "doneWhen": "recovery gate computable via read-only path (RPC if needed), no 414; lead_ratings slices via join; kpi2 tests green.",
       "promptSummary": "## Problem\nDeclarative cross-table join support: recovery = requests.case_saved_at \u2212 leads.dateDropped gated by case_saved=true AND rep_logs ColorTag=Green (RPC pattern to avoid PostgREST 414); lead_ratings.idLead\u2192leads for slicing.\n\n## Acceptance\nrecovery gate computable via read-only path (RPC if needed), no 414; lead_ratings slices via join; kpi2 tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-182.md",
-      "lastActivity": "2026-07-23T02:38:50Z",
-      "startedAt": "2026-07-23T02:38:50Z"
+      "lastActivity": "2026-07-23T02:54:08Z",
+      "startedAt": "2026-07-23T02:38:50Z",
+      "landed": false,
+      "costUSD": 4.832223,
+      "inputTokens": 116,
+      "outputTokens": 62343,
+      "cacheReadTokens": 4981616,
+      "finishedAt": "2026-07-23T02:54:08Z",
+      "durationSeconds": 918
     },
     {
       "id": "task-183",
