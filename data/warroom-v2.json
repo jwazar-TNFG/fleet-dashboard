@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T13:00:51Z",
+  "updated_at": "2026-07-23T13:00:54Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4388,7 +4388,7 @@
       "id": "task-192",
       "name": "analyst-01 Departmental KPIs tile: editable definitions (compute-preview-before-save)",
       "phase": "phase-45",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-189",
         "task-190"
@@ -4396,7 +4396,9 @@
       "description": "The tile now displays the 22 kpi2 measures read-only via /api/kpis-v2. Make it the management surface: per-card Edit for name/definition + full calculation block (table, dateField, measure, filters, exclusions, unit, direction, ranges). Compute Preview REQUIRED before Save enables (POST preview). Save = PUT measures/:id (auto-stale). Verify = POST verify. Show verified/stale clearly (verified=live on HUD, stale=HUD no-data). Keep old 159 route intact.",
       "doneWhen": "From tile: edit calc -> Compute Preview shows live number -> Save (stale) -> Verify (verified) -> HUD panel reflects change on next poll; non-computing edit blocked; evidence recorded.",
       "promptSummary": "## Problem\nDepartmental KPIs tile is read-only; Jon needs full-logic editing that flows to HUD, safely.\n## Build\nEditor UI bound to kpi2 write API; mandatory compute-preview-before-save; verify action; stale/verified badges.\n## Acceptance\nEdit->preview->save->verify->HUD reflects; bad calc blocked; 159 page intact.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-192.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-192.md",
+      "lastActivity": "2026-07-23T13:00:54Z",
+      "startedAt": "2026-07-23T13:00:54Z"
     },
     {
       "id": "task-193",
