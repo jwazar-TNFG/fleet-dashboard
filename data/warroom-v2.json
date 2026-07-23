@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T12:38:56Z",
+  "updated_at": "2026-07-23T12:38:59Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4369,14 +4369,16 @@
       "id": "task-191",
       "name": "kpi2 engine: Targets WRITE endpoint",
       "phase": "phase-45",
-      "status": "pending",
+      "status": "in_progress",
       "depends_on": [
         "task-188"
       ],
       "description": "No measure has a target authored (all null); /admin/targets is read-only. Add PUT /api/kpi2/measures/:id/target to set/edit/clear a target block (pace basis a/b/d, threshold, or value), schema-validated, atomic write, catalog refresh. A target-only write must NOT change calculation or invalidate verified.queryHash. /targets and /admin/targets reflect authored targets.",
       "doneWhen": "PUT target persists, /targets+/admin/targets show it, verified block unchanged; clear works; invalid target 400; tests green.",
       "promptSummary": "## Problem\nNo write path for KPI targets that drive HUD pace bands.\n## Build\nPUT /api/kpi2/measures/:id/target; schema-validate; atomic write; preserve verified/calculation.\n## Acceptance\nSet/clear pace target persists + shows in targets views; verified untouched; tests green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-191.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-191.md",
+      "lastActivity": "2026-07-23T12:38:59Z",
+      "startedAt": "2026-07-23T12:38:59Z"
     },
     {
       "id": "task-192",
