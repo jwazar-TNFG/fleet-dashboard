@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T03:33:12Z",
+  "updated_at": "2026-07-23T03:33:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4191,15 +4191,16 @@
       "doneWhen": "4 catalog files valid vs schema; validate passes; verified with real queryHash; kpi2 tests green.",
       "promptSummary": "## Problem\nAuthor 4 measures with full plain-language definitions, verified:true (batch-1 shortcut) with real queryHash. Signed = NEW fundamental KPI, attorney-based standard/non-standard split, non-standard needs visits>=1, own exclusion profile (Katiria+xSTAFF only, NOT Attorney blanket drop).\n\n## Acceptance\n4 catalog files valid vs schema; validate passes; verified with real queryHash; kpi2 tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-183.md",
-      "lastActivity": "2026-07-23T03:33:12Z",
+      "lastActivity": "2026-07-23T03:33:17Z",
       "startedAt": "2026-07-23T02:54:19Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 13.067229,
       "inputTokens": 278,
       "outputTokens": 129908,
       "cacheReadTokens": 13570772,
       "finishedAt": "2026-07-23T03:33:12Z",
-      "durationSeconds": 2333
+      "durationSeconds": 2333,
+      "mergedAt": "2026-07-23T03:33:17Z"
     },
     {
       "id": "task-184",
