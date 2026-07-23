@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T15:34:22Z",
+  "updated_at": "2026-07-23T15:59:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4464,10 +4464,13 @@
       "description": "KPI_VIEW_DEFS hand-codes only 15 of 22 measures; 7 are invisible (boost_ad_spend, confirmed_count, decided_count, labor_cost, lead_count, lockdown_count, referral_out_count). Derive the def list FROM the catalog so it can never drift again; register the 7 new ids in protocol VIEW_IDS / ViewDataMap / HUD registry / bridge. Keep existing 15 ids unchanged.",
       "doneWhen": "All 22 measures selectable as KPI: views; ids derived from catalog with a test asserting parity; 7 new ids wired through protocol + HUD + bridge; build green.",
       "promptSummary": "## Problem\nHand-maintained 15-of-22 view list drifted.\n## Build\nDerive KPI_VIEW_DEFS from kpi2/catalog; add 7 ids to VIEW_IDS/ViewDataMap/HUD registry; parity test.\n## Acceptance\n22 selectable views, drift-proof, existing ids preserved.",
-      "status": "in_progress",
+      "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-195.md",
-      "lastActivity": "2026-07-23T15:34:22Z",
-      "startedAt": "2026-07-23T15:34:22Z"
+      "lastActivity": "2026-07-23T15:59:57Z",
+      "startedAt": "2026-07-23T15:34:22Z",
+      "landed": false,
+      "finishedAt": "2026-07-23T15:59:57Z",
+      "durationSeconds": 1535
     },
     {
       "id": "task-196",
