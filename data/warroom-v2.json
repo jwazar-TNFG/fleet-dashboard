@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T05:02:05Z",
+  "updated_at": "2026-07-23T05:02:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4290,15 +4290,16 @@
       "doneWhen": "old catalog archived + sha256-verified + valid JSON (both hashes printed); tile sources kpi2 rendering 15 KPIs OR clear STOP report; reversible.",
       "promptSummary": "## Problem\nHARD SAFETY GATE. Archive kpi-definitions.json (218KB, departments[14]) to timestamped archive, sha256-verify byte-identical + valid JSON BEFORE retiring. Then point departmental KPIs tile at kpi2 catalog (reversible; original not deleted). STOP+report if swap not cleanly reversible.\n\n## Acceptance\nold catalog archived + sha256-verified + valid JSON (both hashes printed); tile sources kpi2 rendering 15 KPIs OR clear STOP report; reversible.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-187.md",
-      "lastActivity": "2026-07-23T05:02:05Z",
+      "lastActivity": "2026-07-23T05:02:41Z",
       "startedAt": "2026-07-23T04:37:40Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.390651,
       "inputTokens": 190,
       "outputTokens": 60621,
       "cacheReadTokens": 6256346,
       "finishedAt": "2026-07-23T05:02:05Z",
-      "durationSeconds": 1465
+      "durationSeconds": 1465,
+      "mergedAt": "2026-07-23T05:02:41Z"
     }
   ]
 }
