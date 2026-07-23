@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T05:02:41Z",
+  "updated_at": "2026-07-23T12:12:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -196,6 +196,11 @@
     {
       "id": "phase-44",
       "name": "Round 37 \u2014 KPI2 Batch-1 Full Build (15 KPIs live: engine average/as_of/cross-table, catalog measures, KPI-prefixed HUD views collapsed+expanded, archive old 159-KPI catalog + tile swap)",
+      "status": "pending"
+    },
+    {
+      "id": "phase-45",
+      "name": "Round 38 \u2014 KPI2 Write Layer (editable definitions full-logic + compute-preview-before-save, Targets management, reflected on HUD)",
       "status": "pending"
     }
   ],
@@ -4300,6 +4305,86 @@
       "finishedAt": "2026-07-23T05:02:05Z",
       "durationSeconds": 1465,
       "mergedAt": "2026-07-23T05:02:41Z"
+    },
+    {
+      "id": "task-188",
+      "name": "kpi2: /api/kpi2/hud/:measure story endpoint + mount on analyst-01",
+      "phase": "phase-45",
+      "status": "completed",
+      "depends_on": [
+        "task-186"
+      ],
+      "description": "The 15 HUD KPI: views call GET /api/kpi2/hud/<measure> expecting a KpiMeasureViewData story payload, but the engine only served /measures/:id/value -> every KPI panel showed NO DATA, and /api/kpi2 was never mounted on analyst-01. Added the hud endpoint (composes value+breakdown+pace) and mounted the router on the live analyst-01 server pointed at the canonical Round-37 catalog.",
+      "doneWhen": "hud/:measure returns KpiMeasureViewData; /api/kpi2 mounted; HUD KPI panels show real values; 383 kpi2 tests green.",
+      "promptSummary": "## Problem\nHUD KPI: panels showed NO DATA (missing /hud endpoint + unmounted router).\n## Build\n/api/kpi2/hud/:measure story endpoint + mount on analyst-01.\n## Acceptance\nLive values on HUD; tests green. LANDED #205.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-188.md",
+      "landed": true
+    },
+    {
+      "id": "task-189",
+      "name": "kpi2 engine: measure definition WRITE endpoint (full logic edit)",
+      "phase": "phase-45",
+      "status": "pending",
+      "depends_on": [
+        "task-188"
+      ],
+      "description": "The kpi2 engine is read-only (405 on writes). Add PUT /api/kpi2/measures/:id (edit full Measure incl. calculation logic) + POST /api/kpi2/measures (create). Every write runs validateMeasure first; any calculation change recomputes calculationQueryHash and FORCES verified.flag=false (spec 5a auto-invalidation). Atomic per-file write to the catalog dir, path-guarded, in-memory catalog refresh so HUD sees edits without restart.",
+      "doneWhen": "PUT edit persists with verified.flag=false on logic change; invalid body 400 with problem list; path traversal 400; GET reflects the write; kpi2 build+test green.",
+      "promptSummary": "## Problem\nkpi2 engine is GET-only; no way to edit KPI definitions that flow to the HUD.\n## Build\nPUT /api/kpi2/measures/:id + POST create; validateMeasure gate; queryHash auto-invalidation dropping verification; atomic write; catalog refresh.\n## Acceptance\nEdit persists stale; invalid=400; reads reflect; tests green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-189.md"
+    },
+    {
+      "id": "task-190",
+      "name": "kpi2 engine: compute-preview + re-verify (logic-edit guardrail)",
+      "phase": "phase-45",
+      "status": "pending",
+      "depends_on": [
+        "task-189"
+      ],
+      "description": "Full-logic edits can silently produce wrong HUD numbers. Add POST /api/kpi2/measures/:id/preview (run submitted calc live, return value+breakdown+verifyState, never writes) and POST /api/kpi2/measures/:id/verify ({verifiedBy} -> persist verified{flag:true,by,at,queryHash} for the STORED calc). Mirrors the old 159 page compute->verify loop. Reuses runMeasureQuery/computeMeasurePace/calculationQueryHash/validateMeasure.",
+      "doneWhen": "Preview returns live value for edited calc + stale verifyState; verify persists provenance+flag=true; re-edit flips stale; round-trip tests green.",
+      "promptSummary": "## Problem\nNo safety check before an edited definition ships to the HUD.\n## Build\npreview (read-only live compute of submitted calc) + verify (persist verified block for stored calc).\n## Acceptance\nEdit->preview->verify round-trip; non-computing edit shows error, cannot verify; tests green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-190.md"
+    },
+    {
+      "id": "task-191",
+      "name": "kpi2 engine: Targets WRITE endpoint",
+      "phase": "phase-45",
+      "status": "pending",
+      "depends_on": [
+        "task-188"
+      ],
+      "description": "No measure has a target authored (all null); /admin/targets is read-only. Add PUT /api/kpi2/measures/:id/target to set/edit/clear a target block (pace basis a/b/d, threshold, or value), schema-validated, atomic write, catalog refresh. A target-only write must NOT change calculation or invalidate verified.queryHash. /targets and /admin/targets reflect authored targets.",
+      "doneWhen": "PUT target persists, /targets+/admin/targets show it, verified block unchanged; clear works; invalid target 400; tests green.",
+      "promptSummary": "## Problem\nNo write path for KPI targets that drive HUD pace bands.\n## Build\nPUT /api/kpi2/measures/:id/target; schema-validate; atomic write; preserve verified/calculation.\n## Acceptance\nSet/clear pace target persists + shows in targets views; verified untouched; tests green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-191.md"
+    },
+    {
+      "id": "task-192",
+      "name": "analyst-01 Departmental KPIs tile: editable definitions (compute-preview-before-save)",
+      "phase": "phase-45",
+      "status": "pending",
+      "depends_on": [
+        "task-189",
+        "task-190"
+      ],
+      "description": "The tile now displays the 22 kpi2 measures read-only via /api/kpis-v2. Make it the management surface: per-card Edit for name/definition + full calculation block (table, dateField, measure, filters, exclusions, unit, direction, ranges). Compute Preview REQUIRED before Save enables (POST preview). Save = PUT measures/:id (auto-stale). Verify = POST verify. Show verified/stale clearly (verified=live on HUD, stale=HUD no-data). Keep old 159 route intact.",
+      "doneWhen": "From tile: edit calc -> Compute Preview shows live number -> Save (stale) -> Verify (verified) -> HUD panel reflects change on next poll; non-computing edit blocked; evidence recorded.",
+      "promptSummary": "## Problem\nDepartmental KPIs tile is read-only; Jon needs full-logic editing that flows to HUD, safely.\n## Build\nEditor UI bound to kpi2 write API; mandatory compute-preview-before-save; verify action; stale/verified badges.\n## Acceptance\nEdit->preview->save->verify->HUD reflects; bad calc blocked; 159 page intact.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-192.md"
+    },
+    {
+      "id": "task-193",
+      "name": "analyst-01 Targets tile (editable)",
+      "phase": "phase-45",
+      "status": "pending",
+      "depends_on": [
+        "task-191"
+      ],
+      "description": "Separate Targets tile (targets.html + protected route + nav entry), brand-consistent. Reads /api/kpi2/targets, lists every measure grouped by target type with current target+band. Per-measure editable target (pace basis a/b/d, threshold, value) saved via PUT measures/:id/target; supports clearing. Shows live pace band/pct-to-pace where set.",
+      "doneWhen": "Targets tile lists 22 measures; setting a pace target persists, shows in /admin/targets, HUD pace band populates next poll; clear works; reachable from nav; evidence recorded.",
+      "promptSummary": "## Problem\nNo dedicated tile to view/manage KPI targets.\n## Build\ntargets.html + route + nav; read targets model; editable per-measure target via PUT target endpoint.\n## Acceptance\nSet/clear pace target reflects in targets view + HUD band; page in nav; evidence recorded.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-193.md"
     }
   ]
 }
