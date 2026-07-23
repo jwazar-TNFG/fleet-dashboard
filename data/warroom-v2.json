@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T16:21:05Z",
+  "updated_at": "2026-07-23T16:21:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4504,8 +4504,10 @@
       "description": "CollapsedKpi is a single bare hero for every measure. Make it switch on expansion.primaryVisual (hero/sparkline/donut/bar/gauge) with graceful fallback, plus a delta badge on every card per deltaBasis (prevPeriod/yoy/target). Deltas come from the payload only, colored good/bad by measure direction. No two panels look identical.",
       "doneWhen": "Collapsed cards vary by primaryVisual with delta badges; degrade gracefully at small sizes / missing sub-data; build green.",
       "promptSummary": "## Problem\nEvery collapsed panel is an identical hero.\n## Build\nSwitch CollapsedKpi on primaryVisual (hero/sparkline/donut/bar/gauge) + delta badge from payload; small primitives (Sparkline/Donut/Gauge) as needed.\n## Acceptance\nVisual variety, delta on every card, graceful fallback.",
-      "status": "pending",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-197.md"
+      "status": "in_progress",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-197.md",
+      "lastActivity": "2026-07-23T16:21:07Z",
+      "startedAt": "2026-07-23T16:21:07Z"
     },
     {
       "id": "task-198",
