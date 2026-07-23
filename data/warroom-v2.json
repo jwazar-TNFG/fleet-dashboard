@@ -210,6 +210,10 @@
     {
       "id": "phase-47",
       "name": "Round 40 \u2014 KPI Query Performance (server-side aggregate RPCs for leads + lead_ratings, materialized-view freshness, HUD cache + pre-warm \u2014 all 22 measures fast & always-available)"
+    },
+    {
+      "id": "phase-48",
+      "name": "Round 41 \u2014 KPI Focus views to Zeri structure (pace-tracker tile band, Goal/Delivered/Owed hero, inline-progress ranked table, narrative trio; SIGNED exemplar + target-fallback; single-round-trip Focus payload)"
     }
   ],
   "tasks": [
@@ -4682,6 +4686,87 @@
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-205.md",
       "lastActivity": "2026-07-23T19:16:18Z",
       "startedAt": "2026-07-23T19:16:18Z"
+    },
+    {
+      "id": "task-206",
+      "name": "Focus payload per-row pace fields + section types (paceBand/paceHero/narrative)",
+      "depends_on": [],
+      "description": "The core gap: breakdown rows carry only {label,value}, so Zeri's inline-progress ranked table has no data. Extend KpiBreakdownRowData with goal/delivered/owed/pctToPace/band/tag; extend KpiPaceData with derived/targetLabel/bestMonth; add narrative{wins,improvements,recommendations} to KpiMeasureViewData. Add section types paceBand|paceHero|narrative to the Round 39 expansion schema (Zod + JSON-schema enum) + resolveKpiExpansion guards (paceBand/paceHero stripped when no target resolves; narrative never stripped). No rendering.",
+      "doneWhen": "New optional payload fields + 3 section types defined and validated; empty/legacy specs still valid; build+tests green.",
+      "promptSummary": "## Problem\nPer-row rows carry only label+value; no pace section types.\n## Build\nExtend KpiBreakdownRowData/KpiPaceData/KpiMeasureViewData; add paceBand/paceHero/narrative + guards.\n## Acceptance\nAdditive, backward-compatible, validated.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-206.md"
+    },
+    {
+      "id": "task-207",
+      "name": "analyst-01 engine: per-row pace + target-fallback + narrative + single-round-trip Focus payload",
+      "depends_on": [
+        "task-206"
+      ],
+      "description": "Implement Jon's target-fallback (no explicit target => best historical calendar-month \u00d7 1.10 higher-better / \u00d7 0.90 lower-better, range-scaled, labeled derived; explicit targets override; no direction re-inversion). Compute per-row goal/delivered/owed/pctToPace/band/tag via the task-176 pace engine. Author data-driven narrative (top/bottom office, biggest mover \u2014 never fabricated). SINGLE-ROUND-TRIP CONTRACT: one GET /api/kpi2/hud/:measure returns hero+paceBand+trend+table-rows+narrative together (no per-section fetches); cached as a unit + pre-warmed. Read-only/additive; no inline secrets; reuse Round 40 fast paths.",
+      "doneWhen": "target:null measures carry pace.derived + labeled target; per-row pace matches task-176 arithmetic; narrative reconstructable from payload; one fetch yields full Focus payload; kill-switch reverts; Round-40 latency not regressed.",
+      "promptSummary": "## Problem\nNo pace for target:null; rows lack pace; risk of multi-call Focus.\n## Build\nTarget-fallback (best-month \u00b110%), per-row pace, narrative, single-payload Focus contract, cache+prewarm.\n## Acceptance\nDerived+labeled target, per-row pace correct, one round-trip, backward-compat.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-207.md"
+    },
+    {
+      "id": "task-208",
+      "name": "HUD: inline row-progress ranked table + pace-tracker tile band",
+      "depends_on": [
+        "task-206"
+      ],
+      "description": "Add RowProgressBar (inline per-row % bar) so the ranked table renders Goal|Delivered|Owed|% with a mini progress bar + color + qualitative tag per row (Zeri's signature table). Add PaceTileBand primitive for the paceBand section (row of per-segment tiles, banded Critical/Behind/On-Track/Ahead with actual/goal + %vs pace). Wire case 'paceBand' into ExpandedKpi's section switch. Render only.",
+      "doneWhen": "Ranked table rows show inline progress bar + tag; paceBand tile band renders per-segment; graceful when fields absent; build green.",
+      "promptSummary": "## Problem\nTables are flat; no pace-tile band.\n## Build\nRowProgressBar + PaceTileBand primitives; wire paceBand section.\n## Acceptance\nInline-progress table + tile band render, degrade gracefully.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-208.md"
+    },
+    {
+      "id": "task-209",
+      "name": "HUD: Goal/Delivered/Owed paceHero + pace bar + narrative trio + grouped bars",
+      "depends_on": [
+        "task-206"
+      ],
+      "description": "Add SectionPaceHero (Goal/Delivered/Owed/Progress% hero framed as a pace story) + PaceProgressBar (full-width bar with a should-be-here tick) + NarrativeTrio (Key Wins / Areas for Improvement / Recommendations callout cards). Wire case 'paceHero' and case 'narrative' into ExpandedKpi. Use grouped multi-series ColumnBar as the primary trend chart (already multi-series \u2014 reused, no new primitive). Render only.",
+      "doneWhen": "paceHero + full-width pace bar + narrative trio render; grouped ColumnBar primary chart; existing sections intact; build green.",
+      "promptSummary": "## Problem\nNo pace hero/bar/narrative; single-series chart.\n## Build\nSectionPaceHero + PaceProgressBar + NarrativeTrio; grouped ColumnBar; wire sections.\n## Acceptance\nZeri hero+bar+narrative render, grouped bars.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-209.md"
+    },
+    {
+      "id": "task-210",
+      "name": "SIGNED exemplar: expansion spec to full Zeri layout + target fallback",
+      "depends_on": [
+        "task-207",
+        "task-208",
+        "task-209"
+      ],
+      "description": "Author SIGNED's expansion spec to the full Zeri King-of-COR skeleton: expandedLayout ['paceHero','paceBand','trend','rankedTable','narrative'], showPace true, an appropriate breakdownDimension (office). With target:null the fallback derives best-month +10%. Config authoring \u2014 no new engine/render code. This is the exemplar Jon reviews before family propagation.",
+      "doneWhen": "SIGNED Focus renders the full Zeri structure with real data + derived target labeled; spec validates.",
+      "promptSummary": "## Problem\nSIGNED renders flat statCards+table.\n## Build\nAuthor SIGNED expansion to full Zeri layout; fallback fires.\n## Acceptance\nFull Zeri Focus for SIGNED, derived target labeled.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-210.md"
+    },
+    {
+      "id": "task-211",
+      "name": "Verification: SIGNED Focus renders full Zeri structure, single-paint, backward-compat",
+      "depends_on": [
+        "task-207",
+        "task-208",
+        "task-209",
+        "task-210"
+      ],
+      "description": "Prove SIGNED's Focus screen renders the full Zeri structure with real data in a single paint (one round-trip, no staggered NO-DATA sections), the derived target is labeled, per-row pace math matches the task-176 engine, and measures without pace/target still render via graceful downgrade. Verification gate.",
+      "doneWhen": "SIGNED Focus verified end-to-end: full structure, single-paint, correct pace math, backward-compat holds; gate passed.",
+      "promptSummary": "## Problem\nMust prove the exemplar + backward-compat.\n## Build\nVerify SIGNED Focus single-paint full structure vs baseline; confirm downgrade path.\n## Acceptance\nFull structure + single-paint + correct + compatible.",
+      "status": "pending",
+      "phase": "phase-48",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-211.md"
     }
   ]
 }
