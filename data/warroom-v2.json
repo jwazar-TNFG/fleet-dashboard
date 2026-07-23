@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T12:38:59Z",
+  "updated_at": "2026-07-23T12:48:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4369,7 +4369,7 @@
       "id": "task-191",
       "name": "kpi2 engine: Targets WRITE endpoint",
       "phase": "phase-45",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-188"
       ],
@@ -4377,8 +4377,11 @@
       "doneWhen": "PUT target persists, /targets+/admin/targets show it, verified block unchanged; clear works; invalid target 400; tests green.",
       "promptSummary": "## Problem\nNo write path for KPI targets that drive HUD pace bands.\n## Build\nPUT /api/kpi2/measures/:id/target; schema-validate; atomic write; preserve verified/calculation.\n## Acceptance\nSet/clear pace target persists + shows in targets views; verified untouched; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-191.md",
-      "lastActivity": "2026-07-23T12:38:59Z",
-      "startedAt": "2026-07-23T12:38:59Z"
+      "lastActivity": "2026-07-23T12:48:07Z",
+      "startedAt": "2026-07-23T12:38:59Z",
+      "landed": false,
+      "finishedAt": "2026-07-23T12:48:07Z",
+      "durationSeconds": 548
     },
     {
       "id": "task-192",
