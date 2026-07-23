@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T22:12:47Z",
+  "updated_at": "2026-07-23T22:19:44Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4701,11 +4701,18 @@
       "description": "The core gap: breakdown rows carry only {label,value}, so Zeri's inline-progress ranked table has no data. Extend KpiBreakdownRowData with goal/delivered/owed/pctToPace/band/tag; extend KpiPaceData with derived/targetLabel/bestMonth; add narrative{wins,improvements,recommendations} to KpiMeasureViewData. Add section types paceBand|paceHero|narrative to the Round 39 expansion schema (Zod + JSON-schema enum) + resolveKpiExpansion guards (paceBand/paceHero stripped when no target resolves; narrative never stripped). No rendering.",
       "doneWhen": "New optional payload fields + 3 section types defined and validated; empty/legacy specs still valid; build+tests green.",
       "promptSummary": "## Problem\nPer-row rows carry only label+value; no pace section types.\n## Build\nExtend KpiBreakdownRowData/KpiPaceData/KpiMeasureViewData; add paceBand/paceHero/narrative + guards.\n## Acceptance\nAdditive, backward-compatible, validated.",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-48",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-206.md",
-      "lastActivity": "2026-07-23T22:12:47Z",
-      "startedAt": "2026-07-23T22:12:47Z"
+      "lastActivity": "2026-07-23T22:19:44Z",
+      "startedAt": "2026-07-23T22:12:47Z",
+      "landed": false,
+      "costUSD": 1.749892,
+      "inputTokens": 92,
+      "outputTokens": 22376,
+      "cacheReadTokens": 1671654,
+      "finishedAt": "2026-07-23T22:19:44Z",
+      "durationSeconds": 417
     },
     {
       "id": "task-207",
