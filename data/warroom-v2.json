@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T14:06:22Z",
+  "updated_at": "2026-07-23T14:09:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4332,15 +4332,15 @@
       "doneWhen": "PUT edit persists with verified.flag=false on logic change; invalid body 400 with problem list; path traversal 400; GET reflects the write; kpi2 build+test green.",
       "promptSummary": "## Problem\nkpi2 engine is GET-only; no way to edit KPI definitions that flow to the HUD.\n## Build\nPUT /api/kpi2/measures/:id + POST create; validateMeasure gate; queryHash auto-invalidation dropping verification; atomic write; catalog refresh.\n## Acceptance\nEdit persists stale; invalid=400; reads reflect; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-189.md",
-      "lastActivity": "2026-07-23T12:38:56Z",
+      "lastActivity": "2026-07-23T14:09:49Z",
       "startedAt": "2026-07-23T12:14:48Z",
-      "landed": true,
+      "landed": false,
       "costUSD": 2.188486,
       "inputTokens": 127,
       "outputTokens": 34223,
       "cacheReadTokens": 1713794,
-      "finishedAt": "2026-07-23T12:22:12Z",
-      "durationSeconds": 444,
+      "finishedAt": "2026-07-23T14:09:49Z",
+      "durationSeconds": 6901,
       "mergedAt": "2026-07-23T12:38:56Z"
     },
     {
