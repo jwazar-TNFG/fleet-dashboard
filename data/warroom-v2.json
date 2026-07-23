@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T14:10:13Z",
+  "updated_at": "2026-07-23T14:10:15Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4378,11 +4378,12 @@
       "doneWhen": "PUT target persists, /targets+/admin/targets show it, verified block unchanged; clear works; invalid target 400; tests green.",
       "promptSummary": "## Problem\nNo write path for KPI targets that drive HUD pace bands.\n## Build\nPUT /api/kpi2/measures/:id/target; schema-validate; atomic write; preserve verified/calculation.\n## Acceptance\nSet/clear pace target persists + shows in targets views; verified untouched; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-191.md",
-      "lastActivity": "2026-07-23T14:09:53Z",
+      "lastActivity": "2026-07-23T14:10:15Z",
       "startedAt": "2026-07-23T12:38:59Z",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-23T14:09:53Z",
-      "durationSeconds": 5454
+      "durationSeconds": 5454,
+      "mergedAt": "2026-07-23T14:10:15Z"
     },
     {
       "id": "task-192",
