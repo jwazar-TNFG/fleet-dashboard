@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T18:28:06Z",
+  "updated_at": "2026-07-23T18:28:20Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4610,9 +4610,11 @@
       "description": "lead_rating_distribution is the ONLY measure that never completes (>60s). Grouped COUNT of lead_ratings by leadRatingStars, joined to leads (idLead), with lead_ratings_standard applied as 4 cross-table subquery drops \u2014 resolved client-side row-by-row over ~200K rows. Fix: one grouped in-DB join RPC (join + exclusions + GROUP BY all in Postgres; only bucket rows cross the wire). Wire into engine + regression. Build/land FIRST for fastest demo relief.",
       "doneWhen": "lead_rating_distribution returns in <200ms with numbers matching the (eventually-completing) client-pull baseline; wired + regression green.",
       "promptSummary": "## Problem\nlead_rating_distribution never completes (>60s) \u2014 client-side join over 200K rows.\n## Build\nkpi2_lead_ratings_distribution grouped in-DB join RPC + exclusions in-SQL; wire + regression.\n## Acceptance\n<200ms, correct buckets, land first.",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-47",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-202.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-202.md",
+      "lastActivity": "2026-07-23T18:28:20Z",
+      "startedAt": "2026-07-23T18:28:20Z"
     },
     {
       "id": "task-203",
