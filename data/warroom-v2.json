@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T12:22:27Z",
+  "updated_at": "2026-07-23T12:33:55Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4346,7 +4346,7 @@
       "id": "task-190",
       "name": "kpi2 engine: compute-preview + re-verify (logic-edit guardrail)",
       "phase": "phase-45",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-189"
       ],
@@ -4354,8 +4354,15 @@
       "doneWhen": "Preview returns live value for edited calc + stale verifyState; verify persists provenance+flag=true; re-edit flips stale; round-trip tests green.",
       "promptSummary": "## Problem\nNo safety check before an edited definition ships to the HUD.\n## Build\npreview (read-only live compute of submitted calc) + verify (persist verified block for stored calc).\n## Acceptance\nEdit->preview->verify round-trip; non-computing edit shows error, cannot verify; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-190.md",
-      "lastActivity": "2026-07-23T12:22:27Z",
-      "startedAt": "2026-07-23T12:22:27Z"
+      "lastActivity": "2026-07-23T12:33:55Z",
+      "startedAt": "2026-07-23T12:22:27Z",
+      "landed": false,
+      "costUSD": 2.210066,
+      "inputTokens": 68,
+      "outputTokens": 32908,
+      "cacheReadTokens": 1770099,
+      "finishedAt": "2026-07-23T12:33:55Z",
+      "durationSeconds": 688
     },
     {
       "id": "task-191",
