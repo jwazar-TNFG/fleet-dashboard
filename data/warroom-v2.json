@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T20:02:17Z",
+  "updated_at": "2026-07-23T20:02:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4638,12 +4638,11 @@
       "description": "Even with TIER-1 RPCs, the heaviest work (200K-row lead_ratings join, wide-window leads aggregates) still runs live per cold request. Back them with materialized views refreshed on a schedule (pg_cron or analyst-01 scheduler), point the RPCs at the MV, flip catalog refresh.mode:'mv' for those measures (Round 39 shipped the dial; mv path unused today), and add supporting indexes on date fields + exclusion columns. Read-only/additive/reversible; no base-table changes.",
       "doneWhen": "Heaviest measures read an MV => always sub-100ms even cold; refresh schedule live; catalog mv mode set; indexes added.",
       "promptSummary": "## Problem\nHeavy measures still recompute live cold.\n## Build\nMVs + scheduled refresh; RPCs read MV; catalog refresh.mode:mv; indexes.\n## Acceptance\nAlways sub-100ms cold, never times out.",
-      "status": "completed",
+      "status": "pending",
       "phase": "phase-47",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-203.md",
-      "lastActivity": "2026-07-23T19:04:10Z",
+      "lastActivity": "2026-07-23T20:02:19Z",
       "startedAt": "2026-07-23T18:38:53Z",
-      "landed": false,
       "costUSD": 8.32021,
       "inputTokens": 166,
       "outputTokens": 98467,
