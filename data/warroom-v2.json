@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T15:59:57Z",
+  "updated_at": "2026-07-23T16:00:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4444,15 +4444,16 @@
       "promptSummary": "## Problem\nFree-form expansion {} cannot drive a generic renderer safely.\n## Build\nTyped expansion sub-schema (primaryVisual/breakdownDimension/expandedLayout/showPace/deltaBasis), protocol KpiExpansionSpec + resolveKpiExpansion() downgrade guard, kpi2 validator semantic checks.\n## Acceptance\nSchema synced, guard + validator enforce target/dimension rules, {} backward-compatible.",
       "status": "completed",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-194.md",
-      "lastActivity": "2026-07-23T15:34:06Z",
+      "lastActivity": "2026-07-23T16:00:11Z",
       "startedAt": "2026-07-23T15:27:20Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 1.85785,
       "inputTokens": 70,
       "outputTokens": 26548,
       "cacheReadTokens": 1563171,
       "finishedAt": "2026-07-23T15:34:06Z",
-      "durationSeconds": 406
+      "durationSeconds": 406,
+      "mergedAt": "2026-07-23T16:00:11Z"
     },
     {
       "id": "task-195",
