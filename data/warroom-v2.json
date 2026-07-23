@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-23T23:10:47Z",
+  "updated_at": "2026-07-23T23:10:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4788,9 +4788,11 @@
       "description": "Author SIGNED's expansion spec to the full Zeri King-of-COR skeleton: expandedLayout ['paceHero','paceBand','trend','rankedTable','narrative'], showPace true, an appropriate breakdownDimension (office). With target:null the fallback derives best-month +10%. Config authoring \u2014 no new engine/render code. This is the exemplar Jon reviews before family propagation.",
       "doneWhen": "SIGNED Focus renders the full Zeri structure with real data + derived target labeled; spec validates.",
       "promptSummary": "## Problem\nSIGNED renders flat statCards+table.\n## Build\nAuthor SIGNED expansion to full Zeri layout; fallback fires.\n## Acceptance\nFull Zeri Focus for SIGNED, derived target labeled.",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-48",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-210.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-210.md",
+      "lastActivity": "2026-07-23T23:10:49Z",
+      "startedAt": "2026-07-23T23:10:49Z"
     },
     {
       "id": "task-211",
