@@ -5138,20 +5138,21 @@
     },
     {
       "id": "task-227",
-      "name": "requests MV AUTHORING (case_recovery_time)",
+      "name": "requests MV backing (case_recovery_time) \u2014 LANDED (PR #249)",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
-      "description": "SPLIT from original task-227 (which deadlocked at verify time, context exhaustion). AUTHOR ONLY: author/extend kpi2_mv_requests_recovery_agg MV + justify recovery-days math (n-weighted mean = row AVG for integer day-diff) + register for refresh. NO catalog flip, NO live-DB correctness harness (that is task-235). Catalog stays cache.",
-      "doneWhen": "MV authored + registered; recovery-days math justified in header; catalog UNCHANGED (still cache); build+tests pass.",
+      "description": "case_recovery_time MV backing. kpi2_mv_requests_recovery_agg authored + recovery-days math + 73/73 zero-discrepancy gate; flipped to mv (ttl 300). Landed PR #249 (the original run's work merged despite the wait-loop deadlock).",
+      "doneWhen": "MV authored + registered; 73/73 zero-discrepancy; catalog flipped to mv. DONE.",
       "promptSummary": "## Problem\ncase_recovery_time cache-mode on requests lineage, no MV backing.\n\n## Build\nAuthor/extend kpi2_mv_requests_recovery_agg (recovery-days math justified) + register for refresh. NO flip, NO harness.\n\n## Acceptance\nMV authored + registered; math justified; catalog still cache; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-227.md",
       "lastActivity": "2026-07-24T21:25:34Z",
-      "startedAt": "2026-07-24T21:25:34Z"
+      "startedAt": "2026-07-24T21:25:34Z",
+      "landed": true
     },
     {
       "id": "task-228",
-      "name": "cross-table all-lineage MV (case_count_cc, conversion_efficiency_cv, green_count/rate, total_converted_value_cv)",
+      "name": "cross-table all-lineage MV PART 1 (case_count_cc, green_count, green_rate)",
       "phase": "phase-51",
       "status": "pending",
       "landed": false,
@@ -5159,11 +5160,12 @@
         "task-224",
         "task-225",
         "task-226",
-        "task-227"
+        "task-232",
+        "task-234"
       ],
-      "description": "5 all-lineage measures JOIN rep_logs x leads (\u00b1 payroll) \u2014 last raw-scan YTD offenders, hardest to MV. Per-measure design (compose/composite/dominant-leg), CV scale exact (0-1.5 NOT dollars), zero-discrepancy before flip; unsafe measures stay cache w/ documented reason.",
-      "doneWhen": "Per-measure design documented; flipped measures zero-discrepancy verified; cache measures documented; build+tests pass.",
-      "promptSummary": "## Problem\n5 all-lineage measures JOIN rep_logs x leads (\u00b1 payroll) \u2014 last raw-scan YTD offenders, hardest to MV. Per-measure design (compose/composite/dominant-leg), CV scale exact (0-1.5 NOT dollars), zero-discrepancy before flip; unsafe measures stay cache w/ documented reason.\n\n## Acceptance\nPer-measure design documented; flipped measures zero-discrepancy verified; cache measures documented; build+tests pass.",
+      "description": "SPLIT from original task-228 (5 measures, highest context-blowout risk). PART 1 = the 3 count/rate measures that compose from EXISTING single-lineage MVs (rep_logs/leads/payroll). Per-measure design doc; zero-discrepancy before flip. CV-scale pair is task-236.",
+      "doneWhen": "Design doc per measure; flipped measures zero-discrepancy verified; any left cache documented; build+tests pass.",
+      "promptSummary": "## Problem\ncase_count_cc, green_count, green_rate = cache-mode on all-lineage (rep_logs join leads +/- payroll).\n\n## Build\nDesign decision per measure (prefer compose from existing MVs); harness 3 x {today,mtd,ytd} x dims; flip fast+correct, else cache w/ reason.\n\n## Acceptance\nDesign doc; flipped measures zero-discrepancy; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-228.md"
     },
     {
@@ -5229,16 +5231,16 @@
     },
     {
       "id": "task-233",
-      "name": "rep_logs MV PART 3 \u2014 confirmed_rate + cpr ratios + assess case_aging_active",
+      "name": "rep_logs MV PART 3 \u2014 verify+flip confirmed_rate + cpr (ratios)",
       "phase": "phase-51",
       "status": "pending",
       "landed": false,
       "depends_on": [
         "task-224"
       ],
-      "description": "Reuses task-224's MV. Ratios (confirmed_rate, cpr) need BOTH legs representable at the grain or stay cache w/ documented reason (fail loud beats a wrong rate). Also assess case_aging_active (as_of) latency; flip only if slow.",
-      "doneWhen": "Ratios each verified+flipped OR documented cache; case_aging_active decision documented; build+tests pass.",
-      "promptSummary": "## Problem\nReuses task-224's MV. Ratios (confirmed_rate, cpr) need BOTH legs representable at the grain or stay cache w/ documented reason (fail loud beats a wrong rate). Also assess case_aging_active (as_of) latency; flip only if slow.\n\n## Acceptance\nRatios each verified+flipped OR documented cache; case_aging_active decision documented; build+tests pass.",
+      "description": "SPLIT: ratios ONLY now (confirmed_rate + cpr). Both legs must be representable at the MV grain or keep cache w/ reason (fail loud beats wrong ratio). case_aging_active assessment moved to task-237.",
+      "doneWhen": "Each ratio zero-discrepancy MV-verified + flipped, OR documented left cache; build+tests pass.",
+      "promptSummary": "## Problem\nconfirmed_rate + cpr = cache ratios on rep_logs; ratios need both legs representable at MV grain.\n\n## Build\nVerify num+denom representability; harness representable ratios x dims x {today,mtd,ytd}; flip passers, cache the rest w/ reason.\n\n## Acceptance\nEach ratio flipped-or-cached-with-reason; evidence; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-233.md"
     },
     {
@@ -5256,18 +5258,35 @@
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-234.md"
     },
     {
-      "id": "task-235",
-      "name": "requests MV VERIFY+FLIP (case_recovery_time)",
+      "id": "task-236",
+      "name": "cross-table all-lineage MV PART 2 (conversion_efficiency_cv, total_converted_value_cv)",
       "phase": "phase-51",
       "status": "pending",
       "landed": false,
       "depends_on": [
-        "task-227"
+        "task-224",
+        "task-225",
+        "task-226",
+        "task-228"
       ],
-      "description": "SPLIT from task-227. VERIFY+FLIP ONLY: read-only zero-discrepancy correctness harness (MV-backed vs live-RPC x today/mtd/ytd x office/pod/team dims). ZERO discrepancy -> flip refresh.mode:mv (ttl 300) in case_recovery_time.json. Non-zero -> leave cache with documented reason (fail-loud, like task-225 did for leads). No self-referential wait-loops.",
-      "doneWhen": "Harness run; zero-discrepancy -> catalog flipped to mv (ttl 300); non-zero -> left cache w/ reason; evidence committed; build+tests pass.",
-      "promptSummary": "## Problem\ncase_recovery_time MV (from task-227) needs read-only correctness proof before the cache->mv flip.\n\n## Build\nHarness: MV vs live-RPC x {today,mtd,ytd} x dims. Zero discrepancy -> flip to mv. Else keep cache + document.\n\n## Acceptance\nZero-discrepancy verified + flipped (or kept cache w/ reason); evidence committed; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-235.md"
+      "description": "SPLIT from original task-228. PART 2 = the two CV credit-scale measures, isolated because EXACT 0-1.5 credit semantics (NOT dollars) need dedicated attention. Prove CV additivity at grain before any flip; wrong CV is worse than slow-correct.",
+      "doneWhen": "CV semantics documented + additivity proven; flipped CV measures full-precision zero-discrepancy; any left cache documented; build+tests pass.",
+      "promptSummary": "## Problem\nconversion_efficiency_cv, total_converted_value_cv = cache; CV = 0-1.5 credit scale, NOT dollars.\n\n## Build\nPin CV semantics + additivity-at-grain; compose/composite; harness both x {today,mtd,ytd} x dims full precision; flip exact+fast.\n\n## Acceptance\nCV additivity proven; flipped measures full-precision zero-discrepancy; build+tests pass.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-236.md"
+    },
+    {
+      "id": "task-237",
+      "name": "assess case_aging_active (as_of snapshot)",
+      "phase": "phase-51",
+      "status": "pending",
+      "landed": false,
+      "depends_on": [
+        "task-224"
+      ],
+      "description": "SPLIT from task-233. as_of snapshot measure \u2014 different shape from ratios. Measure live latency; MV-back ONLY if genuinely slow, else keep cache w/ documented reason (MV-ing a fast snapshot buys nothing).",
+      "doneWhen": "Latency measured; flip-or-keep-cache decision documented; if flipped, zero-discrepancy proof; build+tests pass.",
+      "promptSummary": "## Problem\ncase_aging_active = cache as_of snapshot; may or may not be a real latency offender.\n\n## Build\nMeasure latency cold+warm x ranges; if fast keep cache w/ reason; if slow MV-back + zero-discrepancy harness + flip.\n\n## Acceptance\nLatency measured + decision documented; if flipped, correctness proof; build+tests pass.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-237.md"
     }
   ]
 }
