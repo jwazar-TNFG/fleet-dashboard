@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T16:10:00Z",
+  "updated_at": "2026-07-24T16:10:26Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5109,15 +5109,16 @@
       "doneWhen": "MV SQL + agg fn authored per leads-MV doctrine; build+tests pass; no catalog changes.",
       "promptSummary": "## Problem\nrep_logs measures raw-scan at wide ranges; need a shared MV.\n## Build\nAuthor kpi2_mv_rep_logs_daily_agg (grain covers all 5) + fail-loud agg fn. Authoring ONLY.\n## Acceptance\nMV authored, build+tests pass, no flips.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-224.md",
-      "lastActivity": "2026-07-24T15:13:22Z",
+      "lastActivity": "2026-07-24T16:10:26Z",
       "startedAt": "2026-07-24T12:59:07Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.036018,
       "inputTokens": 78,
       "outputTokens": 24648,
       "cacheReadTokens": 1921976,
       "finishedAt": "2026-07-24T15:13:22Z",
-      "durationSeconds": 8055
+      "durationSeconds": 8055,
+      "mergedAt": "2026-07-24T16:10:26Z"
     },
     {
       "id": "task-225",
