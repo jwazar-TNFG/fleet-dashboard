@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T05:10:40Z",
+  "updated_at": "2026-07-24T05:10:39Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4918,15 +4918,15 @@
       "doneWhen": "`AgingBuckets` renders a 0-30/31-60/61-90/90+ (or payload-`ageBands`) histogram with the 90+ bucket emphasized, from real bucket counts; the same histogram renders at all ranges for a D measure.",
       "promptSummary": "## Problem\nTwo archetypes need composition/histogram heroes the HUD cannot render today:\n- **`agingBuckets`** \u2014 archetype **D** (duration, lower-better days: `case_aging_active`, `case_cycle_time`). Duration is a snapshot, not an accumulation, so paceHero is wrong (Step 3.7). D's layout is `statCards(avg+median) \u2192 agingBuckets(0-30/31-60/61-90/90+) \u2192 rankedTable(worst offenders) \u2192 narrative`. The histogram over `ageBands` (the schema field already exists) has no renderer.\n- **`distributionBars`** \u2014 archetype **E** (`lead_rating_distribution`). A distribution is told as composition + mix trend, with NO single hero number and NO ranked table (Step 3.7): `distributionBars(A/B/C/D composition %) \u2192 trend(mix over time) \u2192 narrative`. No composition-bar primitive exists.\n\nSame Round-41 primitive pattern: protocol enum (task-212) \u2192 schema enum (task-212) \u2192 validator \u2192 renderer \u2192 test.\n\n## Build\n1. **`AgingBuckets` primitive** (`hud/src/renderer/src/components/charts/AgingBuckets.tsx` + styles in `charts.css`/`kpi.css`): a histogram over the measure's `ageBands` buckets (default 0-30 / 31-60 / 61-90 / 90+ days), each bar labeled with its bucket range + count/share, the oldest buckets (90+) visually emphasized (worst = attention color) since this is a lower-better duration metric. Read the bucket counts straight from the payload's aging-bucket aggregation (produced engine-side); never synthesize bucket boundaries the payload did not send \u2014 honor the measure's `ageBands` when present, fall back to the 0-30/31-60/61-90/90+ default only if the payload uses it.\n2. **`SectionAgingBuckets` renderer**: renders `AgingBuckets` when the resolved stack includes `agingBuckets` and the payload carries the bucketed counts; omit cleanly otherwise. Aging is a snapshot \u2192 it renders the SAME histogram at all ranges (Step 3 applied example: `case_aging_active` shows the same aging-bucket histogram at all ranges; only the trend granularity follows the range).\n3. **`DistributionBars` primitive** (`hud/src/renderer/src/components/charts/DistributionBars.tsx` + styles): a categorical composition bar/stack showing each category's share of the whole (e.g. lead-rating A/B/C/D as % of total), labeled with category + %; NO single hero number. Reads the composition straight from the payload's distribution aggregation; the shares must sum to 100% from real data \u2014 never invent a category.\n4. **`SectionDistributionBars` renderer**: renders `DistributionBars` when the resolved stack includes `distributionBars` and the payload carries the composition; omit cleanly otherwise. For archetype E the section stack has NO hero + NO ranked table (Step 3.7) \u2014 the resolver (task-216) enforces the stack; this renderer just draws the bars.\n5. **Wire into `ExpandedKpi`'s section switch** in `KpiMeasureView.tsx`: add `case 'agingBuckets'` \u2192 `SectionAgingBuckets` and `case 'distributionBars'` \u2192 `SectionDistributionBars`. `default` stays a safe no-op \u2014 additive, cannot regress existing measures.\n6. **Truthfulness / graceful downgrade:** missing bucket counts or an absent distribution omits the section \u2014 never a crash, never a fabricated bucket/category. Shares are rendered from payload figures only.\n\n## Acceptance\n- `AgingBuckets` renders a 0-30/31-60/61-90/90+ (or payload-`ageBands`) histogram with the 90+ bucket emphasized, from real bucket counts; the same histogram renders at all ranges for a D measure.\n- `DistributionBars` renders a categorical composition (shares summing to 100% from payload data) with NO hero number and NO ranked table for an E measure.\n- The `ExpandedKpi` switch handles `agingBuckets` and `distributionBars`; a measure whose stack lacks them is visually unchanged (a render/snapshot test pins no regression).\n- No crash on missing buckets/distribution; new files are `AgingBuckets.tsx` + `DistributionBars.tsx`; colors reuse existing tokens.\n- `npm run build` + HUD tests pass.\n\nImplement this task fully. Create a feature branch named task-215, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-215.md",
-      "lastActivity": "2026-07-24T02:45:09Z",
+      "lastActivity": "2026-07-24T05:10:39Z",
       "startedAt": "2026-07-24T02:16:54Z",
-      "landed": true,
+      "landed": false,
       "costUSD": 4.064542,
       "inputTokens": 108,
       "outputTokens": 41151,
       "cacheReadTokens": 4528554,
-      "finishedAt": "2026-07-24T02:27:38Z",
-      "durationSeconds": 644,
+      "finishedAt": "2026-07-24T05:10:39Z",
+      "durationSeconds": 10425,
       "mergedAt": "2026-07-24T02:45:09Z"
     },
     {
