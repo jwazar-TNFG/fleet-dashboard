@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T21:31:56Z",
+  "updated_at": "2026-07-24T21:48:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5219,7 +5219,7 @@
       "id": "task-232",
       "name": "rep_logs MV PART 2 \u2014 verify+flip confirmed_count + decided_count",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-224"
       ],
@@ -5227,8 +5227,15 @@
       "doneWhen": "Both counts zero-discrepancy verified + flipped; build+tests pass.",
       "promptSummary": "## Problem\nReuses the kpi2_mv_rep_logs_daily_agg MV from task-224. Verify confirmed_count + decided_count zero-discrepancy vs live RPC across dims x today/mtd/ytd, then flip to mv.\n\n## Acceptance\nBoth counts zero-discrepancy verified + flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-232.md",
-      "lastActivity": "2026-07-24T21:31:56Z",
-      "startedAt": "2026-07-24T21:31:56Z"
+      "lastActivity": "2026-07-24T21:48:10Z",
+      "startedAt": "2026-07-24T21:31:56Z",
+      "landed": false,
+      "costUSD": 3.131913,
+      "inputTokens": 118,
+      "outputTokens": 36836,
+      "cacheReadTokens": 3296155,
+      "finishedAt": "2026-07-24T21:48:10Z",
+      "durationSeconds": 974
     },
     {
       "id": "task-233",
