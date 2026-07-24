@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T07:31:10Z",
+  "updated_at": "2026-07-24T07:31:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5059,15 +5059,16 @@
       "id": "task-222",
       "name": "Verify: all 4 Mercury KPIs live + correct + rendered",
       "phase": "phase-50",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-221"
       ],
       "description": "The round's promise: the four Retention/Mercury KPIs (Recovery Rate, Case Recovery Time, Ticket Resolution Time, Retention Rep Workload) render on the Round-43 archetype layouts with real data, correct cross-source math, standard exclusions, and acceptable join performance. This task proves it end-to-end and captures evidence.",
       "doneWhen": "A payload-correctness table shows all four Mercury measures matching an independent recompute (Recovery Rate \u00f7 locked denominator; Case Recovery Time + Ticket Resolution Time durations; Rep Workload count) within tolerance; the Recovery-Rate denominator matches the task-218 lock.",
       "promptSummary": "## Problem\nThe round's promise: the four Retention/Mercury KPIs (Recovery Rate, Case Recovery Time, Ticket Resolution Time, Retention Rep Workload) render on the Round-43 archetype layouts with real data, correct cross-source math, standard exclusions, and acceptable join performance. This task proves it end-to-end and captures evidence.\n\n## Build\n1. **Payload correctness (real data, read-only):** using a read-only harness (Supabase creds from `~/.openclaw/secrets/supabase.json` via a temp env file \u2014 NO inline secrets), fetch each Mercury measure's HUD payload from the analyst-01 kpi2 endpoint across its applicable ranges and assert:\n   - **Recovery Rate**: the rate = `case_saved=true \u00f7 <locked denominator>` (task-218) recomputed independently over the raw `requests \u22c8 leads` join, matching within tolerance; gaugeHero threshold present; higher-better; NO Owed/paceHero in the stack.\n   - **Case Recovery Time**: `AVG(case_saved_at \u2212 leads.dateDropped)` in days (avg + median + aging buckets) recomputed independently, honoring the task-218 null-`dateDropped` behavior; agingBuckets present; NO paceHero.\n   - **Ticket Resolution Time**: `AVG(resolved_at \u2212 created_at)` in days over resolved tickets recomputed independently; agingBuckets present; NO paceHero.\n   - **Retention Rep Workload**: `COUNT(requests)` by `assigned_to` on the `as_of` snapshot recomputed independently; count + \u0394; NO target framing.\n2. **Exclusions verified:** confirm Katiria Bonilla + xSTAFF are excluded across the join in every measure (a row-level spot check on the raw vs excluded counts).\n3. **Render verification:** render each measure's expanded `KpiMeasureView` (node-side render test / jsdom, the existing HUD harness) and assert the DOM contains the correct archetype section stack in order (Recovery Rate \u2192 gaugeHero + trend + rankedTable + narrative; the two durations \u2192 statCards + agingBuckets + rankedTable + narrative; Rep Workload \u2192 statCards(count+\u0394) + trend + rankedTable + narrative). No `undefined` titles, no NaN, no fake band/threshold.\n4. **Cross-source join performance:** confirm the `requests \u22c8 leads` measures load within an acceptable latency budget; if the join needs a materialized view for acceptable performance, LAND the SQL in-repo (prod-apply gated on Jon like Round 40 \u2014 do NOT apply live).\n5. **Evidence:** write the payload-correctness table (per measure: recomputed vs payload values), the exclusion spot-check, the render assertions, and the join-performance numbers to `build/rounds/round-44-evidence/` (matching the prior-round evidence convention).\n\n## Acceptance\n- A payload-correctness table shows all four Mercury measures matching an independent recompute (Recovery Rate \u00f7 locked denominator; Case Recovery Time + Ticket Resolution Time durations; Rep Workload count) within tolerance; the Recovery-Rate denominator matches the task-218 lock.\n- A render assertion confirms each measure renders its correct archetype section stack in order (gauge / agingBuckets / count+\u0394), no undefined/NaN/fake values.\n- Exclusions (Katiria + xSTAFF) verified across the join; cross-source join performance is acceptable (or an MV is landed in-repo, prod-apply gated).\n- Evidence captured in `build/rounds/round-44-evidence/`; `npm run build` + `npm test` pass.\n\nImplement this task fully. Create a feature branch named task-222, commit, push, ensure npm run build passes, open a PR against main.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-222.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-222.md",
+      "lastActivity": "2026-07-24T07:31:24Z",
+      "startedAt": "2026-07-24T07:31:24Z"
     }
   ]
 }
