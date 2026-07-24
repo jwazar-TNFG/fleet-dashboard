@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T03:10:29Z",
+  "updated_at": "2026-07-24T05:10:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4958,7 +4958,7 @@
       "id": "task-217",
       "name": "Catalog authoring (all 17 non-Mercury measures) + full verify",
       "phase": "phase-49",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-216"
       ],
@@ -4966,8 +4966,11 @@
       "doneWhen": "All 17 non-Mercury measures carry `layoutArchetype` + `breakdownDimension` + valid `rotateDimensions`; the 4 new Templar KPIs (Signed Came In, Conversion Rate, Drop Rate, Performance) are authored with verified specs + BLUE VIRGIL_* columns; Performance uses the real DealGoal target.",
       "promptSummary": "## Problem\nThe layout system (task-212 schema, 213 dimensions/ranges, 214/215 primitives, 216 resolver+rotation) is built but INERT until every non-Mercury measure declares its `layoutArchetype`, `breakdownDimension`, and `rotateDimensions`, and the four new non-Mercury Templar KPIs are authored. This task tags all 17 non-Mercury measures, authors the 4 new ones, and proves every measure \u00d7 5 ranges renders the correct archetype section stack with real data.\n\n## Build\n1. **Tag every non-Mercury measure** with `layoutArchetype` (per the assignment above), `breakdownDimension` (the Step-3.5 default), and `rotateDimensions` (ordered subset of that measure's supportedDimensions; single-dimension measures like `lead_rating_distribution` get empty/absent \u2192 no rotation). Author each measure's `todayIntraday` flag `false` where there is no meaningful intraday signal (e.g. `labor_cost`; per Decision #2).\n2. **Author each expansion** to its archetype base layout \u2014 rely on the resolver (task-216) driven by `layoutArchetype` rather than hand-authoring 66 layouts; only add an `expandedLayout` OVERRIDE where a measure genuinely needs a bespoke stack. Confirm the resolver produces the right stack per archetype for each measure.\n3. **Author the 4 new Templar KPIs** (`Signed Came In`, `Conversion Rate`, `Drop Rate`, `Performance`) as catalog measures with verified specs, correct `layoutArchetype` (A/B/B/A), `breakdownDimension` + `rotateDimensions`, and the BLUE `VIRGIL_*` columns (VIRGIL_measure_id, VIRGIL_table, VIRGIL_date_field, VIRGIL_measure_spec, VIRGIL_filters, VIRGIL_exclusion_set, VIRGIL_kb_page, VIRGIL_status, VIRGIL_live_value). Performance uses the real `employees.DealGoal` target (verify the DealGoal column exists live before authoring \u2014 Rule #2); the other three keep the derived-target fallback. Apply the standard exclusions (Katiria Bonilla + xSTAFF) in every spec.\n4. **Full verify (real data, read-only):** using a read-only harness (Supabase creds from `~/.openclaw/secrets/supabase.json` via a temp env file \u2014 NO inline secrets), for EVERY non-Mercury measure \u00d7 5 ranges (Today/WTD/MTD/QTD/YTD; plus `as_of` for `case_aging_active`):\n   - Assert the resolved section stack matches the archetype (A gets paceHero; B/G get gaugeHero; D gets agingBuckets, no paceHero; E gets distributionBars, no hero/table; F/H per their base) and that the range adaptation is correct (Today = vsPriorHero + hourly; MTD = paceHero + daily; YTD = monthly bars; WTD/QTD as specified).\n   - Backward-compat: a target-less measure still degrades (paceHero/paceBand stripped); archetype F shows no target framing.\n   - Correctness parity: the new-dimension aggregations (treatment_location/case_type) match slow-path recompute (reuse task-213's parity).\n   - Pre-warm matrix green for measures \u00d7 5 ranges (extend the Round-40 pre-warm to 5 ranges).\n   - Sanity anchors unchanged by the presentation change (e.g. SIGNED MTD headline holds its verified baseline).\n5. **Evidence:** write the per-measure archetype/breakdown/rotation table, the section-stack assertions per range, the new-KPI specs + live values, backward-compat + parity results to `build/rounds/round-43-evidence/` (matching the prior-round evidence convention).\n\n## Acceptance\n- All 17 non-Mercury measures carry `layoutArchetype` + `breakdownDimension` + valid `rotateDimensions`; the 4 new Templar KPIs (Signed Came In, Conversion Rate, Drop Rate, Performance) are authored with verified specs + BLUE VIRGIL_* columns; Performance uses the real DealGoal target.\n- Every non-Mercury measure \u00d7 5 ranges renders the correct archetype section stack with real data; backward-compat (target-less degrades) + correctness parity (new dims) hold; the pre-warm matrix is green across 5 ranges; sanity anchors unchanged.\n- Evidence captured in `build/rounds/round-43-evidence/`; `npm run build` + `npm test` pass.\n\nImplement this task fully. Create a feature branch named task-217, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-217.md",
-      "lastActivity": "2026-07-24T02:58:47Z",
-      "startedAt": "2026-07-24T02:58:47Z"
+      "lastActivity": "2026-07-24T05:10:01Z",
+      "startedAt": "2026-07-24T02:58:47Z",
+      "landed": false,
+      "finishedAt": "2026-07-24T05:10:01Z",
+      "durationSeconds": 7874
     },
     {
       "id": "task-218",
