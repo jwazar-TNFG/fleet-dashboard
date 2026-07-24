@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T06:57:52Z",
+  "updated_at": "2026-07-24T07:31:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5040,7 +5040,7 @@
       "id": "task-221",
       "name": "Catalog + Focus layouts for the 4 Mercury KPIs",
       "phase": "phase-50",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-219",
         "task-220"
@@ -5049,8 +5049,11 @@
       "doneWhen": "The 4 Mercury measures are authored with verified specs + BLUE VIRGIL_* columns + a live VIRGIL_live_value, correct `layoutArchetype` (B/D/D/F), and valid `breakdownDimension` + `rotateDimensions`.",
       "promptSummary": "## Problem\nThe four Mercury measures now compute in the engine (tasks 219/220) but have no catalog specs, so the HUD cannot render them. This task authors the 4 catalog measures with verified specs, BLUE `VIRGIL_*` columns, their `layoutArchetype`, `breakdownDimension` + `rotateDimensions`, and wires them onto the Round-43 archetype layouts.\n\n## Build\n1. **Author the 4 catalog measures** with verified specs (using the engine implementations + the task-218 `mercury-verification.md` evidence) and the BLUE `VIRGIL_*` columns (VIRGIL_measure_id, VIRGIL_table, VIRGIL_date_field, VIRGIL_measure_spec, VIRGIL_filters, VIRGIL_exclusion_set, VIRGIL_kb_page, VIRGIL_status, VIRGIL_live_value). Standard exclusions (Katiria Bonilla + xSTAFF) in every spec.\n2. **Tag each with its `layoutArchetype`** (Recovery Rate = B; Case Recovery Time = D; Ticket Resolution Time = D; Retention Rep Workload = F) so the Round-43 resolver (task-216) drives the section stack \u2014 do NOT hand-author full layouts; add an `expandedLayout` OVERRIDE only if genuinely bespoke.\n3. **Set `breakdownDimension` + `rotateDimensions`** (ordered subset of each measure's real `supportedDimensions`; the Round-43 task-212 validator enforces the subset). Recovery Rate + Case Recovery Time rotate through sensible office/team dimensions; Rep Workload breaks down by `assigned_to` (Mercury-only dimension from task-218). Single-sensible-dimension measures get no rotation.\n4. **Range handling.** These inherit the Round-43 range windows. Retention Rep Workload uses the `as_of` snapshot range (like Case Aging) \u2014 set that as its natural range. Where a Mercury KPI has no meaningful intraday signal, set `todayIntraday:false` so the Round-43 renderer shows the \"insufficient intraday data\" graceful state instead of an empty panel.\n5. Author `VIRGIL_live_value` from a read-only live query (Supabase creds via a temp env file \u2014 NO inline secrets) so each spec carries a verified current value.\n\n## Acceptance\n- The 4 Mercury measures are authored with verified specs + BLUE VIRGIL_* columns + a live VIRGIL_live_value, correct `layoutArchetype` (B/D/D/F), and valid `breakdownDimension` + `rotateDimensions`.\n- Each renders its archetype stack via the Round-43 resolver (Recovery Rate = gauge; the two durations = agingBuckets; Rep Workload = count+\u0394 with `as_of`); no bespoke re-implementation.\n- `todayIntraday:false` set where intraday is not meaningful; exclusions present in every spec.\n- `npm run build` + `npm test` pass.\n\nImplement this task fully. Create a feature branch named task-221, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-221.md",
-      "lastActivity": "2026-07-24T06:57:52Z",
-      "startedAt": "2026-07-24T06:57:52Z"
+      "lastActivity": "2026-07-24T07:31:10Z",
+      "startedAt": "2026-07-24T06:57:52Z",
+      "landed": false,
+      "finishedAt": "2026-07-24T07:31:10Z",
+      "durationSeconds": 1998
     },
     {
       "id": "task-222",
