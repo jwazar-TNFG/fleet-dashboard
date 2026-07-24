@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T14:21:04Z",
+  "updated_at": "2026-07-24T21:25:34Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5140,13 +5140,14 @@
       "id": "task-227",
       "name": "requests MV AUTHORING (case_recovery_time)",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [],
       "description": "SPLIT from original task-227 (which deadlocked at verify time, context exhaustion). AUTHOR ONLY: author/extend kpi2_mv_requests_recovery_agg MV + justify recovery-days math (n-weighted mean = row AVG for integer day-diff) + register for refresh. NO catalog flip, NO live-DB correctness harness (that is task-235). Catalog stays cache.",
       "doneWhen": "MV authored + registered; recovery-days math justified in header; catalog UNCHANGED (still cache); build+tests pass.",
       "promptSummary": "## Problem\ncase_recovery_time cache-mode on requests lineage, no MV backing.\n\n## Build\nAuthor/extend kpi2_mv_requests_recovery_agg (recovery-days math justified) + register for refresh. NO flip, NO harness.\n\n## Acceptance\nMV authored + registered; math justified; catalog still cache; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-227.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-227.md",
+      "lastActivity": "2026-07-24T21:25:34Z",
+      "startedAt": "2026-07-24T21:25:34Z"
     },
     {
       "id": "task-228",
