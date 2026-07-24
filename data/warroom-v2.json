@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T05:10:35Z",
+  "updated_at": "2026-07-24T05:10:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4895,15 +4895,15 @@
       "doneWhen": "`GaugeHero` renders a current-level-vs-threshold ring for a B-archetype payload (color-banded), and a neutral no-target-color ring for a G-archetype payload; a lower-better (Drop Rate) gauge inverts the good/bad direction correctly.",
       "promptSummary": "## Problem\nThe archetype\u00d7range matrix (Steps 2\u20133) needs two hero primitives that do not exist in the HUD:\n- **`gaugeHero`** \u2014 the hero for archetypes **B** (rate/ratio, current % vs threshold) and **G** (neutral rate, no target color). A rate is a level, not an accumulation \u2014 paceHero's Goal/Delivered/Owed is meaningless for it (Round-41 Rule-#2 correction), so B/G measures need a current-level-vs-threshold gauge ring instead. The Intake-Pace gauge component already exists in the HUD and should be REUSED.\n- **`vsPriorHero`** \u2014 the Today-range hero for ALL archetypes (Step 3 range matrix: Today's question is \"how are we doing right now?\" answered as current vs same-time-yesterday / last-week, not a daily \"Owed\" which is noise intraday). No such primitive exists.\n\nThese follow Round 41's primitive pattern exactly: protocol enum (already added by task-212) \u2192 schema enum (already added) \u2192 validator acceptance \u2192 renderer \u2192 unit test.\n\n## Build\n1. **`GaugeHero` primitive** (`hud/src/renderer/src/components/charts/GaugeHero.tsx` + styles in `charts.css`/`kpi.css`): a gauge ring showing the measure's current % (or rate value) against a threshold, color-banded. REUSE the existing Intake-Pace gauge component/rendering rather than building a new ring from scratch (grep the HUD for the intake-pace gauge; wrap/parameterize it). Accept the current value, the threshold, direction (higher-better vs lower-better \u2014 Drop Rate is a lower-better inverted gauge per the archetype table), and a `showTargetColor` flag. Archetype **G** (`referral_out_rate`) sets `showTargetColor:false` \u2192 neutral coloring, no good/bad threshold band. Reads only fields the payload already carries (the rate value + any threshold the engine sends); never fabricate a threshold.\n2. **`SectionGaugeHero` renderer**: renders `GaugeHero` for a measure whose resolved section stack includes `gaugeHero`; omit cleanly (return null) when the payload lacks the rate value. No paceHero Goal/Delivered/Owed for these \u2014 the gauge IS the hero.\n3. **`VsPriorHero` primitive** (`hud/src/renderer/src/components/charts/VsPriorHero.tsx` + styles): the Today-mode hero \u2014 current value + the delta vs same-time-yesterday and/or vs last-week (Intake-Pace gauge style comparison). Accept `{ current, priorSameTime, priorLabel, direction }` and render the current headline + a signed delta badge (color by direction). If the vs-prior comparison payload is absent (engine sends it only for Today per the range matrix), the section omits \u2014 never render a fake prior.\n4. **`SectionVsPriorHero` renderer**: renders `VsPriorHero` when the resolved stack (Today range) includes `vsPriorHero` AND the payload carries the vs-prior figures; otherwise null.\n5. **Wire into `ExpandedKpi`'s section switch** in `KpiMeasureView.tsx`: add `case 'gaugeHero'` \u2192 `SectionGaugeHero` and `case 'vsPriorHero'` \u2192 `SectionVsPriorHero`. The `default` branch stays a safe no-op (unknown sections already return null), so this is additive and cannot regress existing measures.\n6. **Truthfulness / graceful downgrade:** any missing sub-data (no rate value, no vs-prior payload) omits the section \u2014 never a crash, never an invented threshold or prior number. `gaugeHero` with a null/absent threshold on archetype G renders neutrally (no band coloring), not a fake target.\n\n## Acceptance\n- `GaugeHero` renders a current-level-vs-threshold ring for a B-archetype payload (color-banded), and a neutral no-target-color ring for a G-archetype payload; a lower-better (Drop Rate) gauge inverts the good/bad direction correctly.\n- `VsPriorHero` renders current + a signed vs-same-time-yesterday/last-week delta for a Today-range payload, and omits cleanly when the vs-prior payload is absent.\n- The `ExpandedKpi` switch handles `gaugeHero` and `vsPriorHero`; a measure whose stack lacks them is visually unchanged (a render/snapshot test pins no regression).\n- No crash on null threshold / absent prior; new files are `GaugeHero.tsx` + `VsPriorHero.tsx`; band colors reuse existing tokens.\n- `npm run build` + HUD tests pass.\n\nImplement this task fully. Create a feature branch named task-214, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-214.md",
-      "lastActivity": "2026-07-24T02:27:58Z",
+      "lastActivity": "2026-07-24T05:10:38Z",
       "startedAt": "2026-07-24T02:01:13Z",
-      "landed": true,
+      "landed": false,
       "costUSD": 6.488646,
       "inputTokens": 180,
       "outputTokens": 54885,
       "cacheReadTokens": 8480879,
-      "finishedAt": "2026-07-24T02:16:37Z",
-      "durationSeconds": 924,
+      "finishedAt": "2026-07-24T05:10:38Z",
+      "durationSeconds": 11365,
       "mergedAt": "2026-07-24T02:27:58Z"
     },
     {
