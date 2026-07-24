@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T15:13:22Z",
+  "updated_at": "2026-07-24T15:13:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5123,13 +5123,14 @@
       "id": "task-225",
       "name": "leads MV backing (cpa, cpl, case_cycle_time)",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [],
       "description": "3 leads measures cache-mode. Reuse existing kpi2_mv_leads_daily_agg (covers case_cycle_time). cpa/cpl cross into payroll spend \u2014 MV leads leg, coordinate spend w/ task-226 or leave cache w/ documented reason.",
       "doneWhen": "case_cycle_time MV-backed+verified; cpa/cpl verified+flipped OR documented cache pending payroll; build+tests pass.",
       "promptSummary": "## Problem\n3 leads measures cache-mode. Reuse existing kpi2_mv_leads_daily_agg (covers case_cycle_time). cpa/cpl cross into payroll spend \u2014 MV leads leg, coordinate spend w/ task-226 or leave cache w/ documented reason.\n\n## Acceptance\ncase_cycle_time MV-backed+verified; cpa/cpl verified+flipped OR documented cache pending payroll; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-225.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-225.md",
+      "lastActivity": "2026-07-24T15:13:36Z",
+      "startedAt": "2026-07-24T15:13:36Z"
     },
     {
       "id": "task-226",
