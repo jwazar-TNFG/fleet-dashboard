@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T22:46:05Z",
+  "updated_at": "2026-07-24T22:46:08Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5298,15 +5298,16 @@
       "id": "task-237",
       "name": "assess case_aging_active (as_of snapshot)",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-224"
       ],
       "description": "SPLIT from task-233. as_of snapshot measure \u2014 different shape from ratios. Measure live latency; MV-back ONLY if genuinely slow, else keep cache w/ documented reason (MV-ing a fast snapshot buys nothing).",
       "doneWhen": "Latency measured; flip-or-keep-cache decision documented; if flipped, zero-discrepancy proof; build+tests pass.",
       "promptSummary": "## Problem\ncase_aging_active = cache as_of snapshot; may or may not be a real latency offender.\n\n## Build\nMeasure latency cold+warm x ranges; if fast keep cache w/ reason; if slow MV-back + zero-discrepancy harness + flip.\n\n## Acceptance\nLatency measured + decision documented; if flipped, correctness proof; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-237.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-237.md",
+      "lastActivity": "2026-07-24T22:46:08Z",
+      "startedAt": "2026-07-24T22:46:08Z"
     }
   ]
 }
