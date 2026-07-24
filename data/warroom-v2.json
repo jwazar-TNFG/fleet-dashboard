@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T12:58:53Z",
+  "updated_at": "2026-07-24T12:59:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5102,13 +5102,14 @@
       "id": "task-224",
       "name": "rep_logs MV backing (signed, confirmed_count/rate, decided_count, cpr)",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [],
       "description": "5 rep_logs measures raw-scan at YTD; signed YTD exceeds 90s and never caches -> HUD NO DATA. Author kpi2_mv_rep_logs_daily_agg (fail-loud, exclusions in WHERE); zero-discrepancy correctness vs live RPC before flipping refresh.mode to mv. Assess case_aging_active (as_of) separately.",
       "doneWhen": "MV authored; zero-discrepancy MV-vs-live across dims x today/mtd/ytd; catalog flipped for passing measures; build+tests pass.",
       "promptSummary": "## Problem\n5 rep_logs measures raw-scan at YTD; signed YTD exceeds 90s and never caches -> HUD NO DATA. Author kpi2_mv_rep_logs_daily_agg (fail-loud, exclusions in WHERE); zero-discrepancy correctness vs live RPC before flipping refresh.mode to mv. Assess case_aging_active (as_of) separately.\n\n## Acceptance\nMV authored; zero-discrepancy MV-vs-live across dims x today/mtd/ytd; catalog flipped for passing measures; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-224.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-224.md",
+      "lastActivity": "2026-07-24T12:59:07Z",
+      "startedAt": "2026-07-24T12:59:07Z"
     },
     {
       "id": "task-225",
