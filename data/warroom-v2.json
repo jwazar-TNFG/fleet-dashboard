@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T14:57:08Z",
+  "updated_at": "2026-07-24T15:13:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5103,14 +5103,21 @@
       "id": "task-224",
       "name": "rep_logs MV PART 1 \u2014 AUTHOR kpi2_mv_rep_logs_daily_agg only (no verify, no flip)",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "Authoring-only after two combined MV+verify attempts stalled (context exhaustion / 35-min idle). Writes the shared rep_logs MV SQL + fail-loud agg fn at a grain covering all 5 rep_logs measures. No live-DB verification, no catalog flip here \u2014 task-234 verifies+flips signed.",
       "doneWhen": "MV SQL + agg fn authored per leads-MV doctrine; build+tests pass; no catalog changes.",
       "promptSummary": "## Problem\nrep_logs measures raw-scan at wide ranges; need a shared MV.\n## Build\nAuthor kpi2_mv_rep_logs_daily_agg (grain covers all 5) + fail-loud agg fn. Authoring ONLY.\n## Acceptance\nMV authored, build+tests pass, no flips.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-224.md",
-      "lastActivity": "2026-07-24T14:57:08Z",
-      "startedAt": "2026-07-24T12:59:07Z"
+      "lastActivity": "2026-07-24T15:13:22Z",
+      "startedAt": "2026-07-24T12:59:07Z",
+      "landed": false,
+      "costUSD": 2.036018,
+      "inputTokens": 78,
+      "outputTokens": 24648,
+      "cacheReadTokens": 1921976,
+      "finishedAt": "2026-07-24T15:13:22Z",
+      "durationSeconds": 8055
     },
     {
       "id": "task-225",
