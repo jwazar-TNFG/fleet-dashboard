@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T20:03:36Z",
+  "updated_at": "2026-07-24T20:09:12Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5170,7 +5170,7 @@
       "doneWhen": "MV authored + registered; recovery-days math justified; zero-discrepancy verified + flipped; build+tests pass.",
       "promptSummary": "## Problem\ncase_recovery_time cache-mode on requests lineage, no MV backing. Author/extend kpi2_mv_requests_recovery_agg (recovery-days math justified), correctness-verify before flip.\n\n## Acceptance\nMV authored + registered; recovery-days math justified; zero-discrepancy verified + flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-227.md",
-      "lastActivity": "2026-07-24T16:54:21Z",
+      "lastActivity": "2026-07-24T20:09:12Z",
       "startedAt": "2026-07-24T16:54:21Z"
     },
     {
