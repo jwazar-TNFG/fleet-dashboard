@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T06:05:55Z",
+  "updated_at": "2026-07-24T06:05:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5006,15 +5006,16 @@
       "doneWhen": "Ticket Resolution Time returns `AVG(resolved_at \u2212 created_at)` in days over resolved tickets (avg + median + aging buckets), server-side aggregated, matching a client recompute within tolerance.",
       "promptSummary": "## Problem\nTwo of the four Mercury KPIs are single-table (`requests`-only) and can be implemented without a cross-source join:\n- **Ticket Resolution Time** (archetype D, duration) = `AVG(requests.resolved_at \u2212 requests.created_at)` in days over resolved tickets.\n- **Retention Rep Workload** (archetype F, volume neutral) = `COUNT(requests)` grouped by `assigned_to`, on an `as_of` snapshot range (like Case Aging \u2014 a point-in-time count, not a to-date accumulation).\n\nNeither exists in the KPI2 engine yet.\n\n## Build\n1. **Ticket Resolution Time.** Implement in the KPI2 engine as a duration measure over `requests`: `AVG(resolved_at \u2212 created_at)` in days over rows where the ticket is resolved (use the confirmed resolved definition from task-218 \u2014 `resolved_at` not null and/or `status \u2208 {Resolved, Completed}`; use whatever task-218 locked). Emit avg + median (archetype D statCards) and the aging-bucket aggregation (0-30/31-60/61-90/90+ days over resolution time) so the D `agingBuckets` primitive (Round-43 task-215) can render. Server-side aggregation only \u2014 no client-side full-table math. Correctness parity (slow-path client recompute vs fast-path RPC/MV) within tolerance, same discipline as Round 40.\n2. **Retention Rep Workload.** Implement as a neutral-volume count over `requests` grouped by `assigned_to` on the `as_of` snapshot range (reuse the existing `as_of` mechanism \u2014 do NOT invent a new range). Emit count + \u0394-vs-prior (archetype F statCards; NO target framing). Server-side aggregation; correctness parity vs a client recompute.\n3. **Exclusions across both.** Apply the standard exclusions (Katiria Bonilla + xSTAFF) using the confirmed `assigned_to` grain from task-218 \u2014 filter in-DB, not client-side.\n4. **Reuse, do not rebuild.** Use the Round-43 range windows + the existing engine aggregation/pre-warm paths; these measures inherit the archetype layout system in task-221. No new primitives, no new range mechanics here.\n\n## Acceptance\n- Ticket Resolution Time returns `AVG(resolved_at \u2212 created_at)` in days over resolved tickets (avg + median + aging buckets), server-side aggregated, matching a client recompute within tolerance.\n- Retention Rep Workload returns `COUNT(requests)` by `assigned_to` on the `as_of` snapshot range (count + \u0394, no target framing), matching a client recompute.\n- Standard exclusions (Katiria + xSTAFF) applied in-DB on both; a unit/correctness-parity test pins both measures.\n- `npm run build` + `npm test` (kpi2) pass; live `/api/retention/*` untouched; any prod DDL landed in-repo only (not applied).\n\nImplement this task fully. Create a feature branch named task-219, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-219.md",
-      "lastActivity": "2026-07-24T06:05:47Z",
+      "lastActivity": "2026-07-24T06:05:58Z",
       "startedAt": "2026-07-24T05:30:55Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 11.133453,
       "inputTokens": 196,
       "outputTokens": 128702,
       "cacheReadTokens": 6797997,
       "finishedAt": "2026-07-24T06:05:47Z",
-      "durationSeconds": 2092
+      "durationSeconds": 2092,
+      "mergedAt": "2026-07-24T06:05:58Z"
     },
     {
       "id": "task-220",
