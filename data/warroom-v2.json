@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T16:10:26Z",
+  "updated_at": "2026-07-24T16:54:03Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5144,13 +5144,19 @@
       "id": "task-226",
       "name": "payroll MV backing NET-NEW (labor_cost, boost_ad_spend)",
       "phase": "phase-51",
-      "status": "pending",
+      "status": "completed",
       "landed": false,
       "depends_on": [],
       "description": "labor_cost + boost_ad_spend cache-mode; NO payroll MV exists. Author net-new kpi2_mv_payroll_daily_agg (idempotent, fail-loud, exclusions), register for refresh, correctness-verify before flip.",
       "doneWhen": "MV authored + registered; both measures zero-discrepancy verified + flipped; build+tests pass.",
       "promptSummary": "## Problem\nlabor_cost + boost_ad_spend cache-mode; NO payroll MV exists. Author net-new kpi2_mv_payroll_daily_agg (idempotent, fail-loud, exclusions), register for refresh, correctness-verify before flip.\n\n## Acceptance\nMV authored + registered; both measures zero-discrepancy verified + flipped; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-226.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-226.md",
+      "lastActivity": "2026-07-24T16:54:03Z",
+      "costUSD": 7.67896,
+      "inputTokens": 194,
+      "outputTokens": 77423,
+      "cacheReadTokens": 6328206,
+      "finishedAt": "2026-07-24T16:54:03Z"
     },
     {
       "id": "task-227",
