@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T12:22:31Z",
+  "updated_at": "2026-07-24T12:58:53Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5082,14 +5082,21 @@
       "id": "task-223",
       "name": "FIX kpi2 /hud serve-path hang (computeHudParts) \u2014 BLOCKER, runs first",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "The main kpi2 engine HANGS on every /hud/:measure serve (even MV-backed lead_count), blocking the Round 43/44 Focus archetype layouts + all MV work. Verified: individual DB reads resolve fast, but handleKpi2Request('/hud/lead_count', range=mtd) times out (>35s). Root cause is inside computeHudParts (src/http.ts; dist/http.js ~L851) \u2014 the task-207 composed story path. Prime suspect: an un-guarded await that never settles in the derived-target fallback (http.js ~L973-L1097) or narrative build.",
       "doneWhen": "Committed reproducer passes; /hud resolves for MV+cache measures at today/mtd/ytd; every enrichment sub-step provably non-fatal; build+tests pass.",
       "promptSummary": "## Problem\nThe main kpi2 engine HANGS on every /hud/:measure serve (even MV-backed lead_count), blocking the Round 43/44 Focus archetype layouts + all MV work. Verified: individual DB reads resolve fast, but handleKpi2Request('/hud/lead_count', range=mtd) times out (>35s). Root cause is inside computeHudParts (src/http.ts; dist/http.js ~L851) \u2014 the task-207 composed story path. Prime suspect: an un-guarded await that never settles in the derived-target fallback (http.js ~L973-L1097) or narrative build.\n\n## Acceptance\nCommitted reproducer passes; /hud resolves for MV+cache measures at today/mtd/ytd; every enrichment sub-step provably non-fatal; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-223.md",
-      "lastActivity": "2026-07-24T12:22:31Z",
-      "startedAt": "2026-07-24T12:22:31Z"
+      "lastActivity": "2026-07-24T12:58:53Z",
+      "startedAt": "2026-07-24T12:22:31Z",
+      "landed": false,
+      "costUSD": 8.986222,
+      "inputTokens": 198,
+      "outputTokens": 75567,
+      "cacheReadTokens": 9788268,
+      "finishedAt": "2026-07-24T12:58:53Z",
+      "durationSeconds": 2182
     },
     {
       "id": "task-224",
