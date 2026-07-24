@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T00:56:46Z",
+  "updated_at": "2026-07-24T00:56:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4767,15 +4767,15 @@
       "status": "completed",
       "phase": "phase-48",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-209.md",
-      "lastActivity": "2026-07-23T23:10:29Z",
+      "lastActivity": "2026-07-24T00:56:48Z",
       "startedAt": "2026-07-23T22:59:51Z",
       "landed": false,
       "costUSD": 3.305508,
       "inputTokens": 106,
       "outputTokens": 34724,
       "cacheReadTokens": 3625206,
-      "finishedAt": "2026-07-23T23:10:29Z",
-      "durationSeconds": 638
+      "finishedAt": "2026-07-24T00:56:48Z",
+      "durationSeconds": 7017
     },
     {
       "id": "task-210",
