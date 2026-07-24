@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T21:48:22Z",
+  "updated_at": "2026-07-24T22:24:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5241,7 +5241,7 @@
       "id": "task-233",
       "name": "rep_logs MV PART 3 \u2014 verify+flip confirmed_rate + cpr (ratios)",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-224"
       ],
@@ -5249,8 +5249,15 @@
       "doneWhen": "Each ratio zero-discrepancy MV-verified + flipped, OR documented left cache; build+tests pass.",
       "promptSummary": "## Problem\nconfirmed_rate + cpr = cache ratios on rep_logs; ratios need both legs representable at MV grain.\n\n## Build\nVerify num+denom representability; harness representable ratios x dims x {today,mtd,ytd}; flip passers, cache the rest w/ reason.\n\n## Acceptance\nEach ratio flipped-or-cached-with-reason; evidence; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-233.md",
-      "lastActivity": "2026-07-24T21:48:22Z",
-      "startedAt": "2026-07-24T21:48:22Z"
+      "lastActivity": "2026-07-24T22:24:49Z",
+      "startedAt": "2026-07-24T21:48:22Z",
+      "landed": false,
+      "costUSD": 6.104354,
+      "inputTokens": 140,
+      "outputTokens": 61056,
+      "cacheReadTokens": 5209203,
+      "finishedAt": "2026-07-24T22:24:49Z",
+      "durationSeconds": 2187
     },
     {
       "id": "task-234",
