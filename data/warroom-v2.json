@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T20:22:35Z",
+  "updated_at": "2026-07-24T21:22:43Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5164,14 +5164,21 @@
       "id": "task-227",
       "name": "requests MV backing (case_recovery_time)",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "case_recovery_time cache-mode on requests lineage, no MV backing. Author/extend kpi2_mv_requests_recovery_agg (recovery-days math justified), correctness-verify before flip.",
       "doneWhen": "MV authored + registered; recovery-days math justified; zero-discrepancy verified + flipped; build+tests pass.",
       "promptSummary": "## Problem\ncase_recovery_time cache-mode on requests lineage, no MV backing. Author/extend kpi2_mv_requests_recovery_agg (recovery-days math justified), correctness-verify before flip.\n\n## Acceptance\nMV authored + registered; recovery-days math justified; zero-discrepancy verified + flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-227.md",
-      "lastActivity": "2026-07-24T20:22:35Z",
-      "startedAt": "2026-07-24T16:54:21Z"
+      "lastActivity": "2026-07-24T21:22:43Z",
+      "startedAt": "2026-07-24T16:54:21Z",
+      "landed": false,
+      "costUSD": 5.160412,
+      "inputTokens": 2,
+      "outputTokens": 339,
+      "cacheReadTokens": 0,
+      "finishedAt": "2026-07-24T21:22:43Z",
+      "durationSeconds": 16102
     },
     {
       "id": "task-228",
