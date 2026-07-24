@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T06:05:58Z",
+  "updated_at": "2026-07-24T06:06:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5021,15 +5021,16 @@
       "id": "task-220",
       "name": "Engine: cross-source Mercury measures (Recovery Rate + Case Recovery Time)",
       "phase": "phase-50",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-218"
       ],
       "description": "Two of the four Mercury KPIs require an in-DB cross-source join `requests \u22c8 leads`:\n- **Recovery Rate** (archetype B, rate higher-better gauge) = `requests.case_saved=true` count \u00f7 the LOCKED dropped/at-risk denominator (task-218). A rate \u2014 gaugeHero vs threshold, NO Owed.\n- **Case Recovery Time** (archetype D, duration) = `AVG(requests.case_saved_at \u2212 leads.dateDropped)` in days over saved cases.\n\nThe `requests \u22c8 leads \u22c8 rep_logs-green` join pattern already exists in the engine (Lead-Rating/CV precedent, `kpi2/src/engine.ts`) \u2014 REUSE it; run the join IN-DB, never client-side.",
       "doneWhen": "Recovery Rate returns `case_saved=true \u00f7 <locked denominator>` via the in-DB requests\u22c8leads join, with a gaugeHero threshold, higher-better, no Owed \u2014 matching a client recompute within tolerance.",
       "promptSummary": "## Problem\nTwo of the four Mercury KPIs require an in-DB cross-source join `requests \u22c8 leads`:\n- **Recovery Rate** (archetype B, rate higher-better gauge) = `requests.case_saved=true` count \u00f7 the LOCKED dropped/at-risk denominator (task-218). A rate \u2014 gaugeHero vs threshold, NO Owed.\n- **Case Recovery Time** (archetype D, duration) = `AVG(requests.case_saved_at \u2212 leads.dateDropped)` in days over saved cases.\n\nThe `requests \u22c8 leads \u22c8 rep_logs-green` join pattern already exists in the engine (Lead-Rating/CV precedent, `kpi2/src/engine.ts`) \u2014 REUSE it; run the join IN-DB, never client-side.\n\n## Build\n1. **Recovery Rate** (archetype B). Implement as `case_saved=true count \u00f7 <locked denominator>` over the range window, via the in-DB `requests \u22c8 leads` join (reuse the existing cross-source join pattern; do NOT join client-side). Emit the rate value + the threshold the gaugeHero (Round-43 task-214) renders against (derived threshold per the Round-43 derived-target rule for B measures, unless an explicit threshold is set). Higher-better gauge \u2014 NO Owed/paceHero.\n2. **Case Recovery Time** (archetype D). Implement as `AVG(requests.case_saved_at \u2212 leads.dateDropped)` in days over saved cases, via the same `requests \u22c8 leads` join. Honor the task-218 null-`dateDropped` behavior. Emit avg + median + the aging-bucket aggregation so the D `agingBuckets` primitive renders.\n3. **Exclusions across the join.** Apply Katiria Bonilla + xSTAFF exclusions across the joined rows (using the confirmed grain from task-218) \u2014 in-DB, not client-side.\n4. **Correctness parity.** Slow-path (client-side recompute over the raw joined rows) vs fast-path (RPC/MV) comparison within the standard tolerance for BOTH measures, same discipline as Round 40. Any prod DDL (a cross-source RPC/MV if needed) lands in-repo; prod-apply is a SEPARATE gated step on Jon (Rule #1).\n5. **Reuse, do not rebuild.** Range windows, gauge threshold derivation, and pre-warm all come from Round 43 \u2014 do not re-implement them.\n\n## Acceptance\n- Recovery Rate returns `case_saved=true \u00f7 <locked denominator>` via the in-DB requests\u22c8leads join, with a gaugeHero threshold, higher-better, no Owed \u2014 matching a client recompute within tolerance.\n- Case Recovery Time returns `AVG(case_saved_at \u2212 leads.dateDropped)` in days (avg + median + aging buckets), honoring the task-218 null-dateDropped behavior \u2014 matching a client recompute.\n- Standard exclusions (Katiria + xSTAFF) applied across the join; a correctness-parity test pins both measures.\n- `npm run build` + `npm test` (kpi2) pass; live `/api/retention/*` untouched; any prod DDL landed in-repo only (not applied).\n\nImplement this task fully. Create a feature branch named task-220, commit, push, ensure npm run build passes, open a PR against main.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-220.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-220.md",
+      "lastActivity": "2026-07-24T06:06:00Z",
+      "startedAt": "2026-07-24T06:06:00Z"
     },
     {
       "id": "task-221",
