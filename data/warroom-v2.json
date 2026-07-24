@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T22:25:10Z",
+  "updated_at": "2026-07-24T22:46:05Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5264,7 +5264,7 @@
       "id": "task-234",
       "name": "rep_logs MV PART 1b \u2014 verify+flip signed against the MV",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-224"
       ],
@@ -5272,8 +5272,10 @@
       "doneWhen": "signed zero-discrepancy verified + flipped to mv; evidence committed; build+tests pass.",
       "promptSummary": "## Problem\nsigned YTD >90s never caches -> HUD NO DATA.\n## Build\nVerify MV-backed signed == live; flip signed.json to mv.\n## Acceptance\nZero-discrepancy; flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-234.md",
-      "lastActivity": "2026-07-24T22:25:10Z",
-      "startedAt": "2026-07-24T22:25:10Z"
+      "lastActivity": "2026-07-24T22:46:05Z",
+      "startedAt": "2026-07-24T22:25:10Z",
+      "landed": true,
+      "mergedAt": "2026-07-24T22:46:05Z"
     },
     {
       "id": "task-236",
