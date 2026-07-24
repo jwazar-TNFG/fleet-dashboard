@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T01:39:41Z",
+  "updated_at": "2026-07-24T02:00:58Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4863,7 +4863,7 @@
       "id": "task-213",
       "name": "Dimension-expansion engine: treatment_location + case_type + WTD/QTD range windows",
       "phase": "phase-49",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-212"
       ],
@@ -4871,8 +4871,15 @@
       "doneWhen": "`DIMENSION_REGISTRY` carries `treatment_location` (both tables) and `case_type` (leads-only); `resolveDimension('case_type','rep_logs',\u2026)` returns the loud no-column error; `resolveDimension('treatment_location', 'rep_logs'|'leads', \u2026)` resolves to `txlocation`/`txLocation`.",
       "promptSummary": "## Problem\nStep 3.5 (Jon, 2026-07-23) makes `attorney`, `treatment_location`, and `case_type` first-class breakdown dimensions on every metric whose underlying data supports them, and Step 3.8 (option (a)) adds WTD + QTD range windows to the whole non-Mercury catalog. But today:\n- `kpi2/src/dimensions.ts` `DIMENSION_REGISTRY` has NO `treatment_location` and NO `case_type` entry (attorney is already registered \u2014 `rep_logs.attorney` / `leads.attorney` \u2014 no new mapping needed). So the RotatingBreakdown carousel + dimension switcher (task-216) have nothing to rotate to.\n- The engine range resolver understands Today/MTD/YTD (+ `as_of` snapshot) but not WTD/QTD, so the 5-range promise cannot be served.\n- The measure catalog's `supportedDimensions` lists do not include the new dimensions, so even a registered dimension is not offered.\n\n## Build\n1. **Register the two new dimensions** in `kpi2/src/dimensions.ts` `DIMENSION_REGISTRY`, mirroring the existing `ColumnDimension` entries and the per-table lowercase/camelCase convention:\n   ```\n   treatment_location: { id:'treatment_location', label:'Treatment Location', kind:'column',\n     columnsByTable: { rep_logs: 'txlocation', leads: 'txLocation' } }\n   case_type: { id:'case_type', label:'Case Type', kind:'column',\n     columnsByTable: { leads: 'caseType' } }   // leads-only; fails loudly on rep_logs\n   ```\n   `resolveDimension` already returns the loud \"no physical column registered for table\" error for a table missing from `columnsByTable`, so `case_type` on a rep_logs-lineage measure fails loudly with NO extra code. Do NOT add a placeholder column for rep_logs. Add dimension-name aliases if Humberto authors human labels (\"treatment location\" \u2192 `treatment_location`, \"case type\" \u2192 `case_type`).\n2. **WTD / QTD range windows.** Wire `wtd` (week-to-date) and `qtd` (quarter-to-date) into the engine's range resolver + the analyst-01 `kpi2-router` window computation, in business timezone (America/New_York) consistent with the existing Today/MTD/YTD windows. WTD = start-of-current-week \u2192 now; QTD = start-of-current-quarter \u2192 now. Preserve the existing `as_of` point-in-time behavior for snapshot measures. The `scaleGoalToRange` proration (task-207) must handle wtd/qtd (wtd prorated by elapsed days-of-month like today; qtd multiplied by elapsed months in the quarter) \u2014 extend that helper and unit-test the new windows.\n3. **Extend `supportedDimensions` in the catalog** \u2014 ONLY where the lineage table actually has the column (verify each; do NOT list a dimension the data cannot GROUP BY):\n   - `treatment_location`: add to measures whose lineage is rep_logs OR leads (both carry it).\n   - `case_type`: add ONLY to leads-lineage measures (fails loud on rep_logs \u2014 never list it there).\n   - `attorney`: extend `supportedDimensions` on measures that legitimately support it and do not already list it (registry mapping already exists).\n4. **Correctness parity for the new aggregations** (same discipline as Round 40). Add a slow-path vs fast-path comparison for a `treatment_location` GROUP BY and a `case_type` GROUP BY on a representative measure \u2014 the fast (RPC/MV) aggregate must equal an independent client-side recompute over the raw rows within the standard tolerance. Any prod DDL (new RPC/MV needed for the GROUP BY paths) lands in-repo; applying it to prod is a SEPARATE gated step (Rule #1, like Round 40) \u2014 do not apply live.\n\n## Acceptance\n- `DIMENSION_REGISTRY` carries `treatment_location` (both tables) and `case_type` (leads-only); `resolveDimension('case_type','rep_logs',\u2026)` returns the loud no-column error; `resolveDimension('treatment_location', 'rep_logs'|'leads', \u2026)` resolves to `txlocation`/`txLocation`.\n- The engine range resolver returns correct `wtd` and `qtd` windows in business tz; `scaleGoalToRange` prorates both; a unit test pins the windows + proration.\n- `supportedDimensions` is extended only where the lineage column exists (verified), never listing case_type on a rep_logs measure.\n- A correctness-parity test shows the fast-path treatment_location + case_type aggregates equal the slow-path recompute within tolerance.\n- `npm run build` + `npm test` (kpi2) pass; live `/api/retention/*` untouched; Round-40 latency not regressed; any prod DDL landed in-repo only (not applied).\n\nImplement this task fully. Create a feature branch named task-213, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-213.md",
-      "lastActivity": "2026-07-24T01:39:41Z",
-      "startedAt": "2026-07-24T01:39:41Z"
+      "lastActivity": "2026-07-24T02:00:58Z",
+      "startedAt": "2026-07-24T01:39:41Z",
+      "landed": false,
+      "costUSD": 7.482887,
+      "inputTokens": 162,
+      "outputTokens": 72162,
+      "cacheReadTokens": 6823156,
+      "finishedAt": "2026-07-24T02:00:58Z",
+      "durationSeconds": 1277
     },
     {
       "id": "task-214",
