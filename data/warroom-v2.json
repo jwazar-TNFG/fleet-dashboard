@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T05:14:19Z",
+  "updated_at": "2026-07-24T05:30:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -4977,14 +4977,21 @@
       "id": "task-218",
       "name": "Mercury source onboarding + column/denominator verification",
       "phase": "phase-50",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [],
       "description": "The four Retention-department KPIs (Recovery Rate, Case Recovery Time, Ticket Resolution Time, Retention Rep Workload) live in \u2014 or join to \u2014 the Mercury ticketing table `requests`, which is NOT yet a first-class KPI2 source. Before any engine work, `requests` must be registered as a source table, its columns confirmed live, and three open design questions resolved with real data + Jon/Humberto confirmation. Guessing any of these blocks correct math.",
       "doneWhen": "`requests` is registered as a first-class KPI2 source (PK `id`, date fields created_at/resolved_at/case_saved_at) alongside the existing sources, with no change to those.",
       "promptSummary": "## Problem\nThe four Retention-department KPIs (Recovery Rate, Case Recovery Time, Ticket Resolution Time, Retention Rep Workload) live in \u2014 or join to \u2014 the Mercury ticketing table `requests`, which is NOT yet a first-class KPI2 source. Before any engine work, `requests` must be registered as a source table, its columns confirmed live, and three open design questions resolved with real data + Jon/Humberto confirmation. Guessing any of these blocks correct math.\n\n## Build\n1. **Register `requests` as a first-class KPI2 source table.** Add `requests` to the engine's source-table registry (wherever `rep_logs`/`leads`/`payroll` are registered) with PK `id` and date fields `created_at` / `resolved_at` / `case_saved_at`. Follow the existing source-registration convention exactly; do NOT alter the existing sources.\n2. **Verify all columns live (read-only).** Query live `information_schema` (Supabase creds from `~/.openclaw/secrets/supabase.json` via a temp env file \u2014 NO inline secrets) and confirm the exact names + types of: `status`, `created_at`, `updated_at`, `resolved_at`, `assigned_to`, `updated_by`, `id_lead`, `retention_notes`, `case_saved`, `case_saved_at`, `case_saved_by`, `request_type` (if present). Record the confirmed schema in a committed `build/rounds/round-44-evidence/mercury-verification.md`.\n3. **Resolve the three open questions (MUST verify live \u2014 Rule #2, do NOT assume):**\n   - **Recovery Rate denominator (the critical one).** The \"dropped/at-risk base\" is NOT yet pinned. Query live to determine the exact dropped population (is it `leads.dateDropped` not null? a drop status? a Mercury at-risk flag?) and whether the rate is `(saved \u00f7 dropped-in-window)` or `(saved \u00f7 tickets-opened)`. Get Humberto/Jon confirmation and **record the chosen denominator in the measure `definition`** before task-220 implements it. Do NOT implement Recovery Rate until this is locked.\n   - **`assigned_to` grain.** Confirm it is a stable rep identifier (email vs name) and how it maps to the `rep` / `intake_specialist` dimensions for exclusion filtering.\n   - **Recovery-time base.** Confirm every `case_saved=true` row has both `case_saved_at` and a joinable `leads.dateDropped`; define the behavior when `dateDropped` is null (exclude vs treat as ticket-created).\n4. **Register Mercury-only dimensions.** Add `assigned_to` as a dimension in `kpi2/src/dimensions.ts` (Mercury-only \u2014 `columnsByTable: { requests: '<confirmed column>' }`, fails loudly on other lineages via the existing `resolveDimension` behavior). Add `request_type` and/or `status` slices where useful (only if the column exists \u2014 verify first). Wire exclusion filtering for `assigned_to` (Katiria + xSTAFF) using the confirmed grain from step 3.\n\n## Acceptance\n- `requests` is registered as a first-class KPI2 source (PK `id`, date fields created_at/resolved_at/case_saved_at) alongside the existing sources, with no change to those.\n- `build/rounds/round-44-evidence/mercury-verification.md` records the confirmed column schema + the three resolved questions, and the Recovery-Rate denominator is LOCKED with Jon/Humberto confirmation and written into the measure `definition`.\n- `assigned_to` is registered as a Mercury-only dimension (fails loud elsewhere) with confirmed grain + exclusion filtering; `request_type`/`status` slices added only where the column exists.\n- `npm run build` + `npm test` (kpi2) pass; live `/api/retention/*` untouched.\n\nImplement this task fully. Create a feature branch named task-218, commit, push, ensure npm run build passes, open a PR against main.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-218.md",
-      "lastActivity": "2026-07-24T05:14:19Z",
-      "startedAt": "2026-07-24T05:14:19Z"
+      "lastActivity": "2026-07-24T05:30:42Z",
+      "startedAt": "2026-07-24T05:14:19Z",
+      "landed": false,
+      "costUSD": 4.536613,
+      "inputTokens": 176,
+      "outputTokens": 49927,
+      "cacheReadTokens": 5215107,
+      "finishedAt": "2026-07-24T05:30:42Z",
+      "durationSeconds": 983
     },
     {
       "id": "task-219",
