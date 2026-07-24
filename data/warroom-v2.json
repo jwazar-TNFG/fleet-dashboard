@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T23:41:48Z",
+  "updated_at": "2026-07-24T23:41:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5290,8 +5290,7 @@
       "id": "task-236",
       "name": "cross-table all-lineage MV PART 2 (conversion_efficiency_cv, total_converted_value_cv)",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-224",
         "task-225",
@@ -5301,7 +5300,9 @@
       "description": "SPLIT from original task-228. PART 2 = the two CV credit-scale measures, isolated because EXACT 0-1.5 credit semantics (NOT dollars) need dedicated attention. Prove CV additivity at grain before any flip; wrong CV is worse than slow-correct.",
       "doneWhen": "CV semantics documented + additivity proven; flipped CV measures full-precision zero-discrepancy; any left cache documented; build+tests pass.",
       "promptSummary": "## Problem\nconversion_efficiency_cv, total_converted_value_cv = cache; CV = 0-1.5 credit scale, NOT dollars.\n\n## Build\nPin CV semantics + additivity-at-grain; compose/composite; harness both x {today,mtd,ytd} x dims full precision; flip exact+fast.\n\n## Acceptance\nCV additivity proven; flipped measures full-precision zero-discrepancy; build+tests pass.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-236.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-236.md",
+      "lastActivity": "2026-07-24T23:41:51Z",
+      "startedAt": "2026-07-24T23:41:51Z"
     },
     {
       "id": "task-237",
