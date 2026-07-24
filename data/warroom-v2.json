@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-24T14:21:02Z",
+  "updated_at": "2026-07-24T14:21:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5109,7 +5109,7 @@
       "doneWhen": "MV authored; zero-discrepancy MV-vs-live across dims x today/mtd/ytd; catalog flipped for passing measures; build+tests pass.",
       "promptSummary": "## Problem\nsigned raw-scans at YTD (>90s, never caches -> HUD NO DATA). MV-back it.\n## Build\nAuthor kpi2_mv_rep_logs_daily_agg (grain covers all 5 rep_logs measures), verify+flip signed only.\n## Acceptance\nMV authored fail-loud; signed zero-discrepancy verified + flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-224.md",
-      "lastActivity": "2026-07-24T13:19:08Z",
+      "lastActivity": "2026-07-24T14:21:04Z",
       "startedAt": "2026-07-24T12:59:07Z"
     },
     {
