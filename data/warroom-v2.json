@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:42:34Z",
+  "updated_at": "2026-07-25T00:42:36Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5195,15 +5195,15 @@
       "doneWhen": "Refresh covers all Round-45 MVs; cron wiring documented; set-match verification passes; build+tests pass.",
       "promptSummary": "## Problem\nConsolidate all Round-45 MVs into kpi2_refresh_mvs() so the 5-min pg_cron rebuilds them all. No orphan MVs / no dangling refs.\n\n## Acceptance\nRefresh covers all Round-45 MVs; cron wiring documented; set-match verification passes; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-229.md",
-      "lastActivity": "2026-07-25T00:28:03Z",
+      "lastActivity": "2026-07-25T00:42:36Z",
       "startedAt": "2026-07-25T00:10:58Z",
       "landed": false,
       "costUSD": 2.066623,
       "inputTokens": 88,
       "outputTokens": 33251,
       "cacheReadTokens": 1678302,
-      "finishedAt": "2026-07-25T00:28:03Z",
-      "durationSeconds": 1025
+      "finishedAt": "2026-07-25T00:42:36Z",
+      "durationSeconds": 1898
     },
     {
       "id": "task-230",
