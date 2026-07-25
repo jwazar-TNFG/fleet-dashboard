@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:43:23Z",
+  "updated_at": "2026-07-25T00:43:25Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5275,16 +5275,16 @@
       "doneWhen": "Each ratio zero-discrepancy MV-verified + flipped, OR documented left cache; build+tests pass.",
       "promptSummary": "## Problem\nconfirmed_rate + cpr = cache ratios on rep_logs; ratios need both legs representable at MV grain.\n\n## Build\nVerify num+denom representability; harness representable ratios x dims x {today,mtd,ytd}; flip passers, cache the rest w/ reason.\n\n## Acceptance\nEach ratio flipped-or-cached-with-reason; evidence; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-233.md",
-      "lastActivity": "2026-07-25T00:42:43Z",
+      "lastActivity": "2026-07-25T00:43:25Z",
       "startedAt": "2026-07-24T21:48:22Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 6.104354,
       "inputTokens": 140,
       "outputTokens": 61056,
       "cacheReadTokens": 5209203,
       "finishedAt": "2026-07-25T00:42:43Z",
       "durationSeconds": 10461,
-      "mergedAt": "2026-07-24T23:41:46Z"
+      "mergedAt": "2026-07-25T00:43:25Z"
     },
     {
       "id": "task-234",
