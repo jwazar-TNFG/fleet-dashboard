@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T14:28:06Z",
+  "updated_at": "2026-07-25T14:28:12Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5697,15 +5697,16 @@
       "doneWhen": "Tile shows all 8 archetypes with correct semantics + section stacks + member measure ids; each KPI detail shows its current archetype badge; the task-249 picker and task-251 form consume this inventory; evidence screenshots recorded.",
       "promptSummary": "## Problem\nArchetype/layout inventory exists only in code; the tile can't show it, so design choices are blind.\n## Build\nGET /api/kpi2/archetypes (drift-proof from catalog+schema+matrix) + a Layout Archetypes reference view (letter/semantic/section-stack/members) + per-KPI archetype badge; read-only.\n## Acceptance\nAll 8 archetypes viewable w/ correct stacks + members; per-KPI badge; picker + Add-KPI link to it.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-253.md",
-      "lastActivity": "2026-07-25T14:28:06Z",
+      "lastActivity": "2026-07-25T14:28:12Z",
       "startedAt": "2026-07-25T13:46:38Z",
       "costUSD": 7.977889,
       "inputTokens": 242,
       "outputTokens": 68785,
       "cacheReadTokens": 10153014,
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-07-25T14:28:06Z",
-      "durationSeconds": 2488
+      "durationSeconds": 2488,
+      "mergedAt": "2026-07-25T14:28:12Z"
     },
     {
       "id": "task-254",
