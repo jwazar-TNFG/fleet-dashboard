@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:42:45Z",
+  "updated_at": "2026-07-25T00:42:47Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5340,15 +5340,15 @@
       "doneWhen": "Latency measured; flip-or-keep-cache decision documented; if flipped, zero-discrepancy proof; build+tests pass.",
       "promptSummary": "## Problem\ncase_aging_active = cache as_of snapshot; may or may not be a real latency offender.\n\n## Build\nMeasure latency cold+warm x ranges; if fast keep cache w/ reason; if slow MV-back + zero-discrepancy harness + flip.\n\n## Acceptance\nLatency measured + decision documented; if flipped, correctness proof; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-237.md",
-      "lastActivity": "2026-07-24T23:41:48Z",
+      "lastActivity": "2026-07-25T00:42:47Z",
       "startedAt": "2026-07-24T22:46:08Z",
-      "landed": true,
+      "landed": false,
       "costUSD": 2.452939,
       "inputTokens": 108,
       "outputTokens": 28459,
       "cacheReadTokens": 2539775,
-      "finishedAt": "2026-07-24T23:06:38Z",
-      "durationSeconds": 1230,
+      "finishedAt": "2026-07-25T00:42:47Z",
+      "durationSeconds": 6999,
       "mergedAt": "2026-07-24T23:41:48Z"
     }
   ]
