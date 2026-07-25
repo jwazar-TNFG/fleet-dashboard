@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:42:32Z",
+  "updated_at": "2026-07-25T00:42:34Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5168,15 +5168,15 @@
       "doneWhen": "Design doc per measure; flipped measures zero-discrepancy verified; any left cache documented; build+tests pass.",
       "promptSummary": "## Problem\ncase_count_cc, green_count, green_rate = cache-mode on all-lineage (rep_logs join leads +/- payroll).\n\n## Build\nDesign decision per measure (prefer compose from existing MVs); harness 3 x {today,mtd,ytd} x dims; flip fast+correct, else cache w/ reason.\n\n## Acceptance\nDesign doc; flipped measures zero-discrepancy; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-228.md",
-      "lastActivity": "2026-07-25T00:10:58Z",
+      "lastActivity": "2026-07-25T00:42:34Z",
       "startedAt": "2026-07-24T23:06:54Z",
-      "landed": true,
+      "landed": false,
       "costUSD": 6.648407,
       "inputTokens": 156,
       "outputTokens": 55156,
       "cacheReadTokens": 6259749,
-      "finishedAt": "2026-07-24T23:41:31Z",
-      "durationSeconds": 2077,
+      "finishedAt": "2026-07-25T00:42:34Z",
+      "durationSeconds": 5740,
       "mergedAt": "2026-07-25T00:10:58Z"
     },
     {
