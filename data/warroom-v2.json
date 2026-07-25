@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T04:45:12Z",
+  "updated_at": "2026-07-25T04:45:30Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5498,7 +5498,7 @@
     {
       "id": "task-244",
       "name": "Density pass \u2014 wire compound table + secondary visuals into archetype matrix",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-52",
       "depends_on": [
         "task-243",
@@ -5507,7 +5507,9 @@
       "description": "Focus panels waste space: Case Recovery Time ~70% empty, Lead Rating Distribution ~40% empty. Extend the archetype x range matrix so each family composes MORE sections: hero + pace + range-aware trend + breakdown + CompoundTable + a secondary visual (cumulative-vs-target AreaChart, DoD/WoW VsPriorHero/ColumnBar, DistributionBars, Heatmap). Use CompoundTable in >=2 families. Sections render only when payload has data.",
       "doneWhen": "Signed, Case Recovery Time, Lead Rating Distribution each fill >=~75% of canvas (no >40% dead space); CompoundTable live in >=2 families; secondary visuals archetype-appropriate; tests+lint green; screenshots show density.",
       "promptSummary": "## Problem\n~40-70% dead space in focus panels; Jon wants more visuals/charts.\n\n## Build\nCompose more sections per family (hero/pace/trend/breakdown/compound-table/secondary). CompoundTable in >=2 families. Data-gated sections only.\n\n## Acceptance\n>=75% canvas filled; compound table live; secondary visuals present.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-244.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-244.md",
+      "lastActivity": "2026-07-25T04:45:30Z",
+      "startedAt": "2026-07-25T04:45:30Z"
     },
     {
       "id": "task-245",
