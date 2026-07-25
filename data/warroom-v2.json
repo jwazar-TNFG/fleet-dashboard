@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T16:21:54Z",
+  "updated_at": "2026-07-25T16:22:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5595,14 +5595,14 @@
       "doneWhen": "As an allowlisted user, flagging a KPI with notes + >=1 tag shows the 'Edit requested' badge and the entry appears in GET /api/kpi2/review-queue; a non-allowlisted signed-in user sees no request button; manual evidence (screenshot + queue JSON) recorded.",
       "promptSummary": "## Problem\nJon/Humberto/Zeri need to request a calc change in text+tags and flag it for Virgil, without editing the calc themselves.\n## Build\nRequest-calc-edit panel (notes + issue-tag chips + screenshot) -> POST calc-review; 'Edit requested' badge; allowlist gate; analyst-01 proxy w/ page auth; no inline secrets.\n## Acceptance\nAllowlisted flag -> badge + queue entry; non-allowlisted sees no button; read path + task-192 editor intact.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-248.md",
-      "lastActivity": "2026-07-25T16:21:54Z",
+      "lastActivity": "2026-07-25T16:22:00Z",
       "startedAt": "2026-07-25T12:49:07Z",
       "costUSD": 6.598278,
       "inputTokens": 537,
       "outputTokens": 71867,
       "cacheReadTokens": 7262717,
-      "mergedAt": "2026-07-25T14:33:42Z",
-      "landed": false,
+      "mergedAt": "2026-07-25T16:22:00Z",
+      "landed": true,
       "finishedAt": "2026-07-25T16:21:54Z",
       "durationSeconds": 12767
     },
