@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T03:27:54Z",
+  "updated_at": "2026-07-25T03:28:10Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5390,7 +5390,7 @@
     {
       "id": "task-239",
       "name": "Range-driven trend-axis granularity (Today\u2192hourly / MTD\u2192daily / YTD\u2192monthly)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-52",
       "depends_on": [
         "task-238"
@@ -5398,7 +5398,9 @@
       "description": "Signed focus trend renders a MONTHLY axis (Jan-Jul, \"monthly \u00b7 signed\") regardless of range, even under Today/MTD. Jon expects time visuals to respect range: Today in hours, MTD in days, YTD in months. Drive bucket granularity + axis formatting off payload effective range (todayIntraday flag ~L151) in KpiMeasureView.tsx (trendValues/trendSeriesPoints/multiTrendSeries ~L454-880) + TimeSeriesChart/AreaChart.",
       "doneWhen": "Signed trend: Today\u2192hourly, MTD\u2192daily, YTD\u2192monthly axis; tick density+labels match; no monthly Jan-Jul under Today/MTD; hud tests green.",
       "promptSummary": "## Problem\nTrend axis hardcoded monthly regardless of selected range.\n\n## Build\nBucket granularity + axis labels follow payload effective range: Today=hourly, MTD=daily, YTD=monthly. Coordinate w/ task-238 refetch for correct-granularity series; never synthesize buckets.\n\n## Acceptance\nThree range->granularity mappings verified for signed/confirmed_count/lead_count; tests cover them.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-239.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-239.md",
+      "lastActivity": "2026-07-25T03:28:10Z",
+      "startedAt": "2026-07-25T03:28:10Z"
     },
     {
       "id": "task-240",
