@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T14:49:10Z",
+  "updated_at": "2026-07-25T15:38:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5656,7 +5656,7 @@
     {
       "id": "task-251",
       "name": "Tile: Add-KPI guided form + Retire (soft + guarded hard-delete)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-53",
       "depends_on": [
         "task-247",
@@ -5666,8 +5666,15 @@
       "doneWhen": "Create via form -> preview computes live -> lands unverified w/ default archetype + auto-opened designReview -> verify -> HUD renders; soft-retire removes from active tile/HUD but keeps file, unretire restores; hard-delete offered only on never-verified unreferenced measure (confirm) and NOT on a verified/referenced one; engine changes build+test green.",
       "promptSummary": "## Problem\nEngine supports create (task-189) but the tile has no create/retire path.\n## Build\nGuided Add-KPI form (structured calc builder, exclusions auto-enforced, valid-value refs) + required compute-preview; auto default archetype + auto designReview on create; soft-retire + guarded hard-delete (never-verified & unreferenced only); allowlist-gated; no inline secrets; validateMeasure enforced.\n## Acceptance\nCreate/preview/verify/render loop works; soft-retire + unretire; hard-delete guard correct; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-251.md",
-      "lastActivity": "2026-07-25T14:49:10Z",
-      "startedAt": "2026-07-25T14:38:42Z"
+      "lastActivity": "2026-07-25T15:38:16Z",
+      "startedAt": "2026-07-25T14:38:42Z",
+      "landed": false,
+      "costUSD": 13.565511,
+      "inputTokens": 374,
+      "outputTokens": 129608,
+      "cacheReadTokens": 15010174,
+      "finishedAt": "2026-07-25T15:38:16Z",
+      "durationSeconds": 3574
     },
     {
       "id": "task-252",
