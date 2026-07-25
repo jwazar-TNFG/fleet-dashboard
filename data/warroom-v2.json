@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T12:38:41Z",
+  "updated_at": "2026-07-25T12:38:44Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5472,15 +5472,16 @@
       "doneWhen": "No focus view shows empty narrative headers; families with narrative data show copy; Case Recovery Time shows real narrative or cleanly omits zone; hud tests cover populated+suppressed.",
       "promptSummary": "## Problem\nEmpty narrative headers on Signed; inconsistent across families.\n\n## Build\nRender NarrativeTrio only with data; suppress empty; extend/degrade gracefully; wire Signed narrative. Never invent text.\n\n## Acceptance\nNo empty headers; populated where data exists; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-242.md",
-      "lastActivity": "2026-07-25T04:30:43Z",
+      "lastActivity": "2026-07-25T12:38:44Z",
       "startedAt": "2026-07-25T04:15:38Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.58311,
       "inputTokens": 182,
       "outputTokens": 48611,
       "cacheReadTokens": 7253656,
       "finishedAt": "2026-07-25T04:30:43Z",
-      "durationSeconds": 905
+      "durationSeconds": 905,
+      "mergedAt": "2026-07-25T12:38:44Z"
     },
     {
       "id": "task-243",
