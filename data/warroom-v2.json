@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T05:07:22Z",
+  "updated_at": "2026-07-25T05:08:27Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5485,15 +5485,16 @@
       "doneWhen": "CompoundTable exists, exported, unit-tested (render+sort+empty); gallery entry with sample data; renders in >=1 live focus family (full wire in task-244).",
       "promptSummary": "## Problem\nNo compound (multi-metric) table component exists.\n\n## Build\nCreate components/charts/CompoundTable.tsx: multi-column, grouped rows, inline bars/pills, sort. Consume payload breakdown slices. Add to index + gallery + tests.\n\n## Acceptance\nComponent+tests+gallery; renders live in >=1 family.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-243.md",
-      "lastActivity": "2026-07-25T04:45:12Z",
+      "lastActivity": "2026-07-25T05:08:27Z",
       "startedAt": "2026-07-25T04:31:00Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.425991,
       "inputTokens": 156,
       "outputTokens": 55157,
       "cacheReadTokens": 6415399,
       "finishedAt": "2026-07-25T04:45:12Z",
-      "durationSeconds": 852
+      "durationSeconds": 852,
+      "mergedAt": "2026-07-25T05:08:27Z"
     },
     {
       "id": "task-244",
