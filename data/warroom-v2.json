@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T04:00:41Z",
+  "updated_at": "2026-07-25T04:00:56Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5399,15 +5399,16 @@
       "doneWhen": "Signed trend: Today\u2192hourly, MTD\u2192daily, YTD\u2192monthly axis; tick density+labels match; no monthly Jan-Jul under Today/MTD; hud tests green.",
       "promptSummary": "## Problem\nTrend axis hardcoded monthly regardless of selected range.\n\n## Build\nBucket granularity + axis labels follow payload effective range: Today=hourly, MTD=daily, YTD=monthly. Coordinate w/ task-238 refetch for correct-granularity series; never synthesize buckets.\n\n## Acceptance\nThree range->granularity mappings verified for signed/confirmed_count/lead_count; tests cover them.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-239.md",
-      "lastActivity": "2026-07-25T03:43:23Z",
+      "lastActivity": "2026-07-25T04:00:56Z",
       "startedAt": "2026-07-25T03:28:10Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 6.674889,
       "inputTokens": 148,
       "outputTokens": 56649,
       "cacheReadTokens": 8533930,
       "finishedAt": "2026-07-25T03:43:23Z",
-      "durationSeconds": 913
+      "durationSeconds": 913,
+      "mergedAt": "2026-07-25T04:00:56Z"
     },
     {
       "id": "task-240",
