@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T13:09:42Z",
+  "updated_at": "2026-07-25T13:09:51Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5622,7 +5622,7 @@
     {
       "id": "task-250",
       "name": "Virgil Review-Queue console \u2014 read + resolve",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-53",
       "depends_on": [
         "task-247"
@@ -5630,7 +5630,9 @@
       "description": "One place in the analyst-01 tile for Virgil to see + clear both queues after applying the real change. review-queue.html (black/teal/Inter, protected route + nav) reads GET /api/kpi2/review-queue, groups open Calculation vs Design requests, each showing id+name, requestText, tags, archetypeProposed (design), requestedBy/at, screenshots, and a deep link to the KPI detail. Per entry a Resolve action -> the matching /resolve endpoint with {resolvedBy:'Virgil', resolutionNote}, used AFTER Virgil applies the change via the existing safe paths (calc via task-189/190/191; design via editing expansion/archetype). Resolved history kept, collapsed.",
       "doneWhen": "Open requests from task-248/249 appear grouped with all fields; resolving flips open=false, drops the KPI badge, and moves the entry to resolved history; resolve only clears the flag (never applies the change directly); evidence recorded.",
       "promptSummary": "## Problem\nVirgil needs a single console to triage + clear the calc and design review queues.\n## Build\nreview-queue.html reads GET /review-queue; grouped calc vs design; per-entry Resolve -> *-resolve; resolved history collapsed; page-auth; no inline secrets.\n## Acceptance\nQueue renders both types w/ all fields + deep links; Resolve clears flag + badge and archives; actual edits still go through safe paths.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-250.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-250.md",
+      "lastActivity": "2026-07-25T13:09:51Z",
+      "startedAt": "2026-07-25T13:09:51Z"
     },
     {
       "id": "task-251",
