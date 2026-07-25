@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T16:15:19Z",
+  "updated_at": "2026-07-25T16:15:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5517,7 +5517,7 @@
       "doneWhen": "Signed, Case Recovery Time, Lead Rating Distribution each fill >=~75% of canvas (no >40% dead space); CompoundTable live in >=2 families; secondary visuals archetype-appropriate; tests+lint green; screenshots show density.",
       "promptSummary": "## Problem\n~40-70% dead space in focus panels; Jon wants more visuals/charts.\n\n## Build\nCompose more sections per family (hero/pace/trend/breakdown/compound-table/secondary). CompoundTable in >=2 families. Data-gated sections only.\n\n## Acceptance\n>=75% canvas filled; compound table live; secondary visuals present.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-244.md",
-      "lastActivity": "2026-07-25T14:18:31Z",
+      "lastActivity": "2026-07-25T16:15:22Z",
       "startedAt": "2026-07-25T04:45:30Z",
       "landed": true,
       "costUSD": 8.226852,
@@ -5526,7 +5526,7 @@
       "cacheReadTokens": 7820666,
       "finishedAt": "2026-07-25T05:07:22Z",
       "durationSeconds": 1312,
-      "mergedAt": "2026-07-25T14:18:31Z"
+      "mergedAt": "2026-07-25T16:15:22Z"
     },
     {
       "id": "task-245",
