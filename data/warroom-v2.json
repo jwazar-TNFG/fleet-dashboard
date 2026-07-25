@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:42:43Z",
+  "updated_at": "2026-07-25T00:42:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5296,10 +5296,12 @@
       "doneWhen": "signed zero-discrepancy verified + flipped to mv; evidence committed; build+tests pass.",
       "promptSummary": "## Problem\nsigned YTD >90s never caches -> HUD NO DATA.\n## Build\nVerify MV-backed signed == live; flip signed.json to mv.\n## Acceptance\nZero-discrepancy; flipped; build+tests pass.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-234.md",
-      "lastActivity": "2026-07-24T22:46:05Z",
+      "lastActivity": "2026-07-25T00:42:42Z",
       "startedAt": "2026-07-24T22:25:10Z",
-      "landed": true,
-      "mergedAt": "2026-07-24T22:46:05Z"
+      "landed": false,
+      "mergedAt": "2026-07-24T22:46:05Z",
+      "finishedAt": "2026-07-25T00:42:42Z",
+      "durationSeconds": 8252
     },
     {
       "id": "task-236",
