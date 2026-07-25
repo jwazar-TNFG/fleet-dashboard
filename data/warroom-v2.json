@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T16:25:26Z",
+  "updated_at": "2026-07-25T16:25:32Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5642,14 +5642,14 @@
       "doneWhen": "Open requests from task-248/249 appear grouped with all fields; resolving flips open=false, drops the KPI badge, and moves the entry to resolved history; resolve only clears the flag (never applies the change directly); evidence recorded.",
       "promptSummary": "## Problem\nVirgil needs a single console to triage + clear the calc and design review queues.\n## Build\nreview-queue.html reads GET /review-queue; grouped calc vs design; per-entry Resolve -> *-resolve; resolved history collapsed; page-auth; no inline secrets.\n## Acceptance\nQueue renders both types w/ all fields + deep links; Resolve clears flag + badge and archives; actual edits still go through safe paths.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-250.md",
-      "lastActivity": "2026-07-25T16:25:26Z",
+      "lastActivity": "2026-07-25T16:25:32Z",
       "startedAt": "2026-07-25T13:09:51Z",
       "costUSD": 5.850899,
       "inputTokens": 258,
       "outputTokens": 76752,
       "cacheReadTokens": 5690989,
-      "mergedAt": "2026-07-25T14:38:40Z",
-      "landed": false,
+      "mergedAt": "2026-07-25T16:25:32Z",
+      "landed": true,
       "finishedAt": "2026-07-25T16:25:26Z",
       "durationSeconds": 11735
     },
