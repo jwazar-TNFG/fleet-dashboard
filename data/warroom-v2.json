@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T16:15:27Z",
+  "updated_at": "2026-07-25T16:18:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5563,7 +5563,7 @@
     {
       "id": "task-247",
       "name": "kpi2 engine: review-request WRITE + review-queue endpoints",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-53",
       "depends_on": [
         "task-189"
@@ -5572,13 +5572,16 @@
       "doneWhen": "PUT/POST review endpoints live + gated on writable catalog; a review write can never alter calc/verified/expansion (400 if attempted); GET /review-queue lists open requests newest-first; unit tests in kpi2/test/http.test.ts green; npm run build && npm test green.",
       "promptSummary": "## Problem\nkpi2 engine has no request/queue path since the 159 stack retired; the Flag-for-Virgil loop went dark on the v2 tile.\n## Build\nAdd calcReview + designReview blocks + POST calc-review / design-review / *-resolve + GET /review-queue; metadata-only; validator-guarded; atomic write + catalog reload.\n## Acceptance\ncalc-review round-trips through the queue + resolve; design-review with bad archetype or embedded calc = 400; path-guard + 404 covered by tests; build+test green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-247.md",
-      "lastActivity": "2026-07-25T16:15:27Z",
+      "lastActivity": "2026-07-25T16:18:33Z",
       "startedAt": "2026-07-25T12:38:49Z",
-      "costUSD": 4.670543,
-      "inputTokens": 126,
-      "outputTokens": 46830,
-      "cacheReadTokens": 4897434,
-      "mergedAt": "2026-07-25T14:30:19Z"
+      "costUSD": 5.412742,
+      "inputTokens": 166,
+      "outputTokens": 56591,
+      "cacheReadTokens": 5388382,
+      "mergedAt": "2026-07-25T14:30:19Z",
+      "landed": false,
+      "finishedAt": "2026-07-25T16:18:33Z",
+      "durationSeconds": 13184
     },
     {
       "id": "task-248",
