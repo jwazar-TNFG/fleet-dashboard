@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T05:08:27Z",
+  "updated_at": "2026-07-25T12:28:50Z",
   "phases": [
     {
       "id": "phase-0",
@@ -233,6 +233,11 @@
     {
       "id": "phase-52",
       "name": "Round 46 — Focus layout: composition uniformity + range-awareness + density",
+      "status": "pending"
+    },
+    {
+      "id": "phase-53",
+      "name": "Round 47 — KPI full-management from the Departmental tile: review-request loop (calc+design), archetype inventory, Add/Retire, detail-view field fix",
       "status": "pending"
     }
   ],
@@ -5550,6 +5555,114 @@
       "doneWhen": "Sweep report committed to round-46-evidence/task-246-sweep.md w/ matrix results, archetype/hero/narrative/compound/density checks, latency table, per-family screenshots; findings documented; round closes only if pillars 1-3 pass.",
       "promptSummary": "## Problem\nNeed full regression proof across families x ranges.\n\n## Build (read-only)\nFocus matrix asserts range tag+axis+hero+narrative; 33/33 archetypes; compound table >=2 families; density; screenshots; latency flags.\n\n## Acceptance\nReport committed; findings documented; pillars pass. Read-only, no self-pgrep wait-loop.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-246.md"
+    },
+    {
+      "id": "task-247",
+      "name": "kpi2 engine: review-request WRITE + review-queue endpoints",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-189"
+      ],
+      "description": "Adds a metadata-only review-request path to the kpi2 engine so Jon/Humberto/Zeri can flag a KPI for a CALCULATION or DESIGN change without editing it themselves. Two new blocks on each measure JSON: calcReview {open,requestText,issueTags[],requestedBy,requestedAt,screenshots[],resolved*} and designReview {..designTags[],archetypeProposed A-H|null..}. Endpoints: POST /measures/:id/calc-review, POST /measures/:id/design-review, their /resolve counterparts, and GET /review-queue. validateMeasure extended to shape-check both blocks and REJECT any body that smuggles a calculation/verified/expansion change. Atomic per-file write, path-guarded id, in-memory reload.",
+      "doneWhen": "PUT/POST review endpoints live + gated on writable catalog; a review write can never alter calc/verified/expansion (400 if attempted); GET /review-queue lists open requests newest-first; unit tests in kpi2/test/http.test.ts green; npm run build && npm test green.",
+      "promptSummary": "## Problem\nkpi2 engine has no request/queue path since the 159 stack retired; the Flag-for-Virgil loop went dark on the v2 tile.\n## Build\nAdd calcReview + designReview blocks + POST calc-review / design-review / *-resolve + GET /review-queue; metadata-only; validator-guarded; atomic write + catalog reload.\n## Acceptance\ncalc-review round-trips through the queue + resolve; design-review with bad archetype or embedded calc = 400; path-guard + 404 covered by tests; build+test green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-247.md"
+    },
+    {
+      "id": "task-248",
+      "name": "Tile: Request calculation edit (Flag-for-Virgil revived on kpi2)",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-247"
+      ],
+      "description": "Revives the CALCULATION review-request UI on the kpi2 Departmental KPIs tile (kpi2/analyst01/kpi-detail.html), wired to task-247. Per-KPI 'Request calculation edit' panel: free-text notes box + issue-tag chips (definition / window-range / exclusion / label-name / threshold-target / other) + optional screenshot. Submits POST /api/kpi2/measures/:id/calc-review with requestedBy = signed-in email. Shows an 'Edit requested' badge while open. Request affordance gated to the allowlist Jon/Humberto/Zeri on top of the analyst-01 Google sign-in; others read-only.",
+      "doneWhen": "As an allowlisted user, flagging a KPI with notes + >=1 tag shows the 'Edit requested' badge and the entry appears in GET /api/kpi2/review-queue; a non-allowlisted signed-in user sees no request button; manual evidence (screenshot + queue JSON) recorded.",
+      "promptSummary": "## Problem\nJon/Humberto/Zeri need to request a calc change in text+tags and flag it for Virgil, without editing the calc themselves.\n## Build\nRequest-calc-edit panel (notes + issue-tag chips + screenshot) -> POST calc-review; 'Edit requested' badge; allowlist gate; analyst-01 proxy w/ page auth; no inline secrets.\n## Acceptance\nAllowlisted flag -> badge + queue entry; non-allowlisted sees no button; read path + task-192 editor intact.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-248.md"
+    },
+    {
+      "id": "task-249",
+      "name": "Tile: Request design change (visual/presentation) — guided A-H archetype picker",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-247",
+        "task-253"
+      ],
+      "description": "NEW: same request-and-flag pattern as task-248 but for a KPI's PRESENTATION. Per-KPI 'Request design change' panel: free-text box + design-tag chips (heroVisual / layoutArchetype / breakdownDimension / labels / format / other) + a GUIDED A-H archetype picker backed by the task-253 inventory (each option shows the letter, its meaning, and the section stack it renders; current archetype shown as the 'from' state) + optional screenshot. Submits POST /api/kpi2/measures/:id/design-review with designTags[] + archetypeProposed (A-H|null). Records the proposed change as metadata; Virgil applies the actual expansion/archetype edit and resolves. 'Design change requested' badge while open. Allowlist-gated.",
+      "doneWhen": "Allowlisted user flags a design change with text + >=1 tag + a picked archetype -> 'Design change requested' badge + queue entry carrying designTags and archetypeProposed; picker lists all 8 archetypes with meaning + section stack from task-253; non-allowlisted sees no button; evidence recorded.",
+      "promptSummary": "## Problem\nNo way to request a presentation change on a KPI; design choices are made blind.\n## Build\nRequest-design panel: text + design-tag chips + guided A-H picker (from task-253) + screenshot -> POST design-review (metadata only); badge; allowlist gate; copy clarifies it targets expansion/archetype not calc.\n## Acceptance\nDesign request stored with archetypeProposed + tags, visible in queue; picker informed by inventory; gating verified.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-249.md"
+    },
+    {
+      "id": "task-250",
+      "name": "Virgil Review-Queue console — read + resolve",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-247"
+      ],
+      "description": "One place in the analyst-01 tile for Virgil to see + clear both queues after applying the real change. review-queue.html (black/teal/Inter, protected route + nav) reads GET /api/kpi2/review-queue, groups open Calculation vs Design requests, each showing id+name, requestText, tags, archetypeProposed (design), requestedBy/at, screenshots, and a deep link to the KPI detail. Per entry a Resolve action -> the matching /resolve endpoint with {resolvedBy:'Virgil', resolutionNote}, used AFTER Virgil applies the change via the existing safe paths (calc via task-189/190/191; design via editing expansion/archetype). Resolved history kept, collapsed.",
+      "doneWhen": "Open requests from task-248/249 appear grouped with all fields; resolving flips open=false, drops the KPI badge, and moves the entry to resolved history; resolve only clears the flag (never applies the change directly); evidence recorded.",
+      "promptSummary": "## Problem\nVirgil needs a single console to triage + clear the calc and design review queues.\n## Build\nreview-queue.html reads GET /review-queue; grouped calc vs design; per-entry Resolve -> *-resolve; resolved history collapsed; page-auth; no inline secrets.\n## Acceptance\nQueue renders both types w/ all fields + deep links; Resolve clears flag + badge and archives; actual edits still go through safe paths.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-250.md"
+    },
+    {
+      "id": "task-251",
+      "name": "Tile: Add-KPI guided form + Retire (soft + guarded hard-delete)",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-247",
+        "task-253"
+      ],
+      "description": "Full self-service create + retire from the tile. '+ Add KPI' opens a GUIDED FORM (not raw JSON): department, id (lower_snake_case, uniqueness-checked), name, definition, and a structured calculation builder (table, dateField, aggregation, filters, exclusions auto-enforced [Katiria name+kbonilla@ + xSTAFF], direction, unit, supportedDimensions, ranges) drawing valid values from the reference set (CV 0-1.5; 1800 NOT an office; TPA=Tony Press). Compute-Preview REQUIRED before create; new measure lands UNVERIFIED (HUD 'no data' until verified). On create: register in the catalog-derived HUD view registry (task-179), auto-assign a sensible default archetype so it renders immediately, and auto-open a designReview for Virgil to finalize presentation; create never blocked on archetype choice. Optional A-H picker offered. Retire: soft-retire (norm; hidden from active tile+HUD, preserved, reversible); guarded HARD DELETE only when verified.flag was never true AND not view-referenced, confirm-gated.",
+      "doneWhen": "Create via form -> preview computes live -> lands unverified w/ default archetype + auto-opened designReview -> verify -> HUD renders; soft-retire removes from active tile/HUD but keeps file, unretire restores; hard-delete offered only on never-verified unreferenced measure (confirm) and NOT on a verified/referenced one; engine changes build+test green.",
+      "promptSummary": "## Problem\nEngine supports create (task-189) but the tile has no create/retire path.\n## Build\nGuided Add-KPI form (structured calc builder, exclusions auto-enforced, valid-value refs) + required compute-preview; auto default archetype + auto designReview on create; soft-retire + guarded hard-delete (never-verified & unreferenced only); allowlist-gated; no inline secrets; validateMeasure enforced.\n## Acceptance\nCreate/preview/verify/render loop works; soft-retire + unretire; hard-delete guard correct; tests green.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-251.md"
+    },
+    {
+      "id": "task-252",
+      "name": "Detail-view field/data-mapping audit + fix",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [],
+      "description": "The KPI detail view (kpi2/analyst01/kpi-detail.html fed by analyst-01/api/src/routes/kpis-v2.js) drifted during the v2 migration; fix six verified issues: (1) Definition falls back to calc.label when prose empty -> show '- no definition authored -' instead, prose only; (2) Computation Method duplicates Definition -> make it a human digest of the calculation (table+aggregation+dateField), distinct; (3) Current Source and lineage badge print 'Supabase:<table>' twice -> collapse to one lineage field w/ correct rep_logs(teal)/leads(purple)/cross-source treatment; (4) Frequency guessed from range keys -> source from real refresh mode/ttl/MV-backing, label honestly (Live / 5m cache / MV hourly), unknown -> '-'; (5) Target reads m.target but targets live in the Targets/admin-targets model -> read the LIVE target, '-' only when unset; (6) remove duplicate Measure id row + order calc card naturally (Label->Table->Date field->Measure->Exclusions->KB->Notes).",
+      "doneWhen": "Each detail field shows its correct, non-duplicated value across a verified, an unverified, a ratio, and a targeted measure; screenshots of all four in evidence; no regression to editor/verify; read-path only, both files backed up.",
+      "promptSummary": "## Problem\nDetail-view labels map to wrong/duplicated/stale data after the v2 migration (6 verified issues).\n## Build\nMap each labeled field to one correct distinct source: Definition=prose only; Computation Method=calc digest; single Lineage field; Frequency from real refresh; Target from live targets model; drop duplicate Measure id + natural calc ordering.\n## Acceptance\nCorrect distinct values across verified/unverified/ratio/targeted; screenshots; no editor/verify regression.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-252.md"
+    },
+    {
+      "id": "task-253",
+      "name": "Archetype / layout-design inventory viewer (in-tile reference)",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [],
+      "description": "Surface the A-H layout archetype inventory in the tile so design decisions (task-249 picker, task-251 create) are informed, not blind. Sources already exist: KPI_LAYOUT_ARCHETYPES A-H (kpi2/src/measure.ts), A-H semantics + section types in measure-schema.ts, and the archetype x range section matrix (build/rounds/round-43-evidence/archetype-section-matrix.md). Preferred: add GET /api/kpi2/archetypes emitting {letter, semantic, sectionStack[], memberMeasureIds[]} drift-proof from the catalog. A 'Layout Archetypes' reference view lists all A-H with letter + one-line semantic + section stack + which live measures use it (data-driven, not hard-coded). Each KPI detail shows its assigned archetype as a badge near the design-request section.",
+      "doneWhen": "Tile shows all 8 archetypes with correct semantics + section stacks + member measure ids; each KPI detail shows its current archetype badge; the task-249 picker and task-251 form consume this inventory; evidence screenshots recorded.",
+      "promptSummary": "## Problem\nArchetype/layout inventory exists only in code; the tile can't show it, so design choices are blind.\n## Build\nGET /api/kpi2/archetypes (drift-proof from catalog+schema+matrix) + a Layout Archetypes reference view (letter/semantic/section-stack/members) + per-KPI archetype badge; read-only.\n## Acceptance\nAll 8 archetypes viewable w/ correct stacks + members; per-KPI badge; picker + Add-KPI link to it.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-253.md"
+    },
+    {
+      "id": "task-254",
+      "name": "Round 47 verify + evidence (read-only sweep)",
+      "status": "pending",
+      "phase": "phase-53",
+      "depends_on": [
+        "task-247",
+        "task-248",
+        "task-249",
+        "task-250",
+        "task-251",
+        "task-252",
+        "task-253"
+      ],
+      "description": "Prove the full 'manage every aspect of a KPI from the Departmental tile' loop end-to-end with evidence in build/rounds/round-47-evidence/: (1) calc review loop request->queue->apply->resolve->badge clears; (2) design review loop with picked archetype request->queue(archetypeProposed)->apply expansion->resolve; (3) Add + retire: guided create->preview->unverified+default archetype+auto designReview->verify->HUD render->soft-retire->unretire->guarded hard-delete on a throwaway; (4) detail field audit across verified/unverified/ratio/targeted; (5) archetype inventory all 8 + per-KPI badge; (6) allowlist gating visible to Jon/Humberto/Zeri, hidden otherwise. Confirm Vera stack untouched.",
+      "doneWhen": "round-47-evidence/ committed with all six demonstrations + a PASS/FAIL summary per item; no regression to edit/preview/verify/targets or the /api/kpis-v2 read path; Vera stack confirmed untouched; any FAIL filed as a follow-up.",
+      "promptSummary": "## Problem\nNeed end-to-end proof + regression check for the whole round.\n## Build\nDemonstrate calc loop, design loop, add/retire, detail-field fix, archetype inventory, and allowlist gating; capture screenshots + JSON.\n## Acceptance\nEvidence committed w/ per-item PASS/FAIL; no regressions; Vera untouched.",
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-254.md"
     }
   ]
 }
