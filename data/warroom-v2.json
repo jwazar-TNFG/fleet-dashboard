@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T15:38:16Z",
+  "updated_at": "2026-07-25T15:38:31Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5721,7 +5721,7 @@
     {
       "id": "task-254",
       "name": "Round 47 verify + evidence (read-only sweep)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-53",
       "depends_on": [
         "task-247",
@@ -5735,7 +5735,9 @@
       "description": "Prove the full 'manage every aspect of a KPI from the Departmental tile' loop end-to-end with evidence in build/rounds/round-47-evidence/: (1) calc review loop request->queue->apply->resolve->badge clears; (2) design review loop with picked archetype request->queue(archetypeProposed)->apply expansion->resolve; (3) Add + retire: guided create->preview->unverified+default archetype+auto designReview->verify->HUD render->soft-retire->unretire->guarded hard-delete on a throwaway; (4) detail field audit across verified/unverified/ratio/targeted; (5) archetype inventory all 8 + per-KPI badge; (6) allowlist gating visible to Jon/Humberto/Zeri, hidden otherwise. Confirm Vera stack untouched.",
       "doneWhen": "round-47-evidence/ committed with all six demonstrations + a PASS/FAIL summary per item; no regression to edit/preview/verify/targets or the /api/kpis-v2 read path; Vera stack confirmed untouched; any FAIL filed as a follow-up.",
       "promptSummary": "## Problem\nNeed end-to-end proof + regression check for the whole round.\n## Build\nDemonstrate calc loop, design loop, add/retire, detail-field fix, archetype inventory, and allowlist gating; capture screenshots + JSON.\n## Acceptance\nEvidence committed w/ per-item PASS/FAIL; no regressions; Vera untouched.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-254.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-254.md",
+      "lastActivity": "2026-07-25T15:38:31Z",
+      "startedAt": "2026-07-25T15:38:31Z"
     }
   ]
 }
