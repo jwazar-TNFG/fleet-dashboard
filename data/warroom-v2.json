@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T03:43:36Z",
+  "updated_at": "2026-07-25T04:00:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5412,15 +5412,22 @@
     {
       "id": "task-240",
       "name": "layoutArchetype presence guarantee \u2014 no silent flat fallback",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-52",
       "depends_on": [],
       "description": "archetypeLayoutFor returns null when def.layoutArchetype is undefined -> legacy flat \"BY OFFICE\" bars. Round-45 confirmed serving catalog had 0/22 archetypes vs main 30/33 (merged!=deployed). Populate archetypes on ALL served measures, add a CI guard that fails on any missing archetype, and make the null case fail loud in dev/tests.",
       "doneWhen": "All 33 measures resolve a non-null archetype (assert 33/33); CI guard fails on a removed archetype then restore; no family renders legacy flat bar due to null label.",
       "promptSummary": "## Problem\nMissing layoutArchetype silently strips the rich layout to flat bars; inconsistent across families.\n\n## Build\nPopulate serving-catalog archetypes (A-H); add CI guard failing on any missing; renderer asserts non-null in tests.\n\n## Acceptance\n33/33 archetypes; guard proven; no silent flat fallback. Metadata+renderer-guard only, no math changes.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-240.md",
-      "lastActivity": "2026-07-25T03:43:36Z",
-      "startedAt": "2026-07-25T03:43:36Z"
+      "lastActivity": "2026-07-25T04:00:41Z",
+      "startedAt": "2026-07-25T03:43:36Z",
+      "landed": false,
+      "costUSD": 4.255077,
+      "inputTokens": 144,
+      "outputTokens": 46702,
+      "cacheReadTokens": 4749776,
+      "finishedAt": "2026-07-25T04:00:41Z",
+      "durationSeconds": 1025
     },
     {
       "id": "task-241",
