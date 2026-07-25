@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T16:31:10Z",
+  "updated_at": "2026-07-25T16:31:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5619,7 +5619,7 @@
       "doneWhen": "Allowlisted user flags a design change with text + >=1 tag + a picked archetype -> 'Design change requested' badge + queue entry carrying designTags and archetypeProposed; picker lists all 8 archetypes with meaning + section stack from task-253; non-allowlisted sees no button; evidence recorded.",
       "promptSummary": "## Problem\nNo way to request a presentation change on a KPI; design choices are made blind.\n## Build\nRequest-design panel: text + design-tag chips + guided A-H picker (from task-253) + screenshot -> POST design-review (metadata only); badge; allowlist gate; copy clarifies it targets expansion/archetype not calc.\n## Acceptance\nDesign request stored with archetypeProposed + tags, visible in queue; picker informed by inventory; gating verified.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-249.md",
-      "lastActivity": "2026-07-25T14:22:02Z",
+      "lastActivity": "2026-07-25T16:31:45Z",
       "startedAt": "2026-07-25T14:02:38Z",
       "landed": true,
       "costUSD": 5.031582,
@@ -5628,7 +5628,7 @@
       "cacheReadTokens": 5727100,
       "finishedAt": "2026-07-25T14:18:08Z",
       "durationSeconds": 930,
-      "mergedAt": "2026-07-25T14:22:02Z"
+      "mergedAt": "2026-07-25T16:31:45Z"
     },
     {
       "id": "task-250",
