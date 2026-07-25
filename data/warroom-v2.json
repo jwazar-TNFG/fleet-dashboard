@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T04:00:59Z",
+  "updated_at": "2026-07-25T04:15:22Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5433,7 +5433,7 @@
     {
       "id": "task-241",
       "name": "Uniform hero block across focus families",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-52",
       "depends_on": [
         "task-240"
@@ -5442,8 +5442,15 @@
       "doneWhen": "Signed, Confirmed count, Case Recovery Time each render a prominent hero w/ delta/target context; distribution donut hero restyled to standard; screenshots confirm; hud tests green.",
       "promptSummary": "## Problem\nHero inconsistent/absent across families (Signed hero is fine print).\n\n## Build\nEvery archetype focus layout renders family-appropriate hero (value+delta/target). Promote Signed hero. No invented targets/deltas.\n\n## Acceptance\nHero anchors every sampled family; distribution donut standardized; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-241.md",
-      "lastActivity": "2026-07-25T04:00:59Z",
-      "startedAt": "2026-07-25T04:00:59Z"
+      "lastActivity": "2026-07-25T04:15:22Z",
+      "startedAt": "2026-07-25T04:00:59Z",
+      "landed": false,
+      "costUSD": 5.570241,
+      "inputTokens": 116,
+      "outputTokens": 55974,
+      "cacheReadTokens": 6343691,
+      "finishedAt": "2026-07-25T04:15:22Z",
+      "durationSeconds": 863
     },
     {
       "id": "task-242",
