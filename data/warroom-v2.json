@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T13:46:35Z",
+  "updated_at": "2026-07-25T13:46:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5679,13 +5679,15 @@
     {
       "id": "task-253",
       "name": "Archetype / layout-design inventory viewer (in-tile reference)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-53",
       "depends_on": [],
       "description": "Surface the A-H layout archetype inventory in the tile so design decisions (task-249 picker, task-251 create) are informed, not blind. Sources already exist: KPI_LAYOUT_ARCHETYPES A-H (kpi2/src/measure.ts), A-H semantics + section types in measure-schema.ts, and the archetype x range section matrix (build/rounds/round-43-evidence/archetype-section-matrix.md). Preferred: add GET /api/kpi2/archetypes emitting {letter, semantic, sectionStack[], memberMeasureIds[]} drift-proof from the catalog. A 'Layout Archetypes' reference view lists all A-H with letter + one-line semantic + section stack + which live measures use it (data-driven, not hard-coded). Each KPI detail shows its assigned archetype as a badge near the design-request section.",
       "doneWhen": "Tile shows all 8 archetypes with correct semantics + section stacks + member measure ids; each KPI detail shows its current archetype badge; the task-249 picker and task-251 form consume this inventory; evidence screenshots recorded.",
       "promptSummary": "## Problem\nArchetype/layout inventory exists only in code; the tile can't show it, so design choices are blind.\n## Build\nGET /api/kpi2/archetypes (drift-proof from catalog+schema+matrix) + a Layout Archetypes reference view (letter/semantic/section-stack/members) + per-KPI archetype badge; read-only.\n## Acceptance\nAll 8 archetypes viewable w/ correct stacks + members; per-KPI badge; picker + Add-KPI link to it.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-253.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-253.md",
+      "lastActivity": "2026-07-25T13:46:38Z",
+      "startedAt": "2026-07-25T13:46:38Z"
     },
     {
       "id": "task-254",
