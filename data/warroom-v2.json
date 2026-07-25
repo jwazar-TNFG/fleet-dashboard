@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T14:18:08Z",
+  "updated_at": "2026-07-25T14:18:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5382,7 +5382,7 @@
       "doneWhen": "Focused panel toggling Today/MTD/YTD updates scope tag AND figures to match the API; no stale TODAY under MTD/YTD; (nearest) only when backend truly lacks range; hud tests+lint green.",
       "promptSummary": "## Problem\nFocused KPI panel ignores wall range (tags TODAY under MTD). Backend serves correct MTD (rangeExact=true) \u2014 renderer never refetches. Payload arrives via bridge panel.update; renderer never fans out.\n\n## Build\nOn range.set, refetch each KPI panel measure at new range -> panel.update. Reuse existing fetch path. Panel tag = served range. Preserve range HARD LAW.\n\n## Acceptance\nToggle updates tag+figures vs API; no stale TODAY; (nearest) preserved; tests green.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-238.md",
-      "lastActivity": "2026-07-25T12:38:39Z",
+      "lastActivity": "2026-07-25T14:18:23Z",
       "startedAt": "2026-07-25T03:14:22Z",
       "landed": true,
       "costUSD": 4.208852,
@@ -5391,7 +5391,7 @@
       "cacheReadTokens": 4560240,
       "finishedAt": "2026-07-25T03:27:54Z",
       "durationSeconds": 812,
-      "mergedAt": "2026-07-25T12:38:39Z"
+      "mergedAt": "2026-07-25T14:18:23Z"
     },
     {
       "id": "task-239",
