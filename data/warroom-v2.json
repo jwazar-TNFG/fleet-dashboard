@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T04:15:22Z",
+  "updated_at": "2026-07-25T04:15:38Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5455,7 +5455,7 @@
     {
       "id": "task-242",
       "name": "Narrative uniformity \u2014 populate where data exists, suppress empty scaffolding",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-52",
       "depends_on": [
         "task-240"
@@ -5463,7 +5463,9 @@
       "description": "Narrative inconsistent: Signed renders KEY WINS/AREAS/RECOMMENDATIONS headers with NO copy (empty scaffolding, looks broken); Lead Rating Distribution has populated narrative; Case Recovery Time has none. NarrativeTrio should render only when payload carries narrative for a zone; extend coverage uniformly; never fabricate insight text.",
       "doneWhen": "No focus view shows empty narrative headers; families with narrative data show copy; Case Recovery Time shows real narrative or cleanly omits zone; hud tests cover populated+suppressed.",
       "promptSummary": "## Problem\nEmpty narrative headers on Signed; inconsistent across families.\n\n## Build\nRender NarrativeTrio only with data; suppress empty; extend/degrade gracefully; wire Signed narrative. Never invent text.\n\n## Acceptance\nNo empty headers; populated where data exists; tests green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-242.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-242.md",
+      "lastActivity": "2026-07-25T04:15:38Z",
+      "startedAt": "2026-07-25T04:15:38Z"
     },
     {
       "id": "task-243",
