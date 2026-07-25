@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:28:03Z",
+  "updated_at": "2026-07-25T00:28:16Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5207,8 +5207,7 @@
       "id": "task-230",
       "name": "DEPLOY R43/44/45 to analyst-01 (Jon-gated) + E2E verify + rollback",
       "phase": "phase-51",
-      "status": "pending",
-      "landed": false,
+      "status": "in_progress",
       "depends_on": [
         "task-223",
         "task-229"
@@ -5216,7 +5215,9 @@
       "description": "ONLY task that mutates production, Jon-gated. Fresh main build, apply DB deltas + PostgREST reload + MV refresh, atomic .env repoint + restart, verify signed serves layoutArchetype A + YTD sub-second + Focus panel renders full archetype stack (not flat BY OFFICE bar). ROLLBACK to task-205 on any gate fail \u2014 never a hung/503 HUD.",
       "doneWhen": "New build deployed + all live gates pass (signed archetype A, YTD sub-second, Focus stack w/ screenshot) OR clean rollback documented; live service healthy at end.",
       "promptSummary": "## Problem\nONLY task that mutates production, Jon-gated. Fresh main build, apply DB deltas + PostgREST reload + MV refresh, atomic .env repoint + restart, verify signed serves layoutArchetype A + YTD sub-second + Focus panel renders full archetype stack (not flat BY OFFICE bar). ROLLBACK to task-205 on any gate fail \u2014 never a hung/503 HUD.\n\n## Acceptance\nNew build deployed + all live gates pass (signed archetype A, YTD sub-second, Focus stack w/ screenshot) OR clean rollback documented; live service healthy at end.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-230.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-230.md",
+      "lastActivity": "2026-07-25T00:28:16Z",
+      "startedAt": "2026-07-25T00:28:16Z"
     },
     {
       "id": "task-231",
