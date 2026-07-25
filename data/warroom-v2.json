@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T00:43:33Z",
+  "updated_at": "2026-07-25T01:26:31Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5230,7 +5230,7 @@
       "id": "task-231",
       "name": "Post-deploy regression sweep",
       "phase": "phase-51",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-230"
       ],
@@ -5238,8 +5238,15 @@
       "doneWhen": "Full serve matrix green (zero hangs); archetype presence; per-family Focus render w/ screenshots; correctness spot-check matches; evidence committed.",
       "promptSummary": "## Problem\nAfter deploy: every measure x today/mtd/ytd = 200 + resolves + sane + latency; archetype presence; one-per-family Focus render screenshots; correctness spot-check vs pre-deploy.\n\n## Acceptance\nFull serve matrix green (zero hangs); archetype presence; per-family Focus render w/ screenshots; correctness spot-check matches; evidence committed.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-231.md",
-      "lastActivity": "2026-07-25T00:43:33Z",
-      "startedAt": "2026-07-25T00:43:33Z"
+      "lastActivity": "2026-07-25T01:26:31Z",
+      "startedAt": "2026-07-25T00:43:33Z",
+      "landed": false,
+      "costUSD": 6.868087,
+      "inputTokens": 3052,
+      "outputTokens": 62878,
+      "cacheReadTokens": 6214434,
+      "finishedAt": "2026-07-25T01:26:31Z",
+      "durationSeconds": 2578
     },
     {
       "id": "task-232",
