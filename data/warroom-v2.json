@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T12:38:46Z",
+  "updated_at": "2026-07-25T12:38:49Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5563,7 +5563,7 @@
     {
       "id": "task-247",
       "name": "kpi2 engine: review-request WRITE + review-queue endpoints",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-53",
       "depends_on": [
         "task-189"
@@ -5571,7 +5571,9 @@
       "description": "Adds a metadata-only review-request path to the kpi2 engine so Jon/Humberto/Zeri can flag a KPI for a CALCULATION or DESIGN change without editing it themselves. Two new blocks on each measure JSON: calcReview {open,requestText,issueTags[],requestedBy,requestedAt,screenshots[],resolved*} and designReview {..designTags[],archetypeProposed A-H|null..}. Endpoints: POST /measures/:id/calc-review, POST /measures/:id/design-review, their /resolve counterparts, and GET /review-queue. validateMeasure extended to shape-check both blocks and REJECT any body that smuggles a calculation/verified/expansion change. Atomic per-file write, path-guarded id, in-memory reload.",
       "doneWhen": "PUT/POST review endpoints live + gated on writable catalog; a review write can never alter calc/verified/expansion (400 if attempted); GET /review-queue lists open requests newest-first; unit tests in kpi2/test/http.test.ts green; npm run build && npm test green.",
       "promptSummary": "## Problem\nkpi2 engine has no request/queue path since the 159 stack retired; the Flag-for-Virgil loop went dark on the v2 tile.\n## Build\nAdd calcReview + designReview blocks + POST calc-review / design-review / *-resolve + GET /review-queue; metadata-only; validator-guarded; atomic write + catalog reload.\n## Acceptance\ncalc-review round-trips through the queue + resolve; design-review with bad archetype or embedded calc = 400; path-guard + 404 covered by tests; build+test green.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-247.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-247.md",
+      "lastActivity": "2026-07-25T12:38:49Z",
+      "startedAt": "2026-07-25T12:38:49Z"
     },
     {
       "id": "task-248",
