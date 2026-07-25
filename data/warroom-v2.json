@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T04:31:00Z",
+  "updated_at": "2026-07-25T04:45:12Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5478,15 +5478,22 @@
     {
       "id": "task-243",
       "name": "Compound table component (NEW)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-52",
       "depends_on": [],
       "description": "Jon has \"yet to see a compound table used\" \u2014 because none exists. components/charts/ has no multi-metric/multi-column table; by-office is a single-metric bar table. Build CompoundTable.tsx: multi-column (e.g. by-office x [goal,delivered,owed,%,signed,confirmed]), grouped rows, inline mini-bars/sparklines, status pills, column sort, War Room styling. Consume existing breakdown/breakdowns[] payload shape (no new fetch).",
       "doneWhen": "CompoundTable exists, exported, unit-tested (render+sort+empty); gallery entry with sample data; renders in >=1 live focus family (full wire in task-244).",
       "promptSummary": "## Problem\nNo compound (multi-metric) table component exists.\n\n## Build\nCreate components/charts/CompoundTable.tsx: multi-column, grouped rows, inline bars/pills, sort. Consume payload breakdown slices. Add to index + gallery + tests.\n\n## Acceptance\nComponent+tests+gallery; renders live in >=1 family.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-243.md",
-      "lastActivity": "2026-07-25T04:31:00Z",
-      "startedAt": "2026-07-25T04:31:00Z"
+      "lastActivity": "2026-07-25T04:45:12Z",
+      "startedAt": "2026-07-25T04:31:00Z",
+      "landed": false,
+      "costUSD": 5.425991,
+      "inputTokens": 156,
+      "outputTokens": 55157,
+      "cacheReadTokens": 6415399,
+      "finishedAt": "2026-07-25T04:45:12Z",
+      "durationSeconds": 852
     },
     {
       "id": "task-244",
