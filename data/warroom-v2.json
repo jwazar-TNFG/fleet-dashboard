@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T12:38:39Z",
+  "updated_at": "2026-07-25T12:38:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5426,15 +5426,16 @@
       "doneWhen": "All 33 measures resolve a non-null archetype (assert 33/33); CI guard fails on a removed archetype then restore; no family renders legacy flat bar due to null label.",
       "promptSummary": "## Problem\nMissing layoutArchetype silently strips the rich layout to flat bars; inconsistent across families.\n\n## Build\nPopulate serving-catalog archetypes (A-H); add CI guard failing on any missing; renderer asserts non-null in tests.\n\n## Acceptance\n33/33 archetypes; guard proven; no silent flat fallback. Metadata+renderer-guard only, no math changes.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-240.md",
-      "lastActivity": "2026-07-25T04:00:41Z",
+      "lastActivity": "2026-07-25T12:38:41Z",
       "startedAt": "2026-07-25T03:43:36Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 4.255077,
       "inputTokens": 144,
       "outputTokens": 46702,
       "cacheReadTokens": 4749776,
       "finishedAt": "2026-07-25T04:00:41Z",
-      "durationSeconds": 1025
+      "durationSeconds": 1025,
+      "mergedAt": "2026-07-25T12:38:41Z"
     },
     {
       "id": "task-241",
