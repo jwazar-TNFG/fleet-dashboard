@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-07-25T14:18:31Z",
+  "updated_at": "2026-07-25T14:18:34Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5668,22 +5668,19 @@
     {
       "id": "task-252",
       "name": "Detail-view field/data-mapping audit + fix",
-      "status": "completed",
+      "status": "in_progress",
       "phase": "phase-53",
       "depends_on": [],
       "description": "The KPI detail view (kpi2/analyst01/kpi-detail.html fed by analyst-01/api/src/routes/kpis-v2.js) drifted during the v2 migration; fix six verified issues: (1) Definition falls back to calc.label when prose empty -> show '- no definition authored -' instead, prose only; (2) Computation Method duplicates Definition -> make it a human digest of the calculation (table+aggregation+dateField), distinct; (3) Current Source and lineage badge print 'Supabase:<table>' twice -> collapse to one lineage field w/ correct rep_logs(teal)/leads(purple)/cross-source treatment; (4) Frequency guessed from range keys -> source from real refresh mode/ttl/MV-backing, label honestly (Live / 5m cache / MV hourly), unknown -> '-'; (5) Target reads m.target but targets live in the Targets/admin-targets model -> read the LIVE target, '-' only when unset; (6) remove duplicate Measure id row + order calc card naturally (Label->Table->Date field->Measure->Exclusions->KB->Notes).",
       "doneWhen": "Each detail field shows its correct, non-duplicated value across a verified, an unverified, a ratio, and a targeted measure; screenshots of all four in evidence; no regression to editor/verify; read-path only, both files backed up.",
       "promptSummary": "## Problem\nDetail-view labels map to wrong/duplicated/stale data after the v2 migration (6 verified issues).\n## Build\nMap each labeled field to one correct distinct source: Definition=prose only; Computation Method=calc digest; single Lineage field; Frequency from real refresh; Target from live targets model; drop duplicate Measure id + natural calc ordering.\n## Acceptance\nCorrect distinct values across verified/unverified/ratio/targeted; screenshots; no editor/verify regression.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-252.md",
-      "lastActivity": "2026-07-25T14:02:36Z",
+      "lastActivity": "2026-07-25T14:18:34Z",
       "startedAt": "2026-07-25T13:27:32Z",
-      "landed": true,
       "costUSD": 5.065958,
       "inputTokens": 1340,
       "outputTokens": 55004,
       "cacheReadTokens": 5673450,
-      "finishedAt": "2026-07-25T13:46:20Z",
-      "durationSeconds": 1128,
       "mergedAt": "2026-07-25T14:02:36Z"
     },
     {
