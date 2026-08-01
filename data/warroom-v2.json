@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T18:42:04Z",
+  "updated_at": "2026-08-01T18:42:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5888,7 +5888,7 @@
     {
       "id": "task-261",
       "name": "W1-7 table: cor_report_data -> vizKind:table spec + shaper (RND-344)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-255"
@@ -5896,7 +5896,9 @@
       "description": "COR report rows. Measure gains vizKind:table (ranked rows, no transform beyond ordering); route calls the shaper (leaderboard spine, rows only); contract unchanged. Guard COR_REPORT engine variant, default OFF. BY DESIGN cor_report applies the Attorney-sourced subquery ONLY -- NO Katiria/xSTAFF -- and that is correct; do NOT add exclusions. cor-report-data golden timeout 30000.",
       "doneWhen": "kpi2-measures golden unchanged; cor-report-data golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned COR report RPC still hand-assembled.\n## Build\nvizKind:table + shaper; guard flag OFF; keep Attorney-only exclusion (no Katiria/xSTAFF).\n## Acceptance\ncor-report-data golden byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-261.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-261.md",
+      "lastActivity": "2026-08-01T18:42:07Z",
+      "startedAt": "2026-08-01T18:42:07Z"
     },
     {
       "id": "task-262",
