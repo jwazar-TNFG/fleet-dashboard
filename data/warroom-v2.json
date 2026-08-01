@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T17:28:30Z",
+  "updated_at": "2026-08-01T17:28:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5813,15 +5813,16 @@
       "doneWhen": "kpi2-measures golden unchanged; ratings-leads golden byte-identical with flag OFF; predeploy conformance OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned ratings distribution RPC still hand-assembled.\n## Build\nvizKind:distribution + present; shapeDistribution in-route; guard flag OFF. Exclusions stay engine-canonical.\n## Acceptance\nratings-leads golden byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-257.md",
-      "lastActivity": "2026-08-01T17:28:30Z",
+      "lastActivity": "2026-08-01T17:28:42Z",
       "startedAt": "2026-08-01T17:05:45Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 4.613579,
       "inputTokens": 2,
       "outputTokens": 374,
       "cacheReadTokens": 116718,
       "finishedAt": "2026-08-01T17:28:30Z",
-      "durationSeconds": 1365
+      "durationSeconds": 1365,
+      "mergedAt": "2026-08-01T17:28:42Z"
     },
     {
       "id": "task-258",
