@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T18:41:54Z",
+  "updated_at": "2026-08-01T18:42:04Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5874,15 +5874,16 @@
       "doneWhen": "kpi2-measures golden unchanged; ops-productivity-daily (+matrix) golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned daily productivity RPC still hand-assembled.\n## Build\nvizKind + present; shaper in-route; guard flag OFF; exclusions engine-canonical (no Attorney).\n## Acceptance\nproductivity-daily golden byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-260.md",
-      "lastActivity": "2026-08-01T18:41:54Z",
+      "lastActivity": "2026-08-01T18:42:04Z",
       "startedAt": "2026-08-01T18:19:42Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 6.310227,
       "inputTokens": 1219,
       "outputTokens": 48721,
       "cacheReadTokens": 8236350,
       "finishedAt": "2026-08-01T18:41:54Z",
-      "durationSeconds": 1332
+      "durationSeconds": 1332,
+      "mergedAt": "2026-08-01T18:42:04Z"
     },
     {
       "id": "task-261",
