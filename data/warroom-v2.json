@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T17:28:42Z",
+  "updated_at": "2026-08-01T17:28:43Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5827,7 +5827,7 @@
     {
       "id": "task-258",
       "name": "W1-4 distribution(facets): ratings_filter_options -> spec + shaper (RND-341)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-257"
@@ -5835,7 +5835,9 @@
       "description": "Ratings filter/facet option lists, same exclusion contract as W1-3. Measure(s) gain vizKind:distribution (or table for plain lists); route calls the shaper; contract unchanged. Guard RATINGS_FILTERS engine variant, default OFF. ratings-filters golden timeout 30000.",
       "doneWhen": "kpi2-measures golden unchanged; ratings-filters golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned ratings facets RPC still hand-assembled.\n## Build\nvizKind + shaper; guard flag OFF; exclusions engine-canonical (same as W1-3).\n## Acceptance\nratings-filters golden byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-258.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-258.md",
+      "lastActivity": "2026-08-01T17:28:43Z",
+      "startedAt": "2026-08-01T17:28:43Z"
     },
     {
       "id": "task-259",
