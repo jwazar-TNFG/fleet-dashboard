@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T20:10:15Z",
+  "updated_at": "2026-08-01T20:10:52Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5920,15 +5920,16 @@
       "doneWhen": "kpi2-measures golden unchanged; ops-performance-summary golden byte-identical with flag OFF (payroll feeds it); predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned payroll-map RPC; exclusions 'none' by design.\n## Build\nRoute payroll through the engine measure (exclusions none); guard flag OFF; coordinate with W1-2.\n## Acceptance\nperformance-summary golden byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-262.md",
-      "lastActivity": "2026-08-01T20:10:15Z",
+      "lastActivity": "2026-08-01T20:10:52Z",
       "startedAt": "2026-08-01T19:33:10Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.402852,
       "inputTokens": 142,
       "outputTokens": 43213,
       "cacheReadTokens": 4797632,
       "finishedAt": "2026-08-01T20:10:15Z",
-      "durationSeconds": 2225
+      "durationSeconds": 2225,
+      "mergedAt": "2026-08-01T20:10:52Z"
     }
   ]
 }
