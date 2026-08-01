@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T17:05:41Z",
+  "updated_at": "2026-08-01T17:05:45Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5804,7 +5804,7 @@
     {
       "id": "task-257",
       "name": "W1-3 distribution: ratings_leads_distribution -> vizKind:distribution spec + shaper (RND-340)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-255"
@@ -5812,7 +5812,9 @@
       "description": "The 1..5 lead-ratings distribution. Measure gains vizKind:distribution + present.dimension; route calls shapeDistribution/shapeForVizKind, maps shaped.slices (value+share) into existing fields. Guard RATINGS_LEADS_DIST engine variant, default OFF. RPC bakes in %% format() doubling + Katiria name+email+xSTAFF (intakeSpecialist) + xSTAFF (office) exclusions -- ALL engine/registry-canonical; shaper only reshapes. ratings-leads golden timeout 60000.",
       "doneWhen": "kpi2-measures golden unchanged; ratings-leads golden byte-identical with flag OFF; predeploy conformance OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned ratings distribution RPC still hand-assembled.\n## Build\nvizKind:distribution + present; shapeDistribution in-route; guard flag OFF. Exclusions stay engine-canonical.\n## Acceptance\nratings-leads golden byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-257.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-257.md",
+      "lastActivity": "2026-08-01T17:05:45Z",
+      "startedAt": "2026-08-01T17:05:45Z"
     },
     {
       "id": "task-258",
