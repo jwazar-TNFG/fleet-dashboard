@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T17:05:33Z",
+  "updated_at": "2026-08-01T17:05:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5790,15 +5790,16 @@
       "doneWhen": "kpi2-measures golden unchanged; ops-performance-summary (+matrix) golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned per-group summary RPC still assembled by hand.\n## Build\nvizKind+present on the measure; shapeForVizKind in-route; keep avg + null-key fallback; guard flag OFF.\n## Acceptance\nSummary + matrix goldens byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-256.md",
-      "lastActivity": "2026-08-01T17:05:33Z",
+      "lastActivity": "2026-08-01T17:05:41Z",
       "startedAt": "2026-08-01T16:25:07Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 12.639769,
       "inputTokens": 306,
       "outputTokens": 105039,
       "cacheReadTokens": 12390897,
       "finishedAt": "2026-08-01T17:05:33Z",
-      "durationSeconds": 2426
+      "durationSeconds": 2426,
+      "mergedAt": "2026-08-01T17:05:41Z"
     },
     {
       "id": "task-257",
