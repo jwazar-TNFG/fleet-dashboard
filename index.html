@@ -15,7 +15,7 @@
     // running a stale cached page, a periodic check notices the server has a
     // newer version and force-reloads once with a cache-busting query — this
     // defeats GitHub Pages' 10-min HTML caching that keeps users on old JS.
-    window.BUILD_VERSION = '20260801-122507';
+    window.BUILD_VERSION = '20260725-123152';
     (function versionWatch(){
       async function check(){
         try{
@@ -162,6 +162,7 @@
     .stat-card.running .value { color: var(--blue); }
     .stat-card.failed .value { color: var(--red); }
     .stat-card.pending .value { color: var(--text-muted); }
+    .stat-card.cancelled .value { color: #d29922; }
 
     /* Cost summary bar */
     .cost-summary {
@@ -230,6 +231,7 @@
     .progress-segment.completed { background: var(--green); color: #000; }
     .progress-segment.running { background: var(--blue); color: #000; animation: pulse 2s ease-in-out infinite; }
     .progress-segment.failed { background: var(--red); color: #fff; }
+    .progress-segment.cancelled { background: #d29922; color: #000; opacity: 0.55; }
 
     @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -384,6 +386,7 @@
     .task-status-icon.in_progress > .spin-glyph { display: inline-block; animation: spin 1.1s linear infinite; }
     .task-status-icon.failed { background: var(--red); color: #fff; }
     .task-status-icon.pending { background: var(--border); color: var(--text-muted); }
+    .task-status-icon.cancelled { background: #d29922; color: #000; opacity: 0.85; }
     .task-status-icon.skipped { background: var(--yellow); color: #000; }
 
     /* Stacked content column */
@@ -682,6 +685,7 @@
     .depgraph-svg .task-rect.completed.not-landed { fill: rgba(210,153,34,0.18); stroke: #d29922; }
     .depgraph-svg .task-rect.running   { fill: rgba(88,166,255,0.20); stroke: #58a6ff; animation: nodePulse 2s ease-in-out infinite; }
     .depgraph-svg .task-rect.failed    { fill: rgba(248,81,73,0.20);  stroke: #f85149; }
+    .depgraph-svg .task-rect.cancelled { fill: rgba(210,153,34,0.15);  stroke: #d29922; stroke-dasharray: 4 3; }
     .depgraph-svg .task-rect.pending   { fill: transparent;            stroke: #30363d; }
     .depgraph-svg .task-rect.skipped   { fill: rgba(210,153,34,0.18); stroke: #d29922; }
 
@@ -765,6 +769,7 @@
     .depgraph-legend .lg-swatch.not-landed { background: rgba(210,153,34,0.18); border-color: #d29922; }
     .depgraph-legend .lg-swatch.running   { background: rgba(88,166,255,0.20); border-color: #58a6ff; }
     .depgraph-legend .lg-swatch.failed    { background: rgba(248,81,73,0.20);  border-color: #f85149; }
+    .depgraph-legend .lg-swatch.cancelled { background: rgba(210,153,34,0.15);  border-color: #d29922; border-style: dashed; }
     .depgraph-legend .lg-swatch.pending   { background: transparent;            border-color: #30363d; }
     .depgraph-legend .lg-swatch.skipped   { background: rgba(210,153,34,0.18); border-color: #d29922; }
     .depgraph-legend .lg-swatch.gate {
@@ -839,6 +844,7 @@
     .depgraph-info-panel .ip-status.completed.not-landed { background: rgba(210,153,34,0.15); color: #d29922; }
     .depgraph-info-panel .ip-status.running   { background: rgba(88,166,255,0.15); color: #58a6ff; }
     .depgraph-info-panel .ip-status.failed    { background: rgba(248,81,73,0.15); color: #f85149; }
+    .depgraph-info-panel .ip-status.cancelled { background: rgba(210,153,34,0.15); color: #d29922; }
     .depgraph-info-panel .ip-status.pending   { background: rgba(139,148,158,0.15); color: var(--text-muted); }
     .depgraph-info-panel .ip-status.skipped   { background: rgba(210,153,34,0.15); color: #d29922; }
 
@@ -959,6 +965,7 @@
     .td-status-badge.completed.not-landed { background: rgba(210,153,34,0.15); color: var(--yellow); }
     .td-status-badge.running    { background: rgba(88,166,255,0.15); color: var(--blue); }
     .td-status-badge.failed     { background: rgba(248,81,73,0.15); color: var(--red); }
+    .td-status-badge.cancelled  { background: rgba(210,153,34,0.15); color: #d29922; }
     .td-status-badge.pending    { background: rgba(139,148,158,0.1); color: var(--text-muted); }
     .td-cost-grid {
       display: grid;
@@ -1072,7 +1079,8 @@ const STATUS_ICONS = {
   in_progress: '⟳',
   failed: '✗',
   pending: '·',
-  skipped: '⊘'
+  skipped: '⊘',
+  cancelled: '⊘'
 };
 
 // GLOBAL formatters — must live at module scope so BOTH renderProject() and
@@ -1218,6 +1226,7 @@ function renderProject(project) {
   const running = tasks.filter(t => t.status === 'running').length;
   const failed = tasks.filter(t => t.status === 'failed').length;
   const pending = tasks.filter(t => t.status === 'pending').length;
+  const cancelled = tasks.filter(t => t.status === 'cancelled').length;
   const pct = total ? Math.round((completed / total) * 100) : 0;
 
   // System status
@@ -1283,6 +1292,7 @@ function renderProject(project) {
       <div class="stat-card running"><div class="value">${running}</div><div class="label">Running</div></div>
       <div class="stat-card failed"><div class="value">${failed}</div><div class="label">Failed</div></div>
       <div class="stat-card pending"><div class="value">${pending}</div><div class="label">Pending</div></div>
+      ${cancelled > 0 ? `<div class="stat-card cancelled"><div class="value">${cancelled}</div><div class="label">Cancelled</div></div>` : ''}
     </div>
   `;
 
@@ -1354,15 +1364,18 @@ function renderProject(project) {
     const phaseCompleted = phaseTasks.filter(t => t.status === 'completed').length;
     const phaseRunning = phaseTasks.filter(t => t.status === 'running').length;
     const phaseFailed = phaseTasks.filter(t => t.status === 'failed').length;
+    const phaseCancelled = phaseTasks.filter(t => t.status === 'cancelled').length;
     const phaseTotal = phaseTasks.length;
+    // A cancelled task is a resolved (closed) task for phase-completion purposes.
+    const phaseResolved = phaseCompleted + phaseCancelled;
 
     let badgeClass, badgeText;
     if (phaseFailed > 0) {
       badgeClass = 'has-failures';
       badgeText = `${phaseFailed} failed`;
-    } else if (phaseCompleted === phaseTotal) {
+    } else if (phaseResolved === phaseTotal) {
       badgeClass = 'all-done';
-      badgeText = 'Done';
+      badgeText = phaseCancelled > 0 && phaseCompleted === 0 ? 'Cancelled' : (phaseCancelled > 0 ? 'Done' : 'Done');
     } else if (phaseRunning > 0 || phaseCompleted > 0) {
       badgeClass = 'in-progress';
       badgeText = `${phaseCompleted}/${phaseTotal}`;
@@ -1375,7 +1388,7 @@ function renderProject(project) {
     // fine with this now that the detail modal works when expanded). The phase
     // header (▾ chevron) remains a manual toggle to expand and click into any
     // task. In-progress / failed phases stay open so active work is visible.
-    const collapsed = (phaseCompleted === phaseTotal && phaseFailed === 0) ? ' collapsed' : '';
+    const collapsed = (phaseResolved === phaseTotal && phaseFailed === 0) ? ' collapsed' : '';
 
     // Format phase header: "Phase 1 — Foundation" style
     const phaseLabel = phaseNames[phaseName]
@@ -1891,6 +1904,7 @@ function renderDepGraph(project, phaseNames) {
       <span class="lg-item"><span class="lg-swatch not-landed"></span>complete (not merged)</span>
       <span class="lg-item"><span class="lg-swatch running"></span>running</span>
       <span class="lg-item"><span class="lg-swatch failed"></span>failed</span>
+      <span class="lg-item"><span class="lg-swatch cancelled"></span>cancelled</span>
       <span class="lg-item"><span class="lg-swatch pending"></span>pending</span>
       <span class="lg-item"><span class="lg-swatch skipped"></span>skipped</span>
       <span class="lg-item"><span class="lg-swatch gate"></span>gate / milestone</span>
@@ -1939,6 +1953,7 @@ function statusIconColor(status) {
     case 'in_progress': return '#58a6ff';
     case 'failed':      return '#f85149';
     case 'skipped':   return '#d29922';
+    case 'cancelled': return '#d29922';
     default:          return '#8b949e';
   }
 }
