@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T17:49:38Z",
+  "updated_at": "2026-08-01T17:49:41Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5846,7 +5846,7 @@
     {
       "id": "task-259",
       "name": "W1-5 timeseries: history_daily_lead_agg -> vizKind:timeseries spec + shaper (RND-342)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-255"
@@ -5854,7 +5854,9 @@
       "description": "Daily lead aggregate. Measure gains vizKind:timeseries + present.dimension (day bucket); route calls shapeTimeSeries (re-sorts value-desc groups chronological by YYYY-MM-DD) and maps shaped.points {t,v}. Guard HISTORY_DAILY engine variant, default OFF. WATCH the history/daily tie-order -- a REAL RND-334 regression that surfaced only in the live gate; fix in ordering not a route re-sort. Subset leads exclusions (Katiria name+email+xSTAFF on intakeSpecialist) engine-canonical.",
       "doneWhen": "kpi2-measures golden unchanged; history-daily + history-daily-range goldens byte-identical with flag OFF; predeploy OK. Ready for gate (tie-order proven).",
       "promptSummary": "## Problem\nGoverned daily-history RPC still hand-assembled; known tie-order hazard.\n## Build\nvizKind:timeseries + present; shapeTimeSeries in-route; guard flag OFF; preserve tie-order.\n## Acceptance\nhistory-daily(+range) goldens byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-259.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-259.md",
+      "lastActivity": "2026-08-01T17:49:41Z",
+      "startedAt": "2026-08-01T17:49:41Z"
     },
     {
       "id": "task-260",
