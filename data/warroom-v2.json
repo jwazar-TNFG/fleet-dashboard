@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T15:33:23Z",
+  "updated_at": "2026-08-01T15:33:24Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5763,7 +5763,7 @@
       "doneWhen": "warroom-v2 typecheck+build+vitest green; measure validates; kpi2-measures golden byte-identical; analyst-01 predeploy conformance OK; with OPS_TOPBOTTOM_ENGINE OFF the ops-top-bottom golden is byte-identical. PR='ready for gate' (live ON gate is Virgil's).",
       "promptSummary": "## Problem\nTop/Bottom reps has a governed RPC oracle but the route still hand-sorts/slices. It is the first Wave-1 target and the pattern all others copy.\n## Build\nAdd vizKind:leaderboard + present.rank to the CV measure; call shapeForVizKind in the route; guard OPS_TOPBOTTOM_ENGINE (default OFF). Keep office label + CV-tie order.\n## Acceptance\nkpi2-measures golden unchanged; ops-top-bottom golden byte-identical with flag OFF; ready for Virgil's live gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-255.md",
-      "lastActivity": "2026-08-01T15:32:31Z",
+      "lastActivity": "2026-08-01T15:33:24Z",
       "startedAt": "2026-08-01T15:32:31Z"
     },
     {
