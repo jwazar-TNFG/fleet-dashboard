@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T15:33:16Z",
+  "updated_at": "2026-08-01T15:33:19Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5692,13 +5692,13 @@
       "doneWhen": "Each detail field shows its correct, non-duplicated value across a verified, an unverified, a ratio, and a targeted measure; screenshots of all four in evidence; no regression to editor/verify; read-path only, both files backed up.",
       "promptSummary": "## Problem\nDetail-view labels map to wrong/duplicated/stale data after the v2 migration (6 verified issues).\n## Build\nMap each labeled field to one correct distinct source: Definition=prose only; Computation Method=calc digest; single Lineage field; Frequency from real refresh; Target from live targets model; drop duplicate Measure id + natural calc ordering.\n## Acceptance\nCorrect distinct values across verified/unverified/ratio/targeted; screenshots; no editor/verify regression.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-252.md",
-      "lastActivity": "2026-07-25T16:31:50Z",
+      "lastActivity": "2026-08-01T15:33:19Z",
       "startedAt": "2026-07-25T13:27:32Z",
       "costUSD": 6.286719,
       "inputTokens": 1416,
       "outputTokens": 76393,
       "cacheReadTokens": 6386977,
-      "mergedAt": "2026-07-25T16:31:50Z",
+      "mergedAt": "2026-08-01T15:33:19Z",
       "landed": true,
       "finishedAt": "2026-07-25T16:31:10Z",
       "durationSeconds": 11018
