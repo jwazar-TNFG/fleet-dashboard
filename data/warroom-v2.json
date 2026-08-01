@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T16:25:07Z",
+  "updated_at": "2026-08-01T17:05:33Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5136,7 +5136,6 @@
       "status": "cancelled",
       "landed": false,
       "cancelledReason": "Cancelled \u2014 leads MV backing (cpa/cpl/case_cycle_time) deprioritized; not being run.",
-      "landed": false,
       "depends_on": [],
       "description": "3 leads measures cache-mode. Reuse existing kpi2_mv_leads_daily_agg (covers case_cycle_time). cpa/cpl cross into payroll spend \u2014 MV leads leg, coordinate spend w/ task-226 or leave cache w/ documented reason.",
       "doneWhen": "case_cycle_time MV-backed+verified; cpa/cpl verified+flipped OR documented cache pending payroll; build+tests pass.",
@@ -5150,7 +5149,6 @@
       "status": "cancelled",
       "landed": false,
       "cancelledReason": "Cancelled \u2014 payroll MV backing NET-NEW deprioritized; not being run.",
-      "landed": false,
       "depends_on": [],
       "description": "labor_cost + boost_ad_spend cache-mode; NO payroll MV exists. Author net-new kpi2_mv_payroll_daily_agg (idempotent, fail-loud, exclusions), register for refresh, correctness-verify before flip.",
       "doneWhen": "MV authored + registered; both measures zero-discrepancy verified + flipped; build+tests pass.",
@@ -5783,7 +5781,7 @@
     {
       "id": "task-256",
       "name": "W1-2 leaderboard/table: ops_performance_summary -> spec + shaper (RND-339)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-54",
       "depends_on": [
         "task-255"
@@ -5792,8 +5790,15 @@
       "doneWhen": "kpi2-measures golden unchanged; ops-performance-summary (+matrix) golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned per-group summary RPC still assembled by hand.\n## Build\nvizKind+present on the measure; shapeForVizKind in-route; keep avg + null-key fallback; guard flag OFF.\n## Acceptance\nSummary + matrix goldens byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-256.md",
-      "lastActivity": "2026-08-01T16:25:07Z",
-      "startedAt": "2026-08-01T16:25:07Z"
+      "lastActivity": "2026-08-01T17:05:33Z",
+      "startedAt": "2026-08-01T16:25:07Z",
+      "landed": false,
+      "costUSD": 12.639769,
+      "inputTokens": 306,
+      "outputTokens": 105039,
+      "cacheReadTokens": 12390897,
+      "finishedAt": "2026-08-01T17:05:33Z",
+      "durationSeconds": 2426
     },
     {
       "id": "task-257",
