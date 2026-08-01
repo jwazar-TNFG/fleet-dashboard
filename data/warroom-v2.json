@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T19:32:58Z",
+  "updated_at": "2026-08-01T19:33:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5897,15 +5897,16 @@
       "doneWhen": "kpi2-measures golden unchanged; cor-report-data golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned COR report RPC still hand-assembled.\n## Build\nvizKind:table + shaper; guard flag OFF; keep Attorney-only exclusion (no Katiria/xSTAFF).\n## Acceptance\ncor-report-data golden byte-identical flag-OFF; ready for gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-261.md",
-      "lastActivity": "2026-08-01T19:32:58Z",
+      "lastActivity": "2026-08-01T19:33:07Z",
       "startedAt": "2026-08-01T18:42:07Z",
-      "landed": false,
+      "landed": true,
       "costUSD": 9.171167,
       "inputTokens": 228,
       "outputTokens": 64086,
       "cacheReadTokens": 10585878,
       "finishedAt": "2026-08-01T19:32:58Z",
-      "durationSeconds": 3051
+      "durationSeconds": 3051,
+      "mergedAt": "2026-08-01T19:33:07Z"
     },
     {
       "id": "task-262",
