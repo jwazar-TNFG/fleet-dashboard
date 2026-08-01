@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T15:48:25Z",
+  "updated_at": "2026-08-01T16:25:07Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5777,7 +5777,7 @@
     {
       "id": "task-256",
       "name": "W1-2 leaderboard/table: ops_performance_summary -> spec + shaper (RND-339)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-255"
@@ -5785,7 +5785,9 @@
       "description": "Per-GROUP rep_logs performance summary (default, group_by:office, matrix month/office variants). Measure gains vizKind:leaderboard (or table) + present.dimension; route swaps hand assembly for shapeForVizKind. Keep avg_cases_per_rep + null-key fallback ('Unknown'/'Unassigned') route-side. Guard OPS_PERF_SUMMARY engine variant, default OFF. Matrix variants may split at gate-time.",
       "doneWhen": "kpi2-measures golden unchanged; ops-performance-summary (+matrix) golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned per-group summary RPC still assembled by hand.\n## Build\nvizKind+present on the measure; shapeForVizKind in-route; keep avg + null-key fallback; guard flag OFF.\n## Acceptance\nSummary + matrix goldens byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-256.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-256.md",
+      "lastActivity": "2026-08-01T16:25:07Z",
+      "startedAt": "2026-08-01T16:25:07Z"
     },
     {
       "id": "task-257",
