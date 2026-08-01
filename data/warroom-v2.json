@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T15:33:24Z",
+  "updated_at": "2026-08-01T15:47:48Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5756,15 +5756,22 @@
     {
       "id": "task-255",
       "name": "W1-1 leaderboard: ops_top_bottom_reps -> vizKind:leaderboard spec + shaper (RND-338)",
-      "status": "in_progress",
+      "status": "completed",
       "phase": "phase-54",
       "depends_on": [],
       "description": "REFERENCE TEMPLATE for Wave 1. Give total_converted_value_cv a present layer (vizKind:leaderboard + present.rank{top,bottom} + dimension:rep) and swap the route's hand-rolled top/bottom slicing in ops/performance.js for kpi2.shapeForVizKind(measure, engineResult). Office label stays route-side (engine breakdown carries none). Guard with the existing OPS_TOPBOTTOM_ENGINE=1 flag, default OFF. Preserve the RPC's CV-tie ordering (first_id=min(rep_logs.id)=JS insertion order) in the dimension sort/shaper ordering, never a route re-sort.",
       "doneWhen": "warroom-v2 typecheck+build+vitest green; measure validates; kpi2-measures golden byte-identical; analyst-01 predeploy conformance OK; with OPS_TOPBOTTOM_ENGINE OFF the ops-top-bottom golden is byte-identical. PR='ready for gate' (live ON gate is Virgil's).",
       "promptSummary": "## Problem\nTop/Bottom reps has a governed RPC oracle but the route still hand-sorts/slices. It is the first Wave-1 target and the pattern all others copy.\n## Build\nAdd vizKind:leaderboard + present.rank to the CV measure; call shapeForVizKind in the route; guard OPS_TOPBOTTOM_ENGINE (default OFF). Keep office label + CV-tie order.\n## Acceptance\nkpi2-measures golden unchanged; ops-top-bottom golden byte-identical with flag OFF; ready for Virgil's live gate.",
       "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-255.md",
-      "lastActivity": "2026-08-01T15:33:24Z",
-      "startedAt": "2026-08-01T15:32:31Z"
+      "lastActivity": "2026-08-01T15:47:48Z",
+      "startedAt": "2026-08-01T15:32:31Z",
+      "landed": false,
+      "costUSD": 3.757245,
+      "inputTokens": 124,
+      "outputTokens": 44409,
+      "cacheReadTokens": 4032778,
+      "finishedAt": "2026-08-01T15:47:48Z",
+      "durationSeconds": 917
     },
     {
       "id": "task-256",
