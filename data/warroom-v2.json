@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-01T18:19:38Z",
+  "updated_at": "2026-08-01T18:19:42Z",
   "phases": [
     {
       "id": "phase-0",
@@ -5865,7 +5865,7 @@
     {
       "id": "task-260",
       "name": "W1-6 timeseries/table: ops_productivity_daily -> spec + shaper (RND-343)",
-      "status": "pending",
+      "status": "in_progress",
       "phase": "phase-54",
       "depends_on": [
         "task-259"
@@ -5873,7 +5873,9 @@
       "description": "Daily productivity aggregate (rep_logs Katiria-name+xSTAFF subset, NO Attorney drop). Measure gains vizKind:timeseries (or table for a daily matrix) + present.dimension; route calls the shaper; contract unchanged. Guard OPS_PRODUCTIVITY_DAILY engine variant, default OFF. Matrix month variant may split at gate-time. ops-productivity-daily golden timeout 30000. Do NOT add an Attorney exclusion.",
       "doneWhen": "kpi2-measures golden unchanged; ops-productivity-daily (+matrix) golden byte-identical with flag OFF; predeploy OK. Ready for gate.",
       "promptSummary": "## Problem\nGoverned daily productivity RPC still hand-assembled.\n## Build\nvizKind + present; shaper in-route; guard flag OFF; exclusions engine-canonical (no Attorney).\n## Acceptance\nproductivity-daily golden byte-identical flag-OFF; ready for gate.",
-      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-260.md"
+      "promptUrl": "https://raw.githubusercontent.com/jwazar-TNFG/warroom-v2/main/build/prompts/task-260.md",
+      "lastActivity": "2026-08-01T18:19:42Z",
+      "startedAt": "2026-08-01T18:19:42Z"
     },
     {
       "id": "task-261",
