@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T07:36:17Z",
+  "updated_at": "2026-08-17T07:37:40.142515+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -500,14 +500,16 @@
       ],
       "description": "# Task 23 \u2014 Notification Center (In-App)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## \u26a0\ufe0f Scope note\nThe TNFG3 spec has no notification table. This task adds a minimal notification module to the `app` schema via a NEW migration (authorized here). App-2.0 E3 (push) was the most-requested feature; this is its in-app foundation, with device push in T24.\n\n## Objective\nBuild the in-app Notification Center: a bell with unread badge and a notifications list, backed by a new `app.notification` table, delivering case-event alerts (new comment, status change, assignment, appointment) to the right user \u2014 scoped by RLS.\n\n## Context\nUsers want timely alerts on their cases (status changes, comments, assignments, appointments) \u2014 critical for conversion. This task builds the data model + in-app UI; T24 adds device push on top.\n\n## Technical Requirements\n1. **Migration** `migrations/0015_notification.sql`: `app.notification` (id, id_recipient_user \u2192 app_user, id_lead (nullable), kind (varchar+CHECK: comment/status_change/assignment/appointment/system), title, body, is_read bool, created_at, read_at). Optional `app.notification_pref` (per-user per-kind on/off). RLS: recipient sees own only; FORCE RLS; insert allowed to service_role/triggers. Apply + regen types.\n2. **(Optional but preferred) triggers**: DB triggers on `lead_status_event` (status_change), `lead_note` (comment), `lead_staff` (assignment), `lead_clinical.appointment_at` (appointment) that insert notifications for the relevant recipient(s). If triggers are too broad for this task, insert notifications from the app mutation paths instead and note the choice in the PR.\n3. `src/features/notifications/NotificationBell.tsx` \u2014 bell + unread count (realtime via Supabase channel subscription on `app.notification` for the user).\n4. `src/pages/notifications/NotificationCenter.tsx` (`/notifications`) \u2014 list (unread emphasized), mark-read / mark-all-read, tap \u2192 related lead detail.\n5. `src/lib/queries/notifications.ts` \u2014 list, unread count, markRead, subscribe. Preferences UI (toggle per kind) if `notification_pref` added.\n6. Loading/empty/error; realtime updates the badge without refresh.\n\n## Acceptance Criteria\n- [ ] `app.notification` module migration created, RLS-secured, types regenerated.\n- [ ] Bell shows realtime unread count; center lists notifications with mark-read/all-read.\n- [ ] Notifications are generated on case events (trigger or mutation path) for the correct recipient.\n- [ ] Recipient-only visibility verified by a test. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Recipient-scoped by RLS. Keep the module minimal. If using triggers, keep them targeted (no notification storms). No hardcoded recipient logic that bypasses RLS.\n\n## Dependencies\n- T06 (shell), T07 (queries), T02 (types regen).\n\n## Files Expected\n- `migrations/0015_notification.sql`\n- `src/features/notifications/NotificationBell.tsx`\n- `src/pages/notifications/NotificationCenter.tsx`\n- `src/lib/queries/notifications.ts`\n",
       "lastActivity": "2026-08-17T07:35:54Z",
-      "startedAt": "2026-08-17T07:22:58Z",
-      "landed": false,
+      "startedAt": "2026-08-17T07:21:56.502388+00:00",
+      "landed": true,
       "costUSD": 3.615508,
       "inputTokens": 120,
       "outputTokens": 47379,
       "cacheReadTokens": 3696712,
       "finishedAt": "2026-08-17T07:35:54Z",
-      "durationSeconds": 776
+      "durationSeconds": 836,
+      "numTurns": 76,
+      "completedAt": "2026-08-17T07:35:52.502388+00:00"
     },
     {
       "id": "task-24",
@@ -519,7 +521,7 @@
         "task-23"
       ],
       "description": "# Task 24 \u2014 Push Notifications (Capacitor)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nAdd native push notifications on top of the in-app notification system: register device tokens, wire Capacitor Push (APNs iOS / FCM Android), and deliver case-event pushes. App-2.0 E3 (most-requested). Device-cert-dependent parts are scaffolded + documented for the packaging step.\n\n## Context\nT23 built the in-app `app.notification` system. This task adds device push: token registration, a `device_token` table, and a delivery path (Edge Function or documented server hook). Actual APNs/FCM credentials require the Apple Developer / Google Play accounts (provisioned at packaging, T28) \u2014 scaffold cleanly and gate on env.\n\n## Technical Requirements\n1. **Migration** `migrations/0016_device_token.sql`: `app.device_token` (id, id_user \u2192 app_user, platform (ios/android), token, is_active, created_at, last_seen_at, unique(token)). RLS: user manages own tokens; FORCE RLS. Apply + regen types.\n2. Add `@capacitor/push-notifications`. `src/features/notifications/push.ts`: request permission, register, capture the token, upsert to `app.device_token` for the current user; handle refresh + removal on sign-out.\n3. **Delivery path**: a Supabase Edge Function `push-dispatch` (or documented server hook) that, when an `app.notification` row is inserted, looks up the recipient's active device tokens and sends via APNs/FCM. If credentials are unavailable in this task, implement the function with a clear env-gated no-op + TODO, and document the packaging-time wiring. Do NOT hardcode certs/keys.\n4. Foreground handling: incoming push updates the in-app badge/list (reuse T23 realtime). Tap \u2192 deep-link to the lead.\n5. Respect `notification_pref` (T23) if present.\n6. Web/dev graceful: on web or without native push, degrade to in-app only (no crash).\n\n## Acceptance Criteria\n- [ ] `app.device_token` migration created, RLS-secured, types regenerated.\n- [ ] Permission + registration flow stores the token for the current user; cleaned on sign-out.\n- [ ] Delivery function exists (env-gated); documented for cert wiring at packaging.\n- [ ] Foreground push updates the badge; tap deep-links to the lead. Web degrades gracefully.\n- [ ] `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- No certs/keys committed; all via env/secrets at packaging. Do not block the app when push is unavailable. Device push complements, not replaces, in-app notifications.\n\n## Dependencies\n- T23 (in-app notifications), T25 (native shell \u2014 soft; can proceed in parallel).\n\n## Files Expected\n- `migrations/0016_device_token.sql`\n- `src/features/notifications/push.ts`\n- `supabase/functions/push-dispatch/*` (or documented hook)\n",
-      "lastActivity": "2026-08-17T07:36:17Z",
+      "lastActivity": "2026-08-17T07:37:40.142515+00:00",
       "startedAt": "2026-08-17T07:36:17Z"
     },
     {
