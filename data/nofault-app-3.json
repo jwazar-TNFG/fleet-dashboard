@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T09:03:34Z",
+  "updated_at": "2026-08-17T09:03:41.678521+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -596,7 +596,7 @@
         "task-21"
       ],
       "description": "# Task 27 \u2014 Accessibility, Performance & i18n Pass\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nA production-polish pass across the app: accessibility (WCAG AA), performance/responsiveness, complete empty/loading/error states, and English/Spanish i18n scaffolding \u2014 the difference between \"compiles\" and \"premium\".\n\n## Context\nUsers are bilingual (EN/ES; Creole/Portuguese noted). Responsiveness is a standing TNFG priority. This task hardens the whole surface rather than adding features.\n\n## Technical Requirements\n1. **Accessibility:** audit all interactive components/screens for AA \u2014 focus order, `aria` labels, roles, contrast, 44px targets, form labels/errors, modal focus-trap (BottomSheet/Modal). Fix violations. Add an automated a11y check (axe) in Playwright for key screens.\n2. **Performance:** ensure lists paginate/virtualize; charts render from single aggregated calls; images lazy-load; route-level code-splitting; measure and record initial load + key interactions; fix obvious jank. Note before/after timings in the PR.\n3. **States:** every data surface has proper loading (skeleton/spinner), empty, and error states (reuse T03). No blank screens on error (Sentry + friendly message).\n4. **i18n:** add a lightweight i18n layer (e.g. `i18next` or a minimal typed dictionary) with EN + ES resource files; externalize user-facing strings on the primary flows (auth, home, lead detail, new lead, portals). Language switch respects `client.preferred_language`/user setting; default from device locale.\n5. Consistent design-system usage; remove one-off styles that drift from tokens.\n\n## Acceptance Criteria\n- [ ] Key screens pass an automated axe check; manual AA issues on core flows fixed.\n- [ ] Lists/charts/images perform (pagination/virtualization/code-split); timings recorded in PR.\n- [ ] Every data surface has loading/empty/error states; no blank-on-error.\n- [ ] EN + ES i18n wired on primary flows; language switch works.\n- [ ] `build`/`typecheck`/`lint`/`test` pass.\n\n## Constraints\n- No new features \u2014 polish only. Keep bundle size in check (watch MapLibre/Recharts imports; lazy-load heavy routes). Do not regress the three-audience behavior.\n\n## Dependencies\n- Broad: T12 (home), T20, T21 (portals) + the rest of the surface.\n\n## Files Expected\n- `src/lib/i18n/*` (config + en.json + es.json)\n- a11y/perf fixes across `src/features/*`, `src/pages/*`\n- axe checks in `tests/e2e`\n",
-      "lastActivity": "2026-08-17T08:49:45.575022+00:00",
+      "lastActivity": "2026-08-17T09:03:41.678521+00:00",
       "startedAt": "2026-08-17T08:20:20.828747+00:00",
       "landed": false,
       "costUSD": 5.892583,
@@ -612,22 +612,23 @@
       "name": "Store Packaging (signed iOS/Android + metadata)",
       "phase": "phase-6",
       "phaseName": "Hardening & Packaging",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-25",
         "task-26",
         "task-27"
       ],
       "description": "# Task 28 \u2014 Store Packaging (Signed iOS + Android + Metadata)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nProduce build-and-package-ready, store-compliant signed artifacts \u2014 iOS `.ipa` and Android `.aab` \u2014 plus complete store metadata, so the app is ready for submission. **This task STOPS at signed artifacts + metadata handoff. It does NOT submit** (submission requires Jon's Apple Developer + Google Play accounts and explicit authorization).\n\n## Context\nDeliverable is \"build-and-package-ready\": compiling, store-guideline-compliant, signed artifact handoff \u2014 not actual submission. Signing credentials (Apple Developer $99/yr, Google Play $25) are provisioned by Jon; wire the pipeline to consume them from secrets/env, and document the exact steps.\n\n## Technical Requirements\n1. **Build config:** production `vite build` + `npx cap sync`; verify release configs for both platforms. Version/build numbers set (1.0.0 / 1).\n2. **Android `.aab`:** Gradle release config, signing via a keystore supplied through env/secrets (NOT committed); produce a signed `.aab`. Document keystore generation + the CI secret names.\n3. **iOS `.ipa`:** Xcode/`xcodebuild` archive + export config; signing via Apple Developer team/cert/provisioning supplied at build time (documented; requires a Mac \u2014 the pipeline documents/validates config, produces the archive step). Handle entitlements (push from T24), bundle id `com.tnfg.nofaultapp3`.\n4. **Store guideline compliance:** privacy manifest / `NSUsageDescription` strings (camera/photos for media upload, notifications), Android permissions declared minimal, data-safety form content prepared, no private API use, offline/empty states OK, account-deletion/data-handling note (needed for both stores).\n5. **Store metadata** (`store/` folder): app name, subtitle, description, keywords, category, screenshots (generated from key screens across device sizes), privacy policy URL placeholder, support URL, icon; both App Store + Play listings.\n6. **Handoff doc** `store/HANDOFF.md`: exact steps + which secrets/accounts Jon must supply to sign + submit, and the final commands. Explicitly note: DO NOT submit without Jon's authorization.\n\n## Acceptance Criteria\n- [ ] Production build + `cap sync` succeed; version/build set; bundle id `com.tnfg.nofaultapp3`.\n- [ ] Signed `.aab` produced via env-supplied keystore (or fully documented + validated if the signing secret is absent in CI); iOS archive/export config complete + documented.\n- [ ] Privacy/permission/data-safety compliance content prepared for both stores.\n- [ ] `store/` metadata + screenshots + `HANDOFF.md` complete.\n- [ ] NO submission performed. `build`/`typecheck`/`lint`/`test` pass.\n\n## Constraints\n- **Do NOT submit to either store.** No certs/keystores/keys committed \u2014 all via secrets/env. Stop at signed-artifact + metadata handoff. Follow current Apple/Google guidelines.\n\n## Dependencies\n- T25 (native integration), T26 (tests green), T27 (polish).\n\n## Files Expected\n- release build configs (Gradle/Xcode export), CI release job (secret-gated)\n- `store/` (metadata, screenshots, listings), `store/HANDOFF.md`\n",
-      "lastActivity": "2026-08-17T09:03:34Z",
-      "startedAt": "2026-08-17T08:49:26Z",
+      "lastActivity": "2026-08-17T09:03:41.678521+00:00",
+      "startedAt": "2026-08-17T08:48:09.852524+00:00",
       "landed": false,
       "costUSD": 3.473779,
       "inputTokens": 114,
       "outputTokens": 51276,
       "cacheReadTokens": 3253761,
       "finishedAt": "2026-08-17T09:03:34Z",
-      "durationSeconds": 848
+      "durationSeconds": 922,
+      "numTurns": 64
     }
   ]
 }
