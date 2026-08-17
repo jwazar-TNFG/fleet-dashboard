@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T06:25:30Z",
+  "updated_at": "2026-08-17T06:25:49Z",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -360,7 +360,7 @@
         "task-16"
       ],
       "description": "# Task 17 \u2014 Marketing Charts\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Marketing Charts section: 6 metrics \u00d7 Today/MTD donut+table charts by rep, with a LEVEL scope selector and sub-group breakdown (App-2.0 E1 enhancement). App-2.0 Home Section F.\n\n## Context\n2.0 Marketing Charts: 6 metrics (New Leads, Locked Down, Came In, Signed, Dropped, Locked Down Dropped) \u00d7 Today/MTD tabs, each a donut + rep table. LEVEL filter (Individual/Team/POD/Office/Region) sets aggregation scope; default = user's highest level. Charts are cumulative over the scope. E1: allow breaking the table down by Team/Pod/Office sub-group, not just individual reps.\n\n## Technical Requirements\n1. `src/features/charts/MarketingCharts.tsx` \u2014 collapsible section (eye toggle), Today/MTD tab, LEVEL `Select` (Individual/Team/POD/Office/Region).\n2. For each of the 6 metrics, render a `DonutTable` fed by `agg_leads_by_metric` (T16) with the chosen period + group_by. Metrics: `new_leads`, `locked_down`, `came_in`, `signed`, `dropped`, `ld_dropped`.\n3. **LEVEL default:** derive from the user's hierarchy (rep\u2192Team, office mgr\u2192Office, regional\u2192Region) using `visible_user_ids`/hierarchy; RLS scopes the rows.\n4. **E1 sub-group breakdown:** a toggle to switch the table grouping between Individual and Team/Pod/Office (re-calls the RPC with a different group_by). Chart set stays 6 metrics.\n5. **Special view configs:** honor the users with non-standard scope (Zeri, Christian, Tony, Willie, Karla, Jon, Andres, Humberto) \u2014 if a config table/flag exists use it; otherwise leave a clearly-marked extension point (documented in PR). Do not hardcode names in logic beyond a config constant.\n6. Loading/empty/error per chart; graceful when a metric has 0.\n\n## Acceptance Criteria\n- [ ] 6 metrics render as donut+table for Today and MTD; totals + sorted tables correct.\n- [ ] LEVEL selector changes scope; default matches the user's level.\n- [ ] E1 sub-group toggle re-groups the table (Individual \u2194 Team/Pod/Office).\n- [ ] Special-view scope handled via config (no name hardcoding in logic).\n- [ ] `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Aggregation via T16 RPCs only (server-side). Scope via RLS + level param, not client filtering. Reuse `DonutTable`. No magic metric strings outside a typed enum.\n\n## Dependencies\n- T16 (chart infra + RPCs).\n\n## Files Expected\n- `src/features/charts/MarketingCharts.tsx`\n- `src/lib/constants/chartMetrics.ts`, `src/lib/constants/specialViewUsers.ts`\n",
-      "lastActivity": "2026-08-17T06:17:50Z",
+      "lastActivity": "2026-08-17T06:25:49Z",
       "startedAt": "2026-08-17T06:09:49.508189+00:00",
       "landed": true,
       "costUSD": 2.029391,
@@ -370,7 +370,8 @@
       "finishedAt": "2026-08-17T06:17:50Z",
       "durationSeconds": 479,
       "numTurns": 57,
-      "completedAt": "2026-08-17T06:17:48.508189+00:00"
+      "completedAt": "2026-08-17T06:17:48.508189+00:00",
+      "mergedAt": "2026-08-17T06:25:49Z"
     },
     {
       "id": "task-18",
