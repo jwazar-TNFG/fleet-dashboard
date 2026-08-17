@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:43:23Z",
+  "updated_at": "2026-08-17T03:53:00Z",
   "phases": [
     {
       "id": "phase-0",
@@ -430,20 +430,23 @@
       "id": "task-08",
       "name": "Edit-Layout Mode (drag/resize + snap guides)",
       "phase": "phase-2",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07"
       ],
       "description": "**Task 08 \u2014 Edit-Layout Mode (drag/resize + snap guides)**\n\n_Phase 2 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nAdd an Edit-Layout mode letting the user move/resize panels with snapping.\n\n**Files in scope**\n\n- Toggle via hotkey + menu button; drag handles + snap guides.\n- Snap to grid cells and canvas edges; exit locks; cancel restores.\n\n**Acceptance criteria**\n\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible.\n- Cancel restores prior layout.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md)",
       "startedAt": "2026-07-09T22:09:18Z",
-      "lastActivity": "2026-08-17T03:43:23Z",
+      "lastActivity": "2026-08-17T03:53:00Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md",
-      "costUSD": 0.544,
-      "inputTokens": 34,
-      "outputTokens": 7185,
-      "cacheReadTokens": 381940,
+      "costUSD": 3.447141,
+      "inputTokens": 122,
+      "outputTokens": 44674,
+      "cacheReadTokens": 2986143,
       "costEstimated": true,
-      "promptSummary": "**Edit-Layout Mode (drag/resize + snap guides)**\n\n**Done when:**\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible.\n- Cancel restores prior layout."
+      "promptSummary": "**Edit-Layout Mode (drag/resize + snap guides)**\n\n**Done when:**\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible.\n- Cancel restores prior layout.",
+      "landed": false,
+      "finishedAt": "2026-08-17T03:53:00Z",
+      "durationSeconds": 3303822
     },
     {
       "id": "task-09",
