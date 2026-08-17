@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T04:06:52Z",
+  "updated_at": "2026-08-17T04:06:57Z",
   "phases": [
     {
       "id": "phase-0",
@@ -477,16 +477,13 @@
       "id": "task-10",
       "name": "Multi-Monitor Topology Awareness + Panel Focus/Fullscreen",
       "phase": "phase-2",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-07"
       ],
       "description": "**Task 10 \u2014 Multi-Monitor Topology Awareness + Panel Focus/Fullscreen**\n\n_Phase 2 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nMake the canvas display-topology-aware and add per-panel focus/fullscreen.\n\n**Files in scope**\n\n- Read OS display arrangement (Electron screen API); map canvas across monitors.\n- Panels snap to monitor edges; grid extends across added displays.\n- panel.focus fullscreens a panel; unfocus/orb return.\n\n**Acceptance criteria**\n\n- Canvas ready to span >=2 monitors from topology.\n- Any panel can fullscreen and restore.\n- Orb can take center stage and return.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-10.md)",
       "startedAt": "2026-07-09T22:32:24Z",
-      "finishedAt": "2026-07-09T22:46:49Z",
-      "durationSeconds": 865,
-      "lastActivity": "2026-07-09T22:46:49Z",
-      "landed": true,
+      "lastActivity": "2026-08-17T04:06:57Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-10.md",
       "costUSD": 0.7218,
       "inputTokens": 46,
