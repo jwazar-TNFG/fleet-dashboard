@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T07:07:39Z",
+  "updated_at": "2026-08-17T07:09:31.546389+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -447,7 +447,7 @@
       "name": "Affiliate Portal",
       "phase": "phase-4",
       "phaseName": "Attorney & Affiliate Portals",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07",
         "task-08"
@@ -455,14 +455,15 @@
       "description": "# Task 21 \u2014 Affiliate Portal (3.0 EXPANSION)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Affiliate Portal \u2014 the audience surface for external treatment-location (affiliate) partners to see THEIR location's leads, appointments, and treatment-compliance follow-ups. New in 3.0. Read-only, RLS-enforced.\n\n## Context\nAn affiliate logs in as an `app_user` with `portal_kind='AFFILIATE'` and `portal_id_tx_location` set. RLS returns only leads where `lead_clinical.id_tx_location` = their location. Emphasis: appointments, treatment status/compliance (clinical facts), not legal/signing.\n\n## Technical Requirements\n1. `src/pages/portals/AffiliateHome.tsx` \u2014 default route for AFFILIATE. KPI cards (Total leads, Upcoming appointments, Came In MTD, Telemedicine count) scoped to the location.\n2. **Location lead list** (`/portal/affiliate/leads`) \u2014 reuse `LeadList` (T11) with clinical-emphasis columns (client, appointment_at, clinical status, telemedicine, transportation). Search + status filter.\n3. **Appointments view** \u2014 upcoming appointments (from `lead_clinical.appointment_at` / `lead_party.appointment_at`) for the location, sorted chronologically, with a follow-up/compliance emphasis (mirrors 2.0 \"Appointments & No Shows\" use case).\n4. **Lead detail** \u2014 reuse T08 in affiliate-emphasis mode (clinical/appointment cards first). Read-only.\n5. All via T07 queries; NO client-side location filtering (RLS owns it) \u2014 verify with a test that another location's leads are never returned.\n6. Minimal hamburger (Profile, Sign out); no employee nav (T06 guard).\n7. Loading/empty/error; empty-location state.\n\n## Acceptance Criteria\n- [ ] AFFILIATE login lands on Affiliate Home with location-scoped KPIs.\n- [ ] Location lead list + appointments view render, scoped by RLS; detail read-only clinical-emphasis.\n- [ ] A test confirms another location's leads are NOT returned (RLS visibility).\n- [ ] No employee nav/routes reachable as AFFILIATE. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Read-only. Trust RLS (no client location filter); add a visibility test. Reuse T08/T11. No cross-audience leakage.\n\n## Dependencies\n- T06 (portal branching/guards), T07 (queries), T08/T11 (reused views).\n\n## Files Expected\n- `src/pages/portals/AffiliateHome.tsx`\n- `src/features/portals/affiliate/*` (LocationKpis, AppointmentsList)\n- `src/pages/portals/affiliate/AffiliateLeadsPage.tsx`\n",
       "lastActivity": "2026-08-17T07:07:33.753997+00:00",
       "startedAt": "2026-08-17T06:57:00.702809+00:00",
-      "landed": false,
+      "landed": true,
       "costUSD": 2.907064,
       "inputTokens": 90,
       "outputTokens": 40406,
       "cacheReadTokens": 2611620,
       "finishedAt": "2026-08-17T07:07:17Z",
       "durationSeconds": 615,
-      "numTurns": 63
+      "numTurns": 63,
+      "completedAt": "2026-08-17T07:07:15.702809+00:00"
     },
     {
       "id": "task-22",
@@ -474,7 +475,7 @@
         "task-07"
       ],
       "description": "# Task 22 \u2014 Atty & AFF Settings\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Atty & AFF Settings admin surface: manage attorney firms (`ref_attorney`) and treatment locations (`ref_tx_location`) \u2014 email targets, states, active status. Mirrors App-2.0 Screen 24. Admin/IT only.\n\n## Context\n2.0 Screen 24 (IT + senior intake): two tabs \u2014 Attorneys (list/detail/edit: email targets, states multi-select, active toggle) and Locations (list/detail/edit: int/ext email targets, address, state, active toggle; Type COR/AFF read-only). 3.0 edits `ref_attorney` / `ref_tx_location` directly (admin-only per RLS).\n\n## Technical Requirements\n1. `src/pages/admin/AttyAffSettingsPage.tsx` (`/admin/settings`) \u2014 ADMIN only (T06 guard + RLS admin policy). Two tabs.\n2. **Attorneys tab:** searchable paginated list of `ref_attorney` (name, active). Detail: display_name, firm_name, status, ext_email_targets, id_state; Edit form: email targets (required, comma-separated), states multi-select pills (`ref_state`), active toggle, portal flags (`is_active_on_portal`). Persist to `ref_attorney`.\n3. **Locations tab:** searchable paginated list of `ref_tx_location`. Detail: name, status, type (COR/AFF read-only), address, state, int/ext email targets. Edit: int/ext email targets, address, state (single-select), active toggle. Persist to `ref_tx_location`.\n4. Writes go through admin-gated queries; RLS admin policy enforces server-side. Validate email-target formats; confirm-before-save.\n5. Loading/empty/error; optimistic UI or clear save states.\n\n## Acceptance Criteria\n- [ ] Admin-only access enforced (UI guard + RLS).\n- [ ] Attorneys + Locations tabs list/detail/edit and persist to `ref_attorney`/`ref_tx_location`.\n- [ ] States multi-select, active toggles, email-target validation work; Type is read-only on locations.\n- [ ] Non-admins cannot reach or mutate (verify with a test). `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Admin only; rely on RLS admin policies for writes. Type (COR/AFF) read-only. No hardcoded state lists (use `ref_state`). Confirm destructive/status changes.\n\n## Dependencies\n- T06 (admin guard), T07 (refData + write helpers).\n\n## Files Expected\n- `src/pages/admin/AttyAffSettingsPage.tsx`\n- `src/features/admin/*` (AttorneyEditor, LocationEditor)\n- `src/lib/queries/refAdmin.ts`\n",
-      "lastActivity": "2026-08-17T07:07:39Z",
+      "lastActivity": "2026-08-17T07:09:31.546389+00:00",
       "startedAt": "2026-08-17T07:07:39Z"
     },
     {
