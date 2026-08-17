@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T06:27:34.200834+00:00",
+  "updated_at": "2026-08-17T06:40:21Z",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -400,13 +400,20 @@
       "name": "Performance Roster / Lead Sheets",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-16"
       ],
       "description": "# Task 19 \u2014 Performance Roster / Lead Sheets\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Performance Roster and Lead Sheets surfaces: per-rep and per-office performance tables (leads created, goal, TTD, converted/CNV, %goal, weekly breakdown, drops), hierarchy-scoped. Mirrors App-2.0 Screens 17\u201319.\n\n## Context\n2.0 Perf Roster/Lead Sheets (originally Looker Studio) show rep-level metrics: officeLabel, POD, Team, Rep, Leads Created, Goal, TTD, Converted, %Goal (color-coded), Week 1\u20134, Drop, L4M CPR; Regional Rosters group by office with summary headers + title tiers + hire date. 3.0 builds these natively from `app` data (leads + `lead_org_snapshot` + `app_user` goals/`hr_deal_goal` + CNV via `fn_cnv_value`).\n\n## Technical Requirements\n1. `src/pages/reports/PerformanceRosterPage.tsx` (`/reports/roster`) and `LeadSheetsPage.tsx` (`/reports/lead-sheets`).\n2. **Aggregation:** add `migrations/0014_roster_rpcs.sql` \u2014 RLS-respecting functions computing per-rep and per-office rollups: leads_created, goal (`app_user.hr_deal_goal`/office goal), TTD, converted (sum CNV via `fn_cnv_value` or stored `lead.cnv_value`), %goal, weekly buckets, drops. Group by office \u2192 pod \u2192 team \u2192 rep using `lead_org_snapshot` + hierarchy. Apply + regen types.\n3. **Roster view:** office summary headers (DATE/LAST DAY/GOAL/TTD/CNV/%GOAL/#REPS/#Drop) + rep tables (#, Name, Leads Created, Ind/Boost/Team Goal, TTD, Converted, %Goal color-coded, weekly, Dropped, Title tier, DH). Sort by %Goal desc; color tiers.\n4. **Lead Sheets:** per-rep client contact grid (Client, Director, Phone, Submitter, Tx Location, Created) + KPI cards (No Show/New/Future). Scope to the rep (self) or, for leaders, their cascade.\n5. Hierarchy scope via RLS + `visible_user_ids`; leaders see their cascade, reps see self. Optional PDF export (nice-to-have; note if deferred).\n6. Loading/empty/error; large tables paginate/virtualize.\n\n## Acceptance Criteria\n- [ ] Roster shows office summaries + rep tables with all columns, %Goal color-coded, sorted desc.\n- [ ] Lead Sheets shows per-rep client grid + KPI cards, correctly scoped.\n- [ ] Metrics computed via RLS-respecting RPCs (CNV from the function/stored value, not JS math).\n- [ ] Hierarchy scope correct (rep=self, leader=cascade). `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Server-side aggregation; CNV from `fn_cnv_value`/stored, never recomputed in JS. Goals/tiers from data. Respect RLS scope. Paginate large tables.\n\n## Dependencies\n- T16 (chart infra patterns), T07 (queries), T02 (types regen).\n\n## Files Expected\n- `src/pages/reports/PerformanceRosterPage.tsx`, `LeadSheetsPage.tsx`\n- `migrations/0014_roster_rpcs.sql`, `src/lib/queries/reports.ts`\n",
-      "lastActivity": "2026-08-17T06:27:34.200834+00:00",
-      "startedAt": "2026-08-17T06:25:54Z"
+      "lastActivity": "2026-08-17T06:40:21Z",
+      "startedAt": "2026-08-17T06:25:54Z",
+      "landed": false,
+      "costUSD": 4.42115,
+      "inputTokens": 132,
+      "outputTokens": 60336,
+      "cacheReadTokens": 4369052,
+      "finishedAt": "2026-08-17T06:40:21Z",
+      "durationSeconds": 867
     },
     {
       "id": "task-20",
