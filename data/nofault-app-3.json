@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T06:57:44Z",
+  "updated_at": "2026-08-17T06:59:37.583032+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -423,7 +423,7 @@
       "name": "Attorney Portal",
       "phase": "phase-4",
       "phaseName": "Attorney & Affiliate Portals",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07",
         "task-08"
@@ -431,14 +431,15 @@
       "description": "# Task 20 \u2014 Attorney Portal (3.0 EXPANSION)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Attorney Portal \u2014 the audience surface for external attorney firms to see and track THEIR firm's leads (signing pipeline, statuses, appointments). New in 3.0 (2.0 was employee-only). Read-only, RLS-enforced.\n\n## Context\nAn attorney logs in (Supabase OTP) as an `app_user` with `portal_kind='ATTORNEY'` and `portal_id_attorney` set. RLS already returns only leads where `lead_legal.id_attorney` = their firm. This portal is their entire app (bottom nav from T06). Emphasis: signing pipeline (pending to sign, signed), lead status, appointments \u2014 the legal/clinical facts relevant to the firm.\n\n## Technical Requirements\n1. `src/pages/portals/AttorneyHome.tsx` \u2014 default route for ATTORNEY. KPI cards (Total leads, Pending to Sign, Signed MTD, Came In) + recent activity, all scoped by RLS to the firm.\n2. **Firm lead list** (`/portal/attorney/leads`) \u2014 reuse `LeadList` (T11) filtered to legal-relevant statuses; columns emphasize client, status, signing date, tx location, appointment. Search + status filter.\n3. **Lead detail** \u2014 reuse T08 `LeadDetailPage` in attorney-emphasis mode (legal/signing/clinical cards first; contact actions where permitted). Read-only.\n4. **Signing pipeline view** \u2014 leads grouped by legal status (`refLegalStatus`: Unassigned/Assigned/Accepted/Rejected/Signed) with counts; a clear \"pending to sign\" bucket.\n5. All data via T07 queries; NO client-side firm filtering (RLS owns it) \u2014 but verify with a test that a second firm's leads are never returned.\n6. Minimal hamburger (Profile, Sign out). No employee-only nav items (enforced by T06 `RequirePortal`).\n7. Loading/empty/error; empty-firm state.\n\n## Acceptance Criteria\n- [ ] ATTORNEY login lands on Attorney Home with firm-scoped KPIs.\n- [ ] Firm lead list + signing-pipeline view render, scoped by RLS; detail is read-only attorney-emphasis.\n- [ ] A test confirms another firm's leads are NOT returned (RLS visibility).\n- [ ] No employee nav/routes reachable as ATTORNEY. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Read-only. Trust RLS for scope (no client firm filter); add a visibility test instead. Reuse T08/T11 components. No cross-audience leakage.\n\n## Dependencies\n- T06 (portal branching/guards), T07 (queries), T08/T11 (reused views).\n\n## Files Expected\n- `src/pages/portals/AttorneyHome.tsx`\n- `src/features/portals/attorney/*` (FirmKpis, SigningPipeline)\n- `src/pages/portals/attorney/AttorneyLeadsPage.tsx`\n",
       "lastActivity": "2026-08-17T06:57:35.552036+00:00",
       "startedAt": "2026-08-17T06:39:25.310149+00:00",
-      "landed": false,
+      "landed": true,
       "costUSD": 5.506728,
       "inputTokens": 144,
       "outputTokens": 66113,
       "cacheReadTokens": 5894937,
       "finishedAt": "2026-08-17T06:57:25Z",
       "durationSeconds": 1078,
-      "numTurns": 99
+      "numTurns": 99,
+      "completedAt": "2026-08-17T06:57:23.310149+00:00"
     },
     {
       "id": "task-21",
@@ -451,7 +452,7 @@
         "task-08"
       ],
       "description": "# Task 21 \u2014 Affiliate Portal (3.0 EXPANSION)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Affiliate Portal \u2014 the audience surface for external treatment-location (affiliate) partners to see THEIR location's leads, appointments, and treatment-compliance follow-ups. New in 3.0. Read-only, RLS-enforced.\n\n## Context\nAn affiliate logs in as an `app_user` with `portal_kind='AFFILIATE'` and `portal_id_tx_location` set. RLS returns only leads where `lead_clinical.id_tx_location` = their location. Emphasis: appointments, treatment status/compliance (clinical facts), not legal/signing.\n\n## Technical Requirements\n1. `src/pages/portals/AffiliateHome.tsx` \u2014 default route for AFFILIATE. KPI cards (Total leads, Upcoming appointments, Came In MTD, Telemedicine count) scoped to the location.\n2. **Location lead list** (`/portal/affiliate/leads`) \u2014 reuse `LeadList` (T11) with clinical-emphasis columns (client, appointment_at, clinical status, telemedicine, transportation). Search + status filter.\n3. **Appointments view** \u2014 upcoming appointments (from `lead_clinical.appointment_at` / `lead_party.appointment_at`) for the location, sorted chronologically, with a follow-up/compliance emphasis (mirrors 2.0 \"Appointments & No Shows\" use case).\n4. **Lead detail** \u2014 reuse T08 in affiliate-emphasis mode (clinical/appointment cards first). Read-only.\n5. All via T07 queries; NO client-side location filtering (RLS owns it) \u2014 verify with a test that another location's leads are never returned.\n6. Minimal hamburger (Profile, Sign out); no employee nav (T06 guard).\n7. Loading/empty/error; empty-location state.\n\n## Acceptance Criteria\n- [ ] AFFILIATE login lands on Affiliate Home with location-scoped KPIs.\n- [ ] Location lead list + appointments view render, scoped by RLS; detail read-only clinical-emphasis.\n- [ ] A test confirms another location's leads are NOT returned (RLS visibility).\n- [ ] No employee nav/routes reachable as AFFILIATE. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Read-only. Trust RLS (no client location filter); add a visibility test. Reuse T08/T11. No cross-audience leakage.\n\n## Dependencies\n- T06 (portal branching/guards), T07 (queries), T08/T11 (reused views).\n\n## Files Expected\n- `src/pages/portals/AffiliateHome.tsx`\n- `src/features/portals/affiliate/*` (LocationKpis, AppointmentsList)\n- `src/pages/portals/affiliate/AffiliateLeadsPage.tsx`\n",
-      "lastActivity": "2026-08-17T06:57:44Z",
+      "lastActivity": "2026-08-17T06:59:37.583032+00:00",
       "startedAt": "2026-08-17T06:57:44Z"
     },
     {
