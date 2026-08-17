@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T02:30:58Z",
+  "updated_at": "2026-08-17T02:31:09Z",
   "phases": [
     {
       "id": "phase-0",
@@ -251,11 +251,11 @@
       "id": "task-00",
       "name": "CI Workflow + Auto-Merge Gate",
       "phase": "phase-0",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [],
       "description": "**Task 00 \u2014 CI Workflow + Auto-Merge Gate**\n\n_Phase 0 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nEstablish the GitHub Actions CI that gates every task PR and enables safe auto-merge, tuned for an Electron + Node bridge + Python voice monorepo.\n\n**Files in scope**\n\n- GitHub Actions workflow: install, lint, typecheck, and `npm run build` for the Electron/renderer; a Node job for the bridge; a lightweight Python lint/import job for the voice package (skippable until Phase 7 code exists).\n- Branch protection on main: PRs require the CI check to pass before merge; configure auto-merge so a green PR merges without manual click.\n- Fail fast + clear logs; jobs matrixed by workspace (hud / bridge / voice).\n- Document the CI contract in README-DEV.md so every subsequent task knows what 'green' means.\n\n**Acceptance criteria**\n\n- A trivial PR against main is BLOCKED until CI passes, then auto-merges when green.\n- CI runs lint + typecheck + build for the HUD, and a bridge job; the voice job no-ops gracefully when there is no Python code yet.\n- Branch protection verified active on main.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-00.md)",
       "startedAt": "2026-07-09T20:24:58Z",
-      "lastActivity": "2026-08-17T02:30:58Z",
+      "lastActivity": "2026-08-17T02:31:09Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-00.md",
       "costUSD": 1.084323,
       "inputTokens": 87,
@@ -263,10 +263,7 @@
       "cacheReadTokens": 393537,
       "costEstimated": true,
       "promptSummary": "**CI Workflow + Auto-Merge Gate**\n\n**Done when:**\n- A trivial PR against main is BLOCKED until CI passes, then auto-merges when green.\n- CI runs lint + typecheck + build for the HUD, and a bridge job; the voice job no-ops gracefully when there is no Python code yet.\n- Branch protection verified active on main.",
-      "mergedAt": "2026-08-17T02:11:44Z",
-      "landed": false,
-      "finishedAt": "2026-08-17T02:30:58Z",
-      "durationSeconds": 3305160
+      "mergedAt": "2026-08-17T02:11:44Z"
     },
     {
       "id": "task-01",
