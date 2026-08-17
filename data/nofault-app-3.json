@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T06:40:45Z",
+  "updated_at": "2026-08-17T06:41:33.922969+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -407,14 +407,16 @@
       ],
       "description": "# Task 19 \u2014 Performance Roster / Lead Sheets\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Performance Roster and Lead Sheets surfaces: per-rep and per-office performance tables (leads created, goal, TTD, converted/CNV, %goal, weekly breakdown, drops), hierarchy-scoped. Mirrors App-2.0 Screens 17\u201319.\n\n## Context\n2.0 Perf Roster/Lead Sheets (originally Looker Studio) show rep-level metrics: officeLabel, POD, Team, Rep, Leads Created, Goal, TTD, Converted, %Goal (color-coded), Week 1\u20134, Drop, L4M CPR; Regional Rosters group by office with summary headers + title tiers + hire date. 3.0 builds these natively from `app` data (leads + `lead_org_snapshot` + `app_user` goals/`hr_deal_goal` + CNV via `fn_cnv_value`).\n\n## Technical Requirements\n1. `src/pages/reports/PerformanceRosterPage.tsx` (`/reports/roster`) and `LeadSheetsPage.tsx` (`/reports/lead-sheets`).\n2. **Aggregation:** add `migrations/0014_roster_rpcs.sql` \u2014 RLS-respecting functions computing per-rep and per-office rollups: leads_created, goal (`app_user.hr_deal_goal`/office goal), TTD, converted (sum CNV via `fn_cnv_value` or stored `lead.cnv_value`), %goal, weekly buckets, drops. Group by office \u2192 pod \u2192 team \u2192 rep using `lead_org_snapshot` + hierarchy. Apply + regen types.\n3. **Roster view:** office summary headers (DATE/LAST DAY/GOAL/TTD/CNV/%GOAL/#REPS/#Drop) + rep tables (#, Name, Leads Created, Ind/Boost/Team Goal, TTD, Converted, %Goal color-coded, weekly, Dropped, Title tier, DH). Sort by %Goal desc; color tiers.\n4. **Lead Sheets:** per-rep client contact grid (Client, Director, Phone, Submitter, Tx Location, Created) + KPI cards (No Show/New/Future). Scope to the rep (self) or, for leaders, their cascade.\n5. Hierarchy scope via RLS + `visible_user_ids`; leaders see their cascade, reps see self. Optional PDF export (nice-to-have; note if deferred).\n6. Loading/empty/error; large tables paginate/virtualize.\n\n## Acceptance Criteria\n- [ ] Roster shows office summaries + rep tables with all columns, %Goal color-coded, sorted desc.\n- [ ] Lead Sheets shows per-rep client grid + KPI cards, correctly scoped.\n- [ ] Metrics computed via RLS-respecting RPCs (CNV from the function/stored value, not JS math).\n- [ ] Hierarchy scope correct (rep=self, leader=cascade). `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Server-side aggregation; CNV from `fn_cnv_value`/stored, never recomputed in JS. Goals/tiers from data. Respect RLS scope. Paginate large tables.\n\n## Dependencies\n- T16 (chart infra patterns), T07 (queries), T02 (types regen).\n\n## Files Expected\n- `src/pages/reports/PerformanceRosterPage.tsx`, `LeadSheetsPage.tsx`\n- `migrations/0014_roster_rpcs.sql`, `src/lib/queries/reports.ts`\n",
       "lastActivity": "2026-08-17T06:40:21Z",
-      "startedAt": "2026-08-17T06:25:54Z",
-      "landed": false,
+      "startedAt": "2026-08-17T06:24:43.666150+00:00",
+      "landed": true,
       "costUSD": 4.42115,
       "inputTokens": 132,
       "outputTokens": 60336,
       "cacheReadTokens": 4369052,
       "finishedAt": "2026-08-17T06:40:21Z",
-      "durationSeconds": 867
+      "durationSeconds": 936,
+      "numTurns": 84,
+      "completedAt": "2026-08-17T06:40:19.666150+00:00"
     },
     {
       "id": "task-20",
@@ -427,7 +429,7 @@
         "task-08"
       ],
       "description": "# Task 20 \u2014 Attorney Portal (3.0 EXPANSION)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Attorney Portal \u2014 the audience surface for external attorney firms to see and track THEIR firm's leads (signing pipeline, statuses, appointments). New in 3.0 (2.0 was employee-only). Read-only, RLS-enforced.\n\n## Context\nAn attorney logs in (Supabase OTP) as an `app_user` with `portal_kind='ATTORNEY'` and `portal_id_attorney` set. RLS already returns only leads where `lead_legal.id_attorney` = their firm. This portal is their entire app (bottom nav from T06). Emphasis: signing pipeline (pending to sign, signed), lead status, appointments \u2014 the legal/clinical facts relevant to the firm.\n\n## Technical Requirements\n1. `src/pages/portals/AttorneyHome.tsx` \u2014 default route for ATTORNEY. KPI cards (Total leads, Pending to Sign, Signed MTD, Came In) + recent activity, all scoped by RLS to the firm.\n2. **Firm lead list** (`/portal/attorney/leads`) \u2014 reuse `LeadList` (T11) filtered to legal-relevant statuses; columns emphasize client, status, signing date, tx location, appointment. Search + status filter.\n3. **Lead detail** \u2014 reuse T08 `LeadDetailPage` in attorney-emphasis mode (legal/signing/clinical cards first; contact actions where permitted). Read-only.\n4. **Signing pipeline view** \u2014 leads grouped by legal status (`refLegalStatus`: Unassigned/Assigned/Accepted/Rejected/Signed) with counts; a clear \"pending to sign\" bucket.\n5. All data via T07 queries; NO client-side firm filtering (RLS owns it) \u2014 but verify with a test that a second firm's leads are never returned.\n6. Minimal hamburger (Profile, Sign out). No employee-only nav items (enforced by T06 `RequirePortal`).\n7. Loading/empty/error; empty-firm state.\n\n## Acceptance Criteria\n- [ ] ATTORNEY login lands on Attorney Home with firm-scoped KPIs.\n- [ ] Firm lead list + signing-pipeline view render, scoped by RLS; detail is read-only attorney-emphasis.\n- [ ] A test confirms another firm's leads are NOT returned (RLS visibility).\n- [ ] No employee nav/routes reachable as ATTORNEY. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Read-only. Trust RLS for scope (no client firm filter); add a visibility test instead. Reuse T08/T11 components. No cross-audience leakage.\n\n## Dependencies\n- T06 (portal branching/guards), T07 (queries), T08/T11 (reused views).\n\n## Files Expected\n- `src/pages/portals/AttorneyHome.tsx`\n- `src/features/portals/attorney/*` (FirmKpis, SigningPipeline)\n- `src/pages/portals/attorney/AttorneyLeadsPage.tsx`\n",
-      "lastActivity": "2026-08-17T06:40:45Z",
+      "lastActivity": "2026-08-17T06:41:33.922969+00:00",
       "startedAt": "2026-08-17T06:40:45Z"
     },
     {
