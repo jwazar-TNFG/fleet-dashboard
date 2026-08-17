@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T03:15:03.446255+00:00",
+  "updated_at": "2026-08-17T03:19:02.689877+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -133,8 +133,11 @@
         "task-02"
       ],
       "description": "# Task 05 \u2014 Auth (Email-OTP + `app_user` Resolution)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nImplement authentication: Supabase Auth email-OTP login, session persistence, and resolution of the signed-in `auth.uid()` to the correct `app.app_user` row \u2014 exposing the user's `portal_kind` (EMPLOYEE/ATTORNEY/AFFILIATE/ADMIN) to the whole app. This is the gateway to the three-audience model.\n\n## Context\nAttorneys and affiliates are EXTERNAL (no Google Workspace) \u2014 so identity is Supabase Auth (email + OTP), NOT SSO. After login, the app must look up `app_user WHERE auth_user_id = auth.uid()`; that row's `portal_kind` drives all routing/visibility (T06). RLS depends on the JWT being attached (handled by the Supabase client from T02).\n\n## Technical Requirements\n1. Auth screens in `src/features/auth/`:\n   - `LoginPage` \u2014 email input \u2192 `supabase.auth.signInWithOtp({ email })` (magic-link/OTP). Branded (305/TNFG, dark theme per 2.0 login).\n   - `OtpVerifyPage` (or same page step 2) \u2014 enter the emailed code \u2192 `supabase.auth.verifyOtp(...)`. Handle the redirect/callback if using magic link.\n2. Session: rely on the T02 client's `persistSession`/`autoRefreshToken`. Add `src/features/auth/AuthProvider.tsx` (React context) exposing `{ session, appUser, portalKind, loading, signOut }`.\n3. **`app_user` resolution:** on session established, query `app.app_user` for `auth_user_id = session.user.id` (RLS allows self-select). Store the row + `portal_kind` in context. If no `app_user` row exists for the email, show a clear \"account not provisioned\" state (do NOT auto-create).\n4. `useAuth()` hook + `useAppUser()`/`usePortalKind()` selectors.\n5. Route guard primitive `RequireAuth` (redirects to login when no session) \u2014 the audience-specific guards come in T06.\n6. Sign-out clears session + context and returns to login.\n7. Errors via T04 `captureError`; friendly messages via `describeError`.\n\n## Acceptance Criteria\n- [ ] Email-OTP login + verify works end-to-end against Supabase Auth; session persists across reload.\n- [ ] After login, the matching `app.app_user` row is resolved and `portal_kind` is available app-wide via context.\n- [ ] Unprovisioned email (no `app_user`) shows a clear non-crashing state; no auto-provisioning.\n- [ ] `RequireAuth` redirects unauthenticated users to login.\n- [ ] Sign-out fully clears state. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- No passwords (OTP only). Do NOT create `app_user` rows from the client. Trust RLS for the self-select. No PII in logs.\n\n## Dependencies\n- T02 (client + types).\n\n## Files Expected\n- `src/features/auth/LoginPage.tsx`, `OtpVerifyPage.tsx`, `AuthProvider.tsx`, `useAuth.ts`\n- `src/features/auth/RequireAuth.tsx`\n- `src/lib/queries/appUser.ts` (self-resolve query)\n",
-      "startedAt": "2026-08-17T03:15:03.446255+00:00",
-      "lastActivity": "2026-08-17T03:15:03.446255+00:00"
+      "startedAt": "2026-08-17T03:12:24.128186+00:00",
+      "lastActivity": "2026-08-17T03:19:02.689877+00:00",
+      "costUSD": 1.382766,
+      "durationSeconds": 378,
+      "numTurns": 37
     },
     {
       "id": "task-06",
