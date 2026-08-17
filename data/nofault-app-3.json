@@ -1,0 +1,378 @@
+{
+  "slug": "nofault-app-3",
+  "name": "No Fault App 3.0",
+  "repo": "jwazar-TNFG/nofault-app-3",
+  "description": "React + Vite + Capacitor + Supabase \u2014 premium 3-audience app (employees/attorneys/affiliates) on live app-schema backend. AFDT/Fable-5 build.",
+  "phases": [
+    {
+      "id": 0,
+      "name": "Repo Readiness"
+    },
+    {
+      "id": 1,
+      "name": "Foundation"
+    },
+    {
+      "id": 2,
+      "name": "Shared Lead Domain"
+    },
+    {
+      "id": 3,
+      "name": "Employee Surface"
+    },
+    {
+      "id": 4,
+      "name": "Attorney & Affiliate Portals"
+    },
+    {
+      "id": 5,
+      "name": "Notifications & Native"
+    },
+    {
+      "id": 6,
+      "name": "Hardening & Packaging"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0,
+      "name": "CI + Branch Protection + Auto-merge",
+      "phase": 0,
+      "phaseName": "Repo Readiness",
+      "deps": [],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 1,
+      "name": "Project Scaffold (Vite/React/TS/Capacitor)",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        0
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 2,
+      "name": "Supabase Client + Generated app-schema Types",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        1
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 3,
+      "name": "Design System",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        1
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 4,
+      "name": "Sentry + Error Handling",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        1
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 5,
+      "name": "Auth (email-OTP + app_user resolution)",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        2
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 6,
+      "name": "App Shell (portal_kind branching + nav + guards)",
+      "phase": 1,
+      "phaseName": "Foundation",
+      "deps": [
+        3,
+        5
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 7,
+      "name": "Lead Query/Data Layer (+ rule-engine RPCs)",
+      "phase": 2,
+      "phaseName": "Shared Lead Domain",
+      "deps": [
+        2,
+        5
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 8,
+      "name": "Lead Detail View",
+      "phase": 2,
+      "phaseName": "Shared Lead Domain",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 9,
+      "name": "New Lead Form (5-step, phone-gated)",
+      "phase": 2,
+      "phaseName": "Shared Lead Domain",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 10,
+      "name": "Intake Panel (edit lead, 9 sections)",
+      "phase": 2,
+      "phaseName": "Shared Lead Domain",
+      "deps": [
+        7,
+        8
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 11,
+      "name": "Active Leads / Lead Lists",
+      "phase": 2,
+      "phaseName": "Shared Lead Domain",
+      "deps": [
+        7,
+        8
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 12,
+      "name": "Home (Employee)",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        6,
+        11
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 13,
+      "name": "Employee Directory",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 14,
+      "name": "Mapper (tx locations)",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 15,
+      "name": "Request Portal",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 16,
+      "name": "Chart Infrastructure",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        3,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 17,
+      "name": "Marketing Charts",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        16
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 18,
+      "name": "Intake + Attorney Charts",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        16
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 19,
+      "name": "Performance Roster / Lead Sheets",
+      "phase": 3,
+      "phaseName": "Employee Surface",
+      "deps": [
+        16
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 20,
+      "name": "Attorney Portal",
+      "phase": 4,
+      "phaseName": "Attorney & Affiliate Portals",
+      "deps": [
+        7,
+        8
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 21,
+      "name": "Affiliate Portal",
+      "phase": 4,
+      "phaseName": "Attorney & Affiliate Portals",
+      "deps": [
+        7,
+        8
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 22,
+      "name": "Atty & AFF Settings",
+      "phase": 4,
+      "phaseName": "Attorney & Affiliate Portals",
+      "deps": [
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 23,
+      "name": "Notification Center (in-app)",
+      "phase": 5,
+      "phaseName": "Notifications & Native",
+      "deps": [
+        6,
+        7
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 24,
+      "name": "Push Notifications (Capacitor)",
+      "phase": 5,
+      "phaseName": "Notifications & Native",
+      "deps": [
+        23
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 25,
+      "name": "Capacitor iOS + Android Integration",
+      "phase": 5,
+      "phaseName": "Notifications & Native",
+      "deps": [
+        6
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 26,
+      "name": "Test Suite (Vitest + Playwright)",
+      "phase": 6,
+      "phaseName": "Hardening & Packaging",
+      "deps": [
+        9,
+        10,
+        11,
+        20,
+        21
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 27,
+      "name": "A11y + Performance + i18n Pass",
+      "phase": 6,
+      "phaseName": "Hardening & Packaging",
+      "deps": [
+        12,
+        20,
+        21
+      ],
+      "status": "pending",
+      "landed": false
+    },
+    {
+      "id": 28,
+      "name": "Store Packaging (signed iOS/Android + metadata)",
+      "phase": 6,
+      "phaseName": "Hardening & Packaging",
+      "deps": [
+        25,
+        26,
+        27
+      ],
+      "status": "pending",
+      "landed": false
+    }
+  ],
+  "updatedAt": "2026-08-17T02:00:50.762271Z"
+}
