@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T04:52:20Z",
+  "updated_at": "2026-08-17T05:00:11Z",
   "phases": [
     {
       "id": "phase-0",
@@ -544,21 +544,24 @@
       "id": "task-13",
       "name": "HUD<->Bridge WebSocket Channel + Command Router",
       "phase": "phase-3",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-12",
         "task-07"
       ],
       "description": "**Task 13 \u2014 HUD<->Bridge WebSocket Channel + Command Router**\n\n_Phase 3 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nEstablish the local WS channel between bridge and HUD and route validated commands.\n\n**Files in scope**\n\n- Bridge exposes a local WS the HUD connects to; HUD sends events (edits, focus, ack/nack).\n- Router validates every inbound command (task 11) then dispatches.\n- Ack/nack + hud.error on rejection; never silently drop.\n\n**Acceptance criteria**\n\n- Bridge pushes a command the HUD renders.\n- HUD emits events the bridge receives.\n- Invalid command -> nack + hud.error.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-13.md)",
       "startedAt": "2026-07-09T23:02:04Z",
-      "lastActivity": "2026-08-17T04:52:20Z",
+      "lastActivity": "2026-08-17T05:00:11Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-13.md",
-      "costUSD": 1.0138,
-      "inputTokens": 65,
-      "outputTokens": 13391,
-      "cacheReadTokens": 711744,
+      "costUSD": 3.10148,
+      "inputTokens": 155,
+      "outputTokens": 42577,
+      "cacheReadTokens": 2601739,
       "costEstimated": true,
-      "promptSummary": "**HUD<->Bridge WebSocket Channel + Command Router**\n\n**Done when:**\n- Bridge pushes a command the HUD renders.\n- HUD emits events the bridge receives.\n- Invalid command -> nack + hud.error."
+      "promptSummary": "**HUD<->Bridge WebSocket Channel + Command Router**\n\n**Done when:**\n- Bridge pushes a command the HUD renders.\n- HUD emits events the bridge receives.\n- Invalid command -> nack + hud.error.",
+      "landed": false,
+      "finishedAt": "2026-08-17T05:00:11Z",
+      "durationSeconds": 3304687
     },
     {
       "id": "task-14",
