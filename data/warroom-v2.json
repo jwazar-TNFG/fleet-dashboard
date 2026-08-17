@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:20:39Z",
+  "updated_at": "2026-08-17T03:20:43Z",
   "phases": [
     {
       "id": "phase-0",
@@ -366,7 +366,7 @@
       ],
       "description": "**Task 05 \u2014 App State Store + Config Persistence Layer**\n\n_Phase 1 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nCreate the app-wide state store and a durable local config persistence layer.\n\n**Files in scope**\n\n- State store for panels, layout, orb, connection status.\n- Config persistence to disk (layouts, presets, view selection, service-settings pointers).\n- Typed schema + migration-safe read/write.\n\n**Acceptance criteria**\n\n- State survives reload; config round-trips to disk.\n- Corrupt/missing config falls back to defaults safely.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-05.md)",
       "startedAt": "2026-07-09T21:26:57Z",
-      "lastActivity": "2026-08-17T03:18:44Z",
+      "lastActivity": "2026-08-17T03:20:43Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-05.md",
       "costUSD": 2.327266,
       "inputTokens": 120,
@@ -374,9 +374,10 @@
       "cacheReadTokens": 1602499,
       "costEstimated": true,
       "promptSummary": "**App State Store + Config Persistence Layer**\n\n**Done when:**\n- State survives reload; config round-trips to disk.\n- Corrupt/missing config falls back to defaults safely.",
-      "landed": false,
+      "landed": true,
       "finishedAt": "2026-08-17T03:18:44Z",
-      "durationSeconds": 3304307
+      "durationSeconds": 3304307,
+      "mergedAt": "2026-08-17T03:20:43Z"
     },
     {
       "id": "task-06",
