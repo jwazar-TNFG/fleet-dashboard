@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T07:58:37Z",
+  "updated_at": "2026-08-17T07:59:44.363842+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -546,14 +546,16 @@
       ],
       "description": "# Task 25 \u2014 Capacitor iOS + Android Integration\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nIntegrate the native shells: configure Capacitor for iOS and Android with app icons, splash screens, status-bar/keyboard/safe-area handling, permissions, and deep-linking \u2014 so the web app runs as a real native app on both platforms and is ready for signed builds (T28).\n\n## Context\nStack uses Capacitor 6 (scaffolded in T01). This task makes the native experience correct on device: icons/splash, safe areas, status bar, keyboard behavior, back-button (Android), and deep links to `/leads/:id` (for notification taps from T24).\n\n## Technical Requirements\n1. Configure `capacitor.config.ts`: appId `com.tnfg.nofaultapp3`, appName \"No Fault App 3.0\", `webDir: dist`, splash + status-bar plugins.\n2. Add Capacitor plugins: `@capacitor/app`, `@capacitor/status-bar`, `@capacitor/keyboard`, `@capacitor/splash-screen`, `@capacitor/haptics` (as used). Wire status-bar style, keyboard resize, splash hide-on-ready.\n3. **App icons + splash**: generate icon/splash assets (use `@capacitor/assets` from a source logo placeholder committed to `resources/`); document replacing the placeholder with final brand art.\n4. **Safe areas**: ensure bottom nav + headers respect notches/home indicator (CSS env(safe-area-inset-*)); verify with T06 shell.\n5. **Android back button**: handle via `@capacitor/app` (navigate back / exit at root).\n6. **Deep links / URL scheme**: configure so a notification tap (T24) opens `/leads/:idLead`. Set up universal links / app links config placeholders (final domains documented for T28).\n7. `npx cap sync` wired into the build; document the iOS-on-Mac requirement (build here validates config, not a full Xcode build).\n8. Keep web build fully working (Capacitor is additive).\n\n## Acceptance Criteria\n- [ ] iOS + Android platforms configured; `capacitor.config.ts` correct; `npx cap sync` runs.\n- [ ] Icons + splash generated from a source asset (placeholder committed, replacement documented).\n- [ ] Safe areas, status bar, keyboard, and Android back-button handled.\n- [ ] Deep link opens `/leads/:idLead`. Web build still passes.\n- [ ] `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Do not commit signing certs/provisioning profiles (that is T28 + Jon's accounts). Placeholder brand assets only; document final-asset swap. Keep web parity.\n\n## Dependencies\n- T06 (shell/safe-areas). Coordinates with T24 (deep links).\n\n## Files Expected\n- `capacitor.config.ts` (finalized), `resources/` (icon/splash source)\n- native config edits under `ios/`, `android/`\n- `src/lib/native/*` (statusBar, backButton, deepLinks)\n",
       "lastActivity": "2026-08-17T07:58:14Z",
-      "startedAt": "2026-08-17T07:48:49Z",
-      "landed": false,
+      "startedAt": "2026-08-17T07:48:09.186937+00:00",
+      "landed": true,
       "costUSD": 2.018629,
       "inputTokens": 92,
       "outputTokens": 30290,
       "cacheReadTokens": 1762482,
       "finishedAt": "2026-08-17T07:58:14Z",
-      "durationSeconds": 565
+      "durationSeconds": 603,
+      "numTurns": 54,
+      "completedAt": "2026-08-17T07:58:12.186937+00:00"
     },
     {
       "id": "task-26",
@@ -569,7 +571,7 @@
         "task-21"
       ],
       "description": "# Task 26 \u2014 Test Suite (Vitest + Playwright)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the automated test suite \u2014 Vitest unit tests and Playwright E2E \u2014 with priority on the highest-risk surfaces: auth, RLS visibility (the three-audience boundary), and the CNV/log-status rule engines. Premium-bar requirement; App-2.0 had essentially no tests.\n\n## Context\nThe critical correctness risks are: (1) an audience seeing another audience's data (RLS), (2) CNV/log-status computed wrong, (3) lead-creation/intake writing bad data. Tests must cover these explicitly.\n\n## Technical Requirements\n1. **Vitest unit** (`*.test.ts` colocated or in `tests/unit`):\n   - Validation schema (T09 `lead.ts`): rejects placeholder/emoji/DOB-in-name; accepts valid input.\n   - Intake section\u2192payload mappers (T10): clinical + legal + insurance shape correctly.\n   - Query builders / RPC wrappers: correct params to `fn_cnv_value`/`fn_log_status`/`agg_*` (mock supabase client).\n   - Log-status/CNV wrappers return typed values.\n2. **Playwright E2E** (`tests/e2e`) against a running app pointed at a test/staging Supabase (env-driven; document setup):\n   - **Auth**: OTP login flow (mock/staging), unprovisioned-email state, sign-out.\n   - **RLS visibility (critical)**: seed/login as EMPLOYEE, ATTORNEY, AFFILIATE (using the demo users) and assert each sees ONLY their scoped leads; assert an attorney cannot open another firm's lead URL (404/empty), same for affiliate/location.\n   - **New Lead**: phone-gating blocks duplicate; happy path creates a lead in `app` and lands on detail.\n   - **CNV**: the seeded confirmed+signed demo lead shows CNV 1.50.\n3. Wire `test` (vitest) + `test:e2e` (playwright) scripts into CI (`ci-gate` runs `test`; e2e can be a separate job or `--if-present`). Provide fixtures/helpers for auth-as-role.\n4. Coverage target: meaningful coverage on `lib/queries`, `lib/validation`, `lib/rpc`, auth, and portal guards (not a % vanity metric \u2014 the listed scenarios must exist and pass).\n\n## Acceptance Criteria\n- [ ] Vitest unit tests cover validation, intake mappers, and rule-engine wrappers; all pass.\n- [ ] Playwright E2E covers auth, the three-audience RLS boundary (cross-audience denial), New Lead happy+duplicate, and CNV=1.50.\n- [ ] `npm run test` passes in CI; e2e documented + runnable against staging.\n- [ ] Cross-audience visibility test FAILS if RLS is weakened (proves it's real).\n- [ ] `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Use the seeded demo users/lead (do not invent a parallel fixture schema). No real prod data. Keep secrets in env. Tests must be deterministic.\n\n## Dependencies\n- T09, T10, T11 (features), T20, T21 (portals to test RLS boundary).\n\n## Files Expected\n- `vitest.config.ts`, `playwright.config.ts`\n- `tests/unit/*`, `tests/e2e/*`, `tests/helpers/authAsRole.ts`\n",
-      "lastActivity": "2026-08-17T07:58:37Z",
+      "lastActivity": "2026-08-17T07:59:44.363842+00:00",
       "startedAt": "2026-08-17T07:58:37Z"
     },
     {
