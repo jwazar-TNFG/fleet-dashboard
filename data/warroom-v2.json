@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T05:00:30Z",
+  "updated_at": "2026-08-17T05:10:01Z",
   "phases": [
     {
       "id": "phase-0",
@@ -567,7 +567,7 @@
       "id": "task-14",
       "name": "Command Handlers (orb/panel/layout/speak) + Mock Data Feed",
       "phase": "phase-3",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-13",
         "task-10",
@@ -575,14 +575,17 @@
       ],
       "description": "**Task 14 \u2014 Command Handlers (orb/panel/layout/speak) + Mock Data Feed**\n\n_Phase 3 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nImplement HUD-side handlers for the full command set, driven by a mock data feed.\n\n**Files in scope**\n\n- Handlers: orb.*, panel.set/clear/focus/unfocus/highlight/update, layout.apply/save/edit, speak(stub), listen.state.\n- Mock data provider so panels show content pre-data.\n- brief.start stub sequences orb+panels.\n\n**Acceptance criteria**\n\n- Every v1 command visibly affects the HUD with mock data.\n- brief.start plays a mock briefing.\n- Screenshots.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-14.md)",
       "startedAt": "2026-07-09T23:22:22Z",
-      "lastActivity": "2026-08-17T05:00:30Z",
+      "lastActivity": "2026-08-17T05:10:01Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-14.md",
-      "costUSD": 0.806,
-      "inputTokens": 51,
-      "outputTokens": 10646,
-      "cacheReadTokens": 565880,
+      "costUSD": 3.100127,
+      "inputTokens": 127,
+      "outputTokens": 49778,
+      "cacheReadTokens": 2307333,
       "costEstimated": true,
-      "promptSummary": "**Command Handlers (orb/panel/layout/speak) + Mock Data Feed**\n\n**Done when:**\n- Every v1 command visibly affects the HUD with mock data.\n- brief.start plays a mock briefing.\n- Screenshots."
+      "promptSummary": "**Command Handlers (orb/panel/layout/speak) + Mock Data Feed**\n\n**Done when:**\n- Every v1 command visibly affects the HUD with mock data.\n- brief.start plays a mock briefing.\n- Screenshots.",
+      "landed": false,
+      "finishedAt": "2026-08-17T05:10:01Z",
+      "durationSeconds": 3304059
     },
     {
       "id": "task-15",
