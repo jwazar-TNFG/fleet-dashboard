@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:20:43Z",
+  "updated_at": "2026-08-17T03:20:46Z",
   "phases": [
     {
       "id": "phase-0",
@@ -292,13 +292,13 @@
       "id": "task-02",
       "name": "Design System & TNFG Theme Tokens",
       "phase": "phase-1",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
       "description": "**Task 02 \u2014 Design System & TNFG Theme Tokens**\n\n_Phase 1 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nEstablish the visual design system and TNFG theme tokens used by every panel and primitive.\n\n**Files in scope**\n\n- Theme tokens for palette, spacing, typography, z-layers, glow/bloom.\n- Reusable primitives: Panel frame, TitleBar, StatPill, DonutBase, TrendLine wrappers.\n- Dark near-black base with teal/cyan accents and a red alert state.\n\n**Acceptance criteria**\n\n- Tokens centralized; no hardcoded colors elsewhere.\n- A /dev route renders the primitives for visual QA.\n- Crisp at 4K.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-02.md)",
       "startedAt": "2026-07-09T20:34:48Z",
-      "lastActivity": "2026-08-17T03:06:39Z",
+      "lastActivity": "2026-08-17T03:20:46Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-02.md",
       "costUSD": 2.431307,
       "inputTokens": 151,
@@ -306,9 +306,6 @@
       "cacheReadTokens": 1751515,
       "costEstimated": true,
       "promptSummary": "**Design System & TNFG Theme Tokens**\n\n**Done when:**\n- Tokens centralized; no hardcoded colors elsewhere.\n- A /dev route renders the primitives for visual QA.\n- Crisp at 4K.",
-      "landed": true,
-      "finishedAt": "2026-08-17T02:57:17Z",
-      "durationSeconds": 3306149,
       "mergedAt": "2026-08-17T03:06:39Z"
     },
     {
