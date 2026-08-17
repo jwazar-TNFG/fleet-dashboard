@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T04:41:21Z",
+  "updated_at": "2026-08-17T04:41:40Z",
   "phases": [
     {
       "id": "phase-0",
@@ -522,16 +522,13 @@
       "id": "task-12",
       "name": "Bridge Service Skeleton + Gateway WS Client",
       "phase": "phase-3",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-11"
       ],
       "description": "**Task 12 \u2014 Bridge Service Skeleton + Gateway WS Client**\n\n_Phase 3 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nCreate the standalone bridge service and its connection to the OpenClaw gateway.\n\n**Files in scope**\n\n- Node/TS service, separate process; connects to gateway ws://127.0.0.1:18789.\n- Reconnect/backoff; health endpoint; structured logging.\n- Loads config/secrets from the warroom secrets dir; runs independently of the HUD.\n\n**Acceptance criteria**\n\n- Bridge connects to the gateway; survives gateway restarts (reconnect).\n- Health check reports state.\n- Bridge crash does not affect Vera or HUD.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-12.md)",
       "startedAt": "2026-07-09T22:54:24Z",
-      "finishedAt": "2026-07-09T23:02:04Z",
-      "durationSeconds": 460,
-      "lastActivity": "2026-07-09T23:02:04Z",
-      "landed": true,
+      "lastActivity": "2026-08-17T04:41:40Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-12.md",
       "costUSD": 0.3838,
       "inputTokens": 24,
