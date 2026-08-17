@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:06:39Z",
+  "updated_at": "2026-08-17T03:06:43Z",
   "phases": [
     {
       "id": "phase-0",
@@ -337,16 +337,13 @@
       "id": "task-04",
       "name": "Fullscreen Kiosk Window + Crash Auto-Recover",
       "phase": "phase-1",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
       "description": "**Task 04 \u2014 Fullscreen Kiosk Window + Crash Auto-Recover**\n\n_Phase 1 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nConfigure the Electron window for fullscreen kiosk operation with crash auto-recovery.\n\n**Files in scope**\n\n- Fullscreen, no chrome/menu; hide cursor when idle; prevent accidental quit.\n- Renderer-gone/crash handler reloads; main-process supervisor.\n- Discreet admin/exit hotkey (configurable).\n\n**Acceptance criteria**\n\n- Launches fullscreen, no chrome/cursor.\n- Killing the renderer auto-recovers in seconds.\n- Admin hotkey reveals exit; normal keys do not quit.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-04.md)",
       "startedAt": "2026-07-09T21:19:21Z",
-      "finishedAt": "2026-07-09T21:26:55Z",
-      "durationSeconds": 454,
-      "lastActivity": "2026-07-09T21:26:55Z",
-      "landed": true,
+      "lastActivity": "2026-08-17T03:06:43Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-04.md",
       "costUSD": 0.3788,
       "inputTokens": 24,
