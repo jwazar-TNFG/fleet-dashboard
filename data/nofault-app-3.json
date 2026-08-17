@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T06:40:21Z",
+  "updated_at": "2026-08-17T06:40:43Z",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -383,7 +383,7 @@
         "task-16"
       ],
       "description": "# Task 18 \u2014 Intake + Attorney Charts\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Intake Charts (by intake specialist) and Attorney Charts (by attorney firm) sections, reusing the donut+table infrastructure. App-2.0 Home Section F.\n\n## Context\n2.0 Intake Charts: 3 metrics (Came In, Locked Down, Signed) \u00d7 Today/MTD, grouped by intake specialist. 2.0 Atty Charts: performance by attorney FIRM (external), with ATTORNEY / NEW LEAD TODAY filter buttons; multi-state firms appear as separate entries. Both reuse the donut+table pattern.\n\n## Technical Requirements\n1. `src/features/charts/IntakeCharts.tsx` \u2014 collapsible; Today/MTD; 3 metrics (`came_in`, `locked_down`, `signed`) grouped by intake specialist (`lead_staff` where `staff_kind`='INTAKER' \u2192 `app_user`). Uses `agg_leads_by_metric` with `group_by='intaker'` (extend the T16 RPC if needed via a follow-up in `0012`/new migration).\n2. `src/features/charts/AttorneyCharts.tsx` \u2014 collapsible; metrics by attorney firm (`lead_legal.id_attorney` \u2192 `ref_attorney.display_name`, which encodes firm + state/region). ATTORNEY / NEW-LEAD-TODAY filter buttons. Long lists \u2192 virtualized/paginated table.\n3. If the T16 RPC needs additional `group_by` values (`intaker`, `attorney`), add them in a small migration `migrations/0013_chart_rpc_groupings.sql` and regenerate types (documented).\n4. Reuse `DonutTable`; consistent teal gradient + sorted tables.\n5. Access per role matrix; loading/empty/error; handle 0-count and \"No ATTY\" edge entries.\n\n## Acceptance Criteria\n- [ ] Intake Charts render 3 metrics \u00d7 Today/MTD grouped by intake specialist.\n- [ ] Attorney Charts render metrics grouped by attorney firm with the ATTORNEY/NEW-LEAD-TODAY filters; long lists perform.\n- [ ] Any new group_by values added via migration + types regenerated.\n- [ ] 0-count and \"No ATTY\" edge cases handled. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Server-side aggregation only. Firm identity from `ref_attorney` (do not parse names in JS). Reuse infra; no duplicate chart code.\n\n## Dependencies\n- T16 (infra), T17 (patterns to mirror).\n\n## Files Expected\n- `src/features/charts/IntakeCharts.tsx`, `AttorneyCharts.tsx`\n- `migrations/0013_chart_rpc_groupings.sql` (if needed)\n",
-      "lastActivity": "2026-08-17T06:25:30Z",
+      "lastActivity": "2026-08-17T06:40:43Z",
       "startedAt": "2026-08-17T06:17:36.771362+00:00",
       "landed": true,
       "costUSD": 1.973288,
@@ -393,7 +393,8 @@
       "finishedAt": "2026-08-17T06:25:30Z",
       "durationSeconds": 471,
       "numTurns": 40,
-      "completedAt": "2026-08-17T06:25:27.771362+00:00"
+      "completedAt": "2026-08-17T06:25:27.771362+00:00",
+      "mergedAt": "2026-08-17T06:40:43Z"
     },
     {
       "id": "task-19",
