@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T04:26:17Z",
+  "updated_at": "2026-08-17T04:26:21Z",
   "phases": [
     {
       "id": "phase-0",
@@ -500,16 +500,13 @@
       "id": "task-11",
       "name": "HUD Protocol Types + Validator (versioned vocabulary)",
       "phase": "phase-3",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-01"
       ],
       "description": "**Task 11 \u2014 HUD Protocol Types + Validator (versioned vocabulary)**\n\n_Phase 3 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nImplement the versioned HUD command protocol as shared TS types + a validator.\n\n**Files in scope**\n\n- Encode envelope + full v1 vocabulary from HUD-PROTOCOL.md.\n- Runtime validator (zod): rejects unknown command, bad panel index, unknown view.\n- Shared module usable by bridge and HUD.\n\n**Acceptance criteria**\n\n- Every v1 command typed.\n- Invalid commands rejected with structured hud.error.\n- Unit tests for edge cases.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-11.md)",
       "startedAt": "2026-07-09T22:46:52Z",
-      "finishedAt": "2026-07-09T22:54:21Z",
-      "durationSeconds": 449,
-      "lastActivity": "2026-07-09T22:54:21Z",
-      "landed": true,
+      "lastActivity": "2026-08-17T04:26:21Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-11.md",
       "costUSD": 0.3746,
       "inputTokens": 24,
