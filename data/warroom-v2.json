@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:53:31Z",
+  "updated_at": "2026-08-17T04:06:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -453,21 +453,24 @@
       "id": "task-09",
       "name": "Layout Persistence + Named Presets",
       "phase": "phase-2",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-08",
         "task-05"
       ],
       "description": "**Task 09 \u2014 Layout Persistence + Named Presets**\n\n_Phase 2 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nPersist layouts and support named presets recallable by user and Vera.\n\n**Files in scope**\n\n- Persist current layout; reload on restart.\n- Named presets (Briefing, Ops Focus, Single-Screen) save/recall.\n- Expose layout.apply(preset) hook.\n\n**Acceptance criteria**\n\n- >=2 presets save/recall.\n- Layout persists across restart.\n- layout.apply switches presets.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-09.md)",
       "startedAt": "2026-07-09T22:20:17Z",
-      "lastActivity": "2026-08-17T03:53:31Z",
+      "lastActivity": "2026-08-17T04:06:23Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-09.md",
-      "costUSD": 0.6049,
-      "inputTokens": 38,
-      "outputTokens": 7990,
-      "cacheReadTokens": 424703,
+      "costUSD": 4.112175,
+      "inputTokens": 130,
+      "outputTokens": 60261,
+      "cacheReadTokens": 3539619,
       "costEstimated": true,
-      "promptSummary": "**Layout Persistence + Named Presets**\n\n**Done when:**\n- >=2 presets save/recall.\n- Layout persists across restart.\n- layout.apply switches presets."
+      "promptSummary": "**Layout Persistence + Named Presets**\n\n**Done when:**\n- >=2 presets save/recall.\n- Layout persists across restart.\n- layout.apply switches presets.",
+      "landed": false,
+      "finishedAt": "2026-08-17T04:06:23Z",
+      "durationSeconds": 3303966
     },
     {
       "id": "task-10",
