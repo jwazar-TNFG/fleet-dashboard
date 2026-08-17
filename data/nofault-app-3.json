@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T07:23:34.108387+00:00",
+  "updated_at": "2026-08-17T07:25:40.941486+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -470,21 +470,22 @@
       "name": "Atty & AFF Settings",
       "phase": "phase-4",
       "phaseName": "Attorney & Affiliate Portals",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07"
       ],
       "description": "# Task 22 \u2014 Atty & AFF Settings\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the Atty & AFF Settings admin surface: manage attorney firms (`ref_attorney`) and treatment locations (`ref_tx_location`) \u2014 email targets, states, active status. Mirrors App-2.0 Screen 24. Admin/IT only.\n\n## Context\n2.0 Screen 24 (IT + senior intake): two tabs \u2014 Attorneys (list/detail/edit: email targets, states multi-select, active toggle) and Locations (list/detail/edit: int/ext email targets, address, state, active toggle; Type COR/AFF read-only). 3.0 edits `ref_attorney` / `ref_tx_location` directly (admin-only per RLS).\n\n## Technical Requirements\n1. `src/pages/admin/AttyAffSettingsPage.tsx` (`/admin/settings`) \u2014 ADMIN only (T06 guard + RLS admin policy). Two tabs.\n2. **Attorneys tab:** searchable paginated list of `ref_attorney` (name, active). Detail: display_name, firm_name, status, ext_email_targets, id_state; Edit form: email targets (required, comma-separated), states multi-select pills (`ref_state`), active toggle, portal flags (`is_active_on_portal`). Persist to `ref_attorney`.\n3. **Locations tab:** searchable paginated list of `ref_tx_location`. Detail: name, status, type (COR/AFF read-only), address, state, int/ext email targets. Edit: int/ext email targets, address, state (single-select), active toggle. Persist to `ref_tx_location`.\n4. Writes go through admin-gated queries; RLS admin policy enforces server-side. Validate email-target formats; confirm-before-save.\n5. Loading/empty/error; optimistic UI or clear save states.\n\n## Acceptance Criteria\n- [ ] Admin-only access enforced (UI guard + RLS).\n- [ ] Attorneys + Locations tabs list/detail/edit and persist to `ref_attorney`/`ref_tx_location`.\n- [ ] States multi-select, active toggles, email-target validation work; Type is read-only on locations.\n- [ ] Non-admins cannot reach or mutate (verify with a test). `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Admin only; rely on RLS admin policies for writes. Type (COR/AFF) read-only. No hardcoded state lists (use `ref_state`). Confirm destructive/status changes.\n\n## Dependencies\n- T06 (admin guard), T07 (refData + write helpers).\n\n## Files Expected\n- `src/pages/admin/AttyAffSettingsPage.tsx`\n- `src/features/admin/*` (AttorneyEditor, LocationEditor)\n- `src/lib/queries/refAdmin.ts`\n",
       "lastActivity": "2026-08-17T07:23:34.108387+00:00",
       "startedAt": "2026-08-17T07:06:28.898314+00:00",
-      "landed": false,
+      "landed": true,
       "costUSD": 4.454149,
       "inputTokens": 168,
       "outputTokens": 51867,
       "cacheReadTokens": 5065158,
       "finishedAt": "2026-08-17T07:22:40Z",
       "durationSeconds": 969,
-      "numTurns": 100
+      "numTurns": 100,
+      "completedAt": "2026-08-17T07:22:37.898314+00:00"
     },
     {
       "id": "task-23",
@@ -497,7 +498,7 @@
         "task-07"
       ],
       "description": "# Task 23 \u2014 Notification Center (In-App)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## \u26a0\ufe0f Scope note\nThe TNFG3 spec has no notification table. This task adds a minimal notification module to the `app` schema via a NEW migration (authorized here). App-2.0 E3 (push) was the most-requested feature; this is its in-app foundation, with device push in T24.\n\n## Objective\nBuild the in-app Notification Center: a bell with unread badge and a notifications list, backed by a new `app.notification` table, delivering case-event alerts (new comment, status change, assignment, appointment) to the right user \u2014 scoped by RLS.\n\n## Context\nUsers want timely alerts on their cases (status changes, comments, assignments, appointments) \u2014 critical for conversion. This task builds the data model + in-app UI; T24 adds device push on top.\n\n## Technical Requirements\n1. **Migration** `migrations/0015_notification.sql`: `app.notification` (id, id_recipient_user \u2192 app_user, id_lead (nullable), kind (varchar+CHECK: comment/status_change/assignment/appointment/system), title, body, is_read bool, created_at, read_at). Optional `app.notification_pref` (per-user per-kind on/off). RLS: recipient sees own only; FORCE RLS; insert allowed to service_role/triggers. Apply + regen types.\n2. **(Optional but preferred) triggers**: DB triggers on `lead_status_event` (status_change), `lead_note` (comment), `lead_staff` (assignment), `lead_clinical.appointment_at` (appointment) that insert notifications for the relevant recipient(s). If triggers are too broad for this task, insert notifications from the app mutation paths instead and note the choice in the PR.\n3. `src/features/notifications/NotificationBell.tsx` \u2014 bell + unread count (realtime via Supabase channel subscription on `app.notification` for the user).\n4. `src/pages/notifications/NotificationCenter.tsx` (`/notifications`) \u2014 list (unread emphasized), mark-read / mark-all-read, tap \u2192 related lead detail.\n5. `src/lib/queries/notifications.ts` \u2014 list, unread count, markRead, subscribe. Preferences UI (toggle per kind) if `notification_pref` added.\n6. Loading/empty/error; realtime updates the badge without refresh.\n\n## Acceptance Criteria\n- [ ] `app.notification` module migration created, RLS-secured, types regenerated.\n- [ ] Bell shows realtime unread count; center lists notifications with mark-read/all-read.\n- [ ] Notifications are generated on case events (trigger or mutation path) for the correct recipient.\n- [ ] Recipient-only visibility verified by a test. `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Recipient-scoped by RLS. Keep the module minimal. If using triggers, keep them targeted (no notification storms). No hardcoded recipient logic that bypasses RLS.\n\n## Dependencies\n- T06 (shell), T07 (queries), T02 (types regen).\n\n## Files Expected\n- `migrations/0015_notification.sql`\n- `src/features/notifications/NotificationBell.tsx`\n- `src/pages/notifications/NotificationCenter.tsx`\n- `src/lib/queries/notifications.ts`\n",
-      "lastActivity": "2026-08-17T07:23:34.108387+00:00",
+      "lastActivity": "2026-08-17T07:25:40.941486+00:00",
       "startedAt": "2026-08-17T07:22:58Z"
     },
     {
