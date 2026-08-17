@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T02:57:34Z",
+  "updated_at": "2026-08-17T03:06:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -314,20 +314,23 @@
       "id": "task-03",
       "name": "HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)",
       "phase": "phase-1",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-02"
       ],
       "description": "**Task 03 \u2014 HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)**\n\n_Phase 1 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nBuild the signature 'Jarvis-in-TNFG-teal' aesthetic primitives, chiefly the animated Vera Orb.\n\n**Files in scope**\n\n- Animated Orb: energy core + rotating radar rings + ticks; states idle/listening/thinking/speaking/alert/fullscreen.\n- Corner reticles, scanlines, grid backdrop, neon bloom overlay.\n- Orb exposes a state API the protocol layer can drive later.\n\n**Acceptance criteria**\n\n- Orb renders >=50fps at 4K; six states visually distinct.\n- Overlay composable behind panels.\n- Screenshot captured.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-03.md)",
       "startedAt": "2026-07-09T21:00:51Z",
-      "lastActivity": "2026-08-17T02:57:34Z",
+      "lastActivity": "2026-08-17T03:06:23Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-03.md",
-      "costUSD": 0.9237,
-      "inputTokens": 59,
-      "outputTokens": 12200,
-      "cacheReadTokens": 648477,
+      "costUSD": 2.820934,
+      "inputTokens": 115,
+      "outputTokens": 54067,
+      "cacheReadTokens": 1651092,
       "costEstimated": true,
-      "promptSummary": "**HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)**\n\n**Done when:**\n- Orb renders >=50fps at 4K; six states visually distinct.\n- Overlay composable behind panels.\n- Screenshot captured."
+      "promptSummary": "**HUD Aesthetic Primitives (orb, reticles, scanlines, bloom)**\n\n**Done when:**\n- Orb renders >=50fps at 4K; six states visually distinct.\n- Overlay composable behind panels.\n- Screenshot captured.",
+      "landed": false,
+      "finishedAt": "2026-08-17T03:06:23Z",
+      "durationSeconds": 3305132
     },
     {
       "id": "task-04",
