@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T03:43:19Z",
+  "updated_at": "2026-08-17T03:43:23Z",
   "phases": [
     {
       "id": "phase-0",
@@ -430,16 +430,13 @@
       "id": "task-08",
       "name": "Edit-Layout Mode (drag/resize + snap guides)",
       "phase": "phase-2",
-      "status": "completed",
+      "status": "in_progress",
       "depends_on": [
         "task-07"
       ],
       "description": "**Task 08 \u2014 Edit-Layout Mode (drag/resize + snap guides)**\n\n_Phase 2 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nAdd an Edit-Layout mode letting the user move/resize panels with snapping.\n\n**Files in scope**\n\n- Toggle via hotkey + menu button; drag handles + snap guides.\n- Snap to grid cells and canvas edges; exit locks; cancel restores.\n\n**Acceptance criteria**\n\n- User can move/resize; panels snap; exiting locks.\n- Snap guides visible.\n- Cancel restores prior layout.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md)",
       "startedAt": "2026-07-09T22:09:18Z",
-      "finishedAt": "2026-07-09T22:20:10Z",
-      "durationSeconds": 652,
-      "lastActivity": "2026-07-09T22:20:10Z",
-      "landed": true,
+      "lastActivity": "2026-08-17T03:43:23Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-08.md",
       "costUSD": 0.544,
       "inputTokens": 34,
