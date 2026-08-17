@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T03:21:02.561111+00:00",
+  "updated_at": "2026-08-17T03:25:31.497626+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -81,11 +81,11 @@
       "description": "# Task 02 \u2014 Supabase Client + Generated `app`-schema Types\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nWire the Supabase client and generate TypeScript types directly from the live `app` schema. This establishes the typed data contract for the entire app and is the #1 drift-prevention control \u2014 no hand-written DB types anywhere.\n\n## Context\nThe backend is the live `app` schema (58 tables, RLS, rule-engine functions). App 2.0 suffered four deployed-vs-code drift bugs from hand-written types; App 3.0 forbids that. The Supabase client must target the `app` schema and pass the user JWT so RLS applies.\n\n## Technical Requirements\n1. Create `src/lib/supabase.ts` exporting a typed client:\n   - `createClient<Database>(url, anonKey, { db: { schema: 'app' }, auth: { persistSession: true, autoRefreshToken: true } })`.\n   - URL/key from `import.meta.env` via `src/lib/env.ts`. Never hardcode.\n2. Generate types: add a script `gen:types` \u2192 `supabase gen types typescript --project-id <PROJECT_ID from env/CI> --schema app > src/lib/database.types.ts`. Commit a generated `database.types.ts` covering the `app` schema (tables, enums, functions). Document the regen command in README.\n   - The generated `Database` type MUST include the `app` schema tables and the callable functions (`fn_cnv_value`, `fn_log_status`, `visible_lead_ids`, `visible_user_ids`, `current_portal_kind`, `is_admin`).\n3. Add typed helpers in `src/lib/db.ts`:\n   - `type Tables<T> = Database['app']['Tables'][T]['Row']` and Insert/Update equivalents.\n   - Export handy row aliases: `AppUser`, `Lead`, `LeadLegal`, `LeadClinical`, `Client`, `RefAttorney`, `RefTxLocation`, etc. NOTE the three quoted camelCase tables map to keys `refLeadStatus`/`refClinicalStatus`/`refLegalStatus` in the generated types \u2014 alias them cleanly.\n4. Environment separation: support dev/staging/prod via `VITE_APP_ENV` + per-env `VITE_SUPABASE_URL`/`_ANON_KEY`. Provide `.env.example` entries and a short README section. No secrets committed.\n5. Add a `src/lib/rpc.ts` with thin typed wrappers for the rule-engine + visibility functions (e.g. `getCnvValue(idLead)`, `getLogStatus(idLead)`), calling `supabase.rpc('fn_cnv_value', { p_id_lead })` etc.\n\n## Acceptance Criteria\n- [ ] `src/lib/database.types.ts` is generated from the `app` schema and committed; NO hand-written table interfaces exist in the codebase.\n- [ ] `src/lib/supabase.ts` targets `schema: 'app'`, persists session, passes JWT (RLS-ready).\n- [ ] `src/lib/rpc.ts` typed wrappers compile against generated function types.\n- [ ] dev/staging/prod env separation documented and env-driven; no hardcoded URL/key.\n- [ ] `npm run typecheck` passes with the generated types in use.\n\n## Constraints\n- Do NOT hand-write any table/row types. Do NOT alter the schema. Do NOT commit real keys.\n- If `supabase gen types` cannot reach the project in CI, commit a checked-in generated file and document the regen step; keep the committed file authoritative.\n\n## Dependencies\n- T01 (scaffold + env).\n\n## Files Expected\n- `src/lib/supabase.ts`, `src/lib/database.types.ts`, `src/lib/db.ts`, `src/lib/rpc.ts`\n- `.env.example` (updated), README section on type regen + envs\n",
       "landed": true,
       "lastActivity": "2026-08-17T03:04:22.405249+00:00",
-      "costUSD": 1.129607,
-      "durationSeconds": 343,
-      "numTurns": 46,
-      "completedAt": "2026-08-17T02:57:14.983647+00:00",
-      "startedAt": "2026-08-17T02:51:31.983647+00:00"
+      "costUSD": 0.370408,
+      "durationSeconds": 121,
+      "numTurns": 19,
+      "completedAt": "2026-08-17T03:22:40.959050+00:00",
+      "startedAt": "2026-08-17T03:20:39.959050+00:00"
     },
     {
       "id": "task-03",
