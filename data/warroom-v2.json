@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T02:51:56Z",
+  "updated_at": "2026-08-17T02:52:17Z",
   "phases": [
     {
       "id": "phase-0",
@@ -275,7 +275,7 @@
       ],
       "description": "**Task 01 \u2014 Project Scaffold (Electron + Vite + TS)**\n\n_Phase 1 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nStand up the foundational Electron + Vite + TypeScript project skeleton for the War Room v2 HUD, targeting macOS Apple Silicon.\n\n**Files in scope**\n\n- Electron main + preload + renderer split; contextIsolation on, nodeIntegration off.\n- Vite + React 18 + TypeScript renderer; monorepo workspaces for hud / bridge / (voice later).\n- ESLint + Prettier + strict tsconfig; scripts: dev, build, lint, typecheck, package.\n- A minimal window that loads the renderer (must satisfy task-00 CI).\n\n**Acceptance criteria**\n\n- `npm run build`, `lint`, `typecheck` pass and CI is green.\n- `npm run dev` launches an Electron window rendering a placeholder HUD root.\n- Structure documented in README-DEV.md.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-01.md)",
       "startedAt": "2026-07-09T20:28:42Z",
-      "lastActivity": "2026-08-17T02:51:36Z",
+      "lastActivity": "2026-08-17T02:52:17Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-01.md",
       "costUSD": 0.895046,
       "inputTokens": 63,
@@ -286,7 +286,7 @@
       "landed": true,
       "finishedAt": "2026-08-17T02:50:50Z",
       "durationSeconds": 3306128,
-      "mergedAt": "2026-08-17T02:51:36Z"
+      "mergedAt": "2026-08-17T02:52:17Z"
     },
     {
       "id": "task-02",
