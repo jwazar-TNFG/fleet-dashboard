@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T08:22:34Z",
+  "updated_at": "2026-08-17T08:23:44.143586+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -572,14 +572,16 @@
       ],
       "description": "# Task 26 \u2014 Test Suite (Vitest + Playwright)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nBuild the automated test suite \u2014 Vitest unit tests and Playwright E2E \u2014 with priority on the highest-risk surfaces: auth, RLS visibility (the three-audience boundary), and the CNV/log-status rule engines. Premium-bar requirement; App-2.0 had essentially no tests.\n\n## Context\nThe critical correctness risks are: (1) an audience seeing another audience's data (RLS), (2) CNV/log-status computed wrong, (3) lead-creation/intake writing bad data. Tests must cover these explicitly.\n\n## Technical Requirements\n1. **Vitest unit** (`*.test.ts` colocated or in `tests/unit`):\n   - Validation schema (T09 `lead.ts`): rejects placeholder/emoji/DOB-in-name; accepts valid input.\n   - Intake section\u2192payload mappers (T10): clinical + legal + insurance shape correctly.\n   - Query builders / RPC wrappers: correct params to `fn_cnv_value`/`fn_log_status`/`agg_*` (mock supabase client).\n   - Log-status/CNV wrappers return typed values.\n2. **Playwright E2E** (`tests/e2e`) against a running app pointed at a test/staging Supabase (env-driven; document setup):\n   - **Auth**: OTP login flow (mock/staging), unprovisioned-email state, sign-out.\n   - **RLS visibility (critical)**: seed/login as EMPLOYEE, ATTORNEY, AFFILIATE (using the demo users) and assert each sees ONLY their scoped leads; assert an attorney cannot open another firm's lead URL (404/empty), same for affiliate/location.\n   - **New Lead**: phone-gating blocks duplicate; happy path creates a lead in `app` and lands on detail.\n   - **CNV**: the seeded confirmed+signed demo lead shows CNV 1.50.\n3. Wire `test` (vitest) + `test:e2e` (playwright) scripts into CI (`ci-gate` runs `test`; e2e can be a separate job or `--if-present`). Provide fixtures/helpers for auth-as-role.\n4. Coverage target: meaningful coverage on `lib/queries`, `lib/validation`, `lib/rpc`, auth, and portal guards (not a % vanity metric \u2014 the listed scenarios must exist and pass).\n\n## Acceptance Criteria\n- [ ] Vitest unit tests cover validation, intake mappers, and rule-engine wrappers; all pass.\n- [ ] Playwright E2E covers auth, the three-audience RLS boundary (cross-audience denial), New Lead happy+duplicate, and CNV=1.50.\n- [ ] `npm run test` passes in CI; e2e documented + runnable against staging.\n- [ ] Cross-audience visibility test FAILS if RLS is weakened (proves it's real).\n- [ ] `build`/`typecheck`/`lint` pass.\n\n## Constraints\n- Use the seeded demo users/lead (do not invent a parallel fixture schema). No real prod data. Keep secrets in env. Tests must be deterministic.\n\n## Dependencies\n- T09, T10, T11 (features), T20, T21 (portals to test RLS boundary).\n\n## Files Expected\n- `vitest.config.ts`, `playwright.config.ts`\n- `tests/unit/*`, `tests/e2e/*`, `tests/helpers/authAsRole.ts`\n",
       "lastActivity": "2026-08-17T08:22:16Z",
-      "startedAt": "2026-08-17T07:58:37Z",
-      "landed": false,
+      "startedAt": "2026-08-17T07:56:42.754275+00:00",
+      "landed": true,
       "costUSD": 5.647234,
       "inputTokens": 142,
       "outputTokens": 68976,
       "cacheReadTokens": 6165847,
       "finishedAt": "2026-08-17T08:22:16Z",
-      "durationSeconds": 1419
+      "durationSeconds": 1532,
+      "numTurns": 92,
+      "completedAt": "2026-08-17T08:22:14.754275+00:00"
     },
     {
       "id": "task-27",
@@ -593,7 +595,7 @@
         "task-21"
       ],
       "description": "# Task 27 \u2014 Accessibility, Performance & i18n Pass\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nA production-polish pass across the app: accessibility (WCAG AA), performance/responsiveness, complete empty/loading/error states, and English/Spanish i18n scaffolding \u2014 the difference between \"compiles\" and \"premium\".\n\n## Context\nUsers are bilingual (EN/ES; Creole/Portuguese noted). Responsiveness is a standing TNFG priority. This task hardens the whole surface rather than adding features.\n\n## Technical Requirements\n1. **Accessibility:** audit all interactive components/screens for AA \u2014 focus order, `aria` labels, roles, contrast, 44px targets, form labels/errors, modal focus-trap (BottomSheet/Modal). Fix violations. Add an automated a11y check (axe) in Playwright for key screens.\n2. **Performance:** ensure lists paginate/virtualize; charts render from single aggregated calls; images lazy-load; route-level code-splitting; measure and record initial load + key interactions; fix obvious jank. Note before/after timings in the PR.\n3. **States:** every data surface has proper loading (skeleton/spinner), empty, and error states (reuse T03). No blank screens on error (Sentry + friendly message).\n4. **i18n:** add a lightweight i18n layer (e.g. `i18next` or a minimal typed dictionary) with EN + ES resource files; externalize user-facing strings on the primary flows (auth, home, lead detail, new lead, portals). Language switch respects `client.preferred_language`/user setting; default from device locale.\n5. Consistent design-system usage; remove one-off styles that drift from tokens.\n\n## Acceptance Criteria\n- [ ] Key screens pass an automated axe check; manual AA issues on core flows fixed.\n- [ ] Lists/charts/images perform (pagination/virtualization/code-split); timings recorded in PR.\n- [ ] Every data surface has loading/empty/error states; no blank-on-error.\n- [ ] EN + ES i18n wired on primary flows; language switch works.\n- [ ] `build`/`typecheck`/`lint`/`test` pass.\n\n## Constraints\n- No new features \u2014 polish only. Keep bundle size in check (watch MapLibre/Recharts imports; lazy-load heavy routes). Do not regress the three-audience behavior.\n\n## Dependencies\n- Broad: T12 (home), T20, T21 (portals) + the rest of the surface.\n\n## Files Expected\n- `src/lib/i18n/*` (config + en.json + es.json)\n- a11y/perf fixes across `src/features/*`, `src/pages/*`\n- axe checks in `tests/e2e`\n",
-      "lastActivity": "2026-08-17T08:22:34Z",
+      "lastActivity": "2026-08-17T08:23:44.143586+00:00",
       "startedAt": "2026-08-17T08:22:34Z"
     },
     {
