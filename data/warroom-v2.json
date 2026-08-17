@@ -2,7 +2,7 @@
   "name": "War Room v2 (VERA HUD)",
   "slug": "warroom-v2",
   "repo": "jwazar-TNFG/warroom-v2",
-  "updated_at": "2026-08-17T05:27:12Z",
+  "updated_at": "2026-08-17T05:36:06Z",
   "phases": [
     {
       "id": "phase-0",
@@ -613,21 +613,24 @@
       "id": "task-16",
       "name": "warroom_emit Tool (bridge-gated) + Registration",
       "phase": "phase-4",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-15",
         "task-12"
       ],
       "description": "**Task 16 \u2014 warroom_emit Tool (bridge-gated) + Registration**\n\n_Phase 4 \u00b7 Project: War Room v2 (VERA HUD) \u00b7 Repo: jwazar-TNFG/warroom-v2_\n\n**Objective**\n\nImplement the warroom_emit tool Vera uses to emit validated HUD commands, gated on bridge availability.\n\n**Files in scope**\n\n- Accepts an array of command objects; stamps envelope (protocol/v/id/ts).\n- Sends to bridge; returns per-command ack/nack (hud.error on reject).\n- Registered additively; inert/hidden when the bridge is unreachable.\n\n**Acceptance criteria**\n\n- Vera drives the HUD via warroom_emit.\n- Bad commands return hud.error.\n- Tool inert with no bridge; Vera normal.\n\n---\n\ud83d\udcc4 [Full prompt fed to the build agent \u2192](https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-16.md)",
       "startedAt": "2026-07-09T23:43:31Z",
-      "lastActivity": "2026-08-17T05:27:12Z",
+      "lastActivity": "2026-08-17T05:36:06Z",
       "promptUrl": "https://github.com/jwazar-TNFG/warroom-v2/blob/main/build/prompts/task-16.md",
-      "costUSD": 0.8778,
-      "inputTokens": 56,
-      "outputTokens": 11594,
-      "cacheReadTokens": 616259,
+      "costUSD": 3.401291,
+      "inputTokens": 154,
+      "outputTokens": 44433,
+      "cacheReadTokens": 3059158,
       "costEstimated": true,
-      "promptSummary": "**warroom_emit Tool (bridge-gated) + Registration**\n\n**Done when:**\n- Vera drives the HUD via warroom_emit.\n- Bad commands return hud.error.\n- Tool inert with no bridge; Vera normal."
+      "promptSummary": "**warroom_emit Tool (bridge-gated) + Registration**\n\n**Done when:**\n- Vera drives the HUD via warroom_emit.\n- Bad commands return hud.error.\n- Tool inert with no bridge; Vera normal.",
+      "landed": false,
+      "finishedAt": "2026-08-17T05:36:06Z",
+      "durationSeconds": 3304355
     },
     {
       "id": "task-17",
