@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T03:19:02.689877+00:00",
+  "updated_at": "2026-08-17T03:21:02.561111+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -63,11 +63,11 @@
       "description": "# Task 01 \u2014 Project Scaffold (Vite + React + TS + Capacitor)\n\n> Read `build/prompts/_shared-context.md` first.\n\n## Objective\nScaffold the application: Vite + React 18 + TypeScript, Capacitor 6 native shell (iOS + Android targets), ESLint + Prettier, a clean feature-first folder structure, and the npm scripts the CI gate expects. This is the foundation every other task builds on.\n\n## Context\nStack is fixed (see shared context): React 18.3, TypeScript 5.5, Vite 5, Capacitor 6, React Router 6, Recharts, MapLibre GL, lucide-react. Mobile-first. The backend is the live Supabase `app` schema \u2014 this task creates NO backend and NO DB types yet (that is T02).\n\n## Technical Requirements\n1. Initialize Vite React-TS app at repo root. React 18.3, TypeScript 5.5, strict mode on in `tsconfig`.\n2. Add dependencies: `react-router-dom@6`, `@supabase/supabase-js@2`, `recharts`, `maplibre-gl`, `lucide-react`, `@capacitor/core@6`, `@capacitor/cli@6`, `@capacitor/ios@6`, `@capacitor/android@6`, plus dev: `eslint`, `prettier`, `eslint-config-prettier`, `typescript`, `vitest`, `@playwright/test`.\n3. npm scripts: `dev`, `build` (`tsc -b && vite build`), `preview`, `lint` (eslint), `typecheck` (`tsc -b --noEmit` or `tsc --noEmit`), `test` (vitest run), `test:e2e` (playwright). These names must match T00's CI gate.\n4. `capacitor.config.ts`: appId `com.tnfg.nofaultapp3` (confirm naming), appName \"No Fault App 3.0\", webDir `dist`. Add iOS + Android platforms (`npx cap add ios`, `npx cap add android`) \u2014 scaffold configs; do not require a Mac to build here.\n5. Folder structure (feature-first):\n   ```\n   src/\n     app/            # app entry, router, providers\n     components/     # shared UI primitives (T03 fills these)\n     features/       # feature modules (leads, auth, charts, portals, ...)\n     lib/            # supabase client, queries, validation, constants, types\n     pages/          # route-level pages\n     styles/         # theme tokens, globals\n   ```\n6. ESLint + Prettier configured and passing on the scaffold. Set up `src/app/App.tsx` with a minimal router and a placeholder route so `build` succeeds.\n7. `.env` plumbing: read `import.meta.env.VITE_*`; add a tiny `src/lib/env.ts` that validates required vars at startup and throws a clear error if missing (no hardcoded values).\n\n## Acceptance Criteria\n- [ ] `npm install`, `npm run build`, `npm run typecheck`, `npm run lint` all pass.\n- [ ] Capacitor configured with iOS + Android platforms; `capacitor.config.ts` correct.\n- [ ] Folder structure created as specified; strict TS on.\n- [ ] `src/lib/env.ts` validates `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` presence.\n- [ ] App boots to a placeholder route in `vite preview`.\n\n## Constraints\n- No backend/DB types here (T02). No hardcoded secrets. Keep dependencies to the fixed stack; do not introduce a different router/state/UI library.\n\n## Dependencies\n- T00 (CI gate + gitignore).\n\n## Files Expected\n- `package.json`, `tsconfig*.json`, `vite.config.ts`, `.eslintrc*`, `.prettierrc`\n- `capacitor.config.ts`, `ios/`, `android/` (scaffold)\n- `src/app/App.tsx`, `src/app/router.tsx`, `src/lib/env.ts`, `index.html`\n",
       "landed": true,
       "lastActivity": "2026-08-17T02:53:29.735501+00:00",
-      "costUSD": 0.592146,
-      "durationSeconds": 257,
-      "numTurns": 27,
-      "completedAt": "2026-08-17T02:50:46.815874+00:00",
-      "startedAt": "2026-08-17T02:46:29.815874+00:00"
+      "costUSD": 0.251735,
+      "durationSeconds": 91,
+      "numTurns": 14,
+      "completedAt": "2026-08-17T03:20:32.214391+00:00",
+      "startedAt": "2026-08-17T03:19:01.214391+00:00"
     },
     {
       "id": "task-02",
@@ -128,7 +128,7 @@
       "name": "Auth (email-OTP + app_user resolution)",
       "phase": "phase-1",
       "phaseName": "Foundation",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-02"
       ],
@@ -137,7 +137,9 @@
       "lastActivity": "2026-08-17T03:19:02.689877+00:00",
       "costUSD": 1.382766,
       "durationSeconds": 378,
-      "numTurns": 37
+      "numTurns": 37,
+      "landed": true,
+      "completedAt": "2026-08-17T03:18:42.128186+00:00"
     },
     {
       "id": "task-06",
