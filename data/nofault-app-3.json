@@ -1,379 +1,321 @@
 {
-  "slug": "nofault-app-3",
   "name": "No Fault App 3.0",
+  "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "description": "React + Vite + Capacitor + Supabase \u2014 premium 3-audience app (employees/attorneys/affiliates) on live app-schema backend. AFDT/Fable-5 build.",
+  "updated_at": "2026-08-17T02:16:18.172257+00:00",
   "phases": [
     {
-      "id": 0,
+      "id": "phase-0",
       "name": "Repo Readiness"
     },
     {
-      "id": 1,
+      "id": "phase-1",
       "name": "Foundation"
     },
     {
-      "id": 2,
+      "id": "phase-2",
       "name": "Shared Lead Domain"
     },
     {
-      "id": 3,
+      "id": "phase-3",
       "name": "Employee Surface"
     },
     {
-      "id": 4,
+      "id": "phase-4",
       "name": "Attorney & Affiliate Portals"
     },
     {
-      "id": 5,
+      "id": "phase-5",
       "name": "Notifications & Native"
     },
     {
-      "id": 6,
+      "id": "phase-6",
       "name": "Hardening & Packaging"
     }
   ],
   "tasks": [
     {
-      "id": 0,
+      "id": "task-00",
       "name": "CI + Branch Protection + Auto-merge",
-      "phase": 0,
-      "phaseName": "Repo Readiness",
-      "deps": [],
+      "phase": "phase-0",
       "status": "completed",
+      "depends_on": [],
       "landed": true,
-      "lastActivity": "2026-08-17T02:12:03.037482+00:00"
+      "lastActivity": "2026-08-17T02:16:18.172219+00:00"
     },
     {
-      "id": 1,
+      "id": "task-01",
       "name": "Project Scaffold (Vite/React/TS/Capacitor)",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        0
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-00"
+      ]
     },
     {
-      "id": 2,
+      "id": "task-02",
       "name": "Supabase Client + Generated app-schema Types",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        1
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-01"
+      ]
     },
     {
-      "id": 3,
+      "id": "task-03",
       "name": "Design System",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        1
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-01"
+      ]
     },
     {
-      "id": 4,
+      "id": "task-04",
       "name": "Sentry + Error Handling",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        1
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-01"
+      ]
     },
     {
-      "id": 5,
+      "id": "task-05",
       "name": "Auth (email-OTP + app_user resolution)",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        2
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-02"
+      ]
     },
     {
-      "id": 6,
+      "id": "task-06",
       "name": "App Shell (portal_kind branching + nav + guards)",
-      "phase": 1,
-      "phaseName": "Foundation",
-      "deps": [
-        3,
-        5
-      ],
+      "phase": "phase-1",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-03",
+        "task-05"
+      ]
     },
     {
-      "id": 7,
+      "id": "task-07",
       "name": "Lead Query/Data Layer (+ rule-engine RPCs)",
-      "phase": 2,
-      "phaseName": "Shared Lead Domain",
-      "deps": [
-        2,
-        5
-      ],
+      "phase": "phase-2",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-02",
+        "task-05"
+      ]
     },
     {
-      "id": 8,
+      "id": "task-08",
       "name": "Lead Detail View",
-      "phase": 2,
-      "phaseName": "Shared Lead Domain",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-2",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 9,
+      "id": "task-09",
       "name": "New Lead Form (5-step, phone-gated)",
-      "phase": 2,
-      "phaseName": "Shared Lead Domain",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-2",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 10,
+      "id": "task-10",
       "name": "Intake Panel (edit lead, 9 sections)",
-      "phase": 2,
-      "phaseName": "Shared Lead Domain",
-      "deps": [
-        7,
-        8
-      ],
+      "phase": "phase-2",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-07",
+        "task-08"
+      ]
     },
     {
-      "id": 11,
+      "id": "task-11",
       "name": "Active Leads / Lead Lists",
-      "phase": 2,
-      "phaseName": "Shared Lead Domain",
-      "deps": [
-        7,
-        8
-      ],
+      "phase": "phase-2",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-07",
+        "task-08"
+      ]
     },
     {
-      "id": 12,
+      "id": "task-12",
       "name": "Home (Employee)",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        6,
-        11
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-11"
+      ]
     },
     {
-      "id": 13,
+      "id": "task-13",
       "name": "Employee Directory",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 14,
+      "id": "task-14",
       "name": "Mapper (tx locations)",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 15,
+      "id": "task-15",
       "name": "Request Portal",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 16,
+      "id": "task-16",
       "name": "Chart Infrastructure",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        3,
-        7
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-03",
+        "task-07"
+      ]
     },
     {
-      "id": 17,
+      "id": "task-17",
       "name": "Marketing Charts",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        16
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-16"
+      ]
     },
     {
-      "id": 18,
+      "id": "task-18",
       "name": "Intake + Attorney Charts",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        16
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-16"
+      ]
     },
     {
-      "id": 19,
+      "id": "task-19",
       "name": "Performance Roster / Lead Sheets",
-      "phase": 3,
-      "phaseName": "Employee Surface",
-      "deps": [
-        16
-      ],
+      "phase": "phase-3",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-16"
+      ]
     },
     {
-      "id": 20,
+      "id": "task-20",
       "name": "Attorney Portal",
-      "phase": 4,
-      "phaseName": "Attorney & Affiliate Portals",
-      "deps": [
-        7,
-        8
-      ],
+      "phase": "phase-4",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-07",
+        "task-08"
+      ]
     },
     {
-      "id": 21,
+      "id": "task-21",
       "name": "Affiliate Portal",
-      "phase": 4,
-      "phaseName": "Attorney & Affiliate Portals",
-      "deps": [
-        7,
-        8
-      ],
+      "phase": "phase-4",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-07",
+        "task-08"
+      ]
     },
     {
-      "id": 22,
+      "id": "task-22",
       "name": "Atty & AFF Settings",
-      "phase": 4,
-      "phaseName": "Attorney & Affiliate Portals",
-      "deps": [
-        7
-      ],
+      "phase": "phase-4",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-07"
+      ]
     },
     {
-      "id": 23,
+      "id": "task-23",
       "name": "Notification Center (in-app)",
-      "phase": 5,
-      "phaseName": "Notifications & Native",
-      "deps": [
-        6,
-        7
-      ],
+      "phase": "phase-5",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06",
+        "task-07"
+      ]
     },
     {
-      "id": 24,
+      "id": "task-24",
       "name": "Push Notifications (Capacitor)",
-      "phase": 5,
-      "phaseName": "Notifications & Native",
-      "deps": [
-        23
-      ],
+      "phase": "phase-5",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-23"
+      ]
     },
     {
-      "id": 25,
+      "id": "task-25",
       "name": "Capacitor iOS + Android Integration",
-      "phase": 5,
-      "phaseName": "Notifications & Native",
-      "deps": [
-        6
-      ],
+      "phase": "phase-5",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-06"
+      ]
     },
     {
-      "id": 26,
+      "id": "task-26",
       "name": "Test Suite (Vitest + Playwright)",
-      "phase": 6,
-      "phaseName": "Hardening & Packaging",
-      "deps": [
-        9,
-        10,
-        11,
-        20,
-        21
-      ],
+      "phase": "phase-6",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-09",
+        "task-10",
+        "task-11",
+        "task-20",
+        "task-21"
+      ]
     },
     {
-      "id": 27,
+      "id": "task-27",
       "name": "A11y + Performance + i18n Pass",
-      "phase": 6,
-      "phaseName": "Hardening & Packaging",
-      "deps": [
-        12,
-        20,
-        21
-      ],
+      "phase": "phase-6",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-12",
+        "task-20",
+        "task-21"
+      ]
     },
     {
-      "id": 28,
+      "id": "task-28",
       "name": "Store Packaging (signed iOS/Android + metadata)",
-      "phase": 6,
-      "phaseName": "Hardening & Packaging",
-      "deps": [
-        25,
-        26,
-        27
-      ],
+      "phase": "phase-6",
       "status": "pending",
-      "landed": false
+      "depends_on": [
+        "task-25",
+        "task-26",
+        "task-27"
+      ]
     }
-  ],
-  "updatedAt": "2026-08-17T02:12:21.470646+00:00"
+  ]
 }
