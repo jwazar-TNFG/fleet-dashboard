@@ -2,7 +2,7 @@
   "name": "No Fault App 3.0",
   "slug": "nofault-app-3",
   "repo": "jwazar-TNFG/nofault-app-3",
-  "updated_at": "2026-08-17T05:36:42.107726+00:00",
+  "updated_at": "2026-08-17T06:09:01.162980+00:00",
   "description": "Premium 3-audience TNFG app (employees/attorneys/affiliates) on live Supabase `app` schema. React+Vite+Capacitor. AFDT/Fable-5 build.",
   "phases": [
     {
@@ -222,7 +222,7 @@
       "name": "Intake Panel (edit lead, 9 sections)",
       "phase": "phase-2",
       "phaseName": "Shared Lead Domain",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07",
         "task-08"
@@ -232,14 +232,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 7.71137,
       "durationSeconds": 1233,
-      "numTurns": 82
+      "numTurns": 82,
+      "landed": true,
+      "completedAt": "2026-08-17T04:25:59.140457+00:00"
     },
     {
       "id": "task-11",
       "name": "Active Leads / Lead Lists",
       "phase": "phase-2",
       "phaseName": "Shared Lead Domain",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-07",
         "task-08"
@@ -249,14 +251,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 4.757944,
       "durationSeconds": 970,
-      "numTurns": 82
+      "numTurns": 82,
+      "landed": true,
+      "completedAt": "2026-08-17T04:41:21.716603+00:00"
     },
     {
       "id": "task-12",
       "name": "Home (Employee)",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-06",
         "task-11"
@@ -266,14 +270,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 3.034043,
       "durationSeconds": 669,
-      "numTurns": 55
+      "numTurns": 55,
+      "landed": true,
+      "completedAt": "2026-08-17T04:52:01.438478+00:00"
     },
     {
       "id": "task-13",
       "name": "Employee Directory",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-06",
         "task-07"
@@ -283,14 +289,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 2.08768,
       "durationSeconds": 505,
-      "numTurns": 62
+      "numTurns": 62,
+      "landed": true,
+      "completedAt": "2026-08-17T05:00:09.373914+00:00"
     },
     {
       "id": "task-14",
       "name": "Mapper (tx locations)",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-06",
         "task-07"
@@ -300,14 +308,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 2.294127,
       "durationSeconds": 612,
-      "numTurns": 55
+      "numTurns": 55,
+      "landed": true,
+      "completedAt": "2026-08-17T05:09:57.868457+00:00"
     },
     {
       "id": "task-15",
       "name": "Request Portal",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-06",
         "task-07"
@@ -317,14 +327,16 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 5.182222,
       "durationSeconds": 1068,
-      "numTurns": 90
+      "numTurns": 90,
+      "landed": true,
+      "completedAt": "2026-08-17T05:26:49.182927+00:00"
     },
     {
       "id": "task-16",
       "name": "Chart Infrastructure",
       "phase": "phase-3",
       "phaseName": "Employee Surface",
-      "status": "in_progress",
+      "status": "completed",
       "depends_on": [
         "task-03",
         "task-07"
@@ -334,7 +346,9 @@
       "lastActivity": "2026-08-17T05:36:42.107726+00:00",
       "costUSD": 2.523491,
       "durationSeconds": 570,
-      "numTurns": 63
+      "numTurns": 63,
+      "landed": true,
+      "completedAt": "2026-08-17T05:36:04.379342+00:00"
     },
     {
       "id": "task-17",
